@@ -1,0 +1,15 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# Packrat binaries
+#
+
+# Excel temp files
+~$*.xls*
+
+*test*
+.Rproj.user
