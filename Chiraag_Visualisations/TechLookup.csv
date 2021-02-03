@@ -1,0 +1,238 @@
+ALU-PH-FURN-ELC-Furn,New Aluminium - Process Heat: Furnace/Kiln  - Electricity
+CNST-MoTP-Mob-DSL-ICE_ofrd,"New Construction - Motive Power, Mobile  - Diesel"
+CNST-MoTP-Mob-NGA-ICE_ofrd,"New Construction - Motive Power, Mobile  - Natural Gas"
+CNST-MoTP-Mob-PET-ICE_ofrd,"New Construction - Motive Power, Mobile  - Petrol"
+CNST-MoTP-Mob-LPG-ICE_ofrd,"New Construction - Motive Power, Mobile  - LPG"
+CNST-MoTP-Stat-DSL-st_ngn,"New Construction - Motive Power, Stationary  - Diesel"
+CNST-MoTP-Stat-PET-st_ngn,"New Construction - Motive Power, Stationary  - Petrol"
+CNST-MoTP-Stat-ELC-Motor,"New Construction - Motive Power, Stationary  - Electricity"
+CNST-MoTP-Stat-ELC-VSD-Mtr,"New Construction - Motive Power, Stationary  - Electricity"
+DARY-AIR-ELC-CMPR,New Dairy - Compressed Air  - Electricity
+DARY-MoTP-Stat-PET-st_ngn,"New Dairy - Motive Power, Stationary  - Petrol"
+DARY-MoTP-Stat-DSL-st_ngn,"New Dairy - Motive Power, Stationary  - Diesel"
+DARY-MoTP-Stat-ELC-Motor,"New Dairy - Motive Power, Stationary  - Electricity"
+DARY-MoTP-Stat-ELC-VSD-Mtr,"New Dairy - Motive Power, Stationary  - Electricity"
+DARY-PH-MVR_DRY-ELC-HPmp,New Dairy - Process Heat: MVR Drying  - Electricity
+DARY-PH-MVR_DRY-ELC-HRCVR,New Dairy - Process Heat: MVR Drying  - Electricity
+DARY-PH-MVR_DRY-COA-Boiler,New Dairy - Process Heat: MVR Drying  - Coal
+DARY-PH-MVR_DRY-NGA-Boiler,New Dairy - Process Heat: MVR Drying  - Natural Gas
+DARY-PH-MVR_DRY-WOD-Boiler,New Dairy - Process Heat: MVR Drying  - Wood
+DARY-PH-MVR_DRY-ELC-Boiler,New Dairy - Process Heat: MVR Drying  - Electricity
+DARY-PH-MVR_PRE-COA-Boiler,New Dairy - Process Heat: MVR Evaporation Preheat  - Coal
+DARY-PH-MVR_PRE-NGA-Boiler,New Dairy - Process Heat: MVR Evaporation Preheat  - Natural Gas
+DARY-PH-MVR_PRE-WOD-Boiler,New Dairy - Process Heat: MVR Evaporation Preheat  - Wood
+DARY-PH-MVR_PRE-ELC-Boiler,New Dairy - Process Heat: MVR Evaporation Preheat  - Electricity
+DARY-PH-MVR_PRE-ELC-Fan,New Dairy - Process Heat: MVR Evaporation Preheat  - Electricity
+DARY-PH-TVR_EVP-COA-Boiler,New Dairy - Process Heat: TVR Evaporation  - Coal
+DARY-PH-TVR_EVP-NGA-Boiler,New Dairy - Process Heat: TVR Evaporation  - Natural Gas
+DARY-PH-TVR_EVP-ELC-Fan,New Dairy - Process Heat: TVR Evaporation  - Electricity
+DARY-PH-TVR_EVP-WOD-Boiler,New Dairy - Process Heat: TVR Evaporation  - Wood
+DARY-PH-TVR_EVP-ELC-Boiler,New Dairy - Process Heat: TVR Evaporation  - Electricity
+DARY-PH-TVR_DRY-WOD-Boiler,New Dairy - Process Heat: TVR Drying  - Wood
+DARY-PH-TVR_DRY-ELC-Boiler,New Dairy - Process Heat: TVR Drying  - Electricity
+DARY-PH-TVR_DRY-ELC-HPmp,New Dairy - Process Heat: TVR Drying  - Electricity
+DARY-PH-TVR_DRY-ELC-HRCVR,New Dairy - Process Heat: TVR Drying  - Electricity
+DARY-PH-TVR_DRY-COA-Boiler,New Dairy - Process Heat: TVR Drying  - Coal
+DARY-PH-TVR_DRY-NGA-Boiler,New Dairy - Process Heat: TVR Drying  - Natural Gas
+DARY-PH-MVR_TVR-COA-Boiler,New Dairy - Process Heat: MVR Evaporation TVR  - Coal
+DARY-PH-MVR_TVR-NGA-Boiler,New Dairy - Process Heat: MVR Evaporation TVR  - Natural Gas
+DARY-PH-MVR_TVR-WOD-Boiler,New Dairy - Process Heat: MVR Evaporation TVR  - Wood
+DARY-PH-MVR_TVR-ELC-Boiler,New Dairy - Process Heat: MVR Evaporation TVR  - Electricity
+DARY-PH-MVR_TVR-ELC-Fan,New Dairy - Process Heat: MVR Evaporation TVR  - Electricity
+DARY-PH-MVR_Fan-ELC-Fan,New Dairy - Process Heat: MVR Fan  - Electricity
+DARY-PH-STM_HW-DSL-Boiler,New Dairy - Process Heat: Steam/Hot Water  - Diesel
+DARY-PH-STM_HW-GEO-Heat,New Dairy - Process Heat: Steam/Hot Water  - Geothermal
+DARY-PH-STM_HW-LPG-Boiler,New Dairy - Process Heat: Steam/Hot Water  - LPG
+DARY-PH-STM_HW-ELC-Boiler,New Dairy - Process Heat: Steam/Hot Water  - Electricity
+DARY-PH-STM_HW-WOD-Boiler,New Dairy - Process Heat: Steam/Hot Water  - Wood
+DARY-PH-STM_HW-ELC-HPmp,New Dairy - Process Heat: Steam/Hot Water  - Electricity
+DARY-Pump-ELC-Pump,New Dairy - Pumping  - Electricity
+DARY-Pump-DSL-Pump,New Dairy - Pumping  - Diesel
+DARY-RFGR-ELC-Refriger,New Dairy - Refrigeration  - Electricity
+FOOD-MoTP-Stat-PET-st_ngn,"New Food - Motive Power, Stationary  - Petrol"
+FOOD-MoTP-Stat-DSL-st_ngn,"New Food - Motive Power, Stationary  - Diesel"
+FOOD-MoTP-Stat-ELC-Motor,"New Food - Motive Power, Stationary  - Electricity"
+FOOD-MoTP-Stat-ELC-VSD-Mtr,"New Food - Motive Power, Stationary  - Electricity"
+FOOD-PH-DirH-NGA-Burner,New Food - Process Heat: Direct Heat  - Natural Gas
+FOOD-PH-DirH-ELC-Heater,New Food - Process Heat: Direct Heat  - Electricity
+FOOD-PH-OVN-NGA-Oven,New Food - Process Heat: Oven  - Natural Gas
+FOOD-PH-OVN-ELC-Oven,New Food - Process Heat: Oven  - Electricity
+FOOD-PH-OVN-COA-Oven,New Food - Process Heat: Oven  - Coal
+FOOD-PH-STM_HW-WOD-Boiler,New Food - Process Heat: Steam/Hot Water  - Wood
+FOOD-PH-STM_HW-BGS-Heat,New Food - Process Heat: Steam/Hot Water  - Biogas
+FOOD-PH-STM_HW-ELC-HPmp,New Food - Process Heat: Steam/Hot Water  - Electricity
+FOOD-PH-STM_HW-FOL-Heat,New Food - Process Heat: Steam/Hot Water  - Fuel Oil
+FOOD-PH-STM_HW-DSL-Boiler,New Food - Process Heat: Steam/Hot Water  - Diesel
+FOOD-PH-STM_HW-LPG-Heat,New Food - Process Heat: Steam/Hot Water  - LPG
+FOOD-PH-STM_HW-COA-Boiler,New Food - Process Heat: Steam/Hot Water  - Coal
+FOOD-PH-STM_HW-NGA-Boiler,New Food - Process Heat: Steam/Hot Water  - Natural Gas
+FOOD-PH-STM_HW-ELC-Boiler,New Food - Process Heat: Steam/Hot Water  - Electricity
+FOOD-PH-STM_HW-ELC-MWO,New Food - Process Heat: Steam/Hot Water  - Electricity
+FOOD-PH-STM_HW-ELC-ELCTECH,New Food - Process Heat: Steam/Hot Water  - Electricity
+FOOD-Pump-ELC-Pump,New Food - Pumping  - Electricity
+FOOD-Pump-DSL-Pump,New Food - Pumping  - Diesel
+FOOD-RFGR-ELC-Refriger,New Food - Refrigeration  - Electricity
+IIS-FDSTCK-COA-_,New Iron/Steel - Steel production (feedstock)  - Coal
+IIS-MoTP-Stat-DSL-st_ngn,"New Iron/Steel - Motive Power, Stationary  - Diesel"
+IIS-MoTP-Stat-ELC-Motor,"New Iron/Steel - Motive Power, Stationary  - Electricity"
+IIS-MoTP-Stat-PET-st_ngn,"New Iron/Steel - Motive Power, Stationary  - Petrol"
+IIS-MoTP-Stat-ELC-VSD-Mtr,"New Iron/Steel - Motive Power, Stationary  - Electricity"
+IIS-PH-FURN-COA-Furn,New Iron/Steel - Process Heat: Furnace/Kiln  - Coal
+IIS-PH-FURN-ELC-Furn,New Iron/Steel - Process Heat: Furnace/Kiln  - Electricity
+IIS-PH-FURN-NGA-Furn,New Iron/Steel - Process Heat: Furnace/Kiln  - Natural Gas
+IIS-PH-FURN-WOD-Furn,New Iron/Steel - Process Heat: Furnace/Kiln  - Wood
+IIS-PH-FURN-LPG-Furn,New Iron/Steel - Process Heat: Furnace/Kiln  - LPG
+MEAT-MoTP-Stat-DSL-st_ngn,"New Meat - Motive Power, Stationary  - Diesel"
+MEAT-MoTP-Stat-ELC-Motor,"New Meat - Motive Power, Stationary  - Electricity"
+MEAT-MoTP-Stat-PET-st_ngn,"New Meat - Motive Power, Stationary  - Petrol"
+MEAT-MoTP-Stat-ELC-VSD-Mtr,"New Meat - Motive Power, Stationary  - Electricity"
+MEAT-PH-STM_HW-NGA-Boiler,New Meat - Process Heat: Steam/Hot Water  - Natural Gas
+MEAT-PH-STM_HW-COA-Boiler,New Meat - Process Heat: Steam/Hot Water  - Coal
+MEAT-PH-STM_HW-ELC-HPmp,New Meat - Process Heat: Steam/Hot Water  - Electricity
+MEAT-PH-STM_HW-DSL-Boiler,New Meat - Process Heat: Steam/Hot Water  - Diesel
+MEAT-PH-STM_HW-WOD-Boiler,New Meat - Process Heat: Steam/Hot Water  - Wood
+MEAT-PH-STM_HW-ELC-ELCTECH,New Meat - Process Heat: Steam/Hot Water  - Electricity
+MEAT-PH-DirH-NGA-Burner,New Meat - Process Heat: Direct Heat  - Natural Gas
+MEAT-PH-DirH-ELC-Heater,New Meat - Process Heat: Direct Heat  - Electricity
+MEAT-RFGR-ELC-Refriger,New Meat - Refrigeration  - Electricity
+METAL-MoTP-Stat-DSL-st_ngn,"New Metal product manufacturing - Motive Power, Stationary  - Diesel"
+METAL-MoTP-Stat-ELC-Motor,"New Metal product manufacturing - Motive Power, Stationary  - Electricity"
+METAL-MoTP-Stat-PET-st_ngn,"New Metal product manufacturing - Motive Power, Stationary  - Petrol"
+METAL-MoTP-Stat-ELC-VSD-Mtr,"New Metal product manufacturing - Motive Power, Stationary  - Electricity"
+METAL-PH-FURN-ELC-Furn,New Metal product manufacturing - Process Heat: Furnace/Kiln  - Electricity
+METAL-PH-FURN-COA-Furn,New Metal product manufacturing - Process Heat: Furnace/Kiln  - Coal
+METAL-PH-FURN-NGA-Furn,New Metal product manufacturing - Process Heat: Furnace/Kiln  - Natural Gas
+METAL-PH-FURN-WOD-Furn,New Metal product manufacturing - Process Heat: Furnace/Kiln  - Wood
+METAL-PH-FURN-FOL-Furn,New Metal product manufacturing - Process Heat: Furnace/Kiln  - Fuel Oil
+METAL-PH-FURN-LPG-Furn,New Metal product manufacturing - Process Heat: Furnace/Kiln  - LPG
+METAL-RFGR-ELC-Refriger,New Metal product manufacturing - Refrigeration  - Electricity
+METAL-PH-DirH-NGA-Burner,New Metal product manufacturing - Process Heat: Direct Heat  - Natural Gas
+METAL-PH-DirH-ELC-Heater,New Metal product manufacturing - Process Heat: Direct Heat  - Electricity
+MTHOL-FDSTCK-NGA-FDSTCK,New Methanol - Methanol production (feedstock)  - Natural Gas
+MTHOL-PH_REFRM-NGA-REFRM,New Methanol - Process Heat: Reformer  - Natural Gas
+MNRL-MoTP-Stat-ELC-Motor,"New Mineral - Motive Power, Stationary  - Electricity"
+MNRL-MoTP-Stat-PET-st_ngn,"New Mineral - Motive Power, Stationary  - Petrol"
+MNRL-MoTP-Stat-DSL-st_ngn,"New Mineral - Motive Power, Stationary  - Diesel"
+MNRL-MoTP-Stat-ELC-VSD-Mtr,"New Mineral - Motive Power, Stationary  - Electricity"
+MNRL-PH-FURN-ELC-Furn,New Mineral - Process Heat: Furnace/Kiln  - Electricity
+MNRL-PH-FURN-COA-Furn,New Mineral - Process Heat: Furnace/Kiln  - Coal
+MNRL-PH-FURN-NGA-Furn,New Mineral - Process Heat: Furnace/Kiln  - Natural Gas
+MNRL-PH-FURN-WOD-Furn,New Mineral - Process Heat: Furnace/Kiln  - Wood
+MNRL-PH-FURN-LPG-Furn,New Mineral - Process Heat: Furnace/Kiln  - LPG
+MNRL-PH-STM_HW-NGA-Boiler,New Mineral - Process Heat: Steam/Hot Water  - Natural Gas
+MNRL-PH-STM_HW-DSL-Boiler,New Mineral - Process Heat: Steam/Hot Water  - Diesel
+MNRL-PH-STM_HW-ELC-HPmp,New Mineral - Process Heat: Steam/Hot Water  - Electricity
+MNRL-PH-STM_HW-COA-Boiler,New Mineral - Process Heat: Steam/Hot Water  - Coal
+MNRL-PH-STM_HW-LPG-Boiler,New Mineral - Process Heat: Steam/Hot Water  - LPG
+MNRL-PH-STM_HW-WOD-Boiler,New Mineral - Process Heat: Steam/Hot Water  - Wood
+MNRL-PH-STM_HW-ELC-Boiler,New Mineral - Process Heat: Steam/Hot Water  - Electricity
+MNNG-MoTP-Mob-PET-ICE_ofrd,"New Mining - Motive Power, Mobile  - Petrol"
+MNNG-MoTP-Mob-DSL-ICE_ofrd,"New Mining - Motive Power, Mobile  - Diesel"
+MNNG-MoTP-Mob-NGA-ICE_ofrd,"New Mining - Motive Power, Mobile  - Natural Gas"
+MNNG-MoTP-Stat-ELC-VSD-Mtr,"New Mining - Motive Power, Stationary  - Electricity"
+MNNG-MoTP-Stat-PET-st_ngn,"New Mining - Motive Power, Stationary  - Petrol"
+MNNG-MoTP-Stat-ELC-Motor,"New Mining - Motive Power, Stationary  - Electricity"
+MNNG-MoTP-Stat-DSL-st_ngn,"New Mining - Motive Power, Stationary  - Diesel"
+MNNG-PH-STM_HW-NGA-Boiler,New Mining - Process Heat: Steam/Hot Water  - Natural Gas
+MNNG-PH-STM_HW-DSL-Boiler,New Mining - Process Heat: Steam/Hot Water  - Diesel
+MNNG-PH-STM_HW-FOL-Boiler,New Mining - Process Heat: Steam/Hot Water  - Fuel Oil
+MNNG-PH-STM_HW-ELC-HPmp,New Mining - Process Heat: Steam/Hot Water  - Electricity
+MNNG-PH-STM_HW-COA-Boiler,New Mining - Process Heat: Steam/Hot Water  - Coal
+MNNG-PH-STM_HW-LPG-Boiler,New Mining - Process Heat: Steam/Hot Water  - LPG
+MNNG-PH-STM_HW-WOD-Boiler,New Mining - Process Heat: Steam/Hot Water  - Wood
+MNNG-PH-STM_HW-ELC-Boiler,New Mining - Process Heat: Steam/Hot Water  - Electricity
+OTH-ELC-ELC-Tech,New Other - Other - Electricity  - Electricity
+OTH-DSL-DSL-Tech,New Other - Other - Diesel  - Diesel
+OTH-LPG-LPG-Tech,New Other - Other - LPG  - LPG
+OTH-COA-COA-Tech,New Other - Other - Coal  - Coal
+OTH-NGA-NGA-Tech,New Other - Other - Natural Gas  - Natural Gas
+OTH-PET-PET-Tech,New Other - Other - Petrol  - Petrol
+OTH-BGS-BGS-Tech,New Other - Other - Biogas  - Biogas
+OTH-FOL-FOL-Tech,New Other - Other - Fuel Oil  - Fuel Oil
+CHMCL-MoTP-Stat-DSL-st_ngn,"New Petroleum/Chemicals - Motive Power, Stationary  - Diesel"
+CHMCL-MoTP-Stat-ELC-Motor,"New Petroleum/Chemicals - Motive Power, Stationary  - Electricity"
+CHMCL-MoTP-Stat-PET-st_ngn,"New Petroleum/Chemicals - Motive Power, Stationary  - Petrol"
+CHMCL-MoTP-Stat-ELC-VSD-Mtr,"New Petroleum/Chemicals - Motive Power, Stationary  - Electricity"
+CHMCL-PH-DirH-NGA-Burner,New Petroleum/Chemicals - Process Heat: Direct Heat  - Natural Gas
+CHMCL-PH-DirH-ELC-Heater,New Petroleum/Chemicals - Process Heat: Direct Heat  - Electricity
+CHMCL-PH-STM_HW-NGA-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Natural Gas
+CHMCL-PH-STM_HW-FOL-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Fuel Oil
+CHMCL-PH-STM_HW-DSL-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Diesel
+CHMCL-PH-STM_HW-ELC-HPmp,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Electricity
+CHMCL-PH-STM_HW-COA-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Coal
+CHMCL-PH-STM_HW-LPG-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - LPG
+CHMCL-PH-STM_HW-WOD-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Wood
+CHMCL-PH-STM_HW-ELC-Boiler,New Petroleum/Chemicals - Process Heat: Steam/Hot Water  - Electricity
+CHMCL-PH-REFRM-NGA-REFRM,New Petroleum/Chemicals - Process Heat: Reformer  - Natural Gas
+CHMCL-MoTP-Stat-NGA-Pump,"New Petroleum/Chemicals - Motive Power, Stationary  - Natural Gas"
+CHMCL-PH-FURN-ELC-Furn,New Petroleum/Chemicals - Process Heat: Furnace/Kiln  - Electricity
+CHMCL-PH-FURN-COA-Furn,New Petroleum/Chemicals - Process Heat: Furnace/Kiln  - Coal
+CHMCL-PH-FURN-FOL-Furn,New Petroleum/Chemicals - Process Heat: Furnace/Kiln  - Fuel Oil
+CHMCL-PH-FURN-NGA-Furn,New Petroleum/Chemicals - Process Heat: Furnace/Kiln  - Natural Gas
+CHMCL-PH-FURN-WOD-Furn,New Petroleum/Chemicals - Process Heat: Furnace/Kiln  - Wood
+CHMCL-PH-FURN-LPG-Furn,New Petroleum/Chemicals - Process Heat: Furnace/Kiln  - LPG
+REFI-MoTP-Stat-PET-st_ngn,"New Refining - Motive Power, Stationary  - Petrol"
+REFI-MoTP-Stat-ELC-Motor,"New Refining - Motive Power, Stationary  - Electricity"
+REFI-MoTP-Stat-DSL-st_ngn,"New Refining - Motive Power, Stationary  - Diesel"
+REFI-MoTP-Stat-ELC-VSD-Mtr,"New Refining - Motive Power, Stationary  - Electricity"
+REFI-PH-FURN-ELC-Furn,New Refining - Process Heat: Furnace/Kiln  - Electricity
+REFI-PH-FURN-COA-Furn,New Refining - Process Heat: Furnace/Kiln  - Coal
+REFI-PH-FURN-NGA-Furn,New Refining - Process Heat: Furnace/Kiln  - Natural Gas
+REFI-PH-FURN-WOD-Furn,New Refining - Process Heat: Furnace/Kiln  - Wood
+REFI-PH-FURN-LPG-Furn,New Refining - Process Heat: Furnace/Kiln  - LPG
+REFI-PH-STM_HW-NGA-Boiler,New Refining - Process Heat: Steam/Hot Water  - Natural Gas
+REFI-PH-STM_HW-DSL-Boiler,New Refining - Process Heat: Steam/Hot Water  - Diesel
+REFI-PH-STM_HW-ELC-HPmp,New Refining - Process Heat: Steam/Hot Water  - Electricity
+REFI-PH-STM_HW-COA-Boiler,New Refining - Process Heat: Steam/Hot Water  - Coal
+REFI-PH-STM_HW-LPG-Boiler,New Refining - Process Heat: Steam/Hot Water  - LPG
+REFI-PH-STM_HW-WOD-Boiler,New Refining - Process Heat: Steam/Hot Water  - Wood
+REFI-PH-STM_HW-ELC-Boiler,New Refining - Process Heat: Steam/Hot Water  - Electricity
+UREA-FDSTCK-NGA-FDSTCK,New Urea - Urea production (feedstock)  - Natural Gas
+WOOD-MoTP-Stat-DSL-st_ngn,"New Wood products - Motive Power, Stationary  - Diesel"
+WOOD-MoTP-Stat-ELC-Motor,"New Wood products - Motive Power, Stationary  - Electricity"
+WOOD-MoTP-Stat-PET-st_ngn,"New Wood products - Motive Power, Stationary  - Petrol"
+WOOD-MoTP-Stat-ELC-VSD-Mtr,"New Wood products - Motive Power, Stationary  - Electricity"
+WOOD-PH-FURN-NGA-Furn,New Wood products - Process Heat: Furnace/Kiln  - Natural Gas
+WOOD-PH-FURN-COA-Furn,New Wood products - Process Heat: Furnace/Kiln  - Coal
+WOOD-PH-FURN-ELC-Furn,New Wood products - Process Heat: Furnace/Kiln  - Electricity
+WOOD-PH-FURN-WOD-Furn,New Wood products - Process Heat: Furnace/Kiln  - Wood
+WOOD-PH-FURN-LPG-Furn,New Wood products - Process Heat: Furnace/Kiln  - LPG
+WOOD-PH-STM_HW-NGA-Boiler,New Wood products - Process Heat: Steam/Hot Water  - Natural Gas
+WOOD-PH-STM_HW-DSL-Boiler,New Wood products - Process Heat: Steam/Hot Water  - Diesel
+WOOD-PH-STM_HW-FOL-Boiler,New Wood products - Process Heat: Steam/Hot Water  - Fuel Oil
+WOOD-PH-STM_HW-ELC-HPmp,New Wood products - Process Heat: Steam/Hot Water  - Electricity
+WOOD-PH-STM_HW-COA-Boiler,New Wood products - Process Heat: Steam/Hot Water  - Coal
+WOOD-PH-STM_HW-LPG-Boiler,New Wood products - Process Heat: Steam/Hot Water  - LPG
+WOOD-PH-STM_HW-WOD-Boiler,New Wood products - Process Heat: Steam/Hot Water  - Wood
+WOOD-PH-STM_HW-ELC-Boiler,New Wood products - Process Heat: Steam/Hot Water  - Electricity
+WOOD-PH-STM_HW-GEO-Heat,New Wood products - Process Heat: Steam/Hot Water  - Geothermal
+WOOD-Pump-ELC-Pump,New Wood products - Pumping  - Electricity
+WOOD-Pump-DSL-Pump,New Wood products - Pumping  - Diesel
+WOOD-Fan-ELC-Fan,New Wood products - Fans  - Electricity
+WOOD-Refin-ELC-Refinery,New Wood products - Refiners  - Electricity
+WOOD-AIR-ELC-CMPR,New Wood products - Compressed Air  - Electricity
+PLPPPR-MoTP-Stat-DSL-st_ngn,"New Wood pulp and paper - Motive Power, Stationary  - Diesel"
+PLPPPR-MoTP-Stat-ELC-Motor,"New Wood pulp and paper - Motive Power, Stationary  - Electricity"
+PLPPPR-MoTP-Stat-PET-st_ngn,"New Wood pulp and paper - Motive Power, Stationary  - Petrol"
+PLPPPR-MoTP-Stat-ELCVSD-Mtr,"New Wood pulp and paper - Motive Power, Stationary  - Electricity"
+PLPPPR-PH-DirH-ELC-Heater,New Wood pulp and paper - Process Heat: Direct Heat  - Electricity
+PLPPPR-PH-DirH-NGA-Burner,New Wood pulp and paper - Process Heat: Direct Heat  - Natural Gas
+PLPPPR-PH-FURN-ELC-Furn,New Wood pulp and paper - Process Heat: Furnace/Kiln  - Electricity
+PLPPPR-PH-FURN-NGA-Furn,New Wood pulp and paper - Process Heat: Furnace/Kiln  - Natural Gas
+PLPPPR-PH-FURN-COA-Furn,New Wood pulp and paper - Process Heat: Furnace/Kiln  - Coal
+PLPPPR-PH-FURN-WOD-Furn,New Wood pulp and paper - Process Heat: Furnace/Kiln  - Wood
+PLPPPR-PH-FURN-LPG-Furn,New Wood pulp and paper - Process Heat: Furnace/Kiln  - LPG
+PLPPPR-PH-STM_HW-NGA-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Natural Gas
+PLPPPR-PH-STM_HW-DSL-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Diesel
+PLPPPR-PH-STM_HW-FOL-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Fuel Oil
+PLPPPR-PH-STM_HW-GEO-Heat,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Geothermal
+PLPPPR-PH-STM_HW-ELC-HPmp,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Electricity
+PLPPPR-PH-STM_HW-COA-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Coal
+PLPPPR-PH-STM_HW-LPG-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - LPG
+PLPPPR-PH-STM_HW-WOD-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Wood
+PLPPPR-PH-STM_HW-ELC-Boiler,New Wood pulp and paper - Process Heat: Steam/Hot Water  - Electricity
+PLPPPR-Pump-ELC-Pump,New Wood pulp and paper - Pumping  - Electricity
+PLPPPR-Pump-DSL-Pump,New Wood pulp and paper - Pumping  - Diesel
+PLPPPR-Fan-ELC-Fan,New Wood pulp and paper - Fans  - Electricity
+PLPPPR-Refin-ELC-REF,New Wood pulp and paper - Refiners  - Electricity
+PLPPPR-AIR-ELC-CMPR,New Wood pulp and paper - Compressed Air  - Electricity
