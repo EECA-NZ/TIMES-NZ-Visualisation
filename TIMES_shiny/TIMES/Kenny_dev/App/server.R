@@ -67,23 +67,39 @@ server <- function(input, output, session){
       
       updateSelectInput(session, "subsector", choices = unique(df$Subsector))
       
-    } 
+    } else {
+        updateSelectInput(session, "subsector", choices = "All Sectors")
+    }
+    
     
   }, ignoreNULL = TRUE)
   
+  
+  
   observeEvent(input$subsector, {
     
-    df <- filtered_dropdowns() %>% filter(Subsector == input$subsector)
+    if (input$subsector != "All Sectors") {
+      df <- filtered_dropdowns() %>% filter(Subsector == input$subsector)
+    } else{
+      df <- filtered_dropdowns()
+    }
+    
+    
     
     updateSelectInput(session, "enduse", choices = unique(df$Enduse))
     updateSelectInput(session, "unit", choices = unique(df$Unit))
     
   }, ignoreNULL = TRUE)
   
+  
+  
   observeEvent(input$enduse, {
-    
+    if (input$subsector != "All Sectors") {
+      
     df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
-    
+    } else{
+      df <- filtered_dropdowns() %>% filter(Enduse == input$enduse)
+    }
     updateSelectInput(session, "unit", choices = unique(df$Unit))
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
