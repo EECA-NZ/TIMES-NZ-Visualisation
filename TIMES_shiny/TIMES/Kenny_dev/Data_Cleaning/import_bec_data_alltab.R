@@ -265,25 +265,28 @@ costs_all <- costs_raw %>%
 
 # Combine for export ------------------------------------------------------
 
-combined_df <-  
-  bind_rows(transport_num %>% select(data_group, Period, Attribute, Sector = Type, Technology = Chart_Desc, Value, scen),
-            transport_nrg %>% select(data_group, Period, Attribute, Sector = Type, Technology = Chart_Desc, Value, scen),
-            electricity_gen %>% select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
-            electricity_cap %>%  select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
-            primary_nrg %>% select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
-            primary_imp %>% select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
-            primary_gas %>% select(data_group, Period, Attribute, Fuel = Resource_Name, Value, scen),
-            energy_nrg %>% mutate(data_group = "Energy - detailed") %>%
-              select(data_group, Period, Attribute, Sector = Sector_Set, Fuel = Fuel_Desc, Value, scen),
-            energy_nrg %>% mutate(data_group = "Energy - high level") %>%
-              select(data_group, Period, Attribute, Sector = Sector_Set, Fuel = Fuel_HighLevel, Value, scen),
-            energy_svc %>% select(data_group, Period, Attribute, Sector = Sector_Set, Technology = Service, Fuel = Fuel_Desc, Value, scen),
-            renew_pc %>% select(data_group, Period, Attribute, Fuel, Value, scen),
-            industrial_nrg %>% select(data_group, Period, Attribute, Sector = Sector_Set, Fuel = Fuel_Desc, Value, scen),
-            emissions_co2 %>% select(data_group, Period, Attribute, Sector, Technology, Fuel, Value, scen),
-            supplem_out %>% select(data_group, Period, Attribute, Sector, Technology = Chart_Desc, Value, scen),
-            efficiency_nrg %>% select(data_group, Period, Attribute, Sector, Technology = Commodity, Value = Efficiency, scen),
-            costs_all %>% select(data_group, Period, Attribute, Sector, Value, scen))
+# Using the new combined data frame
+source("New_Data_Processing.R")
+
+# combined_df <-  
+#   bind_rows(transport_num %>% select(data_group, Period, Attribute, Sector = Type, Technology = Chart_Desc, Value, scen),
+#             transport_nrg %>% select(data_group, Period, Attribute, Sector = Type, Technology = Chart_Desc, Value, scen),
+#             electricity_gen %>% select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
+#             electricity_cap %>%  select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
+#             primary_nrg %>% select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
+#             primary_imp %>% select(data_group, Period, Attribute, Fuel = Chart_Desc, Value, scen),
+#             primary_gas %>% select(data_group, Period, Attribute, Fuel = Resource_Name, Value, scen),
+#             energy_nrg %>% mutate(data_group = "Energy - detailed") %>%
+#               select(data_group, Period, Attribute, Sector = Sector_Set, Fuel = Fuel_Desc, Value, scen),
+#             energy_nrg %>% mutate(data_group = "Energy - high level") %>%
+#               select(data_group, Period, Attribute, Sector = Sector_Set, Fuel = Fuel_HighLevel, Value, scen),
+#             energy_svc %>% select(data_group, Period, Attribute, Sector = Sector_Set, Technology = Service, Fuel = Fuel_Desc, Value, scen),
+#             renew_pc %>% select(data_group, Period, Attribute, Fuel, Value, scen),
+#             industrial_nrg %>% select(data_group, Period, Attribute, Sector = Sector_Set, Fuel = Fuel_Desc, Value, scen),
+#             emissions_co2 %>% select(data_group, Period, Attribute, Sector, Technology, Fuel, Value, scen),
+#             supplem_out %>% select(data_group, Period, Attribute, Sector, Technology = Chart_Desc, Value, scen),
+#             efficiency_nrg %>% select(data_group, Period, Attribute, Sector, Technology = Commodity, Value = Efficiency, scen),
+#             costs_all %>% select(data_group, Period, Attribute, Sector, Value, scen))
 
 prices_df <- prices_nrg %>% 
     select(data_group, Period, Attribute, Sector = Region, Fuel = Fuel_Desc, Value, scen)

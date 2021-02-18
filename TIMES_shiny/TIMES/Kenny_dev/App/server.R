@@ -1,15 +1,15 @@
 server <- function(input, output, session){
   
+  
   # The main dataset set up as a reactive object. It gets refiltered whenever an input dropdown is changed
   filtered_data <- reactive({
     
     combined_df %>% 
       filter(
-        data_group == input$topic,
-        Sector == input$sector,
-        Attribute == input$attr,
+        Subsector == input$subsector,
+        Enduse == input$enduse,
         Technology == input$tech,
-        Fuel == input$fuel
+        Unit == input$unit     
       )
     
   })
@@ -22,7 +22,7 @@ server <- function(input, output, session){
     
   })
   
-  # A reactive object based on the hierarchy dataset. When on the overview tab, it shows all topics/data groups.
+  # A reactive object based on the hierarchy dataset. When on the overview tab, it shows all subsectors/data groups.
   # When not on the overview tab it filters to the current tab (using the value returned by input$tabs)
   filtered_dropdowns <- reactive({
     
@@ -32,7 +32,7 @@ server <- function(input, output, session){
       
     } else {
       
-      hierarchy %>% filter(str_detect(data_group, input$tabs))
+      hierarchy %>% filter(str_detect(Sector, input$tabs))
       
     }
     
@@ -44,15 +44,13 @@ server <- function(input, output, session){
     
     tagList(
       
-      selectInput("topic", "Topic", choices = unique(filtered_dropdowns()$data_group)),
-      
-      selectInput("sector", "Sector", choices = unique(filtered_dropdowns()$Sector)),
-      
-      selectInput("attr", "Attribute", choices = unique(filtered_dropdowns()$Attribute)),
-      
+      selectInput("subsector", "Subsector", choices = unique(filtered_dropdowns()$Subsector)),
+      selectInput("enduse", "End use", choices = unique(filtered_dropdowns()$Enduse)),
       selectInput("tech", "Technology", choices = unique(filtered_dropdowns()$Technology)),
+      selectInput("unit", "Unit", choices = unique(filtered_dropdowns()$Unit))
+      # ,
       
-      selectInput("fuel", "Fuel", choices = unique(filtered_dropdowns()$Fuel))
+      # selectInput("fuel", "Fuel", choices = unique(filtered_dropdowns()$Fuel))
       
     )
     
@@ -62,52 +60,173 @@ server <- function(input, output, session){
   # on what combinations of filters make sense. 
   # I'm not sure I've totally nailed it but I think it's mostly there.
   observeEvent(input$tabs, {
-
-    df <- filtered_dropdowns() %>% filter(data_group == input$tabs)
-
+    
+    df <- filtered_dropdowns() %>% filter(Sector == input$tabs)
+    
     if(input$tabs != "Overview"){
-
-      updateSelectInput(session, "topic", choices = unique(df$data_group))
-
-    }
-
-  }, ignoreNULL = TRUE)
-  
-  observeEvent(input$topic, {
-    
-    df <- filtered_dropdowns() %>% filter(data_group == input$topic)
-    
-    updateSelectInput(session, "sector", choices = unique(df$Sector))
-    updateSelectInput(session, "attr", choices = unique(df$Attribute))
+      
+      updateSelectInput(session, "subsector", choices = unique(df$Subsector))
+      
+    } 
     
   }, ignoreNULL = TRUE)
   
-  observeEvent(input$sector, {
+  observeEvent(input$subsector, {
     
-    df <- filtered_dropdowns() %>% filter(data_group == input$topic, Sector == input$sector)
+    df <- filtered_dropdowns() %>% filter(Subsector == input$subsector)
     
-    updateSelectInput(session, "attr", choices = unique(df$Attribute))
+    updateSelectInput(session, "enduse", choices = unique(df$Enduse))
+    updateSelectInput(session, "unit", choices = unique(df$Unit))
+    
+  }, ignoreNULL = TRUE)
+  
+  observeEvent(input$enduse, {
+    
+    df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
+    
+    updateSelectInput(session, "unit", choices = unique(df$Unit))
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
   
-  observeEvent(input$attr, {
+  
+  
+  observeEvent(input$unit, {
     
-    df <- filtered_dropdowns() %>% filter(Sector == input$sector, Attribute == input$attr)
+    df <- filtered_dropdowns() %>% filter(Enduse == input$enduse, Unit == input$unit)
     
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
   
-  observeEvent(input$tech, {
-    
-    df <- filtered_dropdowns() %>% filter(data_group == input$topic, Technology == input$tech)
-    
-    updateSelectInput(session, "fuel", choices = unique(df$Fuel))
-    
-  }, ignoreNULL = TRUE)
   
-  # Plots
+  
+  # observeEvent(input$tech, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Technology == input$tech)
+  #   
+  #   # updateSelectInput(session, "fuel", choices = unique(df$Fuel))
+  #   
+  # }, ignoreNULL = TRUE)
+  # 
+  
+  
+  
+  
+  
+  
+  # # The main dataset set up as a reactive object. It gets refiltered whenever an input dropdown is changed
+  # filtered_data <- reactive({
+  #   
+  #   combined_df %>% 
+  #     filter(
+  #       data_group == input$topic,
+  #       Sector == input$sector,
+  #       Attribute == input$attr,
+  #       Technology == input$tech
+  #       # ,
+  #       # Fuel == input$fuel
+  #     )
+  #   
+  # })
+  # 
+  # # The assumptions dataset set up as a reactive object.
+  # filtered_assumptions <- reactive({
+  #   
+  #   assumptions_df %>% 
+  #     filter(Parameter == input$assumptions)
+  #   
+  # })
+  # 
+  # # A reactive object based on the hierarchy dataset. When on the overview tab, it shows all topics/data groups.
+  # # When not on the overview tab it filters to the current tab (using the value returned by input$tabs)
+  # filtered_dropdowns <- reactive({
+  #   
+  #   if(input$tabs == "Overview"){
+  #     
+  #     hierarchy
+  #     
+  #   } else {
+  #     
+  #     hierarchy %>% filter(str_detect(data_group, input$tabs))
+  #     
+  #   }
+  #   
+  #   
+  # })
+  # 
+  # # These are the dropdowns that are generated dynamically and served up to the UI (via the call to uiOutput())
+  # output$drop_downs <- renderUI({
+  #   
+  #   tagList(
+  #     
+  #     selectInput("topic", "Subsector", choices = unique(filtered_dropdowns()$data_group)),
+  #     
+  #     selectInput("sector", "End use", choices = unique(filtered_dropdowns()$Sector)),
+  #     selectInput("tech", "Technology", choices = unique(filtered_dropdowns()$Technology)),
+  #     selectInput("attr", "Unit", choices = unique(filtered_dropdowns()$Attribute))
+  #     # ,
+  #     
+  #     # selectInput("fuel", "Fuel", choices = unique(filtered_dropdowns()$Fuel))
+  #     
+  #   )
+  #   
+  # })
+  # 
+  # # The next few functions 'listen' for changes in the dropdowns and update the dropdowns based
+  # # on what combinations of filters make sense. 
+  # # I'm not sure I've totally nailed it but I think it's mostly there.
+  # observeEvent(input$tabs, {
+  # 
+  #   df <- filtered_dropdowns() %>% filter(data_group == input$tabs)
+  # 
+  #   if(input$tabs != "Overview"){
+  # 
+  #     updateSelectInput(session, "topic", choices = unique(df$data_group))
+  # 
+  #   }
+  # 
+  # }, ignoreNULL = TRUE)
+  # 
+  # observeEvent(input$topic, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(data_group == input$topic)
+  #   
+  #   updateSelectInput(session, "sector", choices = unique(df$Sector))
+  #   updateSelectInput(session, "attr", choices = unique(df$Attribute))
+  #   
+  # }, ignoreNULL = TRUE)
+  # 
+  # observeEvent(input$sector, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(data_group == input$topic, Sector == input$sector)
+  #   
+  #   updateSelectInput(session, "attr", choices = unique(df$Attribute))
+  #   updateSelectInput(session, "tech", choices = unique(df$Technology))
+  #   
+  # }, ignoreNULL = TRUE)
+  # 
+  # observeEvent(input$attr, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(Sector == input$sector, Attribute == input$attr)
+  #   
+  #   updateSelectInput(session, "tech", choices = unique(df$Technology))
+  #   
+  # }, ignoreNULL = TRUE)
+  # 
+  # observeEvent(input$tech, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(data_group == input$topic, Technology == input$tech)
+  #   
+  #   # updateSelectInput(session, "fuel", choices = unique(df$Fuel))
+  #   
+  # }, ignoreNULL = TRUE)
+  
+ 
+  
+  
+  
+   # Plots
   
   ## The plot output for the assumptions page.
   output$assumptions_plot <- renderHighchart({

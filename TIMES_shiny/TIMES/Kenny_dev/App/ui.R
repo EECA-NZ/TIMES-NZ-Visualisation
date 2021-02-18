@@ -1,9 +1,10 @@
 # Load libraries
 library(shiny)
 library(shinyBS)
+library(bslib)
 library(shinythemes)
 library(highcharter)
-library(dplyr)
+library(tidyverse)
 library(readr)
 library(stringr)
 library(stringi) # Only used for the placeholder text (i.e. stri_rand_lipsum()). Can be removed later.
@@ -18,9 +19,11 @@ source("funtions.R")
 # Start of the user interface code
 ui <- navbarPage(
   
-  title = "EECA",
-  
-  theme = shinytheme("lumen"),
+  title = "",
+  # title = "EECA",
+  # theme = bs_theme(version = 4, bootswatch = "litera"),
+  theme = shinytheme("readable"),
+  # cerulean  litera
   
   # Background tab
   tabPanel(
@@ -96,6 +99,9 @@ ui <- navbarPage(
     )
   ),
   
+  
+
+  
   # Data Explorer tab
   tabPanel(
     
@@ -131,16 +137,17 @@ ui <- navbarPage(
               
               # Again, these are the chart type buttons. Have turned off the percent button here as it doesn't make sense for how it is currently set up
               column(
-                width = 3,
+                width = 4,
                 # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area"), inline = TRUE)
+                # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
                 radioGroupButtons(
                   inputId = "chart_type_overview",
                   label = "",
                   choices = c(
                     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
                     `<i class='fa fa-bar-chart'></i>` = "column",
-                    `<i class='fa fa-area-chart'></i>` = "area"#,
-                    # `<i class='fa fa-percent'></i>` = "column_percent"
+                    `<i class='fa fa-area-chart'></i>` = "area" ,
+                    `<i class='fa fa-percent'></i>` = "column_percent"
                   )
                 )
               ),
@@ -200,6 +207,7 @@ ui <- navbarPage(
             )
           ),
           
+          # Adding industry stuff
           tabPanel(
             
             "Industry",
@@ -208,13 +216,36 @@ ui <- navbarPage(
             
           ),
           
-          tabPanel("Residential"),
           
+          # Adding Commercial stuff
           tabPanel(
             
-            "Emissions",
+            "Commercial",
             
-            value = "Emissions"
+            value = "Commercial"
+            
+          ),
+          
+          
+          # Adding Residential stuff
+          tabPanel(
+            "Residential",
+            
+             value = "Residential" ),
+          
+          # Adding Agriculture stuff
+          tabPanel(
+            "Agriculture",
+            
+            value = "Agriculture" ),
+          
+          
+          # Adding Other stuff
+          tabPanel(
+            
+            "Other",
+            
+            value = "Other"
             
           )
           
@@ -224,7 +255,145 @@ ui <- navbarPage(
       
     )
     
-  ),
+  ),  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  # # Data Explorer tab
+  # tabPanel(
+  #   
+  #   "Data Explorer",
+  #   
+  #   # The sidebarLayout is a specific built-in layout type which takes two arguments: a sidebarPanel and a mainPanel.
+  #   sidebarLayout(
+  #     
+  #     sidebarPanel = sidebarPanel(
+  #       
+  #       width = 3,
+  #       
+  #       # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.
+  #       uiOutput("drop_downs")
+  #       
+  #     ),
+  #     
+  #     mainPanel = mainPanel(
+  #       
+  #       tabsetPanel(
+  #         
+  #         id = "tabs", # This is needed so that we can reference when someone clicks a tab
+  #         
+  #         # type = "pills",
+  #         
+  #         tabPanel(
+  #           
+  #           "Overview",
+  #           
+  #           value = "Overview", # This is the value (of input$tabs) returned when the user clicks the 'Overview' tab
+  #           
+  #           fluidRow(
+  #             
+  #             # Again, these are the chart type buttons. Have turned off the percent button here as it doesn't make sense for how it is currently set up
+  #             column(
+  #               width = 3,
+  #               # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area"), inline = TRUE)
+  #               radioGroupButtons(
+  #                 inputId = "chart_type_overview",
+  #                 label = "",
+  #                 choices = c(
+  #                   `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+  #                   `<i class='fa fa-bar-chart'></i>` = "column",
+  #                   `<i class='fa fa-area-chart'></i>` = "area"#,
+  #                   # `<i class='fa fa-percent'></i>` = "column_percent"
+  #                 )
+  #               )
+  #             ),
+  #             
+  #             # Plot outputs
+  #             column(
+  #               
+  #               width = 12,
+  #               
+  #               h3("Kea"),
+  #               
+  #               highchartOutput("overview_kea")
+  #               
+  #             ),
+  #             
+  #             column(
+  #               
+  #               width = 12,
+  #               
+  #               h3("Tui"),
+  #               
+  #               highchartOutput("overview_tui")
+  #               
+  #             )
+  #             
+  #           )
+  #         ),
+  #         
+  #         tabPanel(
+  #           
+  #           "Transport",
+  #           
+  #           value = "Transport",
+  #           
+  #           fluidRow(
+  #             
+  #             column(
+  #               
+  #               width = 12,
+  #               
+  #               h3("Kea"),
+  #               
+  #               highchartOutput("transport_kea")
+  #               
+  #             ),
+  #             
+  #             column(
+  #               
+  #               width = 12,
+  #               
+  #               h3("Tui"),
+  #               
+  #               highchartOutput("transport_tui")
+  #               
+  #             )
+  #             
+  #           )
+  #         ),
+  #         
+  #         tabPanel(
+  #           
+  #           "Industry",
+  #           
+  #           value = "Industry"
+  #           
+  #         ),
+  #         
+  #         tabPanel("Residential"),
+  #         
+  #         tabPanel(
+  #           
+  #           "Emissions",
+  #           
+  #           value = "Emissions"
+  #           
+  #         )
+  #         
+  #       )
+  #       
+  #     )
+  #     
+  #   )
+  #   
+  # ),
   
   # These are CSS files that are needed for displaying the fontawesome icons
   tags$head(

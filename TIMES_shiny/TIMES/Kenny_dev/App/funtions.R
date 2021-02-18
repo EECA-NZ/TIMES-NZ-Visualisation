@@ -40,3 +40,8 @@ generic_stacking_charts <- function(data = NA,
 #   measure_columns = measure_columns,
 #   stacking_type = "normal"
 # )
+
+
+# Add a generice line plot
+
+

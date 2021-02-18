@@ -5,8 +5,15 @@ load("data/data_for_shiny.rda")
 combined_df <- combined_df %>% 
   mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
 
+# # Create 'hierarchy' file. Based on all combinations of dropdowns.
+# hierarchy <- combined_df %>% 
+#   distinct(data_group, Sector, Attribute, Technology, Fuel) %>% 
+#   arrange(across()) #%>% 
+#   # mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
+
+
+
 # Create 'hierarchy' file. Based on all combinations of dropdowns.
 hierarchy <- combined_df %>% 
-  distinct(data_group, Sector, Attribute, Technology, Fuel) %>% 
-  arrange(across()) #%>% 
-  # mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
+  distinct(Sector, Subsector,Enduse, Technology,Unit) %>% 
+  arrange(across())
