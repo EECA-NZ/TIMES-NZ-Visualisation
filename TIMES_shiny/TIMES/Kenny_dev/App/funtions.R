@@ -7,7 +7,8 @@ generic_stacking_charts <- function(data = NA,
                               categories_column = NA,
                               measure_columns = NA,
                               chart_type = NA,
-                              stacking_type = NA) {
+                              stacking_type = NA,
+                              filename = NA) {
 
     chart <- highchart() %>%
     hc_xAxis(categories = data[, categories_column],
@@ -27,9 +28,36 @@ generic_stacking_charts <- function(data = NA,
   chart %>%
     hc_chart(type = chart_type) %>%
     hc_plotOptions(series = list(stacking = as.character(stacking_type))) %>%
-    hc_legend(reversed = TRUE)
+    hc_legend(reversed = TRUE) %>% 
+    # Downloading data or png file
+    hc_exporting(enabled = TRUE, filename = paste(filename, chart_type, "Chart", sep = " ") , 
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadcsv","downloadCSV", "viewData" ))))
+  
     # Can add more plot options here
+}# Towards line plot functionality
+
+line_plot <- function(data = NA, 
+                      newtitle= NA,
+                      chart_type = NA){
+  
+  hchart(data,
+         type = chart_type, hcaes(x = Period, y= Value, group = Scenario)) %>% 
+    # Add more plot options
+    hc_title(text = newtitle) %>%
+    hc_xAxis(categories = unique(data$Period)) %>%
+    hc_yAxis(title = list(text = unique(data$Units))) %>%
+    # hc_xAxis(title = filename) %>% 
+    # Downloading data or png file
+    hc_exporting(enabled = TRUE, filename = paste(newtitle, chart_type, "Chart", sep = " "), 
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadcsv","downloadCSV", "viewData" ))))
+  
 }
+
+
+
+
+
+
 # 
 # 
 # 
