@@ -111,13 +111,13 @@ server <- function(input, output, session){
   
   
   
-  observeEvent(input$unit, {
-    
-    df <- filtered_dropdowns() %>% filter(Enduse == input$enduse, Unit == input$unit)
-    
-    updateSelectInput(session, "tech", choices = unique(df$Technology))
-    
-  }, ignoreNULL = TRUE)
+  # observeEvent(input$unit, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(Enduse == input$enduse, Unit == input$unit)
+  #   
+  #   updateSelectInput(session, "tech", choices = unique(df$Technology))
+  #   
+  # }, ignoreNULL = TRUE)
   
   
   
