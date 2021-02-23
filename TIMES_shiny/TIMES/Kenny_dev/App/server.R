@@ -171,12 +171,11 @@ server <- function(input, output, session){
         } else {
           
           # Plot if the line plot is selected
-          samle_data <- assumptions_data %>% 
+          sample_data <- assumptions_data %>% 
           as.data.frame() 
-          line_plot(data = samle_data,
-                    newtitle= title_n, 
-                    chart_type = "line")
-          
+          line_plot_assumptions(data = sample_data,
+                    filen_title= title_n, 
+                    chart_type = "line")  
       }
     
   })
@@ -189,7 +188,7 @@ server <- function(input, output, session){
     req(input$subsector)
     
     plot_data_kae <- filtered_data() %>% filter(scen == "Kea")
-    View(plot_data_kae)
+    # View(plot_data_kae)
     # chart_type_overview <- input$chart_type_overview
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
     if (input$chart_type_overview == "column_percent") {
@@ -232,15 +231,20 @@ server <- function(input, output, session){
     } else {
       
       # Plot if the line plot is selected
-      plot_data_kae %>% 
+      sample_data <- plot_data_kae %>% 
         # assumptions_df %>%
         #   filter(Parameter=="Total GDP") %>%
         select(Fuel,Period,Value) %>%
         group_by(Fuel,Period) %>%  
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
-        as.data.frame() %>%
-        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
+        as.data.frame() %>% 
+      
+        # line_plot(data = sample_data,
+        #         filen_title= title_n, 
+        #         chart_type = "line") %>% 
+        
+        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%
         # Add more plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
