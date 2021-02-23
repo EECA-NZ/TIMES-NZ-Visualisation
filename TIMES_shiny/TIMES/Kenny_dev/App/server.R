@@ -3,28 +3,28 @@ server <- function(input, output, session){
   
   # The main dataset set up as a reactive object. It gets refiltered whenever an input dropdown is changed
   filtered_data <- reactive({
-     if (input$subsector != "All Sectors") {
-       combined_df %>% 
-         filter(
-           Subsector == input$subsector,
-           Enduse == input$enduse,
-           Technology == input$tech,
-           Unit == input$unit     
-         )
-     }else{
-       combined_df %>% 
-         filter(
-           # Subsector == input$subsector,
-           Enduse == input$enduse,
-           Technology == input$tech,
-           Unit == input$unit  )   
-     }
+    if (input$subsector != "All Sectors") {
+      combined_df %>% 
+        filter(
+          Subsector == input$subsector,
+          Enduse == input$enduse,
+          Technology == input$tech,
+          Unit == input$unit     
+        )
+    } else{
+      combined_df %>% 
+        filter(
+          # Subsector == input$subsector,
+          Enduse == input$enduse,
+          Technology == input$tech,
+          Unit == input$unit  )   
+    }
   })
   
   
   # The assumptions dataset set up as a reactive object.
   filtered_assumptions <- reactive({
-      assumptions_df %>% 
+    assumptions_df %>% 
       filter(Parameter == input$assumptions)
   })
   
@@ -49,7 +49,7 @@ server <- function(input, output, session){
     
     tagList(
       
-      selectInput("subsector", "Subsector", choices = unique(filtered_dropdowns()$Subsector)),
+      selectInput("subsector", "Subsector", choices = c("All Sectors")),# unique(filtered_dropdowns()$Subsector))),
       selectInput("enduse", "End use", choices = unique(filtered_dropdowns()$Enduse)),
       selectInput("tech", "Technology", choices = unique(filtered_dropdowns()$Technology)),
       selectInput("unit", "Unit", choices = unique(filtered_dropdowns()$Unit))
@@ -70,7 +70,7 @@ server <- function(input, output, session){
       updateSelectInput(session, "subsector", choices = unique(df$Subsector))
       
     } else {
-        updateSelectInput(session, "subsector", choices = "All Sectors")
+      updateSelectInput(session, "subsector", choices = "All Sectors")
     }
     
     
@@ -87,8 +87,6 @@ server <- function(input, output, session){
       
     }
     
-    
-    
     updateSelectInput(session, "enduse", choices = unique(df$Enduse))
     updateSelectInput(session, "unit", choices = unique(df$Unit))
     
@@ -100,9 +98,9 @@ server <- function(input, output, session){
     if (input$subsector == "All Sectors") {
       df <- filtered_dropdowns() %>% filter(Enduse == input$enduse)
       
-        } else{
-          df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
-          
+    } else{
+      df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
+      
     }
     updateSelectInput(session, "unit", choices = unique(df$Unit))
     updateSelectInput(session, "tech", choices = unique(df$Technology))
@@ -118,9 +116,6 @@ server <- function(input, output, session){
   #   updateSelectInput(session, "tech", choices = unique(df$Technology))
   #   
   # }, ignoreNULL = TRUE)
-  
-  
-  
   
   
   ##################################
@@ -166,29 +161,29 @@ server <- function(input, output, session){
         hc_title(text = title_n) %>%
         hc_xAxis(categories = unique(assumptions_data$Period)) %>%
         hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
-
-        # Setting the line plot
-        } else {
-          
-          # Plot if the line plot is selected
-          sample_data <- assumptions_data %>% 
-          as.data.frame() 
-          line_plot_assumptions(data = sample_data,
-                    filen_title= title_n, 
-                    chart_type = "line")  
-      }
+      
+      # Setting the line plot
+    } else {
+      
+      # Plot if the line plot is selected
+      sample_data <- assumptions_data %>% 
+        as.data.frame() 
+      line_plot_assumptions(data = sample_data,
+                            filen_title= title_n, 
+                            chart_type = "line")  
+    }
     
   })
   
-
+  
   
   ## Plot output for overview page (Kea). Very similar to code above (but without a percentage chart)
   output$overview_kea <- renderHighchart({
     
     req(input$subsector)
     
-    plot_data_kae <- filtered_data() %>% filter(scen == "Kea")
-    # View(plot_data_kae)
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
+    # View(plot_data_kea)
     # chart_type_overview <- input$chart_type_overview
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
     # if (input$chart_type_overview == "column_percent") {
@@ -207,7 +202,7 @@ server <- function(input, output, session){
     # if (chart_type_overview != "line") {
     if (chart_type != "line") {
       # Generate the needed dataframe
-      sample_data_kea <- plot_data_kae %>% 
+      sample_data_kea <- plot_data_kea %>% 
         group_by(Fuel,Period) %>%  
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
@@ -230,14 +225,14 @@ server <- function(input, output, session){
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") ) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
         # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
       
       # Plot if the line plot is selected
-      sample_data <- plot_data_kae %>% 
+      sample_data <- plot_data_kea %>% 
         # assumptions_df %>%
         #   filter(Parameter=="Total GDP") %>%
         select(Fuel,Period,Value) %>%
@@ -245,7 +240,7 @@ server <- function(input, output, session){
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
         as.data.frame() %>% 
-      
+        
         # line_plot(data = sample_data,
         #         filen_title= title_n, 
         #         chart_type = "line") %>% 
@@ -253,7 +248,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%
         # Add more plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>%
@@ -268,7 +263,7 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
-    plot_data_Tui <- filtered_data() %>% filter(scen == "Tui")
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
     
     # if (input$chart_type_overview == "column_percent") {
     if (input$chart_type == "column_percent") {
@@ -289,7 +284,7 @@ server <- function(input, output, session){
     # if (chart_type_overview != "line") {
     if (chart_type != "line") {
       # Generate the needed dataframe
-      sample_data <- plot_data_Tui %>% 
+      sample_data <- plot_data_tui %>% 
         group_by(Fuel,Period) %>%  
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
@@ -312,14 +307,14 @@ server <- function(input, output, session){
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
         # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
       
       # Plot if the line plot is selected
-      plot_data_Tui %>% 
+      plot_data_tui %>% 
         # assumptions_df %>%
         #   filter(Parameter=="Total GDP") %>%
         select(Fuel,Period,Value) %>%
@@ -330,7 +325,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
         # Add more plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text =""))%>%
@@ -346,11 +341,13 @@ server <- function(input, output, session){
   # Kea
   output$transport_kea <- renderHighchart({
     
+    req(input$subsector)
+    
     # hchart(AirPassengers) # placeholder
     
     # req(input$subsector)
     
-    plot_data_kae <- filtered_data() %>% filter(scen == "Kea")
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
     
     # chart_type_overview <- input$chart_type_overview
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
@@ -366,7 +363,7 @@ server <- function(input, output, session){
     
     if (chart_type != "line") {
       # Generate the needed dataframe
-      sample_data_kea <- plot_data_kae %>% 
+      sample_data_kea <- plot_data_kea %>% 
         group_by(Fuel,Period) %>%  
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
@@ -388,14 +385,14 @@ server <- function(input, output, session){
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
         # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
       
       # Plot if the line plot is selected
-      plot_data_kae %>% 
+      plot_data_kea %>% 
         # assumptions_df %>%
         #   filter(Parameter=="Total GDP") %>%
         select(Fuel,Period,Value) %>%
@@ -406,7 +403,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
         # Add more plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>%
@@ -422,7 +419,7 @@ server <- function(input, output, session){
     # hchart(AirPassengers) # placeholder
     # req(input$subsector)
     
-    plot_data_Tui <- filtered_data() %>% filter(scen == "Tui")
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
     
     if (input$chart_type == "column_percent") {
       chart_type <-"column"
@@ -439,7 +436,7 @@ server <- function(input, output, session){
     
     if (chart_type != "line") {
       # Generate the needed dataframe
-      sample_data <- plot_data_Tui %>% 
+      sample_data <- plot_data_tui %>% 
         group_by(Fuel,Period) %>%  
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
@@ -462,14 +459,14 @@ server <- function(input, output, session){
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
         # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
       
       # Plot if the line plot is selected
-      plot_data_Tui %>% 
+      plot_data_tui %>% 
         # assumptions_df %>%
         #   filter(Parameter=="Total GDP") %>%
         select(Fuel,Period,Value) %>%
@@ -480,7 +477,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%  
         # Add more plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
-        hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
+        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>% 
