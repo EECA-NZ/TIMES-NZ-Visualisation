@@ -43,9 +43,11 @@ button.btn.radiobtn.btn-default {
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  
   color: white;
   background-color: #3C4C49;
   border-radius: 50px;
+  
 }
 
 .navbar-default .navbar-nav>li>a:hover{
@@ -56,9 +58,16 @@ button.btn.radiobtn.btn-default {
 }
 
 .navbar-default .navbar-nav>li>a {
+  
     color: #3C4C49;
     border-style: solid;
     border-color: #3C4C49;
     border-radius: 50px;
     
+}
+
+.navbar-brand {
+  
+  padding-left: 0;
+  
 }
