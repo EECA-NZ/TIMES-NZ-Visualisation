@@ -441,7 +441,7 @@ ui <- navbarPage(
   # ),
   
   # These are CSS files that are needed for displaying the fontawesome icons
-  tags$head(
+  header = tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/all.min.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/v4-shims.min.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")

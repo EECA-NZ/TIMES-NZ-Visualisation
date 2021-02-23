@@ -8,7 +8,6 @@ body {
  
   background-color: #41B496;
 
-  
 }
 
 .nav-pills>li>a {
@@ -23,5 +22,43 @@ body {
 }
 
 button.btn.radiobtn.btn-default {
+  
   border-radius: 50px;
+  
+}
+
+.selectize-input {
+  
+  border-radius: 50px;
+  
+}
+
+.well {
+  
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  color: white;
+  background-color: #3C4C49;
+  border-radius: 50px;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+  
+  background-color: transparent;
+  color: #3C4C49;
+  
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #3C4C49;
+    border-style: solid;
+    border-color: #3C4C49;
+    border-radius: 50px;
+    
 }
