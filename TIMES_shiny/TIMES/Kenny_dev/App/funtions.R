@@ -31,7 +31,7 @@ generic_stacking_charts <- function(data = NA,
     hc_legend(reversed = TRUE) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filename, chart_type, "Chart", sep = " ") , 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadcsv","downloadCSV", "viewData" ))))
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG","downloadCSV" ))))
   
     # Can add more plot options here
 }# Towards line plot functionality
@@ -69,7 +69,7 @@ line_plot_overiew <- function(data = NA,
     # hc_xAxis(title = filename) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadcsv" ))))
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
   
 }
 

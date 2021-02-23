@@ -221,7 +221,8 @@ server <- function(input, output, session){
         chart_type = chart_type_overview,
         categories_column = categories_column,
         measure_columns = measure_columns,
-        stacking_type = stacking_type) %>%
+        stacking_type = stacking_type,
+        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") ) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
@@ -250,7 +251,9 @@ server <- function(input, output, session){
         hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
-        hc_xAxis(title = list(text =""))
+        hc_xAxis(title = list(text ="")) %>%
+        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
+                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
     }
     
   })
@@ -296,7 +299,8 @@ server <- function(input, output, session){
         chart_type = chart_type_overview,
         categories_column = categories_column,
         measure_columns = measure_columns,
-        stacking_type = stacking_type) %>%
+        stacking_type = stacking_type,
+        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
@@ -320,7 +324,9 @@ server <- function(input, output, session){
         hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
-        hc_xAxis(title = list(text =""))
+        hc_xAxis(title = list(text =""))%>%
+        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
+                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
       
       
     }
@@ -373,7 +379,8 @@ server <- function(input, output, session){
         chart_type = chart_type_overview,
         categories_column = categories_column,
         measure_columns = measure_columns,
-        stacking_type = stacking_type) %>%
+        stacking_type = stacking_type,
+        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
@@ -397,7 +404,9 @@ server <- function(input, output, session){
         hc_xAxis(categories = unique(plot_data_kae$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
-        hc_xAxis(title = list(text =""))
+        hc_xAxis(title = list(text ="")) %>%
+        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
+                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
     }
     
   })
@@ -444,7 +453,8 @@ server <- function(input, output, session){
         chart_type = chart_type_overview,
         categories_column = categories_column,
         measure_columns = measure_columns,
-        stacking_type = stacking_type) %>%
+        stacking_type = stacking_type,
+        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
@@ -462,13 +472,15 @@ server <- function(input, output, session){
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
         as.data.frame() %>%
-        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
+        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%  
         # Add more plot options
         # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_Tui$Period)) %>%
         # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
-        hc_xAxis(title = list(text =""))
+        hc_xAxis(title = list(text ="")) %>% 
+        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
+                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
     }
     
     
