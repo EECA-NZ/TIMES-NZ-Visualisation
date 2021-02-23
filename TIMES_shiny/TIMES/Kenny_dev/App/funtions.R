@@ -31,30 +31,47 @@ generic_stacking_charts <- function(data = NA,
     hc_legend(reversed = TRUE) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filename, chart_type, "Chart", sep = " ") , 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadcsv","downloadCSV", "viewData" ))))
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG","downloadCSV" ))))
   
     # Can add more plot options here
 }# Towards line plot functionality
 
-line_plot <- function(data = NA, 
-                      newtitle= NA,
+line_plot_assumptions <- function(data = NA, 
+                      filen_title= NA,
                       chart_type = NA){
   
   hchart(data,
          type = chart_type, hcaes(x = Period, y= Value, group = Scenario)) %>% 
     # Add more plot options
-    hc_title(text = newtitle) %>%
+    hc_title(text = filen_title) %>%
     hc_xAxis(categories = unique(data$Period)) %>%
     hc_yAxis(title = list(text = unique(data$Units))) %>%
     # hc_xAxis(title = filename) %>% 
     # Downloading data or png file
-    hc_exporting(enabled = TRUE, filename = paste(newtitle, chart_type, "Chart", sep = " "), 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadcsv","downloadCSV", "viewData" ))))
+    hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV"))))
   
 }
 
 
 
+
+line_plot_overiew <- function(data = NA, 
+                                  filen_title= NA,
+                                  chart_type = NA){
+  
+  hchart(data,
+         type = chart_type, hcaes(x = Period, y= Value, group = Scenario)) %>% 
+    # Add more plot options
+    hc_title(text = filen_title) %>%
+    hc_xAxis(categories = unique(data$Period)) %>%
+    # hc_yAxis(title = list(text = unique(data$Units))) %>%
+    # hc_xAxis(title = filename) %>% 
+    # Downloading data or png file
+    hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
+  
+}
 
 
 
