@@ -15,5 +15,5 @@ combined_df <- combined_df %>%
 
 # Create 'hierarchy' file. Based on all combinations of dropdowns.
 hierarchy <- combined_df %>% 
-  distinct(Sector, Subsector,Enduse, Technology,Unit) %>% 
+  distinct(Sector, Subsector, Enduse, Technology, Unit) %>% 
   arrange(across())

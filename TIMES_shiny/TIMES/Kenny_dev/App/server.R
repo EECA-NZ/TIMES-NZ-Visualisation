@@ -191,17 +191,21 @@ server <- function(input, output, session){
     # View(plot_data_kae)
     # chart_type_overview <- input$chart_type_overview
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
-    if (input$chart_type_overview == "column_percent") {
-      chart_type_overview <-"column"
+    # if (input$chart_type_overview == "column_percent") {
+    if (input$chart_type == "column_percent") {
+      # chart_type_overview <-"column"
+      chart_type <-"column"
       stacking_type <- "percent"
       Y_lable <- "Percent"
     } else{
-      chart_type_overview <-input$chart_type_overview
+      # chart_type_overview <-input$chart_type_overview
+      chart_type <-input$chart_type
       stacking_type <- "normal"
       Y_lable <-  input$unit
     }
-      
-    if (chart_type_overview != "line") {
+    
+    # if (chart_type_overview != "line") {
+    if (chart_type != "line") {
       # Generate the needed dataframe
       sample_data_kea <- plot_data_kae %>% 
         group_by(Fuel,Period) %>%  
@@ -218,7 +222,8 @@ server <- function(input, output, session){
       
       generic_stacking_charts(
         data = sample_data_kea,
-        chart_type = chart_type_overview,
+        # chart_type = chart_type_overview,
+        chart_type = chart_type,
         categories_column = categories_column,
         measure_columns = measure_columns,
         stacking_type = stacking_type,
@@ -265,12 +270,15 @@ server <- function(input, output, session){
     
     plot_data_Tui <- filtered_data() %>% filter(scen == "Tui")
     
-    if (input$chart_type_overview == "column_percent") {
-      chart_type_overview <-"column"
+    # if (input$chart_type_overview == "column_percent") {
+    if (input$chart_type == "column_percent") {
+      # chart_type_overview <-"column"
+      chart_type <-"column"
       stacking_type <- "percent"
       Y_lable <- "Percent"
     } else{
-      chart_type_overview <-input$chart_type_overview
+      # chart_type_overview <-input$chart_type_overview
+      chart_type <-input$chart_type
       stacking_type <- "normal"
       Y_lable <-  input$unit
     }
@@ -278,7 +286,8 @@ server <- function(input, output, session){
     # chart_type_overview <- input$chart_type_overview
     
     
-    if (chart_type_overview != "line") {
+    # if (chart_type_overview != "line") {
+    if (chart_type != "line") {
       # Generate the needed dataframe
       sample_data <- plot_data_Tui %>% 
         group_by(Fuel,Period) %>%  
@@ -296,7 +305,7 @@ server <- function(input, output, session){
       
       generic_stacking_charts(
         data = sample_data,
-        chart_type = chart_type_overview,
+        chart_type = chart_type,
         categories_column = categories_column,
         measure_columns = measure_columns,
         stacking_type = stacking_type,
@@ -333,10 +342,6 @@ server <- function(input, output, session){
     
   })
   
-  
-  
-  
-  
   ## Plot output for Transport page
   # Kea
   output$transport_kea <- renderHighchart({
@@ -349,17 +354,17 @@ server <- function(input, output, session){
     
     # chart_type_overview <- input$chart_type_overview
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
-    if (input$chart_type_transport == "column_percent") {
-      chart_type_overview <-"column"
+    if (input$chart_type == "column_percent") {
+      chart_type <-"column"
       stacking_type <- "percent"
       Y_lable <- "Percent"
     } else{
-      chart_type_overview <-input$chart_type_transport
+      chart_type <-input$chart_type
       stacking_type <- "normal"
       Y_lable <-  input$unit
     }
     
-    if (chart_type_overview != "line") {
+    if (chart_type != "line") {
       # Generate the needed dataframe
       sample_data_kea <- plot_data_kae %>% 
         group_by(Fuel,Period) %>%  
@@ -376,7 +381,7 @@ server <- function(input, output, session){
       
       generic_stacking_charts(
         data = sample_data_kea,
-        chart_type = chart_type_overview,
+        chart_type = chart_type,
         categories_column = categories_column,
         measure_columns = measure_columns,
         stacking_type = stacking_type,
@@ -419,12 +424,12 @@ server <- function(input, output, session){
     
     plot_data_Tui <- filtered_data() %>% filter(scen == "Tui")
     
-    if (input$chart_type_transport == "column_percent") {
-      chart_type_overview <-"column"
+    if (input$chart_type == "column_percent") {
+      chart_type <-"column"
       stacking_type <- "percent"
       Y_lable <- "Percent"
     } else{
-      chart_type_overview <-input$chart_type_transport
+      chart_type <-input$chart_type
       stacking_type <- "normal"
       Y_lable <-  input$unit
     }
@@ -432,7 +437,7 @@ server <- function(input, output, session){
     # chart_type_overview <- input$chart_type_overview
     
     
-    if (chart_type_overview != "line") {
+    if (chart_type != "line") {
       # Generate the needed dataframe
       sample_data <- plot_data_Tui %>% 
         group_by(Fuel,Period) %>%  
@@ -450,7 +455,7 @@ server <- function(input, output, session){
       
       generic_stacking_charts(
         data = sample_data,
-        chart_type = chart_type_overview,
+        chart_type = chart_type,
         categories_column = categories_column,
         measure_columns = measure_columns,
         stacking_type = stacking_type,

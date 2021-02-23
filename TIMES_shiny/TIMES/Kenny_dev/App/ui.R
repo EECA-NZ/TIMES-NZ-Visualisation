@@ -100,9 +100,6 @@ ui <- navbarPage(
     )
   ),
   
-  
-
-  
   # Data Explorer tab
   tabPanel(
     
@@ -114,6 +111,18 @@ ui <- navbarPage(
       sidebarPanel = sidebarPanel(
         
         width = 3,
+        
+        radioGroupButtons(
+          inputId = "chart_type",
+          label = "",
+          individual = TRUE,
+          choices = c(
+            `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+            `<i class='fa fa-bar-chart'></i>` = "column",
+            `<i class='fa fa-area-chart'></i>` = "area" ,
+            `<i class='fa fa-percent'></i>` = "column_percent"
+          )
+        ),
         
         # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.
         uiOutput("drop_downs")
@@ -140,17 +149,17 @@ ui <- navbarPage(
               column(
                 width = 4,
                 # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
-                radioGroupButtons(
-                  inputId = "chart_type_overview",
-                  label = "",
-                  individual = TRUE,
-                  choices = c(
-                    `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                    `<i class='fa fa-bar-chart'></i>` = "column",
-                    `<i class='fa fa-area-chart'></i>` = "area" ,
-                    `<i class='fa fa-percent'></i>` = "column_percent"
-                  )
-                )
+                # radioGroupButtons(
+                #   inputId = "chart_type_overview",
+                #   label = "",
+                #   individual = TRUE,
+                #   choices = c(
+                #     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+                #     `<i class='fa fa-bar-chart'></i>` = "column",
+                #     `<i class='fa fa-area-chart'></i>` = "area" ,
+                #     `<i class='fa fa-percent'></i>` = "column_percent"
+                #   )
+                # )
               ),
               
               # Plot outputs
@@ -189,17 +198,17 @@ ui <- navbarPage(
               column(
                 width = 4,
                 # radioButtons("chart_type_transport", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
-                radioGroupButtons(
-                  inputId = "chart_type_transport",
-                  label = "",
-                  individual = TRUE,
-                  choices = c(
-                    `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                    `<i class='fa fa-bar-chart'></i>` = "column",
-                    `<i class='fa fa-area-chart'></i>` = "area" ,
-                    `<i class='fa fa-percent'></i>` = "column_percent"
-                  )
-                )
+                # radioGroupButtons(
+                #   inputId = "chart_type_transport",
+                #   label = "",
+                #   individual = TRUE,
+                #   choices = c(
+                #     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+                #     `<i class='fa fa-bar-chart'></i>` = "column",
+                #     `<i class='fa fa-area-chart'></i>` = "area" ,
+                #     `<i class='fa fa-percent'></i>` = "column_percent"
+                #   )
+                # )
               ),
               
               # Plot outputs
