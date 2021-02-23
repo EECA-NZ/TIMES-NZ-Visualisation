@@ -189,7 +189,7 @@ server <- function(input, output, session){
     req(input$subsector)
     
     plot_data_kae <- filtered_data() %>% filter(scen == "Kea")
-    View(plot_data_kae)
+    # View(plot_data_kae)
     # chart_type_overview <- input$chart_type_overview
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
     if (input$chart_type_overview == "column_percent") {

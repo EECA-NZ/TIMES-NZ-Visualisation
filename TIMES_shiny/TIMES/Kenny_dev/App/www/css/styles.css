@@ -1,0 +1,27 @@
+body {
+  
+  font-family: Franklin Gothic book;
+  
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+ 
+  background-color: #41B496;
+
+  
+}
+
+.nav-pills>li>a {
+  
+  border-radius: 0; 
+  border-style: solid;
+  border-width: thin;
+  border-color: #41B496;
+  color: #41B496;
+
+  
+}
+
+button.btn.radiobtn.btn-default {
+  border-radius: 50px;
+}

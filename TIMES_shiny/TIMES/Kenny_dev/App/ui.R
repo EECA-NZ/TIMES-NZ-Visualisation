@@ -23,7 +23,6 @@ ui <- navbarPage(
   # title = "EECA",
   # theme = bs_theme(version = 4, bootswatch = "litera"),
   theme = shinytheme("readable"),
-  # cerulean  litera
   
   # Background tab
   tabPanel(
@@ -77,6 +76,7 @@ ui <- navbarPage(
                 radioGroupButtons(
                   inputId = "chart_type_assumptions",
                   label = "",
+                  individual = TRUE,
                   choices = c(
                     `<i class='fa fa-line-chart'></i>` = "line",
                     `<i class='fa fa-bar-chart'></i>` = "column",
@@ -125,7 +125,7 @@ ui <- navbarPage(
           
           id = "tabs", # This is needed so that we can reference when someone clicks a tab
           
-          # type = "pills",
+          type = "pills",
           
           tabPanel(
             
@@ -142,6 +142,7 @@ ui <- navbarPage(
                 radioGroupButtons(
                   inputId = "chart_type_overview",
                   label = "",
+                  individual = TRUE,
                   choices = c(
                     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
                     `<i class='fa fa-bar-chart'></i>` = "column",
@@ -190,6 +191,7 @@ ui <- navbarPage(
                 radioGroupButtons(
                   inputId = "chart_type_transport",
                   label = "",
+                  individual = TRUE,
                   choices = c(
                     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
                     `<i class='fa fa-bar-chart'></i>` = "column",
@@ -441,7 +443,8 @@ ui <- navbarPage(
   # These are CSS files that are needed for displaying the fontawesome icons
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/all.min.css"),
-    tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/v4-shims.min.css")
+    tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/v4-shims.min.css"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")
   )
   
 )
