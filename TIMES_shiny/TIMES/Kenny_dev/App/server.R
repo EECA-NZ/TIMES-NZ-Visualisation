@@ -48,12 +48,11 @@ server <- function(input, output, session){
   output$drop_downs <- renderUI({
     
     tagList(
-      selectInput("subsector", "Subsector", choices = c("All Sectors")),# unique(filtered_dropdowns()$Subsector))),
-      selectInput("enduse", "End use", choices = unique(filtered_dropdowns()$Enduse)),
-      selectInput("tech", "Technology", choices = unique(filtered_dropdowns()$Technology)),
-      selectInput("unit", "Unit", choices = unique(filtered_dropdowns()$Unit))
+      selectInput("subsector", label = NULL,  choices = c("All Sectors")),# unique(filtered_dropdowns()$Subsector))),
+      selectInput("enduse", label = NULL, choices = unique(filtered_dropdowns()$Enduse)),
+      selectInput("tech", label = NULL, choices = unique(filtered_dropdowns()$Technology)),
+      selectInput("unit", label = NULL, choices = unique(filtered_dropdowns()$Unit))
 
-      
     )
     
   })
