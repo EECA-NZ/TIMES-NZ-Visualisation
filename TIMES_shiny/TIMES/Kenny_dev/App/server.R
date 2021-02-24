@@ -223,9 +223,7 @@ server <- function(input, output, session){
         stacking_type = stacking_type,
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") ) %>%
         # Adding plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
@@ -246,15 +244,13 @@ server <- function(input, output, session){
         
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%
         # Add more plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
-                                                         text= 'Download', theme= list(fill= '#ddd', stroke= '#888'),
-                                                         symbol = '')))
+                                                         titleKey = "Click here to download", text= 'Download', 
+                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     }
     
   })
@@ -307,9 +303,7 @@ server <- function(input, output, session){
         stacking_type = stacking_type,
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
@@ -325,15 +319,13 @@ server <- function(input, output, session){
         as.data.frame() %>%
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
         # Add more plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text =""))%>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
-                                                         text= 'Download', theme= list(fill= '#ddd', stroke= '#888'),
-                                                         symbol = '')))
+                                                         titleKey = "Click here to download", text= 'Download', 
+                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
       
       
     }
@@ -387,9 +379,7 @@ server <- function(input, output, session){
         stacking_type = stacking_type,
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
@@ -405,15 +395,13 @@ server <- function(input, output, session){
         as.data.frame() %>%
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
         # Add more plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
-                                                         text= 'Download', theme= list(fill= '#ddd', stroke= '#888'),
-                                                         symbol = '')))
+                                                         titleKey = "Click here to download", text= 'Download', 
+                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     }
     
   })
@@ -463,9 +451,7 @@ server <- function(input, output, session){
         stacking_type = stacking_type,
         filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
         # Adding plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        # hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
         hc_yAxis(title = list(text =Y_lable ))
       # Setting the line plot
     } else {
@@ -481,15 +467,13 @@ server <- function(input, output, session){
         as.data.frame() %>%
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%  
         # Add more plot options
-        # hc_title(text = paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")) %>%
         hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        # hc_yAxis(title = list(text = input$unit), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui))) %>%
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>% 
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
-                                                         text= 'Download', theme= list(fill= '#ddd', stroke= '#888'),
-                                                         symbol = '')))
+                                                         titleKey = "Click here to download", text= 'Download', 
+                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     }
     
     
