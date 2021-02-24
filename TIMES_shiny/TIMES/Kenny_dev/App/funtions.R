@@ -31,7 +31,9 @@ generic_stacking_charts <- function(data = NA,
     hc_legend(reversed = TRUE) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filename, chart_type, "Chart", sep = " ") , 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG","downloadCSV" ))))
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG","downloadCSV" ),
+                                                     text= 'Download', theme= list(fill= '#ddd', stroke= '#888'),
+                                                     symbol = '')))
   
     # Can add more plot options here
 }# Towards line plot functionality
@@ -49,10 +51,14 @@ line_plot_assumptions <- function(data = NA,
     # hc_xAxis(title = filename) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV"))))
+                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV"),
+                                 text= 'Download', theme= list(fill= '#ddd', stroke= '#888'),
+                                   symbol = '')))
   
 }
 
+
+# `<i class='fa fa-bar-chart'></i>`
 
 
 
