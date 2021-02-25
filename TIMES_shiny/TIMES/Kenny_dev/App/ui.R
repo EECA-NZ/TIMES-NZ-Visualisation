@@ -88,9 +88,14 @@ ui <- navbarPage(
               )
               
               ,
-              
-              # Assumptions plot output
-              highchartOutput("assumptions_plot")
+              fluidRow(
+              column(
+                width = 9,
+                # offset = 1,
+                # Assumptions plot output
+                highchartOutput("assumptions_plot")
+              )
+              )
               
             )
           )
