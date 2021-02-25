@@ -31,7 +31,7 @@ generic_stacking_charts <- function(data = NA,
     hc_legend(reversed = TRUE) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filename, chart_type, "Chart", sep = " ") , 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG","downloadCSV" ), 
+                 buttons = list(contextButton = list(menuItems = c("downloadPDF","downloadCSV" ), 
                                                      titleKey = "Click here to download", text= 'Download', 
                                                      theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
   
@@ -48,13 +48,15 @@ line_plot_assumptions <- function(data = NA,
     hc_title(text = filen_title) %>%
     hc_xAxis(categories = unique(data$Period)) %>%
     hc_yAxis(title = list(text = unique(data$Units))) %>%
+    hc_xAxis(title = "") %>% 
     # hc_xAxis(title = filename) %>% 
     # Downloading data or png file
+    # hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
+    #              buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV"),
+    #                              titleKey = "Click here to download", text= 'Download', 
+    #                              theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV"),
-                                 titleKey = "Click here to download", text= 'Download', 
-                                 theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
-  
+                 buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ))))
 }
 
 
@@ -75,7 +77,7 @@ line_plot_overiew <- function(data = NA,
     # hc_xAxis(title = filename) %>% 
     # Downloading data or png file
     hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-                 buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ))))
+                 buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ))))
   
 }
 
