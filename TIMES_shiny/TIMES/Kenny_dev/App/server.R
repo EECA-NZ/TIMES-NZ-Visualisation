@@ -84,12 +84,27 @@ server <- function(input, output, session){
   
   # These are the dropdowns that are generated dynamically and served up to the UI (via the call to uiOutput())
   output$drop_downs <- renderUI({
-    
     tagList(
-      selectInput("subsector", label = NULL,  choices = c("All Subsectors"), unique(filtered_dropdowns()$Subsector)),
-      selectInput("enduse", label = NULL, choices = c("All Enduse", unique(filtered_dropdowns()$Enduse))),
-      selectInput("tech", label = NULL, choices = c("All Technology", unique(filtered_dropdowns()$Technology))),
-      selectInput("unit", label = NULL, choices = unique(filtered_dropdowns()$Unit))
+      selectInput(
+        "subsector",
+        label = NULL,
+        choices = unique(filtered_dropdowns()$Subsector)
+      ),
+      selectInput(
+        "enduse",
+        label = NULL,
+        choices = unique(filtered_dropdowns()$Enduse)
+      ),
+      selectInput(
+        "tech",
+        label = NULL,
+        choices = unique(filtered_dropdowns()$Technology)
+      ),
+      selectInput(
+        "unit",
+        label = NULL,
+        choices = unique(filtered_dropdowns()$Unit)
+      )
       
     )
     
@@ -123,7 +138,7 @@ server <- function(input, output, session){
       
     }
     
-    updateSelectInput(session, "enduse", choices = c("All Enduse", unique(df$Enduse)))
+    updateSelectInput(session, "enduse", choices = unique(df$Enduse))
     updateSelectInput(session, "unit", choices = unique(df$Unit))
     
   }, ignoreNULL = TRUE)
@@ -131,16 +146,16 @@ server <- function(input, output, session){
   
   
   observeEvent(input$enduse, {
-    if (input$subsector == "All Subsectors") {
+    if (input$subsector == "All Subsectors" & input$enduse == "All Enduse") {
       
-      df <- filtered_dropdowns() %>% filter(Enduse == input$enduse)
+      df <- filtered_dropdowns() #%>% filter(Enduse == input$enduse)
       
-    } else{
+    } else {
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
       
     }
     updateSelectInput(session, "unit", choices = unique(df$Unit))
-    updateSelectInput(session, "tech", choices = c("All Technology", unique(df$Technology)))
+    updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
   
