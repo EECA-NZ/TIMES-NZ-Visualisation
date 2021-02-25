@@ -2,23 +2,61 @@ server <- function(input, output, session){
   
   
   # The main dataset set up as a reactive object. It gets refiltered whenever an input dropdown is changed
+  # filtered_data <- reactive({
+  #   if (input$subsector != "All Subsectors") {
+  #     combined_df %>% 
+  #       filter(
+  #         Subsector == input$subsector,
+  #         Enduse == input$enduse,
+  #         Technology == input$tech,
+  #         Unit == input$unit     
+  #       )
+  #   } else{
+  #     combined_df %>% 
+  #       filter(
+  #         # Subsector == input$subsector,
+  #         Enduse == input$enduse,
+  #         Technology == input$tech,
+  #         Unit == input$unit  )   
+  #   }
+  # })
+  
   filtered_data <- reactive({
-    if (input$subsector != "All Sectors") {
-      combined_df %>% 
-        filter(
-          Subsector == input$subsector,
-          Enduse == input$enduse,
-          Technology == input$tech,
-          Unit == input$unit     
-        )
-    } else{
-      combined_df %>% 
-        filter(
-          # Subsector == input$subsector,
-          Enduse == input$enduse,
-          Technology == input$tech,
-          Unit == input$unit  )   
-    }
+    combined_df %>%
+      purrr::when(
+        
+        input$subsector != "All Subsectors" ~
+          
+          filter(
+            ., Subsector == input$subsector
+          ),
+        
+        ~ .
+        
+      ) %>% 
+      purrr::when(
+        
+        input$enduse != "All Enduse" ~
+          
+          filter(
+            ., Enduse == input$enduse
+          ),
+        
+        ~ .
+        
+      ) %>% 
+      purrr::when(
+        
+        input$tech != "All Technology" ~
+          
+          filter(
+            ., Technology == input$tech
+          ),
+        
+        ~ .
+        
+      ) %>% 
+      filter(Unit == input$unit)
   })
   
   
@@ -48,11 +86,11 @@ server <- function(input, output, session){
   output$drop_downs <- renderUI({
     
     tagList(
-      selectInput("subsector", label = NULL,  choices = c("All Sectors")),# unique(filtered_dropdowns()$Subsector))),
-      selectInput("enduse", label = NULL, choices = unique(filtered_dropdowns()$Enduse)),
-      selectInput("tech", label = NULL, choices = unique(filtered_dropdowns()$Technology)),
+      selectInput("subsector", label = NULL,  choices = c("All Subsectors"), unique(filtered_dropdowns()$Subsector)),
+      selectInput("enduse", label = NULL, choices = c("All Enduse", unique(filtered_dropdowns()$Enduse))),
+      selectInput("tech", label = NULL, choices = c("All Technology", unique(filtered_dropdowns()$Technology))),
       selectInput("unit", label = NULL, choices = unique(filtered_dropdowns()$Unit))
-
+      
     )
     
   })
@@ -60,33 +98,32 @@ server <- function(input, output, session){
   # The next few functions 'listen' for changes in the dropdowns and update the dropdowns based
   # on what combinations of filters make sense. 
   # I'm not sure I've totally nailed it but I think it's mostly there.
-  observeEvent(input$tabs, {
-    
-    df <- filtered_dropdowns() %>% filter(Sector == input$tabs)
-    
-    if(input$tabs != "Overview"){
-      
-      updateSelectInput(session, "subsector", choices = unique(df$Subsector))
-      
-    } else {
-      updateSelectInput(session, "subsector", choices = "All Sectors")
-    }
-    
-    
-  }, ignoreNULL = TRUE)
-  
+  # observeEvent(input$tabs, {
+  #   
+  #   df <- filtered_dropdowns() %>% filter(Sector == input$tabs)
+  #   
+  #   if(input$tabs != "Overview"){
+  #     
+  #     updateSelectInput(session, "subsector", choices = unique(df$Subsector))
+  #     
+  #   } else {
+  #     updateSelectInput(session, "subsector", choices = "All Subsectors")
+  #   }
+  #   
+  #   
+  # }, ignoreNULL = TRUE)
   
   
   observeEvent(input$subsector, {
     
-    if (input$subsector == "All Sectors") {
+    if (input$subsector == "All Subsectors") {
       df <- filtered_dropdowns()
     } else{
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector)
       
     }
     
-    updateSelectInput(session, "enduse", choices = unique(df$Enduse))
+    updateSelectInput(session, "enduse", choices = c("All Enduse", unique(df$Enduse)))
     updateSelectInput(session, "unit", choices = unique(df$Unit))
     
   }, ignoreNULL = TRUE)
@@ -94,7 +131,8 @@ server <- function(input, output, session){
   
   
   observeEvent(input$enduse, {
-    if (input$subsector == "All Sectors") {
+    if (input$subsector == "All Subsectors") {
+      
       df <- filtered_dropdowns() %>% filter(Enduse == input$enduse)
       
     } else{
@@ -102,7 +140,7 @@ server <- function(input, output, session){
       
     }
     updateSelectInput(session, "unit", choices = unique(df$Unit))
-    updateSelectInput(session, "tech", choices = unique(df$Technology))
+    updateSelectInput(session, "tech", choices = c("All Technology", unique(df$Technology)))
     
   }, ignoreNULL = TRUE)
   
@@ -236,12 +274,13 @@ server <- function(input, output, session){
         group_by(Fuel,Period) %>%  
         summarise(Value = sum(Value),.groups = "drop") %>% 
         ungroup() %>% 
-        as.data.frame() %>% 
-        
-        # line_plot(data = sample_data,
-        #         filen_title= title_n, 
-        #         chart_type = "line") %>% 
-        
+        as.data.frame()  
+      
+      # line_plot(data = sample_data,
+      #         filen_title= title_n, 
+      #         chart_type = "line") %>% 
+      
+      sample_data %>% 
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%
         # Add more plot options
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
