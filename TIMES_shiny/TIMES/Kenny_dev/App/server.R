@@ -287,7 +287,7 @@ server <- function(input, output, session){
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
+                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
                                                          titleKey = "Click here to download", text= 'Download', 
                                                          theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     }
@@ -362,7 +362,7 @@ server <- function(input, output, session){
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text =""))%>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
+                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
                                                          titleKey = "Click here to download", text= 'Download', 
                                                          theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
       
@@ -438,7 +438,7 @@ server <- function(input, output, session){
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
+                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
                                                          titleKey = "Click here to download", text= 'Download', 
                                                          theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     }
@@ -510,7 +510,7 @@ server <- function(input, output, session){
         hc_yAxis(title = list(text = input$unit)) %>%
         hc_xAxis(title = list(text ="")) %>% 
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPNG", "downloadCSV" ),
+                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
                                                          titleKey = "Click here to download", text= 'Download', 
                                                          theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     }

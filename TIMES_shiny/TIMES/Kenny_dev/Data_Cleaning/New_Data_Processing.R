@@ -1,8 +1,8 @@
-# #Load libraries required
-# library(readxl) # read excel files
-# library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
-# library(tidyverse) # data manipulation, gather and spread commands
-# options(scipen=999) # eliminates scientific notation
+#Load libraries required
+library(readxl) # read excel files
+library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
+library(tidyverse) # data manipulation, gather and spread commands
+options(scipen=999) # eliminates scientific notation
 
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
@@ -36,17 +36,26 @@ period_list <- raw_df %>% distinct(Period) %>% filter(between(Period, 2000, 2100
 #   restricting TIMES model output to relevant rows via codes such as "Attribute", "Process"
 #   include 'natural language' translations from TIMES codes
 schema_all   <- read_xlsx("Schema.xlsx") 
+# schema_unit   <- read_xlsx("Schema_unit.xlsx") 
 
+needed_attributes = c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut",  "Cost_Inv")
 
 # Merge all data ---------------------------------------------------------------
-# map the schema to the raw data
-clean_df <- raw_df %>%  inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
-  # Group by the main variables and sum up
-  group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Fuel,Period) %>%
-  # Sum up
-  summarise(Value = sum(Value), .groups = "drop") %>% 
-  # Replace any NAs in the dataset with missing
-  mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
+
+# raw_df_n <-    inner_join(schema_unit, raw_df_n, by = c("Attribute")) %>% 
+
+
+clean_df <- raw_df %>%  
+          # map the schema to the raw data
+          inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
+          # Extract the needed attributes 
+          filter(Attribute %in% needed_attributes) %>% 
+          # Group by the main variables and sum up
+          group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
+          # Sum up
+          summarise(Value = sum(Value), .groups = "drop") %>% 
+          # Replace any NAs in the dataset with missing
+          mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
 
 
 
@@ -54,21 +63,37 @@ combined_df <- clean_df
 
 # 
 # # Create 'hierarchy' file. Based on all combinations of dropdowns.
-# hierarchy <- combined_df %>% 
-#   distinct(Sector, Subsector,Enduse, Technology,Unit) %>% 
+# hierarchy <- combined_df %>%
+#   distinct(Sector, Subsector,Enduse, Technology,Unit) %>%
 #   arrange(across())
 
 
-# # List generation
-# hierarchy_lits <- combined_df %>% 
-#   distinct(Sector, Subsector,Enduse, Technology,Unit,Fuel) %>% 
-#   arrange(across())
-# 
-# Fuel_list <- distinct(hierarchy_lits,Fuel) # Fuel list
-# Sector_list <-distinct(hierarchy_lits, Sector) # sector list
+# List generation
+hierarchy_lits <- combined_df %>%
+  distinct(Sector, Subsector,Enduse, Technology,Unit,Fuel) %>%
+  arrange(across())
+
+fuel_list <- distinct(hierarchy_lits,Fuel) # Fuel list
+sector_list <-distinct(hierarchy_lits, Sector) # sector list
 # Subsector_list <- distinct(hierarchy_lits, Subsector) 
 # Technology_list <- distinct(hierarchy_lits, Technology)
 # Enduse_list <- distinct(hierarchy_lits, Enduse)
 # Unit_list <- distinct(hierarchy_lits,Unit)
+
+
+
+assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
+  gather(Period, Value, `2020`:`2060`) %>% 
+  mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))
+
+assumptions_list <- distinct(assumptions_df, Parameter)
+
+#Create the R data set for Shiny to use
+save(combined_df, # data for charting
+     fuel_list,  # list of fuel for input$fuel_choice drop down
+     sector_list,  # list of Sectors for input$sector_choice drop down
+     assumptions_df,  # data behind assumptions
+     assumptions_list,  # list of assumptions for input$assumptions drop-down
+     file = "../App/data/data_for_shiny.rda")
 
 
