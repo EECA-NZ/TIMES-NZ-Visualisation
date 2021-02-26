@@ -51,12 +51,12 @@ line_plot_assumptions <- function(data = NA,
     hc_xAxis(title = "") %>% 
     # hc_xAxis(title = filename) %>% 
     # Downloading data or png file
+    hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "),
+                 buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV"),
+                                 titleKey = "Click here to download", text= 'Download',
+                                 theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
     # hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-    #              buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV"),
-    #                              titleKey = "Click here to download", text= 'Download', 
-    #                              theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
-    hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-                 buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ))))
+    #              buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ))))
 }
 
 
