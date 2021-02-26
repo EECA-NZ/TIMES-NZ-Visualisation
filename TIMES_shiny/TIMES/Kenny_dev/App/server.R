@@ -56,7 +56,7 @@ server <- function(input, output, session){
         ~ .
         
       ) %>% 
-      filter(Unit == input$unit)
+      filter(Parameters == input$unit)
   })
   
   
@@ -103,7 +103,7 @@ server <- function(input, output, session){
       selectInput(
         "unit",
         label = NULL,
-        choices = unique(filtered_dropdowns()$Unit)
+        choices = unique(filtered_dropdowns()$Parameters)
       )
       
     )
@@ -139,7 +139,7 @@ server <- function(input, output, session){
     }
     
     updateSelectInput(session, "enduse", choices = unique(df$Enduse))
-    updateSelectInput(session, "unit", choices = unique(df$Unit))
+    updateSelectInput(session, "unit", choices = unique(df$Parameters))
     
   }, ignoreNULL = TRUE)
   
@@ -154,7 +154,7 @@ server <- function(input, output, session){
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
       
     }
-    updateSelectInput(session, "unit", choices = unique(df$Unit))
+    updateSelectInput(session, "unit", choices = unique(df$Parameters))
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
@@ -248,7 +248,7 @@ server <- function(input, output, session){
       # chart_type_overview <-input$chart_type_overview
       chart_type <-input$chart_type
       stacking_type <- "normal"
-      Y_lable <-  input$unit
+      Y_lable <-  unique(plot_data_kea$Unit)
     }
     
     # if (chart_type_overview != "line") {
@@ -299,7 +299,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%
         # Add more plot options
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        hc_yAxis(title = list(text = input$unit)) %>%
+        hc_yAxis(title = list(text = Y_lable)) %>%
         hc_xAxis(title = list(text ="")) %>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
@@ -326,7 +326,7 @@ server <- function(input, output, session){
       # chart_type_overview <-input$chart_type_overview
       chart_type <-input$chart_type
       stacking_type <- "normal"
-      Y_lable <-  input$unit
+      Y_lable <-  unique(plot_data_tui$Unit)
     }
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
     # chart_type_overview <- input$chart_type_overview
@@ -374,7 +374,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
         # Add more plot options
         hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        hc_yAxis(title = list(text = input$unit)) %>%
+        hc_yAxis(title = list(text = Y_lable)) %>%
         hc_xAxis(title = list(text =""))%>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
@@ -407,7 +407,7 @@ server <- function(input, output, session){
     } else{
       chart_type <-input$chart_type
       stacking_type <- "normal"
-      Y_lable <-  input$unit
+      Y_lable <-  unique(plot_data_kea$Unit)
     }
     
     if (chart_type != "line") {
@@ -450,7 +450,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
         # Add more plot options
         hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        hc_yAxis(title = list(text = input$unit)) %>%
+        hc_yAxis(title = list(text = Y_lable)) %>%
         hc_xAxis(title = list(text ="")) %>%
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
@@ -475,7 +475,7 @@ server <- function(input, output, session){
     } else{
       chart_type <-input$chart_type
       stacking_type <- "normal"
-      Y_lable <-  input$unit
+      Y_lable <-  unique(plot_data_tui$Unit)
     }
     # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
     # chart_type_overview <- input$chart_type_overview
@@ -522,7 +522,7 @@ server <- function(input, output, session){
         hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%  
         # Add more plot options
         hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        hc_yAxis(title = list(text = input$unit)) %>%
+        hc_yAxis(title = list(text = Y_lable)) %>%
         hc_xAxis(title = list(text ="")) %>% 
         hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
                      buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
