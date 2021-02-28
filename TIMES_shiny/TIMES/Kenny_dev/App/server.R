@@ -154,56 +154,18 @@ server <- function(input, output, session){
   output$assumptions_plot <- renderHighchart({
     
     # Read the filtered assumptions dataset and then split by scenario.
-    assumptions_data <- filtered_assumptions()
-    assumptions_data_kea <- assumptions_data %>% filter(Scenario == "Kea") %>% pull(Value)
-    assumptions_data_tui <- assumptions_data %>% filter(Scenario == "Tui") %>% pull(Value)
+    assumptions_data <- filtered_assumptions() %>% 
+      rename(unit = Units)
     
-    # Retrieve chart type (to be used in the next step). 
-    chart_type_assumptions <- ifelse(input$chart_type_assumptions == "column_percent", "column", input$chart_type_assumptions)
-    title_n <- paste0(input$assumptions, " (", unique(assumptions_data$Units), ")")
-    # # Stacked Plots
-    # # Converting the filtered data to stact_plotting
-    if (chart_type_assumptions != "line") {
-      # Generate the needed dataframe
-      sample_data <- 
-        assumptions_data %>% 
-        # assumptions_df %>%
-        # filter(Parameter=="Total GDP") %>%
-        select(Scenario,Period,Value) %>%
-        pivot_wider(names_from =Scenario,values_from =Value) %>%
-        as.data.frame()
-      
-      measure_columns <- names(sample_data)[-1]
-      categories_column <- names(sample_data)[1]
-      # Setting the percent bottom
-      stacking_type <- ifelse(input$chart_type_assumptions == "column_percent", "percent", "normal")
-      Y_lable <- ifelse(input$chart_type_assumptions == "column_percent", "Percent", unique(assumptions_data$Units))
-      generic_stacking_charts(
-        data = sample_data,
-        chart_type = chart_type_assumptions,
-        categories_column = categories_column,
-        measure_columns = measure_columns,
-        stacking_type = stacking_type,
-        filename = title_n) %>%
-        # Adding plot options
-        hc_title(text = title_n) %>%
-        hc_xAxis(categories = unique(assumptions_data$Period)) %>%
-        hc_yAxis(title = list(text =Y_lable ), min = min(0, min(assumptions_data_kea), min(assumptions_data_tui)))
-      
-      # Setting the line plot
-    } else {
-      
-      # Plot if the line plot is selected
-      sample_data <- assumptions_data %>% 
-        as.data.frame() 
-      line_plot_assumptions(data = sample_data,
-                            filen_title= title_n, 
-                            chart_type = "line")  
-    }
+    generic_charts(
+      data = assumptions_data,
+      group_var = Scenario,
+      unit = input$unit,
+      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      input_chart_type = input$chart_type_assumptions
+    )
     
   })
-  
-  
   
   ## Plot output for overview page (Kea). Very similar to code above (but without a percentage chart)
   output$overview_kea <- renderHighchart({
