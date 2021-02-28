@@ -15,7 +15,7 @@ library(shinyWidgets) # For the fancy radio buttons
 ## This is where the .rda file is loaded (and where the hierarchy dataframe is created)
 source("data/load_data.R")
 # Load the plot functions 
-source("funtions.R")
+source("functions.R")
 
 # Start of the user interface code
 ui <- navbarPage(
