@@ -30,12 +30,28 @@ ui <- navbarPage(
     
     "Background",
     
-    fluidRow(
+    conditionalPanel(
       
-      column(
-        width = 12,
-        h2("Background"),
-        paste(stri_rand_lipsum(2), collapse = "\n")
+      condition = "input.showAssumptions == 0",
+      
+      fluidRow(
+        
+        column(
+          width = 12,
+          h2("Background"),
+          paste(stri_rand_lipsum(2), collapse = "\n")
+        )
+        
+      ),
+      
+      fluidRow(
+        
+        column(
+          width = 12,
+          h2("Assumptions"),
+          paste(stri_rand_lipsum(1), collapse = "\n")
+        )
+        
       )
       
     ),
@@ -43,66 +59,77 @@ ui <- navbarPage(
     fluidRow(
       
       column(
-        width = 12,
-        h2("Assumptions"),
-        paste(stri_rand_lipsum(1), collapse = "\n"),
         
-        fluidRow(
+        width = 12,
+        
+        HTML("<br>"),
+        
+        # This is the switch for showing/not showing the assumptions plot. Defaults to FALSE.
+        conditionalPanel(condition = "input.showAssumptions == 0", helpText("Show assumptions")),
+        conditionalPanel(condition = "input.showAssumptions == 1", helpText("Hide assumptions")),
+        prettySwitch("showAssumptions", "", value = FALSE, status = "success"),
+        
+        # This next panel only shows when the showAssumptions switch is clicked (i.e. it becomes TRUE)
+        conditionalPanel(
           
-          column(
+          # This is the condition that must be satisfied for this panel to be shown. 1 is the same as TRUE in this case.
+          condition = "input.showAssumptions == 1",
+          
+          # Below here is what gets shown when the condition is met.
+          
+          sidebarLayout(
             
-            width = 12,
+            sidebarPanel = sidebarPanel(
+              
+              width = 3,
+              
+              radioGroupButtons(
+                inputId = "chart_type_assumptions",
+                label = "",
+                individual = TRUE,
+                choices = c(
+                  `<i class='fa fa-line-chart'></i>` = "line",
+                  `<i class='fa fa-bar-chart'></i>` = "column",
+                  `<i class='fa fa-area-chart'></i>` = "area",
+                  `<i class='fa fa-percent'></i>` = "column_percent"
+                )
+              ),
+              
+              selectInput("assumptions", "", choices = assumptions_list)
+            ),
             
-            HTML("<br>"),
-            
-            # This is the switch for showing/not showing the assumptions plot. Defaults to FALSE.
-            helpText("Show assumptions"),
-            prettySwitch("showAssumptions", "", value = FALSE, status = "success"),
-            
-            # This next panel only shows when the showAssumptions switch is clicked (i.e. it becomes TRUE)
-            conditionalPanel(
+            mainPanel = mainPanel(
               
-              # This is the condition that must be satisfied for this panel to be shown. 1 is the same as TRUE in this case.
-              condition = "input.showAssumptions == 1",
+              width = 8,
               
-              # Below here is what gets shown when the condition is met.
-              
-              selectInput("assumptions", "", choices = assumptions_list),
-              # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area"), inline = TRUE),
-              
-              # These are the chart type buttons.You can search the different icons on this website: https://fontawesome.com/v4.7.0/icons/
-              column(
-                width = 3,
-                # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
-                radioGroupButtons(
-                  inputId = "chart_type_assumptions",
-                  label = "",
-                  individual = TRUE,
-                  choices = c(
-                    `<i class='fa fa-line-chart'></i>` = "line",
-                    `<i class='fa fa-bar-chart'></i>` = "column",
-                    `<i class='fa fa-area-chart'></i>` = "area",
-                    `<i class='fa fa-percent'></i>` = "column_percent"
-                  )
+              fluidRow(
+                
+                column(
+                  
+                  width = 12,
+                  
+                  highchartOutput("assumptions_plot") 
+                  
                 )
               )
-              
-              ,
-              fluidRow(
-              column(
-                width = 9,
-                # offset = 1,
-                # Assumptions plot output
-                highchartOutput("assumptions_plot")
-              )
-              )
-              
             )
-          )
+          )#,
+          
+          # fluidRow(
+          #   column(
+          #     width = 9,
+          #     # offset = 1,
+          #     # Assumptions plot output
+          #     highchartOutput("assumptions_plot")
+          #   )
+          # )
+          
         )
-        
       )
     )
+    
+    
+    
   ),
   
   # Data Explorer tab
@@ -151,21 +178,21 @@ ui <- navbarPage(
             fluidRow(
               
               # Again, these are the chart type buttons. Have turned off the percent button here as it doesn't make sense for how it is currently set up
-              column(
-                width = 4,
-                # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
-                # radioGroupButtons(
-                #   inputId = "chart_type_overview",
-                #   label = "",
-                #   individual = TRUE,
-                #   choices = c(
-                #     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                #     `<i class='fa fa-bar-chart'></i>` = "column",
-                #     `<i class='fa fa-area-chart'></i>` = "area" ,
-                #     `<i class='fa fa-percent'></i>` = "column_percent"
-                #   )
-                # )
-              ),
+              # column(
+              #   width = 4,
+              #   # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
+              #   # radioGroupButtons(
+              #   #   inputId = "chart_type_overview",
+              #   #   label = "",
+              #   #   individual = TRUE,
+              #   #   choices = c(
+              #   #     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+              #   #     `<i class='fa fa-bar-chart'></i>` = "column",
+              #   #     `<i class='fa fa-area-chart'></i>` = "area" ,
+              #   #     `<i class='fa fa-percent'></i>` = "column_percent"
+              #   #   )
+              #   # )
+              # ),
               
               # Plot outputs
               column(
@@ -267,7 +294,7 @@ ui <- navbarPage(
           tabPanel(
             "Residential",
             
-             value = "Residential" ),
+            value = "Residential" ),
           
           # Adding Agriculture stuff
           tabPanel(
@@ -294,7 +321,7 @@ ui <- navbarPage(
   ),  
   
   
-
+  
   
   # These are CSS files that are needed for displaying the fontawesome icons
   header = tags$head(
