@@ -1,26 +1,5 @@
 server <- function(input, output, session){
   
-  
-  # The main dataset set up as a reactive object. It gets refiltered whenever an input dropdown is changed
-  # filtered_data <- reactive({
-  #   if (input$subsector != "All Subsectors") {
-  #     combined_df %>% 
-  #       filter(
-  #         Subsector == input$subsector,
-  #         Enduse == input$enduse,
-  #         Technology == input$tech,
-  #         Unit == input$unit     
-  #       )
-  #   } else{
-  #     combined_df %>% 
-  #       filter(
-  #         # Subsector == input$subsector,
-  #         Enduse == input$enduse,
-  #         Technology == input$tech,
-  #         Unit == input$unit  )   
-  #   }
-  # })
-  
   filtered_data <- reactive({
     combined_df %>%
       purrr::when(
@@ -232,77 +211,14 @@ server <- function(input, output, session){
     req(input$subsector)
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
-    # View(plot_data_kea)
-    # chart_type_overview <- input$chart_type_overview
-    # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
-    # if (input$chart_type_overview == "column_percent") {
-    if (input$chart_type == "column_percent") {
-      # chart_type_overview <-"column"
-      chart_type <-"column"
-      stacking_type <- "percent"
-      Y_lable <- "Percent"
-    } else{
-      # chart_type_overview <-input$chart_type_overview
-      chart_type <-input$chart_type
-      stacking_type <- "normal"
-      Y_lable <-  unique(plot_data_kea$Unit)
-    }
     
-    # if (chart_type_overview != "line") {
-    if (chart_type != "line") {
-      # Generate the needed dataframe
-      sample_data_kea <- plot_data_kea %>% 
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        pivot_wider(names_from =Fuel,values_from =Value, 
-                    values_fn = sum,values_fill = 0) %>%
-        as.data.frame()
-      
-      measure_columns <- names(sample_data_kea)[-1]
-      categories_column <- names(sample_data_kea)[1]
-      # Setting the percent bottom
-      # stacking_type <- ifelse(chart_type_overview == "column_percent", "percent", "normal")
-      
-      generic_stacking_charts(
-        data = sample_data_kea,
-        # chart_type = chart_type_overview,
-        chart_type = chart_type,
-        categories_column = categories_column,
-        measure_columns = measure_columns,
-        stacking_type = stacking_type,
-        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") ) %>%
-        # Adding plot options
-        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        hc_yAxis(title = list(text =Y_lable ))
-      # Setting the line plot
-    } else {
-      
-      # Plot if the line plot is selected
-      sample_data <- plot_data_kea %>% 
-        # assumptions_df %>%
-        #   filter(Parameter=="Total GDP") %>%
-        select(Fuel,Period,Value) %>%
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        as.data.frame()  
-      
-      # line_plot(data = sample_data,
-      #         filen_title= title_n, 
-      #         chart_type = "line") %>% 
-      
-      sample_data %>% 
-        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%
-        # Add more plot options
-        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        hc_yAxis(title = list(text = Y_lable)) %>%
-        hc_xAxis(title = list(text ="")) %>%
-        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
-                                                         titleKey = "Click here to download", text= 'Download', 
-                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
-    }
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = input$unit,
+      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      input_chart_type = input$chart_type
+    )
     
   })
   
@@ -313,73 +229,13 @@ server <- function(input, output, session){
     
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
     
-    # if (input$chart_type_overview == "column_percent") {
-    if (input$chart_type == "column_percent") {
-      # chart_type_overview <-"column"
-      chart_type <-"column"
-      stacking_type <- "percent"
-      Y_lable <- "Percent"
-    } else{
-      # chart_type_overview <-input$chart_type_overview
-      chart_type <-input$chart_type
-      stacking_type <- "normal"
-      Y_lable <-  unique(plot_data_tui$Unit)
-    }
-    # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
-    # chart_type_overview <- input$chart_type_overview
-    
-    
-    # if (chart_type_overview != "line") {
-    if (chart_type != "line") {
-      # Generate the needed dataframe
-      sample_data <- plot_data_tui %>% 
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        pivot_wider(names_from =Fuel,values_from =Value, 
-                    values_fn = sum,values_fill = 0) %>%
-        as.data.frame()
-      
-      
-      measure_columns <- names(sample_data)[-1]
-      categories_column <- names(sample_data)[1]
-      # Setting the percent bottom
-      # stacking_type <- ifelse(chart_type_overview == "column_percent", "percent", "normal")
-      
-      generic_stacking_charts(
-        data = sample_data,
-        chart_type = chart_type,
-        categories_column = categories_column,
-        measure_columns = measure_columns,
-        stacking_type = stacking_type,
-        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
-        # Adding plot options
-        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        hc_yAxis(title = list(text =Y_lable ))
-      # Setting the line plot
-    } else {
-      
-      # Plot if the line plot is selected
-      plot_data_tui %>% 
-        # assumptions_df %>%
-        #   filter(Parameter=="Total GDP") %>%
-        select(Fuel,Period,Value) %>%
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        as.data.frame() %>%
-        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
-        # Add more plot options
-        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        hc_yAxis(title = list(text = Y_lable)) %>%
-        hc_xAxis(title = list(text =""))%>%
-        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
-                                                         titleKey = "Click here to download", text= 'Download', 
-                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
-      
-      
-    }
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = input$unit,
+      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      input_chart_type = input$chart_type
+    )
     
   })
   
@@ -389,143 +245,30 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
-    # hchart(AirPassengers) # placeholder
-    
-    # req(input$subsector)
-    
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
     
-    # chart_type_overview <- input$chart_type_overview
-    # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
-    if (input$chart_type == "column_percent") {
-      chart_type <-"column"
-      stacking_type <- "percent"
-      Y_lable <- "Percent"
-    } else{
-      chart_type <-input$chart_type
-      stacking_type <- "normal"
-      Y_lable <-  unique(plot_data_kea$Unit)
-    }
-    
-    if (chart_type != "line") {
-      # Generate the needed dataframe
-      sample_data_kea <- plot_data_kea %>% 
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        pivot_wider(names_from =Fuel,values_from =Value, 
-                    values_fn = sum,values_fill = 0) %>%
-        as.data.frame()
-      
-      measure_columns <- names(sample_data_kea)[-1]
-      categories_column <- names(sample_data_kea)[1]
-      # Setting the percent bottom
-      # stacking_type <- ifelse(chart_type_overview == "column_percent", "percent", "normal")
-      
-      generic_stacking_charts(
-        data = sample_data_kea,
-        chart_type = chart_type,
-        categories_column = categories_column,
-        measure_columns = measure_columns,
-        stacking_type = stacking_type,
-        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
-        # Adding plot options
-        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        hc_yAxis(title = list(text =Y_lable ))
-      # Setting the line plot
-    } else {
-      
-      # Plot if the line plot is selected
-      plot_data_kea %>% 
-        # assumptions_df %>%
-        #   filter(Parameter=="Total GDP") %>%
-        select(Fuel,Period,Value) %>%
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        as.data.frame() %>%
-        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>% 
-        # Add more plot options
-        hc_xAxis(categories = unique(plot_data_kea$Period)) %>%
-        hc_yAxis(title = list(text = Y_lable)) %>%
-        hc_xAxis(title = list(text ="")) %>%
-        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
-                                                         titleKey = "Click here to download", text= 'Download', 
-                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
-    }
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = input$unit,
+      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      input_chart_type = input$chart_type
+    )
     
   })
   
   #Tui
   output$transport_tui <- renderHighchart({
     
-    # hchart(AirPassengers) # placeholder
-    # req(input$subsector)
-    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
     
-    if (input$chart_type == "column_percent") {
-      chart_type <-"column"
-      stacking_type <- "percent"
-      Y_lable <- "Percent"
-    } else{
-      chart_type <-input$chart_type
-      stacking_type <- "normal"
-      Y_lable <-  unique(plot_data_tui$Unit)
-    }
-    # chart_type_overview <- ifelse(input$chart_type_overview == "column_percent", "column", input$chart_type_overview)
-    # chart_type_overview <- input$chart_type_overview
-    
-    
-    if (chart_type != "line") {
-      # Generate the needed dataframe
-      sample_data <- plot_data_tui %>% 
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        pivot_wider(names_from =Fuel,values_from =Value, 
-                    values_fn = sum,values_fill = 0) %>%
-        as.data.frame()
-      
-      
-      measure_columns <- names(sample_data)[-1]
-      categories_column <- names(sample_data)[1]
-      # Setting the percent bottom
-      # stacking_type <- ifelse(chart_type_overview == "column_percent", "percent", "normal")
-      
-      generic_stacking_charts(
-        data = sample_data,
-        chart_type = chart_type,
-        categories_column = categories_column,
-        measure_columns = measure_columns,
-        stacking_type = stacking_type,
-        filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_")) %>%
-        # Adding plot options
-        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        hc_yAxis(title = list(text =Y_lable ))
-      # Setting the line plot
-    } else {
-      
-      # Plot if the line plot is selected
-      plot_data_tui %>% 
-        # assumptions_df %>%
-        #   filter(Parameter=="Total GDP") %>%
-        select(Fuel,Period,Value) %>%
-        group_by(Fuel,Period) %>%  
-        summarise(Value = sum(Value),.groups = "drop") %>% 
-        ungroup() %>% 
-        as.data.frame() %>%
-        hchart('line', hcaes(x = Period, y= Value, group = Fuel)) %>%  
-        # Add more plot options
-        hc_xAxis(categories = unique(plot_data_tui$Period)) %>%
-        hc_yAxis(title = list(text = Y_lable)) %>%
-        hc_xAxis(title = list(text ="")) %>% 
-        hc_exporting(enabled = TRUE, filename = paste(input$subsector, input$enduse, input$unit,'line', sep = "_") , 
-                     buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ),
-                                                         titleKey = "Click here to download", text= 'Download', 
-                                                         theme= list(fill= '#ddd', stroke= '#888'), symbol = '')))
-    }
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = input$unit,
+      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      input_chart_type = input$chart_type
+    )
     
     
   })
