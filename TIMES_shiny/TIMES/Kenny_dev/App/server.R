@@ -113,6 +113,7 @@ server <- function(input, output, session){
   # The next few functions 'listen' for changes in the dropdowns and update the dropdowns based
   # on what combinations of filters make sense. 
   # I'm not sure I've totally nailed it but I think it's mostly there.
+  
   # observeEvent(input$tabs, {
   #   
   #   df <- filtered_dropdowns() %>% filter(Sector == input$tabs)
@@ -143,8 +144,6 @@ server <- function(input, output, session){
     
   }, ignoreNULL = TRUE)
   
-  
-  
   observeEvent(input$enduse, {
     if (input$subsector == "All Subsectors" & input$enduse == "All Enduse") {
       
@@ -158,8 +157,6 @@ server <- function(input, output, session){
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
-  
-  
   
   # observeEvent(input$unit, {
   #   
