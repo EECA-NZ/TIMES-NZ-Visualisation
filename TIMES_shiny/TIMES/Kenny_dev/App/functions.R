@@ -65,7 +65,9 @@ generic_charts <- function(data, group_var, unit, filename, input_chart_type) {
         )
       ),
       menuItemDefinitions = list(downloadPDF = list(text = "Download image"))
-    )
+    ) %>% 
+    # Set the tooltip to two decimal places
+    hc_tooltip(valueDecimals=3)
   
   if(chart_type != "line"){
     hc <- hc %>% 
