@@ -36,6 +36,7 @@ period_list <- raw_df %>% distinct(Period) %>% filter(between(Period, 2000, 2100
 #   restricting TIMES model output to relevant rows via codes such as "Attribute", "Process"
 #   include 'natural language' translations from TIMES codes
 schema_all   <- read_xlsx("Schema.xlsx") 
+schema_colors <- read_xlsx("Schema_colors.xlsx")
 # schema_unit   <- read_xlsx("Schema_unit.xlsx") 
 
 needed_attributes = c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut",  "Cost_Inv")
@@ -58,8 +59,12 @@ clean_df <- raw_df %>%
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
 
 
+# # Add colors form the color schema
+# combined_df <- inner_join(clean_df,schema_colors,by = c("Fuel")) 
 
-combined_df <- clean_df 
+
+combined_df <- clean_df
+
 
 # 
 # # Create 'hierarchy' file. Based on all combinations of dropdowns.
@@ -82,6 +87,7 @@ sector_list <-distinct(hierarchy_lits, Sector) # sector list
 
 
 
+
 assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
   gather(Period, Value, `2020`:`2060`) %>% 
   mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))
@@ -94,6 +100,14 @@ save(combined_df, # data for charting
      sector_list,  # list of Sectors for input$sector_choice drop down
      assumptions_df,  # data behind assumptions
      assumptions_list,  # list of assumptions for input$assumptions drop-down
+     schema_colors, # Color scheme
      file = "../App/data/data_for_shiny.rda")
 
 
+
+# # Generating random colors 
+# library(viridisLite)
+# colors = viridis(nrow(fuel_list))
+# cbind(fuel_list,colors)
+# df <- cbind(fuel_list,colors)
+# writexl::write_xlsx(df,"../Data_Cleaning/Schema_colors.xlsx")

@@ -155,13 +155,13 @@ server <- function(input, output, session){
     
     # Read the filtered assumptions dataset and then split by scenario.
     assumptions_data <- filtered_assumptions() %>% 
-      rename(unit = Units)
+      rename(Unit = Units)
     
     generic_charts(
       data = assumptions_data,
       group_var = Scenario,
-      unit = input$unit,
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      unit = unique(assumptions_data$Unit),
+      filename = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
       input_chart_type = input$chart_type_assumptions
     )
     
@@ -177,8 +177,9 @@ server <- function(input, output, session){
     generic_charts(
       data = plot_data_kea,
       group_var = Fuel,
-      unit = input$unit,
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      unit = unique(plot_data_kea$Unit),
+      # filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -194,8 +195,8 @@ server <- function(input, output, session){
     generic_charts(
       data = plot_data_tui,
       group_var = Fuel,
-      unit = input$unit,
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      unit = unique(plot_data_tui$Unit),
+      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -212,7 +213,7 @@ server <- function(input, output, session){
     generic_charts(
       data = plot_data_kea,
       group_var = Fuel,
-      unit = input$unit,
+      unit = unique(plot_data_kea$Unit),
       filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
       input_chart_type = input$chart_type
     )
@@ -227,7 +228,7 @@ server <- function(input, output, session){
     generic_charts(
       data = plot_data_tui,
       group_var = Fuel,
-      unit = input$unit,
+      unit = unique(plot_data_tui$Unit),
       filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
       input_chart_type = input$chart_type
     )

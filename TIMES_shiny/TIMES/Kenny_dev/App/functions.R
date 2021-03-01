@@ -36,12 +36,22 @@ generic_charts <- function(data, group_var, unit, filename, input_chart_type) {
     list(data = data[, x + 1], name = names(data)[x + 1])
   })
   
+  # Extracting the needed colors from the color scheme
+  cols <- schema_colors[order(schema_colors$Fuel),] %>%  
+    filter(Fuel %in% measure_columns) %>% 
+    select(Colors) %>% 
+    as.data.frame()
+  
   hc <- highchart() %>%
     hc_chart(type = chart_type) %>%
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = TRUE) %>% 
-    hc_xAxis(categories = unique(data$Period)) %>% 
-    # Downloading data or png file
+    hc_xAxis(categories = unique(data$Period)) %>%
+    hc_yAxis(title = list(text = Y_label)) %>%
+    hc_subtitle(text = filename) %>% 
+    # Adding colors to plot 
+    hc_colors(colors =  cols$Colors) %>% 
+    # Downloading data or image file
     hc_exporting(
       enabled = TRUE,
       filename = filename ,
