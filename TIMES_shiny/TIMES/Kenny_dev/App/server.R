@@ -214,7 +214,7 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -229,7 +229,44 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      input_chart_type = input$chart_type
+    )
+    
+    
+  })
+
+  
+  
+  
+  ## Plot output for Industry page
+  # Kea
+  output$industry_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      input_chart_type = input$chart_type
+    )
+    
+  })
+  
+  #Tui
+  output$industry_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     

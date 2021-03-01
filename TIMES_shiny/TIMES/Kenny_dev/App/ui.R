@@ -226,23 +226,6 @@ ui <- navbarPage(
             
             fluidRow(
               
-              # Again, these are the chart type buttons. Have turned off the percent button here as it doesn't make sense for how it is currently set up
-              column(
-                width = 4,
-                # radioButtons("chart_type_transport", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
-                # radioGroupButtons(
-                #   inputId = "chart_type_transport",
-                #   label = "",
-                #   individual = TRUE,
-                #   choices = c(
-                #     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                #     `<i class='fa fa-bar-chart'></i>` = "column",
-                #     `<i class='fa fa-area-chart'></i>` = "area" ,
-                #     `<i class='fa fa-percent'></i>` = "column_percent"
-                #   )
-                # )
-              ),
-              
               # Plot outputs
               column(
                 
@@ -275,7 +258,31 @@ ui <- navbarPage(
             
             "Industry",
             
-            value = "Industry"
+            value = "Industry",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea"),
+                
+                highchartOutput("industry_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("industry_tui")
+              )
+            )
+            
             
           ),
           
