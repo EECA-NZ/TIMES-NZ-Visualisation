@@ -82,7 +82,7 @@ server <- function(input, output, session){
       selectInput(
         "unit",
         label = NULL,
-        choices = unique(filtered_dropdowns()$Parameters)
+        choices = unique(sort(filtered_dropdowns()$Parameters))
       )
       
     )
@@ -119,7 +119,7 @@ server <- function(input, output, session){
     }
     
     updateSelectInput(session, "enduse", choices = unique(df$Enduse))
-    updateSelectInput(session, "unit", choices = unique(df$Parameters))
+    updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)))
     
   }, ignoreNULL = TRUE)
   
@@ -132,7 +132,7 @@ server <- function(input, output, session){
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
       
     }
-    updateSelectInput(session, "unit", choices = unique(df$Parameters))
+    updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)))
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)

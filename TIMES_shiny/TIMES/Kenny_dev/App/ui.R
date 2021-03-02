@@ -85,7 +85,7 @@ ui <- navbarPage(
               
               radioGroupButtons(
                 inputId = "chart_type_assumptions",
-                label = "",
+                label = NULL,
                 individual = TRUE,
                 choices = c(
                   `<i class='fa fa-line-chart'></i>` = "line",
@@ -146,7 +146,7 @@ ui <- navbarPage(
         
         radioGroupButtons(
           inputId = "chart_type",
-          label = "",
+          label = NULL,
           individual = TRUE,
           choices = c(
             `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
