@@ -95,7 +95,7 @@ ui <- navbarPage(
                 )
               ),
               
-              selectInput("assumptions", "", choices = assumptions_list)
+              selectInput("assumptions", label = NULL, choices = assumptions_list)
             ),
             
             mainPanel = mainPanel(

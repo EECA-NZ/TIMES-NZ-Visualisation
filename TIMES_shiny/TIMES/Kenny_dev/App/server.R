@@ -161,7 +161,8 @@ server <- function(input, output, session){
       data = assumptions_data,
       group_var = Scenario,
       unit = unique(assumptions_data$Unit),
-      filename = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
+      filename = paste("Assumption", input$assumptions,input$chart_type_assumptions, "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
+      plot_title = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
       input_chart_type = input$chart_type_assumptions
     )
     
@@ -178,8 +179,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      # filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -196,7 +197,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -214,7 +216,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -229,7 +232,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -251,7 +255,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -266,7 +271,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
