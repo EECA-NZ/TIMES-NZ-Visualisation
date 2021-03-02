@@ -93,7 +93,7 @@ server <- function(input, output, session){
       selectInput(
         "unit",
         label = NULL,
-        choices = unique(filtered_dropdowns()$Parameters)
+        choices = unique(sort(filtered_dropdowns()$Parameters))
       )
       
     )
@@ -130,7 +130,7 @@ server <- function(input, output, session){
     }
     
     updateSelectInput(session, "enduse", choices = unique(df$Enduse))
-    updateSelectInput(session, "unit", choices = unique(df$Parameters))
+    updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)))
     
   }, ignoreNULL = TRUE)
   
@@ -143,7 +143,7 @@ server <- function(input, output, session){
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
       
     }
-    updateSelectInput(session, "unit", choices = unique(df$Parameters))
+    updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)))
     updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
@@ -172,13 +172,15 @@ server <- function(input, output, session){
       data = assumptions_data,
       group_var = Scenario,
       unit = unique(assumptions_data$Unit),
-      filename = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
+      filename = paste("Assumption", input$assumptions,input$chart_type_assumptions, "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
+      plot_title = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
       input_chart_type = input$chart_type_assumptions
     )
     
   })
   
-  ## Plot output for overview page (Kea). Very similar to code above (but without a percentage chart)
+  ## Plot output for overview page.
+  # Kea
   output$overview_kea <- renderHighchart({
     
     req(input$subsector)
@@ -189,14 +191,14 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      # filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
   })
   
-  ## Plot output for overview page (Tui). Very similar to code above - this is why I suggested turning this into a function as its mostly copy and paste.
+  # Tui
   output$overview_tui <- renderHighchart({
     
     req(input$subsector)
@@ -207,7 +209,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -219,13 +222,14 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Transport")
     
     generic_charts(
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type
     )
     
@@ -233,16 +237,54 @@ server <- function(input, output, session){
   
   #Tui
   output$transport_tui <- renderHighchart({
-    
-    req(input$subsector)
-    
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
+
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Transport")
     
     generic_charts(
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste(input$subsector, input$enduse, input$unit, input$chart_type, sep = "_"),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      input_chart_type = input$chart_type
+    )
+    
+    
+  })
+
+  
+  
+  
+  ## Plot output for Industry page
+  # Kea
+  output$industry_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Industry")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      input_chart_type = input$chart_type
+    )
+    
+  })
+  
+  #Tui
+  output$industry_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Industry")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " plot for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type
     )
     

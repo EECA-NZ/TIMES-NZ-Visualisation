@@ -3,7 +3,7 @@
 
 # Plotting function
 
-generic_charts <- function(data, group_var, unit, filename, input_chart_type) {
+generic_charts <- function(data, group_var, unit, filename,plot_title, input_chart_type) {
   
   if (input_chart_type == "column_percent") {
     
@@ -48,7 +48,7 @@ generic_charts <- function(data, group_var, unit, filename, input_chart_type) {
     hc_legend(reversed = TRUE) %>% 
     hc_xAxis(categories = unique(data$Period)) %>%
     hc_yAxis(title = list(text = Y_label)) %>%
-    hc_subtitle(text = filename) %>% 
+    hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
     # Downloading data or image file
@@ -64,12 +64,16 @@ generic_charts <- function(data, group_var, unit, filename, input_chart_type) {
           symbol = ''
         )
       ),
-      menuItemDefinitions = list(downloadPDF = list(text = "Download image"))
-    )
+      menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
+                                 downloadCSV = list(text = "Download data"))
+    ) %>% 
+    # Set the tooltip to three decimal places
+    hc_tooltip(valueDecimals=3)
   
   if(chart_type != "line"){
     hc <- hc %>% 
-      hc_plotOptions(series = list(stacking = as.character(stacking_type)))
+      hc_plotOptions(series = list(stacking = as.character(stacking_type),
+                     marker = list(enabled = FALSE)))
   }
   
   return(hc)
