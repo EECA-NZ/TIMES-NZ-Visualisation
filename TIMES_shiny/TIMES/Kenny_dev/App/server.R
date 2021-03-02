@@ -35,6 +35,17 @@ server <- function(input, output, session){
         ~ .
         
       ) %>% 
+      purrr::when(
+        
+        input$tabs != "Overview" ~
+          
+          filter(
+            ., Sector == input$tabs, 
+          ),
+        
+        ~ .
+        
+      ) %>% 
       filter(Parameters == input$unit)
   })
   
@@ -223,6 +234,8 @@ server <- function(input, output, session){
   #Tui
   output$transport_tui <- renderHighchart({
     
+    req(input$subsector)
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
     
     generic_charts(
@@ -235,5 +248,19 @@ server <- function(input, output, session){
     
     
   })
+  
+  # observeEvent(input$unit, {
+  #   
+  #   req(input$subsector)
+  #   
+  #   print(input$tabs)
+  #   print(input$subsector)
+  #   print(input$enduse)
+  #   print(input$tech)
+  #   print(input$unit)
+  #   print(filtered_data())
+  #   
+  #   
+  # })
   
 }
