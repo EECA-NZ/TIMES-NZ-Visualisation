@@ -168,7 +168,8 @@ server <- function(input, output, session){
     
   })
   
-  ## Plot output for overview page (Kea). Very similar to code above (but without a percentage chart)
+  ## Plot output for overview page.
+  # Kea
   output$overview_kea <- renderHighchart({
     
     req(input$subsector)
@@ -186,7 +187,7 @@ server <- function(input, output, session){
     
   })
   
-  ## Plot output for overview page (Tui). Very similar to code above - this is why I suggested turning this into a function as its mostly copy and paste.
+  # Tui
   output$overview_tui <- renderHighchart({
     
     req(input$subsector)
@@ -210,7 +211,7 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Transport")
     
     generic_charts(
       data = plot_data_kea,
@@ -226,7 +227,7 @@ server <- function(input, output, session){
   #Tui
   output$transport_tui <- renderHighchart({
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Transport")
     
     generic_charts(
       data = plot_data_tui,
@@ -249,7 +250,7 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Industry")
     
     generic_charts(
       data = plot_data_kea,
@@ -265,7 +266,7 @@ server <- function(input, output, session){
   #Tui
   output$industry_tui <- renderHighchart({
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Industry")
     
     generic_charts(
       data = plot_data_tui,
