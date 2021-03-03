@@ -51,6 +51,11 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
+    hc_credits(
+      text = "Chart created by EECA",
+      href = "https://www.eeca.govt.nz/",
+      enabled = TRUE
+    ) %>%
     # Downloading data or image file
     hc_exporting(
       enabled = TRUE,
@@ -60,7 +65,7 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
           menuItems = c("downloadPDF", "downloadCSV"),
           titleKey = "Click here to download",
           text = 'Download',
-          theme = list(fill = '#ddd', stroke = '#888'),
+          theme = list(fill = '#f7f7f7', stroke = '#41B496'),
           symbol = ''
         )
       ),
