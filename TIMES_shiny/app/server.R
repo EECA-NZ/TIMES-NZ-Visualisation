@@ -74,11 +74,21 @@ server <- function(input, output, session){
   
   # These are the dropdowns that are generated dynamically and served up to the UI (via the call to uiOutput())
   output$drop_downs <- renderUI({
+    
+    # Explicitly changing the 'All Subsectors' name for Overview tab. Underneath, it still 'points'
+    # to 'All Subsectors' (e.g. in the hierarchy)
+    subsector_list <- unique(filtered_dropdowns()$Subsector)
+    if(input$tabs == "Overview"){
+      names(subsector_list)[subsector_list == "All Subsectors"] <- "All Sectors & Subsectors"
+      names(subsector_list)[subsector_list != "All Subsectors"] <- subsector_list[subsector_list != "All Subsectors"]
+    }
+    
     tagList(
       selectInput(
         "subsector",
         label = NULL,
-        choices = unique(filtered_dropdowns()$Subsector)
+        # choices = unique(filtered_dropdowns()$Subsector)
+        choices = subsector_list
       ),
       selectInput(
         "enduse",
