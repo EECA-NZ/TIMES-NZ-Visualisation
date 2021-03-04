@@ -114,20 +114,21 @@ server <- function(input, output, session){
   # on what combinations of filters make sense. 
   # I'm not sure I've totally nailed it but I think it's mostly there.
   
-  # observeEvent(input$tabs, {
-  #   
-  #   df <- filtered_dropdowns() %>% filter(Sector == input$tabs)
-  #   
-  #   if(input$tabs != "Overview"){
-  #     
-  #     updateSelectInput(session, "subsector", choices = unique(df$Subsector))
-  #     
-  #   } else {
-  #     updateSelectInput(session, "subsector", choices = "All Subsectors")
-  #   }
-  #   
-  #   
-  # }, ignoreNULL = TRUE)
+  observeEvent(input$tabs, {
+    
+    if (input$tabs == "Overview") {
+      df <- filtered_dropdowns()
+    } else{
+      df <- filtered_dropdowns() %>% filter(Sector == input$tabs)
+      
+    }
+    
+    selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
+    
+    updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)), selected = selected_unit)
+
+
+  }, ignoreNULL = TRUE)
   
   
   observeEvent(input$subsector, {
@@ -160,6 +161,23 @@ server <- function(input, output, session){
     
     updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)), selected = selected_unit)
     updateSelectInput(session, "tech", choices = unique(df$Technology))
+    
+  }, ignoreNULL = TRUE)
+  
+  observeEvent(input$tech, {
+    if (input$subsector == "All Subsectors" & input$enduse == "All Enduse" & input$tech == "All Technology") {
+      
+      df <- filtered_dropdowns() #%>% filter(Enduse == input$enduse)
+      
+    } else {
+      df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse, 
+                                            Technology == input$tech)
+      
+    }
+    
+    selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
+    
+    updateSelectInput(session, "unit", choices = sort(unique(df$Parameters)), selected = selected_unit)
     
   }, ignoreNULL = TRUE)
   
