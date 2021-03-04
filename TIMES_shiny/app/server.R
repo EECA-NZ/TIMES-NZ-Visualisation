@@ -79,8 +79,7 @@ server <- function(input, output, session){
     # to 'All Subsectors' (e.g. in the hierarchy)
     subsector_list <- unique(filtered_dropdowns()$Subsector)
     if(input$tabs == "Overview"){
-      names(subsector_list)[subsector_list == "All Subsectors"] <- "All Sectors & Subsectors"
-      names(subsector_list)[subsector_list != "All Subsectors"] <- subsector_list[subsector_list != "All Subsectors"]
+      subsector_list <- c("All Sectors" = "All Subsectors")
     }
     
     tagList(
