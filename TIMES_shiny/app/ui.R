@@ -157,7 +157,13 @@ ui <- navbarPage(
         ),
         
         # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.
-        uiOutput("drop_downs")
+        uiOutput("drop_downs"),
+        
+        selectInput(
+          "unit",
+          label = NULL,
+          choices = unique(sort(hierarchy$Parameters))
+        )
         
       ),
       
