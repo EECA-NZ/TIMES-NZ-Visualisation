@@ -51,6 +51,7 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
+    # Adding credits
     hc_credits(
       text = "Chart created by EECA",
       href = "https://www.eeca.govt.nz/",
@@ -65,7 +66,9 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
           menuItems = c("downloadPDF", "downloadCSV"),
           titleKey = "Click here to download",
           text = 'Download',
-          theme = list(fill = '#f7f7f7', stroke = '#41B496'),
+          theme = list(fill = '#f7f7f7', stroke = '#41B496',
+                       states = list(hover=list(fill='#41B496'), 
+                                     select= list(stroke='#41B496',fill ='#41B496'))),
           symbol = ''
         )
       ),
@@ -78,6 +81,8 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
   if(chart_type != "line"){
     hc <- hc %>% 
       hc_plotOptions(series = list(stacking = as.character(stacking_type),
+                                   animation = FALSE,
+                     # Turning off markers on area stack plot
                      marker = list(enabled = FALSE)))
   }
   
@@ -85,6 +90,9 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
   
   # Can add more plot options here
 }
+
+
+
 
 # This is a generic function for stacked area chart
 # generic_stacking_charts <- function(data = NA,
