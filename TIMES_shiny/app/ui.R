@@ -290,41 +290,43 @@ ui <- navbarPage(
             )
             
             
-          ),
-          
-          
-          # Adding Commercial stuff
-          tabPanel(
-            
-            "Commercial",
-            
-            value = "Commercial"
-            
-          ),
-          
-          
-          # Adding Residential stuff
-          tabPanel(
-            "Residential",
-            
-            value = "Residential" ),
-          
-          # Adding Agriculture stuff
-          tabPanel(
-            "Agriculture",
-            
-            value = "Agriculture" ),
-          
-          
-          # Adding Other stuff
-          tabPanel(
-            
-            "Other",
-            
-            value = "Other"
-            
           )
           
+          # ,
+          # 
+          # 
+          # # Adding Commercial stuff
+          # tabPanel(
+          #   
+          #   "Commercial",
+          #   
+          #   value = "Commercial"
+          #   
+          # ),
+          # 
+          # 
+          # # Adding Residential stuff
+          # tabPanel(
+          #   "Residential",
+          #   
+          #   value = "Residential" ),
+          # 
+          # # Adding Agriculture stuff
+          # tabPanel(
+          #   "Agriculture",
+          #   
+          #   value = "Agriculture" ),
+          # 
+          # 
+          # # Adding Other stuff
+          # tabPanel(
+          #   
+          #   "Other",
+          #   
+          #   value = "Other"
+          #   
+          # )
+          # 
         )
         
       )

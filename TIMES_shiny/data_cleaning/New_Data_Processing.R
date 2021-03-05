@@ -94,6 +94,10 @@ assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # 
 
 assumptions_list <- distinct(assumptions_df, Parameter)
 
+# Ordered attributes
+order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance Travelled", "Technology Capacity")
+
+
 #Create the R data set for Shiny to use
 save(combined_df, # data for charting
      fuel_list,  # list of fuel for input$fuel_choice drop down
@@ -101,6 +105,7 @@ save(combined_df, # data for charting
      assumptions_df,  # data behind assumptions
      assumptions_list,  # list of assumptions for input$assumptions drop-down
      schema_colors, # Color scheme
+     order_attr, # Ordered attribute
      file = "../App/data/data_for_shiny.rda")
 
 

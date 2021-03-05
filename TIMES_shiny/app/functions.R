@@ -53,7 +53,7 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
-      text = "Chart created by EECA",
+      text = "EECA. All rights reserved.",
       href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
@@ -76,14 +76,21 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
                                  downloadCSV = list(text = "Download data"))
     ) %>% 
     # Set the tooltip to three decimal places
-    hc_tooltip(valueDecimals=3)
+    hc_tooltip(valueDecimals=3) 
+
   
   if(chart_type != "line"){
     hc <- hc %>% 
       hc_plotOptions(series = list(stacking = as.character(stacking_type),
-                                   animation = FALSE,
+                                   animation = list(duration=1000),
                      # Turning off markers on area stack plot
                      marker = list(enabled = FALSE)))
+  }else{
+    # Turning off markers on area stack plot
+    hc <- hc %>% hc_plotOptions(series = list(animation = list(duration=1000)
+                                              # This turns animation off
+                                              # animation = FALSE,
+                                              ))
   }
   
   return(hc)
