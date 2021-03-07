@@ -18,6 +18,7 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     Y_label <-  unit
     
   }
+
   
   data <- data %>% 
     group_by({{group_var}}, Period) %>%  
@@ -43,11 +44,16 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     as.data.frame()
   
   hc <- highchart() %>%
-    hc_chart(type = chart_type) %>%
+    hc_chart(type = chart_type,
+             # Added a zoom buttom
+             zoomType ='xy' ,
+             # Font type
+             style = list(fontFamily = "Times New Roman") ) %>%
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = TRUE) %>% 
     hc_xAxis(categories = unique(data$Period)) %>%
-    hc_yAxis(title = list(text = Y_label)) %>%
+    hc_yAxis(title = list(text = Y_label)
+             ) %>%
     hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
@@ -76,7 +82,7 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
                                  downloadCSV = list(text = "Download data"))
     ) %>% 
     # Set the tooltip to three decimal places
-    hc_tooltip(valueDecimals=3) 
+    hc_tooltip(valueDecimals=2) 
 
   
   if(chart_type != "line"){
@@ -97,6 +103,35 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
   
   # Can add more plot options here
 }
+
+
+
+# Helper function to order attributes
+order_attribute <- function(dat, order_str){
+    dat %>% 
+    factor(levels = order_str, ordered = TRUE) %>% 
+    unique() %>% sort() %>%  as.character()
+}
+
+
+
+
+# Helper function to preprocess data for Y-label (min, max values)
+get_range <- function(dat, group_var){
+   dat %>% 
+    group_by({{group_var}}, Period) %>%  
+    summarise(Value = sum(Value), .groups = "drop") %>% 
+    ungroup() %>% 
+    pivot_wider(
+      names_from = {{group_var}}, values_from = Value, 
+      values_fn = sum, values_fill = 0
+    ) %>%
+    as.data.frame() %>% 
+    range()
+}
+
+
+
 
 
 
@@ -222,6 +257,11 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
 #   stacking_type = "normal"
 # )
 
+
+# hc_yAxis(title = list(text = Y_label),
+#          min = ymin,
+#          max = ymax 
+# ) %>%
 
 # Add a generice line plot
 

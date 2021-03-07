@@ -122,9 +122,8 @@ server <- function(input, output, session){
       
     }
     
-    order_Parameters <- df$Parameters %>% 
-      factor(levels = order_attr, ordered = TRUE) %>% 
-      unique() %>% sort() %>%  as.character()
+    # Ordering the attributes 
+    order_Parameters <- order_attribute(df$Parameters,order_attr)
     
     selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
@@ -146,9 +145,8 @@ server <- function(input, output, session){
       
     }
     
-    order_Parameters <- df$Parameters %>% 
-      factor(levels = order_attr, ordered = TRUE) %>% 
-      unique() %>% sort() %>%  as.character()
+    # Ordering the attributes 
+    order_Parameters <- order_attribute(df$Parameters,order_attr)
     
     selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
@@ -167,9 +165,9 @@ server <- function(input, output, session){
       
     }
     
-    order_Parameters <- df$Parameters %>% 
-      factor(levels = order_attr, ordered = TRUE) %>% 
-      unique() %>% sort() %>%  as.character()
+    # Ordering the attributes 
+    order_Parameters <- order_attribute(df$Parameters,order_attr)
+
     
     selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
@@ -192,9 +190,8 @@ server <- function(input, output, session){
       
     }
     
-    order_Parameters <- df$Parameters %>% 
-      factor(levels = order_attr, ordered = TRUE) %>% 
-      unique() %>% sort() %>%  as.character()
+    # Ordering the attributes 
+    order_Parameters <- order_attribute(df$Parameters,order_attr)
     
     selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
