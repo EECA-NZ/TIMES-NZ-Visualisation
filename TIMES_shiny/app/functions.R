@@ -1,9 +1,70 @@
 # These are the functions used
 
+# Get max y from current filters
+get_max_y <- function(data, group_var, input_chart_type){
+  
+  total_by_grp <- data %>% 
+    group_by({{group_var}}, Period, scen) %>%  
+    summarise(Value = sum(Value), .groups = "drop") %>% 
+    ungroup()
+  
+  total_by_period <- data %>% 
+    group_by(Period, scen) %>%  
+    summarise(Value = sum(Value), .groups = "drop") %>% 
+    ungroup()
+  
+  if(input_chart_type == "column_percent"){
+    
+    max_val <- 100
+    
+  } else if(input_chart_type %in% c("column", "area")) {
+    
+    max_val <- round(max(total_by_period$Value))
+    
+  } else {
+    
+    max_val <- round(max(total_by_grp$Value))
+    
+  }
+  
+  return(max_val)
+  
+}
+
+
+get_max_y_assumptions <- function(data, group_var, input_chart_type){
+  
+  total <- data %>% 
+    filter(Parameter == group_var) %>% 
+    group_by(Period) %>% 
+    summarise(Value = sum(Value)) %>% 
+    ungroup()
+  
+  total_by_scenario <- data %>% 
+    filter(Parameter == group_var)
+  
+  if(input_chart_type == "column_percent"){
+    
+    max_val <- 100
+    
+  } else if(input_chart_type %in% c("column", "area")) {
+    
+    max_val <- round(max(total$Value))
+    
+  } else {
+    
+    max_val <- round(max(total_by_scenario$Value))
+    
+  }
+  
+  return(max_val)
+  
+}
+
 
 # Plotting function
 
-generic_charts <- function(data, group_var, unit, filename,plot_title, input_chart_type) {
+generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
   
   if (input_chart_type == "column_percent") {
     
@@ -47,7 +108,7 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = TRUE) %>% 
     hc_xAxis(categories = unique(data$Period)) %>%
-    hc_yAxis(title = list(text = Y_label)) %>%
+    hc_yAxis(title = list(text = Y_label), max = max_y) %>%
     hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
@@ -77,20 +138,20 @@ generic_charts <- function(data, group_var, unit, filename,plot_title, input_cha
     ) %>% 
     # Set the tooltip to three decimal places
     hc_tooltip(valueDecimals=3) 
-
+  
   
   if(chart_type != "line"){
     hc <- hc %>% 
       hc_plotOptions(series = list(stacking = as.character(stacking_type),
                                    animation = list(duration=1000),
-                     # Turning off markers on area stack plot
-                     marker = list(enabled = FALSE)))
+                                   # Turning off markers on area stack plot
+                                   marker = list(enabled = FALSE)))
   }else{
     # Turning off markers on area stack plot
     hc <- hc %>% hc_plotOptions(series = list(animation = list(duration=1000)
                                               # This turns animation off
                                               # animation = FALSE,
-                                              ))
+    ))
   }
   
   return(hc)

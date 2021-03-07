@@ -212,6 +212,26 @@ server <- function(input, output, session){
   #   
   # }, ignoreNULL = TRUE)
   
+  # Get max y for current filtered data
+  max_y <- reactive({
+    
+    get_max_y(
+      data = filtered_data(),
+      group_var = Fuel,
+      input_chart_type = input$chart_type
+    )
+    
+  })
+  
+  max_y_assumptions <- reactive({
+    
+    get_max_y_assumptions(
+      data = filtered_assumptions(),
+      group_var = input$assumptions,
+      input_chart_type = input$chart_type_assumptions
+    )
+    
+  })
   
   ##################################
   ######## Plotting ################
@@ -230,7 +250,8 @@ server <- function(input, output, session){
       unit = unique(assumptions_data$Unit),
       filename = paste("Assumption", input$assumptions,input$chart_type_assumptions, "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
       plot_title = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
-      input_chart_type = input$chart_type_assumptions
+      input_chart_type = input$chart_type_assumptions,
+      max_y = max_y_assumptions()
     )
     
   })
@@ -249,7 +270,8 @@ server <- function(input, output, session){
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
-      input_chart_type = input$chart_type
+      input_chart_type = input$chart_type,
+      max_y = max_y()
     )
     
   })
@@ -267,7 +289,8 @@ server <- function(input, output, session){
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
-      input_chart_type = input$chart_type
+      input_chart_type = input$chart_type,
+      max_y = max_y()
     )
     
   })
@@ -286,7 +309,8 @@ server <- function(input, output, session){
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
-      input_chart_type = input$chart_type
+      input_chart_type = input$chart_type,
+      max_y = max_y()
     )
     
   })
@@ -302,7 +326,8 @@ server <- function(input, output, session){
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
-      input_chart_type = input$chart_type
+      input_chart_type = input$chart_type,
+      max_y = max_y()
     )
     
     
@@ -325,7 +350,8 @@ server <- function(input, output, session){
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
-      input_chart_type = input$chart_type
+      input_chart_type = input$chart_type,
+      max_y = max_y()
     )
     
   })
@@ -341,7 +367,8 @@ server <- function(input, output, session){
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
-      input_chart_type = input$chart_type
+      input_chart_type = input$chart_type,
+      max_y = max_y()
     )
     
     
