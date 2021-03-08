@@ -113,7 +113,8 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = TRUE) %>% 
     hc_xAxis(categories = unique(data$Period)) %>%
-    hc_yAxis(title = list(text = Y_label), max = max_y) %>%
+    hc_yAxis(title = list(text = Y_label), max = max_y,
+             labels = list(format ='{value:3.2f}')) %>%
     hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
