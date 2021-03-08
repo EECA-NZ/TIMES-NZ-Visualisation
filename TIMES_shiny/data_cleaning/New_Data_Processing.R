@@ -57,7 +57,8 @@ clean_df <- raw_df %>%
                  Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 
           # Change Annualised Capital Costs to Billion NZD
           mutate(Value = ifelse(Parameters == "Annualised Capital Costs", Value/1000,Value),
-                 Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit )) %>% 
+                 Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit),
+                 Unit = ifelse(Parameters == "Number of Vehicles", "Number of Vehicles", Unit)) %>% 
           # Group by the main variables and sum up
           group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
           # Sum up

@@ -84,6 +84,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   data <- data %>% 
     group_by({{group_var}}, Period) %>%  
     summarise(Value = sum(Value), .groups = "drop") %>% 
+    mutate(Value = signif(Value,3)) %>% 
     ungroup() %>% 
     pivot_wider(
       names_from = {{group_var}}, values_from = Value, 
@@ -114,7 +115,9 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     hc_legend(reversed = TRUE) %>% 
     hc_xAxis(categories = unique(data$Period)) %>%
     hc_yAxis(title = list(text = Y_label), max = max_y,
-             labels = list(format ='{value:3.2f}')) %>%
+             # Keep values and remove and notations
+             labels = list(format ='{value}')
+             ) %>%
     hc_subtitle(text = plot_title) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
@@ -141,15 +144,17 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
       ),
       menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
                                  downloadCSV = list(text = "Download data"))
-    ) %>% 
-    # Set the tooltip to three decimal places
-    hc_tooltip(valueDecimals=2) 
+    ) 
+  # %>% 
+  #   # Set the tooltip to three decimal places
+  #   hc_tooltip(valueDecimals=2) 
   if(chart_type != "line"){
     hc <- hc %>% 
       hc_plotOptions(series = list(stacking = as.character(stacking_type),
                                    animation = list(duration=1000),
                                    # Turning off markers on area stack plot
-                                   marker = list(enabled = FALSE)))
+                                   marker = list(enabled = FALSE),
+                                   lang = list(thousandsSep= ',')))
   }else{
     # Turning off markers on area stack plot
     hc <- hc %>% hc_plotOptions(series = list(animation = list(duration=1000)
