@@ -19,11 +19,11 @@ get_max_y <- function(data, group_var, input_chart_type){
     
   } else if(input_chart_type %in% c("column", "area")) {
     
-    max_val <- round(max(total_by_period$Value))
+    max_val <- max(total_by_period$Value)
     
   } else {
     
-    max_val <- round(max(total_by_grp$Value))
+    max_val <- max(total_by_grp$Value)
     
   }
   
@@ -49,11 +49,11 @@ get_max_y_assumptions <- function(data, group_var, input_chart_type){
     
   } else if(input_chart_type %in% c("column", "area")) {
     
-    max_val <- round(max(total$Value))
+    max_val <- max(total$Value)
     
   } else {
     
-    max_val <- round(max(total_by_scenario$Value))
+    max_val <- max(total_by_scenario$Value)
     
   }
   
