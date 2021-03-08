@@ -206,17 +206,20 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea") 
-                # %>% 
-                #   helper(type = "inline",
-                #          title = "Inline Help",
-                #          content = c("This helpfile is defined entirely in the UI!",
-                #                      "This is on a new line.",
-                #                      "This is some <b>HTML</b>."),
-                #          size = "s") 
-                ,
+                h3("Kea") %>% 
+                  helper(
+                    type = "inline",
+                    title = "Kea scenario - overview",
+                    content = c(
+                      "The Kea scenario is defined as ...",
+                      "This is on a new line.",
+                      "This is some <b>HTML</b>."
+                    ),
+                    size = "m",
+                    colour = "#3C4C49"
+                  ),
                 
-                highchartOutput("overview_kea")
+                highchartOutput("overview_kea") 
                 
               ),
               

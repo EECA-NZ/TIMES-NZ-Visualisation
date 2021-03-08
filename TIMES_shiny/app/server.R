@@ -1,5 +1,9 @@
 server <- function(input, output, session){
   
+  # Required for creating the event handlers for shinyhelper
+  observe_helpers()
+  
+  # Filter data based on dropdowns
   filtered_data <- reactive({
     combined_df %>%
       purrr::when(
@@ -126,7 +130,6 @@ server <- function(input, output, session){
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
     selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
     
     # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
     
