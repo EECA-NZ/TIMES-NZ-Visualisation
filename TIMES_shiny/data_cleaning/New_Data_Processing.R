@@ -51,6 +51,13 @@ clean_df <- raw_df %>%
           inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
           # Extract the needed attributes 
           filter(Attribute %in% needed_attributes) %>% 
+          # Modifying Attribute values
+          # Changed emission to Mt C02
+          mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
+                 Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 
+          # Change Annualised Capital Costs to Billion NZD
+          mutate(Value = ifelse(Parameters == "Annualised Capital Costs", Value/1000,Value),
+                 Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit )) %>% 
           # Group by the main variables and sum up
           group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
           # Sum up

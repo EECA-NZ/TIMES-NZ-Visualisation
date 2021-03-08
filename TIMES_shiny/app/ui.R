@@ -9,6 +9,7 @@ library(readr)
 library(stringr)
 library(stringi) # Only used for the placeholder text (i.e. stri_rand_lipsum()). Can be removed later.
 library(shinyWidgets) # For the fancy radio buttons
+library(shinyhelper)
 
 
 # Source script that loads data
@@ -205,7 +206,15 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea") 
+                # %>% 
+                #   helper(type = "inline",
+                #          title = "Inline Help",
+                #          content = c("This helpfile is defined entirely in the UI!",
+                #                      "This is on a new line.",
+                #                      "This is some <b>HTML</b>."),
+                #          size = "s") 
+                ,
                 
                 highchartOutput("overview_kea")
                 
@@ -237,7 +246,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea") ,
                 
                 highchartOutput("transport_kea")
                 
