@@ -218,7 +218,7 @@ hover_popup <- function(text, icon_type = "fa-question-circle") {
     paste0(
       '<i class=\"fa ',
       icon_type,
-      ' data-container="body" ',
+      '\" data-container="body" ',
       'data-toggle="popover" ',
       'data-trigger="hover" ',
       'data-placement="bottom" ',
