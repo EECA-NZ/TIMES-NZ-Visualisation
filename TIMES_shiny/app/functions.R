@@ -213,7 +213,7 @@ get_range <- function(dat, group_var){
 }
 
 # Hover button
-hover_popup <- function(text, icon_type = "fa-question-circle") {
+hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14px") {
   HTML(
     paste0(
       '<i class=\"fa ',
@@ -224,7 +224,9 @@ hover_popup <- function(text, icon_type = "fa-question-circle") {
       'data-placement="bottom" ',
       'data-content=\"',
       text,
-      '\"></i>'
+      '\" style=\"font-size: ',
+      font_size, 
+      ';\"></i>'
     )
   )
   
