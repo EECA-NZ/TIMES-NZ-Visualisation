@@ -206,7 +206,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea") %>% 
+                h3("Kea", hover_popup(text = "Testing 123.")) %>% 
                   helper(
                     type = "inline",
                     title = "Kea scenario - overview",
@@ -351,7 +351,8 @@ ui <- navbarPage(
   header = tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/all.min.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/v4-shims.min.css"),
-    tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")
+    tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css"),
+    tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})")
   )
   
 )
