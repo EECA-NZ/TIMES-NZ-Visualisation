@@ -206,15 +206,16 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea", hover_popup(text = "Testing 123.")) %>% 
-                  helper(
-                    type = "inline",
-                    title = "Kea scenario - overview",
-                    content = c("Draft commentary: The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.  Whereas in the Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained."
-                    ),
-                    size = "m",
-                    colour = "#3C4C49"
-                  ),
+                h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.")), 
+                # %>% 
+                #   helper(
+                #     type = "inline",
+                #     title = "Kea scenario - overview",
+                #     content = c("Draft commentary: The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.  Whereas in the Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained."
+                #     ),
+                #     size = "m",
+                #     colour = "#3C4C49"
+                #   ),
                 
                 highchartOutput("overview_kea") 
                 
@@ -224,7 +225,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Tui"),
+                h3("Tui", hover_popup(text = "Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained")),
                 
                 highchartOutput("overview_tui")
                 
@@ -299,43 +300,41 @@ ui <- navbarPage(
             )
             
             
+          ),
+
+
+          # Adding Commercial stuff
+          tabPanel(
+
+            "Commercial",
+
+            value = "Commercial"
+
+          ),
+
+
+          # Adding Residential stuff
+          tabPanel(
+            "Residential",
+
+            value = "Residential" ),
+
+          # Adding Agriculture stuff
+          tabPanel(
+            "Agriculture",
+
+            value = "Agriculture" ),
+
+
+          # Adding Other stuff
+          tabPanel(
+
+            "Other",
+
+            value = "Other"
+
           )
-          
-          # ,
-          # 
-          # 
-          # # Adding Commercial stuff
-          # tabPanel(
-          #   
-          #   "Commercial",
-          #   
-          #   value = "Commercial"
-          #   
-          # ),
-          # 
-          # 
-          # # Adding Residential stuff
-          # tabPanel(
-          #   "Residential",
-          #   
-          #   value = "Residential" ),
-          # 
-          # # Adding Agriculture stuff
-          # tabPanel(
-          #   "Agriculture",
-          #   
-          #   value = "Agriculture" ),
-          # 
-          # 
-          # # Adding Other stuff
-          # tabPanel(
-          #   
-          #   "Other",
-          #   
-          #   value = "Other"
-          #   
-          # )
-          # 
+
         )
         
       )
