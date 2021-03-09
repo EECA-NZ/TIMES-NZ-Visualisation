@@ -37,6 +37,7 @@ period_list <- raw_df %>% distinct(Period) %>% filter(between(Period, 2000, 2100
 #   include 'natural language' translations from TIMES codes
 schema_all   <- read_xlsx("Schema.xlsx") 
 schema_colors <- read_xlsx("Schema_colors.xlsx")
+caption_list <- read_xlsx("Caption_Table.xlsx")
 # schema_unit   <- read_xlsx("Schema_unit.xlsx") 
 
 needed_attributes = c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut",  "Cost_Inv")
@@ -51,14 +52,18 @@ clean_df <- raw_df %>%
           inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
           # Extract the needed attributes 
           filter(Attribute %in% needed_attributes) %>% 
-          # Modifying Attribute values
-          # Changed emission to Mt C02
+          # complete data by padding zeros
+          complete(scen,nesting(Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period),fill = list(Value = 0)) %>% 
+          # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
                  Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 
-          # Change Annualised Capital Costs to Billion NZD
+          # Modifying Attribute values: Change Annualised Capital Costs to Billion NZD
           mutate(Value = ifelse(Parameters == "Annualised Capital Costs", Value/1000,Value),
                  Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit),
-                 Unit = ifelse(Parameters == "Number of Vehicles", "Number of Vehicles", Unit)) %>% 
+                 # Changing the Thousand Vehicles to Number of Vehicles (Thousands)
+                 Unit = ifelse(Parameters == "Number of Vehicles", "Number of Vehicles (Thousands)", Unit)) %>% 
+          # Remove the hard coded "N/A" in the data
+          filter(!(Technology == "N/A")) %>% 
           # Group by the main variables and sum up
           group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
           # Sum up
@@ -114,6 +119,7 @@ save(combined_df, # data for charting
      assumptions_list,  # list of assumptions for input$assumptions drop-down
      schema_colors, # Color scheme
      order_attr, # Ordered attribute
+     caption_list, # Add caption list
      file = "../App/data/data_for_shiny.rda")
 
 

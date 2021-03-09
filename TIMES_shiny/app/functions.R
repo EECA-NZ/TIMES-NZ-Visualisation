@@ -20,7 +20,7 @@ get_max_y <- function(data, group_var, input_chart_type){
   } else if(input_chart_type %in% c("column", "area")) {
     
     max_val <- max(total_by_period$Value)
-    
+
   } else {
     
     max_val <- max(total_by_grp$Value)
@@ -30,6 +30,7 @@ get_max_y <- function(data, group_var, input_chart_type){
   return(max_val)
   
 }
+
 
 
 get_max_y_assumptions <- function(data, group_var, input_chart_type){
@@ -62,9 +63,18 @@ get_max_y_assumptions <- function(data, group_var, input_chart_type){
 }
 
 
-# Plotting function
 
-generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
+
+# Plotting theme to use
+my_theme <-  hc_theme(
+    chart = list(style = list(
+      fontFamily = "Times New Roman",
+      fontSize='15px'
+    )))
+
+
+# Plotting function
+generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y, caption_text) {
   
   if (input_chart_type == "column_percent") {
     
@@ -110,11 +120,12 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              # Added a zoom buttom
              zoomType ='xy' ,
              # Font type
-             style = list(fontFamily = "Times New Roman") ) %>%
+             style = list(fontFamily = "Times New Roman",
+                          fontSize='15px') ) %>%
     hc_add_series_list(data_list) %>% 
-    hc_legend(reversed = TRUE) %>% 
+    hc_legend(reversed = FALSE) %>% 
     hc_xAxis(categories = unique(data$Period)) %>%
-    hc_yAxis(title = list(text = Y_label), max = max_y,
+    hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
              labels = list(format ='{value}')
              ) %>%
@@ -144,7 +155,14 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
       ),
       menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
                                  downloadCSV = list(text = "Download data"))
-    ) 
+    ) %>% 
+    # Adding a caption
+    hc_caption(
+      text = caption_text, 
+      useHTML = TRUE
+    ) %>% 
+    # Adding theme 
+    hc_add_theme(my_theme) 
   # %>% 
   #   # Set the tooltip to three decimal places
   #   hc_tooltip(valueDecimals=2) 
@@ -329,4 +347,11 @@ get_range <- function(dat, group_var){
 
 # Add a generice line plot
 
+# get_period_list <- function(data, group_var){
+#   total_by_period <- data %>% 
+#     group_by(Period, scen) %>%  
+#     summarise(Value = sum(Value), .groups = "drop") %>% 
+#     ungroup()
+#   return(unique(total_by_period$Period))
+# }
 

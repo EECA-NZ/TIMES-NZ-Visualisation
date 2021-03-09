@@ -210,10 +210,7 @@ ui <- navbarPage(
                   helper(
                     type = "inline",
                     title = "Kea scenario - overview",
-                    content = c(
-                      "The Kea scenario is defined as ...",
-                      "This is on a new line.",
-                      "This is some <b>HTML</b>."
+                    content = c("Draft commentary: The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.  Whereas in the Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained."
                     ),
                     size = "m",
                     colour = "#3C4C49"
