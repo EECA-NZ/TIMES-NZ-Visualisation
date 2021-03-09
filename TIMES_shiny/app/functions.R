@@ -69,12 +69,12 @@ get_max_y_assumptions <- function(data, group_var, input_chart_type){
 my_theme <-  hc_theme(
     chart = list(style = list(
       fontFamily = "Times New Roman",
-      fontSize='15px'
+      color= '#666666'
     )))
 
 
 # Plotting function
-generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y, caption_text) {
+generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
   
   if (input_chart_type == "column_percent") {
     
@@ -156,11 +156,11 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
       menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
                                  downloadCSV = list(text = "Download data"))
     ) %>% 
-    # Adding a caption
-    hc_caption(
-      text = caption_text, 
-      useHTML = TRUE
-    ) %>% 
+    # # Adding a caption
+    # hc_caption(
+    #   text = caption_text, 
+    #   useHTML = TRUE
+    # ) %>% 
     # Adding theme 
     hc_add_theme(my_theme) 
   # %>% 

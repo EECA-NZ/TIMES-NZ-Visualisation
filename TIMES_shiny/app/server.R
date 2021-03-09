@@ -234,12 +234,10 @@ server <- function(input, output, session){
     
   })
   
-  captions <- reactive(
-    caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
-
-    )
-  
-  Assumption_captions = "Draft commentary: The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.  Whereas in the Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained."
+  # captions <- reactive(
+  #   caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
+  # 
+  #   )
   
   ##################################
   ######## Plotting ################
@@ -259,8 +257,7 @@ server <- function(input, output, session){
       filename = paste("Assumption", input$assumptions,input$chart_type_assumptions, "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
       plot_title = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
       input_chart_type = input$chart_type_assumptions,
-      max_y = max_y_assumptions(),
-      caption_text = Assumption_captions
+      max_y = max_y_assumptions()
     )
     
   })
@@ -280,8 +277,7 @@ server <- function(input, output, session){
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type,
-      max_y = max_y(),
-      caption_text = captions()
+      max_y = max_y()
     )
     
   })
@@ -300,8 +296,7 @@ server <- function(input, output, session){
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type,
-      max_y = max_y(),
-      caption_text = captions()
+      max_y = max_y()
     )
     
   })
@@ -321,8 +316,7 @@ server <- function(input, output, session){
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type,
-      max_y = max_y(),
-      caption_text = captions()
+      max_y = max_y()
     )
     
   })
@@ -339,8 +333,7 @@ server <- function(input, output, session){
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type,
-      max_y = max_y(),
-      caption_text = captions()
+      max_y = max_y()
     )
     
     
@@ -364,8 +357,7 @@ server <- function(input, output, session){
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
       input_chart_type = input$chart_type,
-      max_y = max_y(),
-      caption_text = captions()
+      max_y = max_y()
     )
     
   })
@@ -382,8 +374,7 @@ server <- function(input, output, session){
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
       input_chart_type = input$chart_type,
-      max_y = max_y(),
-      caption_text = captions()
+      max_y = max_y()
     )
     
     
