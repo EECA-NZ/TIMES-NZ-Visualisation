@@ -124,7 +124,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
                           fontSize='15px') ) %>%
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = FALSE) %>% 
-    hc_xAxis(categories = unique(data$Period)) %>%
+    hc_xAxis(categories = sort(unique(data$Period))) %>%
     hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
              labels = list(format ='{value}')
@@ -134,7 +134,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
-      text = "EECA. All rights reserved.",
+      text = "Chart created by EECA.",
       href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
