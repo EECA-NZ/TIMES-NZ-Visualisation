@@ -225,12 +225,15 @@ hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14p
       'data-content=\"',
       text,
       '\" style=\"font-size: ',
-      font_size, 
-      ';\"></i>'
+      font_size,
+      ';',
+      ' vertical-align:super;\"',
+      '></i>'
     )
   )
   
 }
+
 
 
 
