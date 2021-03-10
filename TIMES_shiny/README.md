@@ -4,7 +4,7 @@ This repository contains the source code and data behind TIMES-NZ shiny app
 ## Background
 ...
 
-##Graphs
+## Graphs
 
 The graphs shows more information when one mouse-hover over the elements of the graph.
 
