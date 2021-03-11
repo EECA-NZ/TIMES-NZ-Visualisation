@@ -108,7 +108,7 @@ assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # 
 assumptions_list <- distinct(assumptions_df, Parameter)
 
 # Ordered attributes
-order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance Travelled", "Technology Capacity")
+order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance travelled", "Technology Capacity")
 
 
 #Create the R data set for Shiny to use
