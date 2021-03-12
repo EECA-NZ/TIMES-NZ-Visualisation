@@ -52,8 +52,8 @@ clean_df <- raw_df %>%
           inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
           # Extract the needed attributes 
           filter(Attribute %in% needed_attributes) %>% 
-          # complete data by padding zeros
-          complete(scen,nesting(Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period),fill = list(Value = 0)) %>% 
+          # complete data by padding zeros for all period
+          complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel),fill = list(Value = 0)) %>% 
           # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
                  Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 
