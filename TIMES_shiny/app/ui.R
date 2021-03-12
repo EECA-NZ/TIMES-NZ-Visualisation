@@ -272,7 +272,7 @@ ui <- navbarPage(
           # Adding industry stuff
           tabPanel(
             
-            "Industry",
+            "Industrial",
             
             value = "Industry",
             

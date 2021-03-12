@@ -68,7 +68,7 @@ get_max_y_assumptions <- function(data, group_var, input_chart_type){
 # Plotting theme to use
 my_theme <-  hc_theme(
     chart = list(style = list(
-      fontFamily = "Times New Roman",
+      fontFamily = "Calibri Light",
       color= '#666666'
     )))
 
@@ -120,7 +120,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              # Added a zoom buttom
              zoomType ='xy' ,
              # Font type
-             style = list(fontFamily = "Times New Roman",
+             style = list(fontFamily = "Calibri Light",
                           fontSize='15px') ) %>%
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = FALSE) %>% 
