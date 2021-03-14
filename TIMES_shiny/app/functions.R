@@ -227,7 +227,9 @@ hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14p
       '\" style=\"font-size: ',
       font_size,
       ';',
-      ' vertical-align:super;\"',
+      ' vertical-align:super;
+        position: absolute;
+        right: 10px;\"',
       '></i>'
     )
   )

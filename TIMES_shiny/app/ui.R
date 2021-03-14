@@ -206,7 +206,8 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.")), 
+                h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
+                                      icon_type = "fa-info-circle")), 
                 # %>% 
                 #   helper(
                 #     type = "inline",
@@ -225,7 +226,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Tui", hover_popup(text = "Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained")),
+                h3("Tui", ),
                 
                 highchartOutput("overview_tui")
                 
