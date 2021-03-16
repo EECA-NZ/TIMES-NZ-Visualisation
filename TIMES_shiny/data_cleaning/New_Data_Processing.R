@@ -68,6 +68,8 @@ clean_df <- raw_df %>%
           group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
           # Sum up
           summarise(Value = sum(Value), .groups = "drop") %>% 
+          # Removed all Annualised Capital Costs
+          filter(Parameters != "Annualised Capital Costs") %>% 
           # Replace any NAs in the dataset with missing
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
 
