@@ -226,10 +226,12 @@ server <- function(input, output, session){
   
   max_y_assumptions <- reactive({
     
+    
+    
     get_max_y_assumptions(
       data = filtered_assumptions(),
       group_var = input$assumptions,
-      input_chart_type = input$chart_type_assumptions
+      input_chart_type = "line"
     )
     
   })
@@ -254,10 +256,10 @@ server <- function(input, output, session){
       data = assumptions_data,
       group_var = Scenario,
       unit = unique(assumptions_data$Unit),
-      filename = paste("Assumption", input$assumptions,input$chart_type_assumptions, "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
-      plot_title = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
-      input_chart_type = input$chart_type_assumptions,
-      max_y = max_y_assumptions()
+      filename = paste("Assumption", input$assumptions,"line", "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
+      plot_title = paste0(input$assumptions),
+      input_chart_type = "line",
+      max_y = NULL
     )
     
   })

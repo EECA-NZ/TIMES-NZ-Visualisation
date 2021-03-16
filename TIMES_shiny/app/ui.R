@@ -84,17 +84,17 @@ ui <- navbarPage(
               
               width = 3,
               
-              radioGroupButtons(
-                inputId = "chart_type_assumptions",
-                label = NULL,
-                individual = TRUE,
-                choices = c(
-                  `<i class='fa fa-line-chart'></i>` = "line",
-                  `<i class='fa fa-bar-chart'></i>` = "column",
-                  `<i class='fa fa-area-chart'></i>` = "area",
-                  `<i class='fa fa-percent'></i>` = "column_percent"
-                )
-              ),
+              # radioGroupButtons(
+              #   inputId = "chart_type_assumptions",
+              #   label = NULL,
+              #   individual = TRUE,
+              #   choices = c(
+              #     `<i class='fa fa-line-chart'></i>` = "line",
+              #     `<i class='fa fa-bar-chart'></i>` = "column",
+              #     `<i class='fa fa-area-chart'></i>` = "area",
+              #     `<i class='fa fa-percent'></i>` = "column_percent"
+              #   )
+              # ),
               
               selectInput("assumptions", label = NULL, choices = assumptions_list)
             ),
