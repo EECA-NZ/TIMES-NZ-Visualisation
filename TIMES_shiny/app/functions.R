@@ -166,6 +166,9 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   # %>% 
   #   # Set the tooltip to three decimal places
   #   hc_tooltip(valueDecimals=2) 
+  
+  
+  
   if(chart_type != "line"){
     hc <- hc %>% 
       hc_plotOptions(series = list(stacking = as.character(stacking_type),
@@ -174,11 +177,18 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
                                    marker = list(enabled = FALSE),
                                    lang = list(thousandsSep= ',')))
   }else{
-    # Turning off markers on area stack plot
-    hc <- hc %>% hc_plotOptions(series = list(animation = list(duration=1000)
+    hc <- hc %>% hc_plotOptions(series = list(animation = list(duration=1000),
+                                              marker = list(radius= 3)
                                               # This turns animation off
                                               # animation = FALSE,
     ))
+ 
+  # if (input_chart_type == "column_percent") {
+  #   hc <- hc %>% 
+  #     hc_tooltip(pointFormat = list('<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>') )
+  #   
+  # }     
+    
   }
   
   return(hc)

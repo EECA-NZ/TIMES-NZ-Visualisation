@@ -259,7 +259,7 @@ server <- function(input, output, session){
       filename = paste("Assumption", input$assumptions,"line", "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
       plot_title = paste0(input$assumptions),
       input_chart_type = "line",
-      max_y = NULL
+      max_y = NULL #max_y_assumptions()  
     )
     
   })
