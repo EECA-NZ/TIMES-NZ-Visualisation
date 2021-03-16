@@ -129,7 +129,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              # Keep values and remove and notations
              labels = list(format ='{value}')
              ) %>%
-    hc_subtitle(text = plot_title) %>% 
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
