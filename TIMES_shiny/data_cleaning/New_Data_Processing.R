@@ -104,7 +104,7 @@ sector_list <-distinct(hierarchy_lits, Sector) # sector list
 
 
 assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
-  gather(Period, Value, `2020`:`2060`) %>% 
+  gather(Period, Value, `2022`:`2060`) %>% 
   mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))
 
 assumptions_list <- distinct(assumptions_df, Parameter)

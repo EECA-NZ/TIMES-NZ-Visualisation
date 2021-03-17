@@ -202,26 +202,27 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   
   if (input_chart_type == "column") {
     
-    hc <- hc %>% 
-      hc_add_series(
-      data = total_by_year,
-      hcaes(x = as.factor(Period), y = Value),
-      type = "scatter",
-      name = "Column total",
-      showInLegend = FALSE
-    ) %>% 
-      hc_plotOptions(scatter = list(
-        color = "#000000",
-        # visible = TRUE,
-        tooltip = list(pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.total:.1f}</b><br/>'
-      )))
+    # hc <- hc %>% 
+    #   hc_add_series(
+    #   data = total_by_year,
+    #   hcaes(x = as.factor(Period), y = Value),
+    #   type = "scatter",
+    #   name = "Column total:",
+    #   showInLegend = FALSE
+    # ) 
+    # %>% 
+    #   hc_plotOptions(scatter = list(
+    #     color = "#000000",
+    #     # visible = TRUE,
+    #     tooltip = list(pointFormat = '<span style="color={series.color}"></span> <b>{point.total:.1f}</b><br/>'
+    #   )))
     
-  #   hc <- hc %>%
-  #     hc_tooltip(
-  #       footerFormat = '<b>Column total:  {point.total:.1f} </b>'#,
-  #       # shared = TRUE
-  #     ) %>% 
-  #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
+    hc <- hc %>%
+      hc_tooltip(
+        footerFormat = '<b>Column total:  {point.total:.1f} </b>'#,
+        # shared = TRUE
+      )
+  #     hc_yAxis(stAttributesackLabels = list(enabled = TRUE, format = '{total:.0f}'))
   #   
   }
   

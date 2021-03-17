@@ -256,8 +256,8 @@ server <- function(input, output, session){
       data = assumptions_data,
       group_var = Scenario,
       unit = unique(assumptions_data$Unit),
-      filename = paste("Assumption", input$assumptions,"line", "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
-      plot_title = paste0(input$assumptions),
+      filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
+      plot_title = paste0(assumptions_data$Title[1]),
       input_chart_type = "line",
       max_y = NULL #max_y_assumptions()  
     )
