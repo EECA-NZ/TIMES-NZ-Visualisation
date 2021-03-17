@@ -90,6 +90,10 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     
   }
   
+  total_by_year <- data %>% 
+    group_by(Period) %>% 
+    summarise(Value = sum(Value)) %>% 
+    ungroup() 
   
   data <- data %>% 
     group_by({{group_var}}, Period) %>%  
@@ -193,7 +197,32 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
         pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'#,
         # shared = TRUE
       ) 
-
+    
+  }
+  
+  if (input_chart_type == "column") {
+    
+    hc <- hc %>% 
+      hc_add_series(
+      data = total_by_year,
+      hcaes(x = as.factor(Period), y = Value),
+      type = "scatter",
+      name = "Column total",
+      showInLegend = FALSE
+    ) %>% 
+      hc_plotOptions(scatter = list(
+        color = "#000000",
+        # visible = TRUE,
+        tooltip = list(pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.total:.1f}</b><br/>'
+      )))
+    
+  #   hc <- hc %>%
+  #     hc_tooltip(
+  #       footerFormat = '<b>Column total:  {point.total:.1f} </b>'#,
+  #       # shared = TRUE
+  #     ) %>% 
+  #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
+  #   
   }
   
   return(hc)
