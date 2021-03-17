@@ -222,7 +222,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
         footerFormat = '<b>Column total:  {point.total:.1f} </b>'#,
         # shared = TRUE
       )
-  #     hc_yAxis(stAttributesackLabels = list(enabled = TRUE, format = '{total:.0f}'))
+  #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
   #   
   }
   

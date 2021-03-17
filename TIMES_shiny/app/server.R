@@ -236,6 +236,19 @@ server <- function(input, output, session){
     
   })
   
+  
+  output$assumptions_popup <- renderText({
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    return(as.character(caption_lists))
+    
+  })
+  
+  
   # captions <- reactive(
   #   caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
   # 
