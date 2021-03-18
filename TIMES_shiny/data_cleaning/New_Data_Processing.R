@@ -68,8 +68,8 @@ clean_df <- raw_df %>%
           group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
           # Sum up
           summarise(Value = sum(Value), .groups = "drop") %>% 
-          # Removed all Annualised Capital Costs
-          filter(Parameters != "Annualised Capital Costs") %>% 
+          # Removed all Annualised Capital Costs and Technology Capacity
+          filter(Parameters != "Annualised Capital Costs", Parameters != "Technology Capacity") %>% 
           # Replace any NAs in the dataset with missing
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
 
@@ -110,7 +110,7 @@ assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # 
 assumptions_list <- distinct(assumptions_df, Parameter)
 
 # Ordered attributes
-order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance travelled", "Technology Capacity")
+order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance travelled")
 
 
 #Create the R data set for Shiny to use

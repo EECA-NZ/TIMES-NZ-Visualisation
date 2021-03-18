@@ -206,11 +206,11 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea",hover_popup(text = textOutput("assumptions_popup", inline = TRUE), icon_type = "fa-info-circle")),
+                # h3("Kea",hover_popup(text = textOutput("assumptions_popup", inline = TRUE), icon_type = "fa-info-circle")),
                 # h3(textOutput("caption"))
                 
-                # h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
-                #                       icon_type = "fa-info-circle")),
+                h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
+                                      icon_type = "fa-info-circle")),
                 # %>% 
                 #   helper(
                 #     type = "inline",
