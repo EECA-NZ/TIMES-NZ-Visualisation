@@ -52,8 +52,8 @@ clean_df <- raw_df %>%
           inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
           # Extract the needed attributes 
           filter(Attribute %in% needed_attributes) %>% 
-          # complete data by padding zeros
-          complete(scen,nesting(Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period),fill = list(Value = 0)) %>% 
+          # complete data for all period by padding zeros
+          complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel),fill = list(Value = 0)) %>% 
           # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
                  Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 
@@ -68,6 +68,8 @@ clean_df <- raw_df %>%
           group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
           # Sum up
           summarise(Value = sum(Value), .groups = "drop") %>% 
+          # Removed all Annualised Capital Costs and Technology Capacity
+          filter(Parameters != "Annualised Capital Costs", Parameters != "Technology Capacity") %>% 
           # Replace any NAs in the dataset with missing
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
 
@@ -102,13 +104,13 @@ sector_list <-distinct(hierarchy_lits, Sector) # sector list
 
 
 assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
-  gather(Period, Value, `2020`:`2060`) %>% 
+  gather(Period, Value, `2022`:`2060`) %>% 
   mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))
 
 assumptions_list <- distinct(assumptions_df, Parameter)
 
 # Ordered attributes
-order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance travelled", "Technology Capacity")
+order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance travelled")
 
 
 #Create the R data set for Shiny to use

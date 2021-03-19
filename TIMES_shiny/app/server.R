@@ -129,7 +129,7 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
+    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
     # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
     
@@ -151,7 +151,7 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
+    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
     updateSelectInput(session, "enduse", choices = unique(df$Enduse))
     updateSelectInput(session, "unit", choices = order_Parameters)
@@ -172,7 +172,7 @@ server <- function(input, output, session){
     order_Parameters <- order_attribute(df$Parameters,order_attr)
 
     
-    selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
+    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
     
     # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
@@ -196,7 +196,7 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
+    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
     
     # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
     
@@ -226,13 +226,28 @@ server <- function(input, output, session){
   
   max_y_assumptions <- reactive({
     
+    
+    
     get_max_y_assumptions(
       data = filtered_assumptions(),
       group_var = input$assumptions,
-      input_chart_type = input$chart_type_assumptions
+      input_chart_type = "line"
     )
     
   })
+  
+  
+  output$assumptions_popup <- renderText({
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    return(as.character(caption_lists))
+    
+  })
+  
   
   # captions <- reactive(
   #   caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
@@ -254,10 +269,10 @@ server <- function(input, output, session){
       data = assumptions_data,
       group_var = Scenario,
       unit = unique(assumptions_data$Unit),
-      filename = paste("Assumption", input$assumptions,input$chart_type_assumptions, "(" ,unique(assumptions_data$Unit) , ")", sep = " "),
-      plot_title = paste0("Plot of ",input$assumptions, " (", unique(assumptions_data$Unit), ")"),
-      input_chart_type = input$chart_type_assumptions,
-      max_y = max_y_assumptions()
+      filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
+      plot_title = paste0(assumptions_data$Title[1]),
+      input_chart_type = "line",
+      max_y = NULL #max_y_assumptions()  
     )
     
   })
@@ -275,7 +290,7 @@ server <- function(input, output, session){
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -294,7 +309,7 @@ server <- function(input, output, session){
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -314,7 +329,7 @@ server <- function(input, output, session){
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -331,7 +346,7 @@ server <- function(input, output, session){
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -355,7 +370,7 @@ server <- function(input, output, session){
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_kea$Unit), ")"),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -372,7 +387,7 @@ server <- function(input, output, session){
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech , " (", unique(plot_data_tui$Unit), ")"),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )

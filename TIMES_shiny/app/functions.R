@@ -20,7 +20,7 @@ get_max_y <- function(data, group_var, input_chart_type){
   } else if(input_chart_type %in% c("column", "area")) {
     
     max_val <- max(total_by_period$Value)
-
+    
   } else {
     
     max_val <- max(total_by_grp$Value)
@@ -67,10 +67,10 @@ get_max_y_assumptions <- function(data, group_var, input_chart_type){
 
 # Plotting theme to use
 my_theme <-  hc_theme(
-    chart = list(style = list(
-      fontFamily = "Times New Roman",
-      color= '#666666'
-    )))
+  chart = list(style = list(
+    fontFamily = "Calibri Light",
+    color= '#666666'
+  )))
 
 
 # Plotting function
@@ -90,6 +90,10 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     
   }
   
+  total_by_year <- data %>% 
+    group_by(Period) %>% 
+    summarise(Value = sum(Value)) %>% 
+    ungroup() 
   
   data <- data %>% 
     group_by({{group_var}}, Period) %>%  
@@ -120,7 +124,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              # Added a zoom buttom
              zoomType ='xy' ,
              # Font type
-             style = list(fontFamily = "Times New Roman",
+             style = list(fontFamily = "Calibri Light",
                           fontSize='15px') ) %>%
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = FALSE) %>% 
@@ -128,8 +132,8 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
              labels = list(format ='{value}')
-             ) %>%
-    hc_subtitle(text = plot_title) %>% 
+    ) %>%
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
     # Adding colors to plot 
     hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
@@ -166,24 +170,64 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   # %>% 
   #   # Set the tooltip to three decimal places
   #   hc_tooltip(valueDecimals=2) 
+  
   if(chart_type != "line"){
     hc <- hc %>% 
-      hc_plotOptions(series = list(stacking = as.character(stacking_type),
-                                   animation = list(duration=1000),
-                                   # Turning off markers on area stack plot
-                                   marker = list(enabled = FALSE),
-                                   lang = list(thousandsSep= ',')))
-  }else{
-    # Turning off markers on area stack plot
-    hc <- hc %>% hc_plotOptions(series = list(animation = list(duration=1000)
-                                              # This turns animation off
-                                              # animation = FALSE,
-    ))
+      hc_plotOptions(
+        series = list(stacking = as.character(stacking_type),
+                      animation = list(duration=1000),
+                      # Turning off markers on area stack plot
+                      marker = list(enabled = FALSE),
+                      lang = list(thousandsSep= ',')))
+  } else {
+    
+    hc <- hc %>% 
+      hc_plotOptions(
+        series = list(animation = list(duration=1000),
+                      marker = list(radius= 3)
+                      # This turns animation off
+                      # animation = FALSE,
+        ))    
+    
+  }
+  
+  if (input_chart_type == "column_percent") {
+    hc <- hc %>%
+      hc_tooltip(
+        pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'#,
+        # shared = TRUE
+      ) 
+    
+  }
+  
+  if (input_chart_type == "column") {
+    
+    # hc <- hc %>% 
+    #   hc_add_series(
+    #   data = total_by_year,
+    #   hcaes(x = as.factor(Period), y = Value),
+    #   type = "scatter",
+    #   name = "Column total:",
+    #   showInLegend = FALSE
+    # ) 
+    # %>% 
+    #   hc_plotOptions(scatter = list(
+    #     color = "#000000",
+    #     # visible = TRUE,
+    #     tooltip = list(pointFormat = '<span style="color={series.color}"></span> <b>{point.total:.1f}</b><br/>'
+    #   )))
+    
+    hc <- hc %>%
+      hc_tooltip(
+        footerFormat = '<b>Column total:  {point.total:.1f} </b>'#,
+        # shared = TRUE
+      )
+  #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
+  #   
   }
   
   return(hc)
   
-  # Can add more plot options here
 }
 
 
@@ -227,7 +271,9 @@ hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14p
       '\" style=\"font-size: ',
       font_size,
       ';',
-      ' vertical-align:super;\"',
+      ' vertical-align:super;
+        position: absolute;
+        right: 10px;\"',
       '></i>'
     )
   )
