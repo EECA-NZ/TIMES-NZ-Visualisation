@@ -394,7 +394,127 @@ server <- function(input, output, session){
     
     
   })
+ 
+
   
+  
+  ## Plot output for Commercial page
+  # Kea
+  output$Commercial_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Commercial")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Commercial_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Commercial")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })  
+  
+ 
+  ## Plot output for Residential page
+  # Kea
+  output$Residential_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Residential")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Residential_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Residential")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })
+  
+  
+   
+  ## Plot output for Agriculture page
+  # Kea
+  output$Agriculture_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Agriculture")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Agriculture_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Agriculture")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })
+
   # observeEvent(input$unit, {
   #   
   #   req(input$subsector)

@@ -312,7 +312,32 @@ ui <- navbarPage(
 
             "Commercial",
 
-            value = "Commercial"
+            value = "Commercial",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea"),
+                
+                highchartOutput("Commercial_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Commercial_tui")
+              )
+            )
+            
+            
 
           ),
 
@@ -321,13 +346,63 @@ ui <- navbarPage(
           tabPanel(
             "Residential",
 
-            value = "Residential" ),
+            value = "Residential",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea"),
+                
+                highchartOutput("Residential_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Residential_tui")
+              )
+            )
+            
+          ),
 
           # Adding Agriculture stuff
           tabPanel(
             "Agriculture",
 
-            value = "Agriculture" ),
+            value = "Agriculture",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea"),
+                
+                highchartOutput("Agriculture_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Agriculture_tui")
+              )
+            )
+            
+          ),
 
 
           # Adding Other stuff
