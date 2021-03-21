@@ -55,6 +55,9 @@ clean_df <- raw_df %>%
           filter(Attribute %in% needed_attributes) %>% 
           # complete data for all period by padding zeros
           complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel),fill = list(Value = 0)) %>% 
+          # Change Electricity to Other
+          # Use this to convert the other sectors to Other 
+          mutate(Sector = ifelse(Sector == "Electricity", "Other" , Sector)) %>% 
           # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
                  Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 

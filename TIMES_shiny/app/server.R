@@ -527,6 +527,45 @@ server <- function(input, output, session){
     
   })
 
+  
+  
+  ## Plot output for Other page
+  # Kea
+  output$Other_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Other")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Other_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Other")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })
   # observeEvent(input$unit, {
   #   
   #   req(input$subsector)

@@ -412,7 +412,30 @@ ui <- navbarPage(
             
             "Other",
             
-            value = "Other"
+            value = "Other",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea"),
+                
+                highchartOutput("Other_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Other_tui")
+              )
+            )
             
           )
           
