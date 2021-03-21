@@ -3,6 +3,7 @@ library(shiny)
 library(shinyBS)
 library(bslib)
 library(shinythemes)
+library(shinyBS)
 library(highcharter)
 library(tidyverse)
 library(readr)
@@ -209,8 +210,9 @@ ui <- navbarPage(
                 # h3("Kea",hover_popup(text = textOutput("assumptions_popup", inline = TRUE), icon_type = "fa-info-circle")),
                 # h3(textOutput("caption"))
                 
-                h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
-                                      icon_type = "fa-info-circle")),
+                # h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
+                #                       icon_type = "fa-info-circle")),
+                h3("Kea", uiOutput("info_test", inline = TRUE)),
                 # %>% 
                 #   helper(
                 #     type = "inline",
@@ -305,13 +307,13 @@ ui <- navbarPage(
             
             
           ),
-
-
+          
+          
           # Adding Commercial stuff
           tabPanel(
-
+            
             "Commercial",
-
+            
             value = "Commercial",
             
             fluidRow(
@@ -338,14 +340,14 @@ ui <- navbarPage(
             )
             
             
-
+            
           ),
-
-
+          
+          
           # Adding Residential stuff
           tabPanel(
             "Residential",
-
+            
             value = "Residential",
             
             fluidRow(
@@ -372,11 +374,11 @@ ui <- navbarPage(
             )
             
           ),
-
+          
           # Adding Agriculture stuff
           tabPanel(
             "Agriculture",
-
+            
             value = "Agriculture",
             
             fluidRow(
@@ -403,17 +405,17 @@ ui <- navbarPage(
             )
             
           ),
-
-
+          
+          
           # Adding Other stuff
           tabPanel(
-
+            
             "Other",
-
+            
             value = "Other"
-
+            
           )
-
+          
         )
         
       )

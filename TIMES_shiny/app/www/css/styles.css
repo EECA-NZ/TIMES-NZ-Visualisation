@@ -1,82 +1,90 @@
 body {
+
+  font-family: Source Sans Pro;
   
-    font-family: Source Sans Pro;
-    
-  }
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+ 
+  background-color: #41B496;
+
+}
+
+.nav-pills>li>a {
   
-  .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-   
-    background-color: #41B496;
+  border-radius: 5px; 
+  line-height: 7px;
+  /* width: 100px; */
+  /* height: 40px; */
+  padding: 9px;
+  border-style: solid;
+  border-width: thin;
+  border-color: #41B496;
+  color: #41B496; 
+  font-size: 18px;
+}
+
+button.btn.radiobtn.btn-default {
   
-  }
+  border-radius: 50px;
   
-  .nav-pills>li>a {
-    
-    border-radius: 5px; 
-    line-height: 7px;
-    /* width: 100px; */
-    /* height: 40px; */
-    padding: 9px;
-    border-style: solid;
-    border-width: thin;
-    border-color: #41B496;
-    color: #41B496; 
-    font-size: 18px;
-  }
+}
+
+.selectize-input {
   
-  button.btn.radiobtn.btn-default {
-    
-    border-radius: 50px;
-    
-  }
+  border-radius: 50px;
   
-  .selectize-input {
-    
-    border-radius: 50px;
-    
-  }
+}
+
+.well {
   
-  .well {
-    
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    
-  }
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   
-  .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
-    
-    color: white;
-    background-color: #3C4C49;
-    border-radius: 50px;
-    
-  }
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
   
-  .navbar-default .navbar-nav>li>a:hover{
-    
-    background-color: transparent;
+  color: white;
+  background-color: #3C4C49;
+  border-radius: 50px;
+  
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+  
+  background-color: transparent;
+  color: #3C4C49;
+  
+}
+  
+.navbar-default .navbar-nav>li>a {
+  
     color: #3C4C49;
+    border-style: solid;
+    border-color: #3C4C49;
+    border-radius: 50px;
     
-  }
+}
   
-  .navbar-default .navbar-nav>li>a {
+.navbar-brand {
+  
+  padding-left: 0;
+  
+}
+  
+  
+.navbar-nav li a {
+  font-size: 18px;
+
+  } 
     
-      color: #3C4C49;
-      border-style: solid;
-      border-color: #3C4C49;
-      border-radius: 50px;
-      
-  }
-  
-  .navbar-brand {
     
-    padding-left: 0;
-    
-  }
+.fa.fa-info-circle {
   
+  font-size: 14px;
+  vertical-align: super;
   
-  .navbar-nav li a {
-    font-size: 18px;
-  
-    } 
+}

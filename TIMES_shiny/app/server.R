@@ -237,14 +237,26 @@ server <- function(input, output, session){
   })
   
   
-  output$assumptions_popup <- renderText({
+  # output$assumptions_popup <- renderText({
+  #   req(input$subsector)
+  #   
+  #   caption_lists <- caption_list %>%
+  #     filter(Subsector == input$subsector) %>% 
+  #     pull(Comment)
+  #   
+  #   return(as.character(caption_lists))
+  #   
+  # })
+  
+  output$info_test <- renderUI({
+    
     req(input$subsector)
     
     caption_lists <- caption_list %>%
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    return(as.character(caption_lists))
+    popify(icon("info-circle"), "Testing 123", caption_lists)
     
   })
   
