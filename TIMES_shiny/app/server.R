@@ -248,7 +248,7 @@ server <- function(input, output, session){
   #   
   # })
   
-  output$info_test <- renderUI({
+  output$info_overview <- renderUI({
     
     req(input$subsector)
     
@@ -256,11 +256,82 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), "Testing 123", caption_lists)
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
     
   })
   
+  # Create unique for each tab
+  output$info_transport <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
+    
+  })
   
+  output$info_industry <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
+    
+  })
+  
+  output$info_commercial <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
+    
+  })
+  
+  output$info_residential <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
+    
+  })
+  
+  output$info_agriculture <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
+    
+  })
+  
+  output$info_other <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "right", trigger = "hover")
+    
+  })
   # captions <- reactive(
   #   caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
   # 

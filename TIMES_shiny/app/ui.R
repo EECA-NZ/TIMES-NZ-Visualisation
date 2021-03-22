@@ -212,7 +212,7 @@ ui <- navbarPage(
                 
                 # h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
                 #                       icon_type = "fa-info-circle")),
-                h3("Kea", uiOutput("info_test", inline = TRUE)),
+                h3("Kea", uiOutput("info_overview", inline = TRUE)),
                 # %>% 
                 #   helper(
                 #     type = "inline",
@@ -253,7 +253,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea") ,
+                h3("Kea", uiOutput("info_transport", inline = TRUE)),
                 
                 highchartOutput("transport_kea")
                 
@@ -289,7 +289,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea", uiOutput("info_industry", inline = TRUE)),
                 
                 highchartOutput("industry_kea")
                 
@@ -323,7 +323,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea", uiOutput("info_commercial", inline = TRUE)),
                 
                 highchartOutput("Commercial_kea")
                 
@@ -357,7 +357,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea", uiOutput("info_residential", inline = TRUE)),
                 
                 highchartOutput("Residential_kea")
                 
@@ -388,7 +388,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea", uiOutput("info_agriculture", inline = TRUE)),
                 
                 highchartOutput("Agriculture_kea")
                 
@@ -421,7 +421,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea", uiOutput("info_other", inline = TRUE)),
                 
                 highchartOutput("Other_kea")
                 
