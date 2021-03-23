@@ -86,5 +86,14 @@ button.btn.radiobtn.btn-default {
   
   font-size: 14px;
   vertical-align: super;
+  position: absolute;
+  right: 10px;
+  
+}
+
+.popover {
+  
+  font-size:12px;
+  font-family: Source Sans Pro;
   
 }
