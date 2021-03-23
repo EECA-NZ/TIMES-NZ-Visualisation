@@ -129,14 +129,11 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
-    
     updateSelectInput(session, "unit", choices = order_Parameters)
 
 
   }, ignoreNULL = TRUE)
+  
   
   
   observeEvent(input$subsector, {
@@ -150,13 +147,12 @@ server <- function(input, output, session){
     
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
-    
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    updateSelectInput(session, "enduse", choices = unique(df$Enduse))
+    updateSelectInput(session, "enduse", choices = sort(unique(df$Enduse)))
+    updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
     updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
+  
   
   observeEvent(input$enduse, {
     if (input$subsector == "All Subsectors" & input$enduse == "All Enduse") {
@@ -167,20 +163,15 @@ server <- function(input, output, session){
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
       
     }
-    
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
-
-    
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    
-    # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
-    
-    updateSelectInput(session, "unit", choices = order_Parameters)
-    updateSelectInput(session, "tech", choices = unique(df$Technology))
+    updateSelectInput(session, "unit", choices = sort(order_Parameters))
+    updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
     
   }, ignoreNULL = TRUE)
+  
+  
+  
   
   observeEvent(input$tech, {
     if (input$subsector == "All Subsectors" & input$enduse == "All Enduse" & input$tech == "All Technology") {
@@ -196,21 +187,14 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
-    
     updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
   
-  # observeEvent(input$unit, {
-  #   
-  #   df <- filtered_dropdowns() %>% filter(Enduse == input$enduse, Unit == input$unit)
-  #   
-  #   updateSelectInput(session, "tech", choices = unique(df$Technology))
-  #   
-  # }, ignoreNULL = TRUE)
+
+  
+  
+  
   
   # Get max y for current filtered data
   max_y <- reactive({
