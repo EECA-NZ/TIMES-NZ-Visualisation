@@ -376,11 +376,12 @@ ui <- navbarPage(
           ),
           
           # Adding Agriculture stuff
-          tabPanel(
-            "Agriculture",
-            
+          tabPanel(span("Agriculture, Forestry and Fishing", title="Agriculture, Forestry and Fishing"),
+            # "Agriculture, Forestry and Fishing",
+            # bsTooltip("Agriculture", "The wait times will be broken into this many equally spaced bins",
+            #           "right"),
             value = "Agriculture",
-            
+          
             fluidRow(
               
               # Plot outputs
@@ -409,8 +410,8 @@ ui <- navbarPage(
           
           # Adding Other stuff
           tabPanel(
-            
-            "Other",
+            span("Electricity Generation", title = "Electricity Generation"),
+            # "Electricity Generation",
             
             value = "Other",
             

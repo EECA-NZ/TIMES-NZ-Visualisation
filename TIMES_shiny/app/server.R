@@ -232,6 +232,11 @@ server <- function(input, output, session){
   #   
   # })
   
+  
+  #############################
+  ####### Adding tooltips #####
+  #############################
+  
   output$info_overview <- renderUI({
     
     req(input$subsector)
