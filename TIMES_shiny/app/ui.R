@@ -41,7 +41,13 @@ ui <- navbarPage(
         column(
           width = 12,
           h2("Background"),
-          paste(stri_rand_lipsum(2), collapse = "\n")
+          paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios. 
+                The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.
+                The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and sophistication to sectors, subsectors, technologies and end uses. In particular, the 2020 update of EECA’s Energy End Use Database provides a greatly improved input dataset. 
+                There are two scenarios <insert scenario names here> in TIMES-NZ 2.0.  The scenarios are modelled using an integrated energy-systems model known which is based on the IEA ETSAP TIMES model.  The TIMES-NZ model simultaneously represents all components of the energy system, ensuring any interdependencies are reflected. TIMES is a bottom-up, technology based system model that selects from available technologies to produce a least-cost energy system, optimised according to input constraints over the medium to long-term. 
+                Other forecast inputs come from a variety of reputable sources (MoT, MBIE, MfE, MPI)– including transport outlook scenarios for projections of the need for passenger and freight transport, sub-sectoral GDP forecasts for future service demand from the commercial, agriculture and industrial sectors, and population to form the basis of the residential service demand projections.
+                These results provide some insight into our future energy system, we hope you find them useful." 
+                , collapse = "\n")
         )
         
       ),
@@ -165,8 +171,9 @@ ui <- navbarPage(
           "unit",
           label = NULL,
           choices = unique(sort(hierarchy$Parameters))
-        )
-        
+        ),
+          # img(src='BEC.png',height = 150, width = 350)
+        img(src="http://shiny.rstudio.com/tutorial/lesson2/www/bigorb.png", height = 400, width = 400)
       ),
       
       mainPanel = mainPanel(
