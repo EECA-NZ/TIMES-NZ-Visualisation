@@ -23,6 +23,8 @@ source("functions.R")
 ui <- navbarPage(
   
   title = "",
+  
+  footer = img(src="img/BEC.png", height = 100, width = 200),
   # title = "EECA",
   # theme = bs_theme(version = 4, bootswatch = "litera"),
   theme = shinytheme("readable"),
