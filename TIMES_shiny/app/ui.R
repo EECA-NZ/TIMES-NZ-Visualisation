@@ -24,7 +24,7 @@ ui <- navbarPage(
   
   title = "",
   
-  footer = img(src="img/BEC.png", height = 100, width = 200),
+  footer = img(src="img/EECA_BEC.svg", height = 75, width = 428),
   # title = "EECA",
   # theme = bs_theme(version = 4, bootswatch = "litera"),
   theme = shinytheme("readable"),
@@ -173,9 +173,7 @@ ui <- navbarPage(
           "unit",
           label = NULL,
           choices = unique(sort(hierarchy$Parameters))
-        ),
-          # img(src='BEC.png',height = 150, width = 350)
-        img(src="http://shiny.rstudio.com/tutorial/lesson2/www/bigorb.png", height = 400, width = 400)
+        )
       ),
       
       mainPanel = mainPanel(
