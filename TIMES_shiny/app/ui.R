@@ -383,7 +383,7 @@ ui <- navbarPage(
           ),
           
           # Adding Agriculture stuff
-          tabPanel(span("Agriculture, Forestry and Fishing", title="Agriculture, Forestry and Fishing"),
+          tabPanel(span("Agriculture", title="Agriculture, Forestry and Fishing"),
             # "Agriculture, Forestry and Fishing",
             # bsTooltip("Agriculture", "The wait times will be broken into this many equally spaced bins",
             #           "right"),
@@ -417,7 +417,7 @@ ui <- navbarPage(
           
           # Adding Other stuff
           tabPanel(
-            span("Electricity Generation", title = "Electricity Generation"),
+            span("Electricity", title = "Electricity Generation"),
             # "Electricity Generation",
             
             value = "Other",
@@ -465,12 +465,13 @@ ui <- navbarPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css"),
     tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})")
   ),
-  footer = tags$footer("The Times NZ model is brought to you by", img(src="img/EECA_BEC.svg", height = 90, width = 600),
+  footer = tags$footer(img(src="img/EECA_BEC.svg", height = 120, width = 660),
   align = "center", 
   style = "
   position:left;
   width:100%;
-  padding: 50px;"
-    )
+  padding: 80px;"
+    ),
+  collapsible =FALSE
   
 )
