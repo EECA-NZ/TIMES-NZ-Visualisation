@@ -167,6 +167,7 @@ server <- function(input, output, session){
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     updateSelectInput(session, "unit", choices = sort(order_Parameters))
     updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
+    updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
   
@@ -236,7 +237,8 @@ server <- function(input, output, session){
   #############################
   ####### Adding tooltips #####
   #############################
-  
+  # 
+  # 
   output$info_overview <- renderUI({
     
     req(input$subsector)

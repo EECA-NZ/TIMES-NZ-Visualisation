@@ -468,7 +468,7 @@ ui <- navbarPage(
   footer = tags$footer(img(src="img/EECA_BEC.svg", height = 120, width = 660),
   align = "center", 
   style = "
-  position:left;
+  position: absolute;
   width:100%;
   padding: 80px;"
     ),
