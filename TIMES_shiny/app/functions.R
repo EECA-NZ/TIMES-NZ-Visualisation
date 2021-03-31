@@ -1,5 +1,12 @@
 # These are the functions used
 
+# Setting language options in highchart
+hcoptslang <- getOption("highcharter.lang")
+# Adding thousand separator to highchart
+hcoptslang$thousandsSep <- ","
+# updating the language settings
+options(highcharter.lang = hcoptslang)
+
 # Get max y from current filters
 get_max_y <- function(data, group_var, input_chart_type){
   
@@ -219,7 +226,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     
     hc <- hc %>%
       hc_tooltip(
-        footerFormat = '<b>Column total:  {point.total:.0f} </b>'#,
+        footerFormat = '<b>Column total:  {point.total:,.0f} </b>'#,
         # shared = TRUE
       )
   #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
