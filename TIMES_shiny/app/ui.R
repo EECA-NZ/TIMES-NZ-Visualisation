@@ -3,6 +3,7 @@ library(shiny)
 library(shinyBS)
 library(bslib)
 library(shinythemes)
+library(shinyBS)
 library(highcharter)
 library(tidyverse)
 library(readr)
@@ -22,6 +23,8 @@ source("functions.R")
 ui <- navbarPage(
   
   title = "",
+  
+  
   # title = "EECA",
   # theme = bs_theme(version = 4, bootswatch = "litera"),
   theme = shinytheme("readable"),
@@ -40,7 +43,13 @@ ui <- navbarPage(
         column(
           width = 12,
           h2("Background"),
-          paste(stri_rand_lipsum(2), collapse = "\n")
+          paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios. 
+                The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
+                "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and sophistication to sectors, subsectors, technologies and end uses. In particular, the 2020 update of EECA’s Energy End Use Database provides a greatly improved input dataset. 
+                There are two scenarios <insert scenario names here> in TIMES-NZ 2.0.  The scenarios are modelled using an integrated energy-systems model known which is based on the IEA ETSAP TIMES model.  The TIMES-NZ model simultaneously represents all components of the energy system, ensuring any interdependencies are reflected. TIMES is a bottom-up, technology based system model that selects from available technologies to produce a least-cost energy system, optimised according to input constraints over the medium to long-term. 
+                Other forecast inputs come from a variety of reputable sources (MoT, MBIE, MfE, MPI)– including transport outlook scenarios for projections of the need for passenger and freight transport, sub-sectoral GDP forecasts for future service demand from the commercial, agriculture and industrial sectors, and population to form the basis of the residential service demand projections.
+                These results provide some insight into our future energy system, we hope you find them useful." 
+                , collapse = "\n")
         )
         
       ),
@@ -165,7 +174,6 @@ ui <- navbarPage(
           label = NULL,
           choices = unique(sort(hierarchy$Parameters))
         )
-        
       ),
       
       mainPanel = mainPanel(
@@ -209,8 +217,9 @@ ui <- navbarPage(
                 # h3("Kea",hover_popup(text = textOutput("assumptions_popup", inline = TRUE), icon_type = "fa-info-circle")),
                 # h3(textOutput("caption"))
                 
-                h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
-                                      icon_type = "fa-info-circle")),
+                # h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
+                #                       icon_type = "fa-info-circle")),
+                h3("Kea", uiOutput("info_overview", inline = TRUE)),
                 # %>% 
                 #   helper(
                 #     type = "inline",
@@ -251,7 +260,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea") ,
+                h3("Kea", uiOutput("info_transport", inline = TRUE)),
                 
                 highchartOutput("transport_kea")
                 
@@ -287,7 +296,7 @@ ui <- navbarPage(
                 
                 width = 12,
                 
-                h3("Kea"),
+                h3("Kea", uiOutput("info_industry", inline = TRUE)),
                 
                 highchartOutput("industry_kea")
                 
@@ -305,40 +314,139 @@ ui <- navbarPage(
             
             
           ),
-
-
+          
+          
           # Adding Commercial stuff
           tabPanel(
-
+            
             "Commercial",
-
-            value = "Commercial"
-
+            
+            value = "Commercial",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea", uiOutput("info_commercial", inline = TRUE)),
+                
+                highchartOutput("Commercial_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Commercial_tui")
+              )
+            )
+            
+            
+            
           ),
-
-
+          
+          
           # Adding Residential stuff
           tabPanel(
             "Residential",
-
-            value = "Residential" ),
-
+            
+            value = "Residential",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea", uiOutput("info_residential", inline = TRUE)),
+                
+                highchartOutput("Residential_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Residential_tui")
+              )
+            )
+            
+          ),
+          
           # Adding Agriculture stuff
-          tabPanel(
-            "Agriculture",
-
-            value = "Agriculture" ),
-
-
+          tabPanel(span("Agriculture", title="Agriculture, Forestry and Fishing"),
+            # "Agriculture, Forestry and Fishing",
+            # bsTooltip("Agriculture", "The wait times will be broken into this many equally spaced bins",
+            #           "right"),
+            value = "Agriculture",
+          
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea", uiOutput("info_agriculture", inline = TRUE)),
+                
+                highchartOutput("Agriculture_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Agriculture_tui")
+              )
+            )
+            
+          ),
+          
+          
           # Adding Other stuff
           tabPanel(
-
-            "Other",
-
-            value = "Other"
-
+            span("Electricity", title = "Electricity Generation"),
+            # "Electricity Generation",
+            
+            value = "Other",
+            
+            fluidRow(
+              
+              # Plot outputs
+              column(
+                
+                width = 12,
+                
+                h3("Kea", uiOutput("info_other", inline = TRUE)),
+                
+                highchartOutput("Other_kea")
+                
+              ),
+              
+              column(
+                
+                width = 12,
+                
+                h3("Tui"),
+                
+                highchartOutput("Other_tui")
+              )
+            )
+            
           )
-
+          
         )
         
       )
@@ -356,6 +464,14 @@ ui <- navbarPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/v4-shims.min.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css"),
     tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})")
-  )
+  ),
+  footer = tags$footer(img(src="img/EECA_BEC.svg", height = 120, width = 660),
+  align = "center", 
+  style = "
+  position: absolute;
+  width:100%;
+  padding: 80px;"
+    ),
+  collapsible =FALSE
   
 )

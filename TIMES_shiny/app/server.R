@@ -129,14 +129,11 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
-    
     updateSelectInput(session, "unit", choices = order_Parameters)
 
 
   }, ignoreNULL = TRUE)
+  
   
   
   observeEvent(input$subsector, {
@@ -150,13 +147,12 @@ server <- function(input, output, session){
     
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
-    
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    updateSelectInput(session, "enduse", choices = unique(df$Enduse))
+    updateSelectInput(session, "enduse", choices = sort(unique(df$Enduse)))
+    updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
     updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
+  
   
   observeEvent(input$enduse, {
     if (input$subsector == "All Subsectors" & input$enduse == "All Enduse") {
@@ -167,20 +163,16 @@ server <- function(input, output, session){
       df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
       
     }
-    
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
-
-    
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    
-    # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
-    
+    updateSelectInput(session, "unit", choices = sort(order_Parameters))
+    updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
     updateSelectInput(session, "unit", choices = order_Parameters)
-    updateSelectInput(session, "tech", choices = unique(df$Technology))
     
   }, ignoreNULL = TRUE)
+  
+  
+  
   
   observeEvent(input$tech, {
     if (input$subsector == "All Subsectors" & input$enduse == "All Enduse" & input$tech == "All Technology") {
@@ -196,21 +188,14 @@ server <- function(input, output, session){
     # Ordering the attributes 
     order_Parameters <- order_attribute(df$Parameters,order_attr)
     
-    # selected_unit <- if_else(input$unit %in% order_Parameters, input$unit, order_Parameters[1])
-    
-    # selected_unit <- if_else(input$unit %in% sort(unique(df$Parameters)), input$unit, sort(unique(df$Parameters)[1]))
-    
     updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
   
-  # observeEvent(input$unit, {
-  #   
-  #   df <- filtered_dropdowns() %>% filter(Enduse == input$enduse, Unit == input$unit)
-  #   
-  #   updateSelectInput(session, "tech", choices = unique(df$Technology))
-  #   
-  # }, ignoreNULL = TRUE)
+
+  
+  
+  
   
   # Get max y for current filtered data
   max_y <- reactive({
@@ -237,18 +222,107 @@ server <- function(input, output, session){
   })
   
   
-  output$assumptions_popup <- renderText({
+  # output$assumptions_popup <- renderText({
+  #   req(input$subsector)
+  #   
+  #   caption_lists <- caption_list %>%
+  #     filter(Subsector == input$subsector) %>% 
+  #     pull(Comment)
+  #   
+  #   return(as.character(caption_lists))
+  #   
+  # })
+  
+  
+  #############################
+  ####### Adding tooltips #####
+  #############################
+  # 
+  # 
+  output$info_overview <- renderUI({
+    
     req(input$subsector)
     
     caption_lists <- caption_list %>%
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    return(as.character(caption_lists))
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
     
   })
   
+  # Create unique for each tab
+  output$info_transport <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    
+  })
   
+  output$info_industry <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    
+  })
+  
+  output$info_commercial <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    
+  })
+  
+  output$info_residential <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    
+  })
+  
+  output$info_agriculture <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    
+  })
+  
+  output$info_other <- renderUI({
+    
+    req(input$subsector)
+    
+    caption_lists <- caption_list %>%
+      filter(Subsector == input$subsector) %>% 
+      pull(Comment)
+    
+    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    
+  })
   # captions <- reactive(
   #   caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
   # 
@@ -394,7 +468,166 @@ server <- function(input, output, session){
     
     
   })
+ 
+
   
+  
+  ## Plot output for Commercial page
+  # Kea
+  output$Commercial_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Commercial")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Commercial_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Commercial")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })  
+  
+ 
+  ## Plot output for Residential page
+  # Kea
+  output$Residential_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Residential")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Residential_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Residential")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })
+  
+  
+   
+  ## Plot output for Agriculture page
+  # Kea
+  output$Agriculture_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Agriculture")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Agriculture_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Agriculture")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })
+
+  
+  
+  ## Plot output for Other page
+  # Kea
+  output$Other_kea <- renderHighchart({
+    
+    req(input$subsector)
+    
+    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Other")
+    
+    generic_charts(
+      data = plot_data_kea,
+      group_var = Fuel,
+      unit = unique(plot_data_kea$Unit),
+      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+  })
+  
+  #Tui
+  output$Other_tui <- renderHighchart({
+    
+    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Other")
+    
+    generic_charts(
+      data = plot_data_tui,
+      group_var = Fuel,
+      unit = unique(plot_data_tui$Unit),
+      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      input_chart_type = input$chart_type,
+      max_y = max_y()
+    )
+    
+    
+  })
   # observeEvent(input$unit, {
   #   
   #   req(input$subsector)

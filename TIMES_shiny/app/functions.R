@@ -1,5 +1,12 @@
 # These are the functions used
 
+# Setting language options in highchart
+hcoptslang <- getOption("highcharter.lang")
+# Adding thousand separator to highchart
+hcoptslang$thousandsSep <- ","
+# updating the language settings
+options(highcharter.lang = hcoptslang)
+
 # Get max y from current filters
 get_max_y <- function(data, group_var, input_chart_type){
   
@@ -68,7 +75,7 @@ get_max_y_assumptions <- function(data, group_var, input_chart_type){
 # Plotting theme to use
 my_theme <-  hc_theme(
   chart = list(style = list(
-    fontFamily = "Calibri Light",
+    fontFamily = "Source Sans Pro",
     color= '#666666'
   )))
 
@@ -124,7 +131,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              # Added a zoom buttom
              zoomType ='xy' ,
              # Font type
-             style = list(fontFamily = "Calibri Light",
+             style = list(fontFamily = "Source Sans Pro",
                           fontSize='15px') ) %>%
     hc_add_series_list(data_list) %>% 
     hc_legend(reversed = FALSE) %>% 
@@ -219,7 +226,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     
     hc <- hc %>%
       hc_tooltip(
-        footerFormat = '<b>Column total:  {point.total:.1f} </b>'#,
+        footerFormat = '<b>Column total:  {point.total:,.0f} </b>'#,
         # shared = TRUE
       )
   #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
