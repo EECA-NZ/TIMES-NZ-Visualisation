@@ -7,7 +7,7 @@ options(scipen=999) # eliminates scientific notation
 
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
-coh_raw <- read.csv(file = "Kea-v73-loadcurvetest1.VD",
+coh_raw <- read.csv(file = "Kea-v74-2.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -16,7 +16,7 @@ coh_raw <- read.csv(file = "Kea-v73-loadcurvetest1.VD",
          scen = "Kea") %>% 
   filter(!(Period %in% c(2016)))
 
-ind_raw <- read.csv(file = "Tui-v73-loadcurvetest1.VD",
+ind_raw <- read.csv(file = "Tui-v74-2.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient

@@ -247,7 +247,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   
@@ -260,7 +260,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   
@@ -272,7 +272,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   
@@ -284,7 +284,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   
@@ -296,7 +296,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   
@@ -308,7 +308,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   
@@ -320,7 +320,7 @@ server <- function(input, output, session){
       filter(Subsector == input$subsector) %>% 
       pull(Comment)
     
-    popify(icon("info-circle"), input$subsector , caption_lists, placement = "left", trigger = "hover")
+    popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
   # captions <- reactive(
