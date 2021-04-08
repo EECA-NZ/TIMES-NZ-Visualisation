@@ -226,7 +226,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     
     hc <- hc %>%
       hc_tooltip(
-        footerFormat = '<b>Column total:  {point.total:,.0f} </b>'#,
+        footerFormat = 'Column total: <b>{point.total:,.4f} </b>'#,
         # shared = TRUE
       )
   #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
