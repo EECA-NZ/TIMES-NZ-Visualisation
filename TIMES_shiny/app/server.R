@@ -6,7 +6,7 @@ server <- function(input, output, session){
   # Filter data based on dropdowns
   filtered_data <- reactive({
     
-    # This condition used to add "Select Metric" to the "unit" drop-downs
+    # This condition is used to add "Select Metric" to the "unit" drop-downs
     if (input$unit == "Select Metric"){
       unit_selected = "Fuel Consumption"
     }else{
@@ -337,7 +337,7 @@ server <- function(input, output, session){
   #   )
   
   ##################################
-  ######## Plotting ################
+  #### Assumption  Plotting ########
   ##################################
   
   ## The plot output for the assumptions page.
@@ -359,6 +359,14 @@ server <- function(input, output, session){
     
   })
   
+  
+  ##################################
+  ##### Data explorer Plotting #####
+  ##################################
+  
+  
+  
+  
   ## Plot output for overview page.
   # Kea
   output$overview_kea <- renderHighchart({
@@ -371,8 +379,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -390,8 +398,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -410,8 +418,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -420,22 +428,22 @@ server <- function(input, output, session){
   
   #Tui
   output$transport_tui <- renderHighchart({
-
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Transport")
     
     generic_charts(
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
     
     
   })
-
+  
   
   
   
@@ -451,8 +459,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -468,16 +476,16 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
     
     
   })
- 
-
+  
+  
   
   
   ## Plot output for Commercial page
@@ -492,8 +500,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -509,8 +517,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -518,7 +526,7 @@ server <- function(input, output, session){
     
   })  
   
- 
+  
   ## Plot output for Residential page
   # Kea
   output$Residential_kea <- renderHighchart({
@@ -531,8 +539,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -548,8 +556,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -558,7 +566,7 @@ server <- function(input, output, session){
   })
   
   
-   
+  
   ## Plot output for Agriculture page
   # Kea
   output$Agriculture_kea <- renderHighchart({
@@ -571,8 +579,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -588,15 +596,15 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
     
     
   })
-
+  
   
   
   ## Plot output for Other page
@@ -611,8 +619,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = Fuel,
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
@@ -628,8 +636,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = Fuel,
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", input$unit, input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(input$unit, " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y()
     )
