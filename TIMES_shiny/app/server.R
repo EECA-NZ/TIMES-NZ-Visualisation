@@ -5,6 +5,14 @@ server <- function(input, output, session){
   
   # Filter data based on dropdowns
   filtered_data <- reactive({
+    
+    # This condition used to add "Select Metric" to the "unit" drop-downs
+    if (input$unit == "Select Metric"){
+      unit_selected = "Fuel Consumption"
+    }else{
+      unit_selected = input$unit
+    }
+    
     combined_df %>%
       purrr::when(
         
@@ -50,7 +58,7 @@ server <- function(input, output, session){
         ~ .
         
       ) %>% 
-      filter(Parameters == input$unit)
+      filter(Parameters == unit_selected)
   })
   
   
@@ -127,7 +135,7 @@ server <- function(input, output, session){
     }
     
     # Ordering the attributes 
-    order_Parameters <- order_attribute(df$Parameters,order_attr)
+    order_Parameters <- c("Select Metric", order_attribute(df$Parameters,order_attr))
     
     updateSelectInput(session, "unit", choices = order_Parameters)
 
@@ -146,7 +154,7 @@ server <- function(input, output, session){
     }
     
     # Ordering the attributes 
-    order_Parameters <- order_attribute(df$Parameters,order_attr)
+    order_Parameters <- c("Select Metric", order_attribute(df$Parameters,order_attr))
     updateSelectInput(session, "enduse", choices = sort(unique(df$Enduse)))
     updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
     updateSelectInput(session, "unit", choices = order_Parameters)
@@ -164,7 +172,7 @@ server <- function(input, output, session){
       
     }
     # Ordering the attributes 
-    order_Parameters <- order_attribute(df$Parameters,order_attr)
+    order_Parameters <- c("Select Metric", order_attribute(df$Parameters,order_attr))
     updateSelectInput(session, "unit", choices = sort(order_Parameters))
     updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
     updateSelectInput(session, "unit", choices = order_Parameters)
@@ -186,7 +194,7 @@ server <- function(input, output, session){
     }
     
     # Ordering the attributes 
-    order_Parameters <- order_attribute(df$Parameters,order_attr)
+    order_Parameters <- c("Select Metric", order_attribute(df$Parameters,order_attr))
     
     updateSelectInput(session, "unit", choices = order_Parameters)
     
