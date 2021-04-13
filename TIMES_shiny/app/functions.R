@@ -187,14 +187,34 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
                       marker = list(enabled = FALSE),
                       lang = list(thousandsSep= ',')))
   } else {
-    
+    # Adding options for line chart
     hc <- hc %>% 
       hc_plotOptions(
-        series = list(animation = list(duration=1000),
-                      marker = list(radius= 3)
+        series = list(animation = list(duration=2000),
+                      # Setting the size of the markers
+                      marker = list(radius= 3)#,
+                      # Adding label at the end of line
+                      # dataLabels = list(
+                      #   enabled= TRUE,
+                      #   # crop= FALSE,
+                      #   allowOverlap = TRUE,
+                      #   # overflow= 'none',
+                      #   align= 'left',
+                      #   verticalAlign='middle',
+                      #   # Showing the last data point
+                      #   formatter= JS("function() {
+                      #         // if last point
+                      #     if(this.point === 
+                      #         this.series.data[this.series.data.length-1]) 
+                      #         {
+                      #         return this.series.name;
+                      #         }
+                      #   }"))
                       # This turns animation off
                       # animation = FALSE,
-        ))    
+        )) 
+      # %>% 
+      # hc_legend(enabled= FALSE)
     
   }
   
