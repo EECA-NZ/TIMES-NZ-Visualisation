@@ -12,7 +12,6 @@ library(stringi) # Only used for the placeholder text (i.e. stri_rand_lipsum()).
 library(shinyWidgets) # For the fancy radio buttons
 library(shinyhelper)
 
-
 # Source script that loads data
 ## This is where the .rda file is loaded (and where the hierarchy dataframe is created)
 source("data/load_data.R")
@@ -166,6 +165,10 @@ ui <- navbarPage(
           )
         ),
         
+        # Adding switch 
+        switchButton(inputId = "Fuel_Switch",
+                     label = NULL, 
+                     value = TRUE, col = "RG", type = "TF"),
         # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.
         uiOutput("drop_downs"),
         
@@ -173,7 +176,8 @@ ui <- navbarPage(
           "unit",
           label = NULL,
           choices = unique(sort(hierarchy$Parameters))
-        )
+        ),
+
       ),
       
       mainPanel = mainPanel(

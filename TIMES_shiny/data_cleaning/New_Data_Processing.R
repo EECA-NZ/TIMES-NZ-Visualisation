@@ -54,7 +54,7 @@ clean_df <- raw_df %>%
           # Extract the needed attributes 
           filter(Attribute %in% needed_attributes) %>% 
           # complete data for all period by padding zeros
-          complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel),fill = list(Value = 0)) %>% 
+          complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, FuelGroup),fill = list(Value = 0)) %>% 
           # Change Electricity to Other
           # Use this to convert the other sectors to Other 
           mutate(Sector = ifelse(Sector == "Electricity", "Other" , Sector)) %>% 
@@ -69,7 +69,7 @@ clean_df <- raw_df %>%
           # Remove the hard coded "N/A" in the data
           filter(!(Technology == "N/A")) %>% 
           # Group by the main variables and sum up
-          group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period) %>%
+          group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period, FuelGroup) %>%
           # Sum up
           summarise(Value = sum(Value), .groups = "drop") %>% 
           # Removed all Annualised Capital Costs and Technology Capacity
@@ -114,7 +114,7 @@ assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # 
 assumptions_list <- distinct(assumptions_df, Parameter)
 
 # Ordered attributes
-order_attr = c("Fuel Consumption", "Demand", "Emissions", "Annualised Capital Costs", "Number of Vehicles", "Distance travelled")
+order_attr = c("Emissions","Fuel Consumption", "Demand",  "Annualised Capital Costs", "Number of Vehicles", "Distance travelled")
 
 
 #Create the R data set for Shiny to use

@@ -11,7 +11,7 @@ options(highcharter.lang = hcoptslang)
 get_max_y <- function(data, group_var, input_chart_type){
   
   total_by_grp <- data %>% 
-    group_by({{group_var}}, Period, scen) %>%  
+    group_by(!!sym(group_var), Period, scen) %>%  
     summarise(Value = sum(Value), .groups = "drop") %>% 
     ungroup()
   
@@ -103,7 +103,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     ungroup() 
   
   data <- data %>% 
-    group_by({{group_var}}, Period) %>%  
+    group_by(!!sym(group_var), Period) %>%  
     summarise(Value = sum(Value), .groups = "drop") %>% 
     mutate(Value = signif(Value,3)) %>% 
     ungroup() %>% 
@@ -259,6 +259,184 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
 
 
 
+# Plotting function
+assumption_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
+  
+  if (input_chart_type == "column_percent") {
+    
+    chart_type <-"column"
+    stacking_type <- "percent"
+    Y_label <- "Percent"
+    
+  } else {
+    
+    chart_type <-input_chart_type
+    stacking_type <- "normal"
+    Y_label <-  unit
+    
+  }
+  
+  total_by_year <- data %>% 
+    group_by(Period) %>% 
+    summarise(Value = sum(Value)) %>% 
+    ungroup() 
+  
+  data <- data %>% 
+    group_by({{group_var}}, Period) %>%  
+    summarise(Value = sum(Value), .groups = "drop") %>% 
+    mutate(Value = signif(Value,3)) %>% 
+    ungroup() %>% 
+    pivot_wider(
+      names_from = {{group_var}}, values_from = Value, 
+      values_fn = sum, values_fill = 0
+    ) %>%
+    as.data.frame()
+  
+  measure_columns <- names(data)[-1]
+  categories_column <- names(data)[1]
+  
+  data_list <- map(1:length(measure_columns), function(x) {
+    list(data = data[, x + 1], name = names(data)[x + 1])
+  })
+  
+  # Extracting the needed colors from the color scheme
+  cols <- schema_colors[order(schema_colors$Fuel),] %>%  
+    filter(Fuel %in% measure_columns) %>% 
+    select(Colors) %>% 
+    as.data.frame()
+  
+  hc <- highchart() %>%
+    hc_chart(type = chart_type,
+             # Added a zoom buttom
+             zoomType ='xy' ,
+             # Font type
+             style = list(fontFamily = "Source Sans Pro",
+                          fontSize='15px') ) %>%
+    hc_add_series_list(data_list) %>% 
+    hc_legend(reversed = FALSE) %>% 
+    hc_xAxis(categories = sort(unique(data$Period))) %>%
+    hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
+             # Keep values and remove and notations
+             labels = list(format ='{value}')
+    ) %>%
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
+    # Adding colors to plot 
+    hc_colors(colors =  cols$Colors) %>% 
+    # Adding credits
+    hc_credits(
+      text = "Chart created by EECA.",
+      href = "https://www.eeca.govt.nz/",
+      enabled = TRUE
+    ) %>%
+    # Downloading data or image file
+    hc_exporting(
+      enabled = TRUE,
+      filename = filename ,
+      buttons = list(
+        contextButton = list(
+          menuItems = c("downloadPDF", "downloadCSV"),
+          titleKey = "Click here to download",
+          text = 'Download',
+          theme = list(fill = '#f7f7f7', stroke = '#41B496',
+                       states = list(hover=list(fill='#41B496'), 
+                                     select= list(stroke='#41B496',fill ='#41B496'))),
+          symbol = ''
+        )
+      ),
+      menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
+                                 downloadCSV = list(text = "Download data"))
+    ) %>% 
+    # # Adding a caption
+    # hc_caption(
+    #   text = caption_text, 
+    #   useHTML = TRUE
+    # ) %>% 
+    # Adding theme 
+    hc_add_theme(my_theme) 
+  # %>% 
+  #   # Set the tooltip to three decimal places
+  #   hc_tooltip(valueDecimals=2) 
+  
+  if(chart_type != "line"){
+    hc <- hc %>% 
+      hc_plotOptions(
+        series = list(stacking = as.character(stacking_type),
+                      animation = list(duration=1000),
+                      # Turning off markers on area stack plot
+                      marker = list(enabled = FALSE),
+                      lang = list(thousandsSep= ',')))
+  } else {
+    # Adding options for line chart
+    hc <- hc %>% 
+      hc_plotOptions(
+        series = list(animation = list(duration=2000),
+                      # Setting the size of the markers
+                      marker = list(radius= 3)#,
+                      # Adding label at the end of line
+                      # dataLabels = list(
+                      #   enabled= TRUE,
+                      #   # crop= FALSE,
+                      #   allowOverlap = TRUE,
+                      #   # overflow= 'none',
+                      #   align= 'left',
+                      #   verticalAlign='middle',
+                      #   # Showing the last data point
+                      #   formatter= JS("function() {
+                      #         // if last point
+                      #     if(this.point === 
+                      #         this.series.data[this.series.data.length-1]) 
+                      #         {
+                      #         return this.series.name;
+                      #         }
+                      #   }"))
+                      # This turns animation off
+                      # animation = FALSE,
+        )) 
+    # %>% 
+    # hc_legend(enabled= FALSE)
+    
+  }
+  
+  if (input_chart_type == "column_percent") {
+    hc <- hc %>%
+      hc_tooltip(
+        pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'#,
+        # shared = TRUE
+      ) 
+    
+  }
+  
+  if (input_chart_type == "column") {
+    
+    # hc <- hc %>% 
+    #   hc_add_series(
+    #   data = total_by_year,
+    #   hcaes(x = as.factor(Period), y = Value),
+    #   type = "scatter",
+    #   name = "Column total:",
+    #   showInLegend = FALSE
+    # ) 
+    # %>% 
+    #   hc_plotOptions(scatter = list(
+    #     color = "#000000",
+    #     # visible = TRUE,
+    #     tooltip = list(pointFormat = '<span style="color={series.color}"></span> <b>{point.total:.1f}</b><br/>'
+    #   )))
+    
+    hc <- hc %>%
+      hc_tooltip(
+        footerFormat = 'Column total: <b>{point.total:,.4f} </b>'#,
+        # shared = TRUE
+      )
+    #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
+    #   
+  }
+  
+  return(hc)
+  
+}
+
+
 # Helper function to order attributes
 order_attribute <- function(dat, order_str){
   dat %>% 
@@ -308,6 +486,81 @@ hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14p
 }
 
 
+
+# Customised TRUE-FALSE switch button for Rshiny
+# Only sing CSS3 code (No javascript)
+#
+# Adapted from Sébastien Rochette
+
+#' A function to change the Original checkbox of rshiny
+#' into a nice true/false or on/off switch button
+#' No javascript involved. Only CSS code.
+#' 
+#' To be used with CSS script 'button.css' stored in a 'www' folder in your Shiny app folder
+#' 
+#' @param inputId The input slot that will be used to access the value.
+#' @param label Display label for the control, or NULL for no label.
+#' @param value Initial value (TRUE or FALSE).
+#' @param col Color set of the switch button. Choose between "GB" (Grey-Blue) and "RG" (Red-Green)
+#' @param type Text type of the button. Choose between "TF" (TRUE - FALSE), "OO" (ON - OFF) or leave empty for no text.
+
+switchButton <- function(inputId, label, value=FALSE, col = "GB", type="TF") {
+  
+  # color class
+  if (col != "RG" & col != "GB") {
+    stop("Please choose a color between \"RG\" (Red-Green) 
+      and \"GB\" (Grey-Blue).")
+  }
+  if (!type %in% c("OO", "TF", "YN")){
+    warning("No known text type (\"OO\", \"TF\" or \"YN\") have been specified, 
+     button will be empty of text") 
+  }
+  if(col == "RG"){colclass <- "RedGreen"}
+  if(col == "GB"){colclass <- "GreyBlue"}
+  if(type == "OO"){colclass <- paste(colclass,"OnOff")}
+  if(type == "TF"){colclass <- paste(colclass,"TrueFalse")}
+  if(type == "YN"){colclass <- paste(colclass,"YesNo")}
+  
+  # No javascript button - total CSS3
+  # As there is no javascript, the "checked" value implies to
+  # duplicate code for giving the possibility to choose default value
+  
+  if(value){
+    tagList(
+      tags$div(class = "form-group shiny-input-container",
+               tags$div(class = colclass,
+                        # tags$label(label, class = "control-label"),
+                        tags$div(class = "onoffswitch",
+                                 tags$input(type = "checkbox", name = "onoffswitch", class = "onoffswitch-checkbox",
+                                            id = inputId, checked = ""
+                                 ),
+                                 tags$label(class = "onoffswitch-label", `for` = inputId,
+                                            tags$span(class = "onoffswitch-inner"),
+                                            tags$span(class = "onoffswitch-switch")
+                                 )
+                        )
+               )
+      )
+    )
+  } else {
+    tagList(
+      tags$div(class = "form-group shiny-input-container",
+               tags$div(class = colclass,
+                        # tags$label(label, class = "control-label"),
+                        tags$div(class = "onoffswitch",
+                                 tags$input(type = "checkbox", name = "onoffswitch", class = "onoffswitch-checkbox",
+                                            id = inputId
+                                 ),
+                                 tags$label(class = "onoffswitch-label", `for` = inputId,
+                                            tags$span(class = "onoffswitch-inner"),
+                                            tags$span(class = "onoffswitch-switch")
+                                 )
+                        )
+               )
+      )
+    ) 
+  }
+}
 
 
 

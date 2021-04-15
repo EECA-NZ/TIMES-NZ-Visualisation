@@ -1,5 +1,5 @@
 server <- function(input, output, session){
-  
+
   # Required for creating the event handlers for shinyhelper
   observe_helpers()
   
@@ -8,7 +8,7 @@ server <- function(input, output, session){
     
     # This condition is used to add "Select Metric" to the "unit" drop-downs
     if (input$unit == "Select Metric"){
-      unit_selected = "Fuel Consumption"
+      unit_selected = "Emissions"
     }else{
       unit_selected = input$unit
     }
@@ -204,13 +204,23 @@ server <- function(input, output, session){
   
   
   
+  group_by <- reactive(
+    {
+      if (input$Fuel_Switch == TRUE){
+        names(filtered_data())[10]
+      } else{
+        names(filtered_data())[8]
+          }
+      
+    }
+  )
   
   # Get max y for current filtered data
   max_y <- reactive({
     
     get_max_y(
       data = filtered_data(),
-      group_var = Fuel,
+      group_var = group_by(),
       input_chart_type = input$chart_type
     )
     
@@ -342,21 +352,21 @@ server <- function(input, output, session){
   
   ## The plot output for the assumptions page.
   output$assumptions_plot <- renderHighchart({
-    
+
     # Read the filtered assumptions dataset and then split by scenario.
-    assumptions_data <- filtered_assumptions() %>% 
+    assumptions_data <- filtered_assumptions() %>%
       rename(Unit = Units)
-    
-    generic_charts(
+
+    assumption_charts(
       data = assumptions_data,
       group_var = Scenario,
       unit = unique(assumptions_data$Unit),
       filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
       plot_title = paste0(assumptions_data$Title[1]),
       input_chart_type = "line",
-      max_y = NULL #max_y_assumptions()  
+      max_y = NULL #max_y_assumptions()
     )
-    
+
   })
   
   
@@ -377,7 +387,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -396,7 +406,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -416,7 +426,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -433,7 +443,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -457,7 +467,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -474,7 +484,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -498,7 +508,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -515,7 +525,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -537,7 +547,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -554,7 +564,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -577,7 +587,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -594,7 +604,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -617,7 +627,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -634,7 +644,7 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
-      group_var = Fuel,
+      group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
