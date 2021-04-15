@@ -112,9 +112,11 @@ button.btn.radiobtn.btn-default {
 .onoffswitch-checkbox {
   display: none;
 }
+
+/* This is designe the switch */
 .onoffswitch-label {
   display: block; overflow: hidden; cursor: pointer;
-  border: 2px solid #999999; border-radius: 50px;
+  border: 1px solid #b8b7b7; border-radius: 50px;
 }
 .onoffswitch-inner {
   display: block; width: 200%; margin-left: -100%;
@@ -122,8 +124,8 @@ button.btn.radiobtn.btn-default {
 }
 
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-  display: block; float: left; width: 50%; height: 40px; padding: 0; line-height: 40px;
-  font-size: 16px; color: white; font-family: Source Sans Pro;
+  display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
+  font-size: 18px; color: white; font-family: Source Sans Pro;
   box-sizing: border-box;
 }
 
@@ -141,10 +143,10 @@ button.btn.radiobtn.btn-default {
 
 /* Changing the switch*/
 .onoffswitch-switch {
-  display: block; width: 30px; height: 30px; margin: 6.5px;
+  display: block; width: 20px; height: 20px; margin: 6.8px;
   position: absolute; top: 0; bottom: 0;
-  border-radius: 30px;
-  transition: all 0.3s ease-in 0s; 
+  border-radius: 10px;
+  transition: all 0.1s ease-in 0s; 
   opacity: 0.6;
 }
 
@@ -179,6 +181,6 @@ button.btn.radiobtn.btn-default {
 }
 
 .TrueFalse .onoffswitch-inner:after {
-  content: "Showing detailed Fuel";
+  content: "Showing detailed Fuels";
 }
 
