@@ -7,23 +7,26 @@ options(scipen=999) # eliminates scientific notation
 
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
-coh_raw <- read.csv(file = "Kea-v74-2.VD",
+coh_raw <- read.csv(file = "Kea-v75-8b.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   mutate(Period = as.integer(Period),
          scen = "Kea") %>% 
-  filter(!(Period %in% c(2016)))
+  filter(!(Period %in% c(2016)),
+         Commodity != "COseq")
 
-ind_raw <- read.csv(file = "Tui-v74-2.VD",
+
+ind_raw <- read.csv(file = "Tui-v75-8b.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   mutate(Period = as.integer(Period),
          scen = "Tui") %>% 
-  filter(!(Period %in% c(2016)))
+  filter(!(Period %in% c(2016)),
+         Commodity != "COseq")
 
 # Merge the two scenario 
 raw_df <- union_all(coh_raw, ind_raw)

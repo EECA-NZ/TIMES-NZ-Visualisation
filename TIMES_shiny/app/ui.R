@@ -166,9 +166,10 @@ ui <- navbarPage(
         ),
         
         # Adding switch 
-        switchButton(inputId = "Fuel_Switch",
+        span(switchButton(inputId = "Fuel_Switch",
                      label = NULL, 
                      value = TRUE, col = "RG", type = "TF"),
+                     title="Toggle to show fuels grouped by either Renewables and Fossil Fuels, or all fuels separately displayed (eg, Electricity, Coal, Solar etc)"),
         # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.
         uiOutput("drop_downs"),
         
