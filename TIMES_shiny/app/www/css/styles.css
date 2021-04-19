@@ -171,6 +171,7 @@ button.btn.radiobtn.btn-default {
   border: 2px solid #FFFFFF;
 }
 
+
 /* Text change */
 
 /* Changing the text in the switch*/
@@ -183,3 +184,14 @@ button.btn.radiobtn.btn-default {
   content: "Fuels Separately Displayed";
 }
 
+
+
+/* Text change */
+/* On / Off */
+.OnOff .onoffswitch-inner:before {
+  content: "Key Insight";
+}
+
+.OnOff .onoffswitch-inner:after {
+  content: "Assumptions";
+}

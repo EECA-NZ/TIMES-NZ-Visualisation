@@ -62,11 +62,8 @@ server <- function(input, output, session){
   })
   
   
-  # The assumptions dataset set up as a reactive object.
-  filtered_assumptions <- reactive({
-    assumptions_df %>% 
-      filter(Parameter == input$assumptions)
-  })
+
+  
   
   # A reactive object based on the hierarchy dataset. When on the overview tab, it shows all subsectors/data groups.
   # When not on the overview tab it filters to the current tab (using the value returned by input$tabs)
@@ -201,9 +198,35 @@ server <- function(input, output, session){
   }, ignoreNULL = TRUE)
   
 
+  ## column dropdown
+  output$Assumption_drop_downs <- renderUI({
+    
+    if (input$Insght_Switch == FALSE){
+      selectInput("assumptions", label = NULL, choices = assumptions_list)
+      
+    }else{
+      selectInput("assumptions", label = NULL, choices = insight_list)
+    }
+  
+    
+  })
   
   
+  # Selecting the type of data based on switch
+  filtered_assumptions <- reactive({
+    req(input$assumptions)
+    if (input$Insght_Switch == FALSE){
+    assumptions_df %>% 
+      filter(Parameter == input$assumptions)
+    }else{
+      insight_df %>% 
+        filter(Parameter == input$assumptions)
+    }
+      
+  })
   
+
+  # This is used to select the group by values
   group_by <- reactive(
     {
       if (input$Fuel_Switch == TRUE){
@@ -240,6 +263,7 @@ server <- function(input, output, session){
   })
   
   
+  
   # output$assumptions_popup <- renderText({
   #   req(input$subsector)
   #   
@@ -257,6 +281,7 @@ server <- function(input, output, session){
   #############################
   # 
   # 
+  
   output$info_overview <- renderUI({
     
     req(input$subsector)
@@ -351,24 +376,24 @@ server <- function(input, output, session){
   ##################################
   
   ## The plot output for the assumptions page.
-  output$assumptions_plot <- renderHighchart({
-
-    # Read the filtered assumptions dataset and then split by scenario.
-    assumptions_data <- filtered_assumptions() %>%
-      rename(Unit = Units)
-
-    assumption_charts(
-      data = assumptions_data,
-      group_var = Scenario,
-      unit = unique(assumptions_data$Unit),
-      filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
-      plot_title = paste0(assumptions_data$Title[1]),
-      input_chart_type = "line",
-      max_y = NULL #max_y_assumptions()
-    )
-
-  })
+  output$assumptions_plot <-  renderHighchart({
+    
+      # Read the filtered assumptions/insight dataset and then split by scenario.
+      assumptions_data <- filtered_assumptions() %>%
+        rename(Unit = Units) 
+      
+      assumption_charts(
+        data = assumptions_data,
+        group_var = Scenario,
+        unit = unique(assumptions_data$Unit),
+        filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
+        plot_title = paste0(assumptions_data$Title[1]),
+        input_chart_type = "line",
+        max_y = NULL #max_y_assumptions()
+      )
   
+})
+
   
   ##################################
   ##### Data explorer Plotting #####

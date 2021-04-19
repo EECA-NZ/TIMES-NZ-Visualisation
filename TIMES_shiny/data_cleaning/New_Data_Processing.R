@@ -15,7 +15,8 @@ coh_raw <- read.csv(file = "Kea-v75-8b.VD",
   mutate(Period = as.integer(Period),
          scen = "Kea") %>% 
   filter(!(Period %in% c(2016)),
-         Commodity != "COseq")
+         Commodity != "COseq", 
+         Period != "2020")
 
 
 ind_raw <- read.csv(file = "Tui-v75-8b.VD",
@@ -26,7 +27,8 @@ ind_raw <- read.csv(file = "Tui-v75-8b.VD",
   mutate(Period = as.integer(Period),
          scen = "Tui") %>% 
   filter(!(Period %in% c(2016)),
-         Commodity != "COseq")
+         Commodity != "COseq", 
+         Period != "2020")
 
 # Merge the two scenario 
 raw_df <- union_all(coh_raw, ind_raw)
@@ -109,12 +111,23 @@ sector_list <-distinct(hierarchy_lits, Sector) # sector list
 
 
 
-
+# Reading in assumption data
 assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
-  gather(Period, Value, `2022`:`2060`) %>% 
+  gather(Period, Value, `2022`:`2060`) %>%
   mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))
 
-assumptions_list <- distinct(assumptions_df, Parameter)
+
+assumptions_list <- distinct(assumptions_df, Parameter) %>% pull(Parameter)
+
+
+
+# Reading in insight data
+
+insight_df <- read_excel(path = "Key-Insight.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
+  gather(Period, Value, `2018`:`2060`) 
+
+insight_list <- distinct(insight_df, Parameter)  %>% pull(Parameter)
+
 
 # Ordered attributes
 order_attr = c("Emissions","Fuel Consumption", "Demand",  "Annualised Capital Costs", "Number of Vehicles", "Distance travelled")
@@ -126,6 +139,8 @@ save(combined_df, # data for charting
      sector_list,  # list of Sectors for input$sector_choice drop down
      assumptions_df,  # data behind assumptions
      assumptions_list,  # list of assumptions for input$assumptions drop-down
+     insight_df,  # data behind insight 
+     insight_list,  # list of insight for input$insight drop-down
      schema_colors, # Color scheme
      order_attr, # Ordered attribute
      caption_list, # Add caption list

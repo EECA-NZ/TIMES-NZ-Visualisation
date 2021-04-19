@@ -32,10 +32,10 @@ ui <- navbarPage(
   tabPanel(
     
     "Background",
-    
-    conditionalPanel(
-      
-      condition = "input.showAssumptions == 0",
+
+    # conditionalPanel(
+    # 
+    #   condition = "input.showAssumptions == 0",
       
       fluidRow(
         
@@ -61,7 +61,7 @@ ui <- navbarPage(
           paste(stri_rand_lipsum(1), collapse = "\n")
         )
         
-      )
+      # )
       
     ),
     
@@ -70,22 +70,26 @@ ui <- navbarPage(
       column(
         
         width = 12,
+        # offset = 1, # centering the plot
         
-        HTML("<br>"),
         
-        # This is the switch for showing/not showing the assumptions plot. Defaults to FALSE.
-        conditionalPanel(condition = "input.showAssumptions == 0", helpText("Show assumptions")),
-        conditionalPanel(condition = "input.showAssumptions == 1", helpText("Hide assumptions")),
-        prettySwitch("showAssumptions", "", value = FALSE, status = "success"),
         
-        # This next panel only shows when the showAssumptions switch is clicked (i.e. it becomes TRUE)
-        conditionalPanel(
-          
-          # This is the condition that must be satisfied for this panel to be shown. 1 is the same as TRUE in this case.
-          condition = "input.showAssumptions == 1",
-          
-          # Below here is what gets shown when the condition is met.
-          
+        
+        HTML("<br><br><br>"),
+# 
+#         # This is the switch for showing/not showing the assumptions plot. Defaults to FALSE.
+#         conditionalPanel(condition = "input.showAssumptions == 0", helpText("Show assumptions")),
+#         conditionalPanel(condition = "input.showAssumptions == 1", helpText("Hide assumptions")),
+#         prettySwitch("showAssumptions", "", value = FALSE, status = "success"),
+# 
+#         # This next panel only shows when the showAssumptions switch is clicked (i.e. it becomes TRUE)
+#         conditionalPanel(
+# 
+#           # This is the condition that must be satisfied for this panel to be shown. 1 is the same as TRUE in this case.
+#           condition = "input.showAssumptions == 1",
+# 
+#           # Below here is what gets shown when the condition is met.
+
           sidebarLayout(
             
             sidebarPanel = sidebarPanel(
@@ -103,8 +107,22 @@ ui <- navbarPage(
               #     `<i class='fa fa-percent'></i>` = "column_percent"
               #   )
               # ),
+              # Adding switch 
+              span(switchButton(inputId = "Insght_Switch",
+                                label = NULL, 
+                                value = TRUE, col = "RG", type = "OO"),
+                   title="Switch to show Key Insight or Assumptions"),
               
-              selectInput("assumptions", label = NULL, choices = assumptions_list)
+              
+              span(uiOutput("Assumption_drop_downs"), 
+                   title="Dropdown for selecting Parameter")
+              # conditionalPanel(condition = "input$Insght_Switch == 'NO'", 
+              #                  selectInput("assumptions", label = NULL, 
+              #                              choices = assumptions_list)),
+              # conditionalPanel(condition = "input$Insght_Switch == 'OFF'", 
+              #                  selectInput("insight", label = NULL, 
+              #                              choices = insight_list))
+
             ),
             
             mainPanel = mainPanel(
@@ -117,12 +135,13 @@ ui <- navbarPage(
                   
                   width = 12,
                   
-                  highchartOutput("assumptions_plot") 
+                  highchartOutput("assumptions_plot",height = 500)
+                  
                   
                 )
               )
             )
-          )#,
+           )#,
           
           # fluidRow(
           #   column(
@@ -133,7 +152,7 @@ ui <- navbarPage(
           #   )
           # )
           
-        )
+        # )
       )
     )
     
