@@ -105,13 +105,15 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   data <- data %>% 
     group_by(!!sym(group_var), Period) %>%  
     summarise(Value = sum(Value), .groups = "drop") %>% 
+    arrange(desc(Value)) %>%
     mutate(Value = signif(Value,3)) %>% 
     ungroup() %>% 
     pivot_wider(
       names_from = {{group_var}}, values_from = Value, 
       values_fn = sum, values_fill = 0
     ) %>%
-    as.data.frame()
+    arrange(Period) %>%
+    as.data.frame() 
   
   measure_columns <- names(data)[-1]
   categories_column <- names(data)[1]
@@ -125,18 +127,21 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
          
          marker = list(symbol=  schema_colors %>% 
                                 filter(Fuel == names(data)[x + 1]) %>% 
-                                pull(Symbol))
+                                pull(Symbol)),
+         color = schema_colors %>% 
+           filter(Fuel ==names(data)[x + 1]) %>% 
+           pull(Colors)
     )
   })
   # data_list <- map(1:length(measure_columns), function(x) {
   #   list(data = data[, x + 1], name = names(data)[x + 1])
   # })
   
-  # Extracting the needed colors from the color scheme
-  cols <- schema_colors[order(schema_colors$Fuel),] %>%  
-    filter(Fuel %in% measure_columns) %>% 
-    select(Colors) %>% 
-    as.data.frame()
+  # # Extracting the needed colors from the color scheme
+  # cols <- schema_colors[order(schema_colors$Fuel),] %>%  
+  #   filter(Fuel %in% measure_columns) %>% 
+  #   select(Colors) %>% 
+  #   as.data.frame()
   
   hc <- highchart() %>%
     hc_chart(type = chart_type,
@@ -146,7 +151,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              style = list(fontFamily = "Source Sans Pro",
                           fontSize='15px') ) %>%
     hc_add_series_list(data_list) %>% 
-    hc_legend(reversed = FALSE) %>% 
+    hc_legend(reversed = FALSE) %>%
     hc_xAxis(categories = sort(unique(data$Period))) %>%
     hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
@@ -154,7 +159,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     ) %>%
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
     # Adding colors to plot 
-    hc_colors(colors =  cols$Colors) %>% 
+    # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
       text = "Chart created by EECA.",
@@ -317,18 +322,21 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
          
          marker = list(symbol=  schema_colors %>% 
                          filter(Fuel == names(data)[x + 1]) %>% 
-                         pull(Symbol))
+                         pull(Symbol)),
+         color = schema_colors %>% 
+           filter(Fuel ==names(data)[x + 1]) %>% 
+           pull(Colors)
     )
   })
   # data_list <- map(1:length(measure_columns), function(x) {
   #   list(data = data[, x + 1], name = names(data)[x + 1])
   # })
   
-  # Extracting the needed colors from the color scheme
-  cols <- schema_colors[order(schema_colors$Fuel),] %>%  
-    filter(Fuel %in% measure_columns) %>% 
-    select(Colors) %>% 
-    as.data.frame()
+  # # Extracting the needed colors from the color scheme
+  # cols <- schema_colors[order(schema_colors$Fuel),] %>%  
+  #   filter(Fuel %in% measure_columns) %>% 
+  #   select(Colors) %>% 
+  #   as.data.frame()
   
   hc <- highchart() %>%
     hc_chart(type = chart_type,
@@ -346,7 +354,7 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
     ) %>%
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
     # Adding colors to plot 
-    hc_colors(colors =  cols$Colors) %>% 
+    # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
       text = "Chart created by EECA.",
