@@ -116,10 +116,16 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   measure_columns <- names(data)[-1]
   categories_column <- names(data)[1]
   
+  
   data_list <- map(1:length(measure_columns), function(x) {
-    list(data = data[, x + 1], name = names(data)[x + 1], marker = list(symbol=  schema_colors %>% 
-                                                                          filter(Fuel ==names(data)[x + 1]) %>% 
-                                                                          pull(Symbol))
+    
+    list(data = data[, x + 1], 
+         
+         name = names(data)[x + 1], 
+         
+         marker = list(symbol=  schema_colors %>% 
+                                filter(Fuel == names(data)[x + 1]) %>% 
+                                pull(Symbol))
     )
   })
   # data_list <- map(1:length(measure_columns), function(x) {
@@ -198,7 +204,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
       hc_plotOptions(
         series = list(animation = list(duration=2000),
                       # Setting the size of the markers
-                      marker = list(radius= 3)#,
+                      marker = list(radius= 2.5)#,
                       # Adding label at the end of line
                       # dataLabels = list(
                       #   enabled= TRUE,
@@ -301,9 +307,22 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
   measure_columns <- names(data)[-1]
   categories_column <- names(data)[1]
   
+  
+  
   data_list <- map(1:length(measure_columns), function(x) {
-    list(data = data[, x + 1], name = names(data)[x + 1])
+    
+    list(data = data[, x + 1], 
+         
+         name = names(data)[x + 1], 
+         
+         marker = list(symbol=  schema_colors %>% 
+                         filter(Fuel == names(data)[x + 1]) %>% 
+                         pull(Symbol))
+    )
   })
+  # data_list <- map(1:length(measure_columns), function(x) {
+  #   list(data = data[, x + 1], name = names(data)[x + 1])
+  # })
   
   # Extracting the needed colors from the color scheme
   cols <- schema_colors[order(schema_colors$Fuel),] %>%  
@@ -377,7 +396,7 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
       hc_plotOptions(
         series = list(animation = list(duration=2000),
                       # Setting the size of the markers
-                      marker = list(radius= 3)#,
+                      marker = list(radius= 2.5)#,
                       # Adding label at the end of line
                       # dataLabels = list(
                       #   enabled= TRUE,
