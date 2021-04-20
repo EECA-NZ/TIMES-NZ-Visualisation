@@ -385,7 +385,7 @@ server <- function(input, output, session){
       assumption_charts(
         data = assumptions_data,
         group_var = Scenario,
-        unit = unique(assumptions_data$Unit),
+        unit = assumptions_data$Unit[1],
         filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
         plot_title = paste0(assumptions_data$Title[1]),
         input_chart_type = "line",

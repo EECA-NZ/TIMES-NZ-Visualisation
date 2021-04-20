@@ -189,9 +189,38 @@ button.btn.radiobtn.btn-default {
 /* Text change */
 /* On / Off */
 .OnOff .onoffswitch-inner:before {
-  content: "Key Insight";
+  content: "Key Insights";
 }
 
 .OnOff .onoffswitch-inner:after {
   content: "Assumptions";
+}
+
+
+
+
+/* Creating wrapper nad  */
+.wrapper {
+  display: grid;
+  width: auto;
+  grid-template-columns: auto auto ;
+  grid-gap: 10px;
+  background-color: #fff;
+}
+
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 16px;
+}
+
+/* Setting the background colours for the boxes  */
+.box.a{
+  background-color: #00af8c;
+}
+
+.box.b{
+  background-color: #164057;
 }

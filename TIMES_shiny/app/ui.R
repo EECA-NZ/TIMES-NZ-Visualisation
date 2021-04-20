@@ -57,8 +57,21 @@ ui <- navbarPage(
         
         column(
           width = 12,
-          h2("Assumptions"),
-          paste(stri_rand_lipsum(1), collapse = "\n")
+          h2("The Scenarios"),
+          # Adding Kea and Tui comment 
+          HTML("<div class='wrapper'>
+                
+                <div class='box a'><strong>Kea </strong>represents a future in which climate change is seen as the most pressing issue. 
+                A broad economic transformation is pursued by New Zealand society and government, 
+                deliberately choosing to be a global leader in the pursuit of a low-emissions society.</div>
+               
+                
+                <div class='box b'><strong>Tui </strong>represents a future in which global communities,
+                businesses and governments believe that climate change is only one of several competing priorities.</div>
+                </div>"
+
+          
+          )
         )
         
       # )

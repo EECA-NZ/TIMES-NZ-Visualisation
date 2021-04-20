@@ -117,8 +117,14 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
   categories_column <- names(data)[1]
   
   data_list <- map(1:length(measure_columns), function(x) {
-    list(data = data[, x + 1], name = names(data)[x + 1])
+    list(data = data[, x + 1], name = names(data)[x + 1], marker = list(symbol=  schema_colors %>% 
+                                                                          filter(Fuel ==names(data)[x + 1]) %>% 
+                                                                          pull(Symbol))
+    )
   })
+  # data_list <- map(1:length(measure_columns), function(x) {
+  #   list(data = data[, x + 1], name = names(data)[x + 1])
+  # })
   
   # Extracting the needed colors from the color scheme
   cols <- schema_colors[order(schema_colors$Fuel),] %>%  
@@ -392,45 +398,31 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
                       # This turns animation off
                       # animation = FALSE,
         )) 
-    # %>% 
-    # hc_legend(enabled= FALSE)
-    
+
   }
+
+  # Formatting percent values 
   
-  if (input_chart_type == "column_percent") {
-    hc <- hc %>%
+  # Checking if unit is not Percent or NA
+  if (unit != "Percent" | is.na(unit) ){
+    
+    hc
+    
+  }else{
+    # If unit is percent apply percent formatting
+    hc <- hc %>%  hc_yAxis(labels = list(formatter= JS("function() {
+                        var result = Highcharts.numberFormat(this.value*100, 0) + '%' + '</b>';
+                        return result
+                        }")))  %>%
+      
       hc_tooltip(
-        pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'#,
-        # shared = TRUE
-      ) 
-    
+        pointFormatter = JS("function() {
+                            var string = this.series.name + ': ' +'<b>' + Highcharts.numberFormat(this.y*100, 2)  + ' %' + '</b>' + '<br>';
+                            return string;
+                         }"))
   }
-  
-  if (input_chart_type == "column") {
     
-    # hc <- hc %>% 
-    #   hc_add_series(
-    #   data = total_by_year,
-    #   hcaes(x = as.factor(Period), y = Value),
-    #   type = "scatter",
-    #   name = "Column total:",
-    #   showInLegend = FALSE
-    # ) 
-    # %>% 
-    #   hc_plotOptions(scatter = list(
-    #     color = "#000000",
-    #     # visible = TRUE,
-    #     tooltip = list(pointFormat = '<span style="color={series.color}"></span> <b>{point.total:.1f}</b><br/>'
-    #   )))
-    
-    hc <- hc %>%
-      hc_tooltip(
-        footerFormat = 'Column total: <b>{point.total:,.4f} </b>'#,
-        # shared = TRUE
-      )
-    #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
-    #   
-  }
+
   
   return(hc)
   
