@@ -31,7 +31,7 @@ ui <- navbarPage(
   # Background tab
   tabPanel(
     
-    "Background",
+    "Overview",
 
     # conditionalPanel(
     # 
@@ -57,7 +57,7 @@ ui <- navbarPage(
         
         column(
           width = 12,
-          h2("The Scenarios"),
+          h4("TIMES-NZ 2.0 Energy System Scenarios"),
           # Adding Kea and Tui comment 
           HTML("<div class='wrapper'>
                 
@@ -223,7 +223,7 @@ ui <- navbarPage(
           
           tabPanel(
             
-            "Overview",
+            "All Sectors",
             
             value = "Overview", # This is the value (of input$tabs) returned when the user clicks the 'Overview' tab
             
@@ -491,6 +491,11 @@ ui <- navbarPage(
     )
     
   ),  
+
+# Data Explorer tab
+tabPanel(
+  "About"
+  ),
   
   
   

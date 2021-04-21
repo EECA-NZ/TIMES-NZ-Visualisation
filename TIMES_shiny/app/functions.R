@@ -163,8 +163,8 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
-      text = "Chart created by EECA.",
-      href = "https://www.eeca.govt.nz/",
+      text = "TIMES-NZ 2.0",
+      # href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
     # Downloading data or image file
@@ -358,8 +358,8 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
-      text = "Chart created by EECA.",
-      href = "https://www.eeca.govt.nz/",
+      text = "TIMES-NZ 2.0",
+      # href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
     # Downloading data or image file

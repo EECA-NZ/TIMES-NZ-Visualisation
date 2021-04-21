@@ -30,6 +30,7 @@ button.btn.radiobtn.btn-default {
   
 }
 
+
 .selectize-input {
   
   border-radius: 50px;
@@ -80,6 +81,17 @@ button.btn.radiobtn.btn-default {
   font-size: 18px;
 
   } 
+
+
+[data-value="About"]{ 
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 10px;
+}  
+  
     
     
 .fa.fa-info-circle {
