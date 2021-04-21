@@ -155,7 +155,8 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     hc_xAxis(categories = sort(unique(data$Period))) %>%
     hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
-             labels = list(format ='{value}')
+             labels = list(format ='{value}'),
+             reversedStacks = FALSE
     ) %>%
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
     # Adding colors to plot 
