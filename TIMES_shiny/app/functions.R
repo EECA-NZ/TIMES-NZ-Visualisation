@@ -81,7 +81,7 @@ my_theme <-  hc_theme(
 
 
 # Plotting function
-generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
+generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y, credit_text) {
   
   if (input_chart_type == "column_percent") {
     
@@ -163,7 +163,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
-      text = "TIMES-NZ 2.0",
+      text = credit_text,
       # href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
