@@ -2,12 +2,12 @@
 library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
 library(tidyverse) # data manipulation, gather and spread commands
-library(writexl) # for writting excel 
+library(writexl) # for writing excel 
 options(scipen=999) # eliminates scientific notation
 
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
-coh_raw <- read.csv(file = "Kea-v75-8b.VD",
+coh_raw <- read.csv(file = "Kea-v77.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -19,7 +19,7 @@ coh_raw <- read.csv(file = "Kea-v75-8b.VD",
          Period != "2020")
 
 
-ind_raw <- read.csv(file = "Tui-v75-8b.VD",
+ind_raw <- read.csv(file = "Tui-v77.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -46,7 +46,24 @@ schema_colors <- read_xlsx("Schema_colors.xlsx")
 caption_list <- read_xlsx("Caption_Table.xlsx")
 # schema_unit   <- read_xlsx("Schema_unit.xlsx") 
 
-needed_attributes = c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut",  "Cost_Inv")
+needed_attributes <- c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut")
+
+# These are Commodities used for analysis 
+needed_Commodities <- c("AGRELC", "AGRPET", "AGRDSL", "AGRFOL", "AGRCOA", "AGRNGA", 
+            "AGRGEO", "AGRLPG", "COMELC", "COMDSL", "COMPET", "COMCOA", 
+            "COMFOL", "COMNGA", "COMGEO", "COMLPG", "INDELC", "INDNGA", 
+            "INDFOL", "INDDSL", "OILWST", "INDCOA", "INDGEO", "INDLPG", 
+            "ELCCOA", "ELCNGA", "ELCWOD", "FOL", "JET", "COA", "GEO", 
+            "NGA", "WOD", "BDSL", "BIG", "ELCD", "ELCDD", "INDWOD", "INDBIG", 
+            "INDPET", "RESELC", "RESLPG", "RESNGA", "RESCOA", "RESDSL", "RESWOD", 
+            "RESGEO", "RESSOL", "AGRWST", "OILI", "TRAELC", "TRAPET", "TRADSL", 
+            "TRALPG", "TRAFOL", "TRAJET", "MNCWST", "INDOSWOD", "ELCBIG", 
+            "RESPET", "AGRWOD", "COMBIG", "H2R", "AGRH2R", 
+            "COMH2R", "ELCGEO", "ELCHYD", "ELCSOL", "ELCWIN", 
+            "HYD", "WIN", "DIJ", "DID", "AGRCO2", "COMCO2", 
+            "INDCO2", "TOTCO2", "ELCCO2", "GASCO2", "RESCO2", 
+            "REFCO2", "TRACO2", "ELCOIL", "H2D", "ANMMNR", "ELCBIL", 
+            "LNG", "TRAH2R", "ELCCOL", "COMPLT", "PLT", "COMWOD", "ACT", "-")
 
 # Merge all data ---------------------------------------------------------------
 
@@ -56,8 +73,11 @@ needed_attributes = c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut",  "Cost_Inv")
 clean_df <- raw_df %>%  
           # map the schema to the raw data
           inner_join(schema_all, raw_df, by = c("Attribute", "Process")) %>%  
-          # Extract the needed attributes 
-          filter(Attribute %in% needed_attributes) %>% 
+          # Extract the needed attributes and Commodities
+          filter(
+                Attribute %in% needed_attributes,
+                Commodity %in% needed_Commodities
+                 ) %>%
           # complete data for all period by padding zeros
           complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, FuelGroup),fill = list(Value = 0)) %>% 
           # Change Electricity to Other
@@ -130,7 +150,8 @@ insight_list <- distinct(insight_df, Parameter)  %>% pull(Parameter)
 
 
 # Ordered attributes
-order_attr = c("Emissions","Fuel Consumption", "Demand",  "Annualised Capital Costs", "Number of Vehicles", "Distance travelled")
+order_attr = c("Emissions","Fuel Consumption", "Demand",  "Annualised Capital Costs", "Number of Vehicles", 
+               "Distance Travelled", "Electricity Generation",   "Gross Electricity Storage" )
 
 
 #Create the R data set for Shiny to use
