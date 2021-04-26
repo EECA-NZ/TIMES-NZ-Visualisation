@@ -103,6 +103,11 @@ button.btn.radiobtn.btn-default {
   
 }
 
+
+#intro.actionButton.info-circle{
+  
+  left: 10px;
+}
 .popover {
   
   font-size:12px;
