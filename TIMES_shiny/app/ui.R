@@ -11,6 +11,7 @@ library(stringr)
 library(stringi) # Only used for the placeholder text (i.e. stri_rand_lipsum()). Can be removed later.
 library(shinyWidgets) # For the fancy radio buttons
 library(shinyhelper)
+library(rintrojs) # Needed for the introductory tour
 
 # Source script that loads data
 ## This is where the .rda file is loaded (and where the hierarchy dataframe is created)
@@ -37,7 +38,7 @@ ui <- navbarPage(
         
         column(
           width = 12,
-          h2("Background"),
+          h3("Background"),
           paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios. 
                 The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
                 "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and sophistication to sectors, subsectors, technologies and end uses. 
@@ -46,7 +47,12 @@ ui <- navbarPage(
                 The scenarios are modelled using an integrated energy-systems model known which is based on the IEA ETSAP TIMES model.  
                 The TIMES-NZ model simultaneously represents all components of the energy system, ensuring any interdependencies are reflected.
                 ." 
-                , collapse = "\n")
+                , collapse = "\n"),
+          HTML("<br><br>"),
+          actionButton(inputId = "intro", 
+                       label = HTML("Click here for a quick introduction tour"))
+                       # icon = icon("info-circle"))
+          # align = "center"
         )
         
       ),
@@ -55,7 +61,7 @@ ui <- navbarPage(
         
         column(
           width = 12,
-          h4("TIMES-NZ 2.0 Energy System Scenarios"),
+          h3("TIMES-NZ 2.0 Energy System Scenarios"),
           # Adding Kea and Tui comment 
           HTML("<div class='wrapper'>
                 
@@ -119,10 +125,12 @@ ui <- navbarPage(
               #   )
               # ),
               # Adding switch 
+              # Adding an introduction tour
+              introBox(data.step = 1, data.intro = intro$text[1],
               span(switchButton(inputId = "Insght_Switch",
                                 label = NULL, 
                                 value = TRUE, col = "RG", type = "OO"),
-                   title="Switch to show Key Insight or Assumptions"),
+                   title="Switch to show Key Insight or Assumptions")),
               
               
               span(uiOutput("Assumption_drop_downs"), 
@@ -171,7 +179,7 @@ ui <- navbarPage(
       sidebarPanel = sidebarPanel(
         
         width = 3,
-        
+        introBox(data.step = 2, data.intro = intro$text[2],
         radioGroupButtons(
           inputId = "chart_type",
           label = NULL,
@@ -182,25 +190,37 @@ ui <- navbarPage(
             `<i class='fa fa-area-chart'></i>` = "area" ,
             `<i class='fa fa-percent'></i>` = "column_percent"
           )
-        ),
+        )),
         
+        # Intro for fuel switch
+        introBox(data.step = 3, data.intro = intro$text[1],
         # Adding switch 
         span(switchButton(inputId = "Fuel_Switch",
                      label = NULL, 
                      value = TRUE, col = "RG", type = "TF"),
-                     title="Toggle to show fuels grouped by either Renewables and Fossil Fuels, or all fuels separately displayed (eg, Electricity, Coal, Solar etc)"),
-        # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.
-        uiOutput("drop_downs"),
+                     title="Toggle to show fuels grouped by either Renewables and Fossil Fuels, or all fuels separately displayed (eg, Electricity, Coal, Solar etc)"
+             )),
         
+        # Intro for drilldowns
+        introBox(data.step = 4, data.intro = intro$text[4],
+         
+        # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.       
+        uiOutput("drop_downs")),
+        
+        
+        # Intro for Metric
+        introBox(data.step = 5, data.intro = intro$text[5],
         selectInput(
           "unit",
           label = NULL,
           choices = unique(sort(hierarchy$Parameters))
-        ),
+        )),
 
       ),
       
       mainPanel = mainPanel(
+        
+        introBox(data.step = 6, data.intro = intro$text[6],
         
         tabsetPanel(
           
@@ -374,7 +394,6 @@ ui <- navbarPage(
             
           ),
           
-          
           # Adding Residential stuff
           tabPanel(
             "Residential",
@@ -471,17 +490,39 @@ ui <- navbarPage(
             
           )
           
-        )
+        ))
         
       )
       
-    )
+    ),
+    # This initiates the introjs functionality
+    introjsUI(),
     
   ),  
 
 # About tab
-tabPanel(
-  "About",
+tabPanel(title =  "About",
+
+    # column(width = 12,
+    #        HTML("<br><br><br><br>"),
+    #        h3("Background"),
+    #        
+    #   # includeHTML("intro_text.html"),
+    #   paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios.
+    #         The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
+    #         "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and 
+    #         sophistication to sectors, subsectors, technologies and end uses. In particular, the 2020 update of EECA’s Energy End Use Database provides a greatly improved input dataset.
+    #         There are two scenarios <insert scenario names here> in TIMES-NZ 2.0.  The scenarios are modelled using an integrated energy-systems model known which is based on the IEA ETSAP TIMES model.  
+    #         The TIMES-NZ model simultaneously represents all components of the energy system, ensuring any interdependencies are reflected. 
+    #         TIMES is a bottom-up, technology based system model that selects from available technologies to produce a least-cost energy system, optimised according to input constraints over the medium to long-term.
+    #         Other forecast inputs come from a variety of reputable sources (MoT, MBIE, MfE, MPI)– including transport outlook scenarios for projections of the need for passenger and freight transport, 
+    #         sub-sectoral GDP forecasts for future service demand from the commercial, agriculture and industrial sectors, and population to form the basis of the residential service demand projections.
+    #         These results provide some insight into our future energy system, we hope you find them useful."
+    #         , collapse = "\n")
+    # )
+  
+    
+  
   
   # fluidRow(
   #   
@@ -512,7 +553,7 @@ tabPanel(
     tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})")
   ),
   footer = tags$footer(img(src="img/EECA_BEC.svg", height = 120, width = 660),
-  align = "center", 
+  align = "center",
   style = "
   position: absolute;
   width:100%;

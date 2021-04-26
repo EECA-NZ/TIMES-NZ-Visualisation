@@ -275,6 +275,21 @@ server <- function(input, output, session){
   #   
   # })
   
+  #############################
+  ####### Adding intro tour ###
+  #############################
+
+  observeEvent(input$intro, {
+    introjs(session,
+            options = list("nextLabel" = "Next",
+                           "prevLabel" = "Previous",
+                           "doneLabel" = "Done"),
+            events = list(onbeforechange = readCallback("switchTabs")#,
+                          # "oncomplete"=I('alert("Done")')
+            )
+    )
+  })
+  
   
   #############################
   ####### Adding tooltips #####
@@ -414,8 +429,8 @@ server <- function(input, output, session){
       data = plot_data_kea,
       group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
-      filename = paste( "Kea", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Kea", unique(plot_data_kea$Parameters), "All Sectors", input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_kea$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
@@ -434,8 +449,8 @@ server <- function(input, output, session){
       data = plot_data_tui,
       group_var = group_by(),
       unit = unique(plot_data_tui$Unit),
-      filename = paste( "Tui", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      filename = paste( "Tui", unique(plot_data_tui$Parameters), "All Sectors", input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      plot_title = paste0(unique(plot_data_tui$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")

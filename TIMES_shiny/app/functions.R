@@ -1,5 +1,8 @@
 # These are the functions used
 
+
+
+
 # Setting language options in highchart
 hcoptslang <- getOption("highcharter.lang")
 # Adding thousand separator to highchart
@@ -158,7 +161,12 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              labels = list(format ='{value}'),
              reversedStacks = FALSE
     ) %>%
-    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+                style= list(
+                  color= '#000000',
+                  fontSize='16px'
+                  # fontWeight: 'bold'
+                )) %>% 
     # Adding colors to plot 
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
@@ -353,7 +361,12 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
              # Keep values and remove and notations
              labels = list(format ='{value}')
     ) %>%
-    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+                style= list(
+                  color= '#000000',
+                  fontSize='16px'
+                   # fontWeight: 'bold'
+                   )) %>% 
     # Adding colors to plot 
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits

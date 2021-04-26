@@ -19,6 +19,7 @@ coh_raw <- read.csv(file = "Kea-v77.VD",
          Period != "2020")
 
 
+
 ind_raw <- read.csv(file = "Tui-v77.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
@@ -36,7 +37,13 @@ raw_df <- union_all(coh_raw, ind_raw)
 period_list <- raw_df %>% distinct(Period) %>% filter(between(Period, 2000, 2100))
 
 
+
+# Reading in intro Data --------------------------
+
+intro <- read_delim("intro.csv", delim = ";",  col_types = cols())
+
 # Import schemas ----------------------------------------------------------
+
 
 #The schema is used for two main purposes:
 #   restricting TIMES model output to relevant rows via codes such as "Attribute", "Process"
@@ -164,7 +171,8 @@ save(combined_df, # data for charting
      insight_list,  # list of insight for input$insight drop-down
      schema_colors, # Color scheme
      order_attr, # Ordered attribute
-     caption_list, # Add caption list
+     caption_list, # Add caption list,
+     intro, # Add introduction tour comments 
      file = "../App/data/data_for_shiny.rda")
 
 
