@@ -50,13 +50,13 @@ ui <- navbarPage(
                 , collapse = "\n"),
           HTML("<br><br>"),
           actionButton(inputId = "intro", 
-                       label = HTML("Click here for a quick introduction tour"))
-                       # icon = icon("info-circle")
+                       label = HTML("Click here for a quick introduction tour"),
+                       icon = icon("info-circle")),#,
                        # id = "actionButton btn-lg")
-          # align = "center"
-        )
+          align = "center"
+        # )
         
-      ),
+      )),
       
       fluidRow(
         

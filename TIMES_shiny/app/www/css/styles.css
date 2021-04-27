@@ -104,10 +104,14 @@ button.btn.radiobtn.btn-default {
 }
 
 
-#intro.actionButton.info-circle{
+#intro > i {
   
-  left: 10px;
+  position: relative;
+  vertical-align: unset;
+  left: 0;
+    
 }
+
 .popover {
   
   font-size:12px;
