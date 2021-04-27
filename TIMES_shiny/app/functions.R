@@ -1,5 +1,8 @@
 # These are the functions used
 
+
+
+
 # Setting language options in highchart
 hcoptslang <- getOption("highcharter.lang")
 # Adding thousand separator to highchart
@@ -81,7 +84,7 @@ my_theme <-  hc_theme(
 
 
 # Plotting function
-generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
+generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y, credit_text) {
   
   if (input_chart_type == "column_percent") {
     
@@ -158,12 +161,17 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              labels = list(format ='{value}'),
              reversedStacks = FALSE
     ) %>%
-    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+                style= list(
+                  color= '#000000',
+                  fontSize='16px'
+                  # fontWeight: 'bold'
+                )) %>% 
     # Adding colors to plot 
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits
     hc_credits(
-      text = "TIMES-NZ 2.0",
+      text = credit_text,
       # href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
@@ -353,7 +361,12 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
              # Keep values and remove and notations
              labels = list(format ='{value}')
     ) %>%
-    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")")) %>% 
+    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+                style= list(
+                  color= '#000000',
+                  fontSize='16px'
+                   # fontWeight: 'bold'
+                   )) %>% 
     # Adding colors to plot 
     # hc_colors(colors =  cols$Colors) %>% 
     # Adding credits

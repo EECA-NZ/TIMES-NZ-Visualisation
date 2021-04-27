@@ -103,12 +103,19 @@ button.btn.radiobtn.btn-default {
   
 }
 
+
+#intro.actionButton.info-circle{
+  
+  left: 10px;
+}
 .popover {
   
   font-size:12px;
   font-family: Source Sans Pro;
   
 }
+
+
 /* ************************** */
 /* Adding CSS switch bottom   */
 /* ******************** */
@@ -159,7 +166,7 @@ button.btn.radiobtn.btn-default {
   position: absolute; top: 0; bottom: 0;
   border-radius: 10px;
   transition: all 0.1s ease-in 0s; 
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
@@ -179,8 +186,8 @@ button.btn.radiobtn.btn-default {
 }
 
 .RedGreen .onoffswitch-switch {
-  background: #FFFFFF;
-  border: 2px solid #FFFFFF;
+  background:  #ffffff;
+  border: 2px solid #ffffff
 }
 
 
@@ -211,7 +218,7 @@ button.btn.radiobtn.btn-default {
 
 
 
-/* Creating wrapper nad  */
+/* Creating wrapper and box  */
 .wrapper {
   display: grid;
   width: auto;
