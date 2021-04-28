@@ -256,38 +256,3 @@ body {
   .box.b{
     background-color: #164057;
   }
-  
-  #bbc-app-wrapper .active-residential {
-      background: #922367;
-  }
-  
-  #bbc-app-wrapper .bbc-view-toggle {
-      height: 53px;
-      border-radius: 100px;
-      display: flex;
-      flex: 1;
-      justify-content: space-around;
-      position: relative;
-  }
-  
-  
-  #bbc-app-wrapper *, #bbc-app-wrapper :after, #bbc-app-wrapper :before {
-      box-sizing: border-box;
-      border-width: 0;
-      border-style: solid;
-      border-color: #e2e8f0;
-  }
-  
-  #bbc-app-wrapper *, #bbc-app-wrapper :after, #bbc-app-wrapper :before {
-      box-sizing: border-box;
-      border-width: 0;
-      border-style: solid;
-      border-color: #e2e8f0;
-  }
-  
-  #bbc-app-wrapper *, #bbc-app-wrapper :after, #bbc-app-wrapper :before {
-      box-sizing: border-box;
-      border-width: 0;
-      border-style: solid;
-      border-color: #e2e8f0;
-  }
