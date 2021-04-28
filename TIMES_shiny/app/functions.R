@@ -183,10 +183,13 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
         contextButton = list(
           menuItems = c("downloadPDF", "downloadCSV"),
           titleKey = "Click here to download",
-          text = 'Download',
-          theme = list(fill = '#f7f7f7', stroke = '#41B496',
+          text = "  Download  ",
+          theme = list(fill = '#f7f7f7', 
+                       stroke = '#41B496',
                        states = list(hover=list(fill='#41B496'), 
-                                     select= list(stroke='#41B496',fill ='#41B496'))),
+                       select = list(stroke='#41B496',fill ='#41B496')
+                       )
+                       ),
           symbol = ''
         )
       ),
@@ -383,7 +386,7 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
         contextButton = list(
           menuItems = c("downloadPDF", "downloadCSV"),
           titleKey = "Click here to download",
-          text = 'Download',
+          text = "  Download  ",
           theme = list(fill = '#f7f7f7', stroke = '#41B496',
                        states = list(hover=list(fill='#41B496'), 
                                      select= list(stroke='#41B496',fill ='#41B496'))),
@@ -635,7 +638,7 @@ switchButton <- function(inputId, label, value=FALSE, col = "GB", type="TF") {
 #         contextButton = list(
 #           menuItems = c("downloadPDF", "downloadCSV"),
 #           titleKey = "Click here to download",
-#           text = 'Download',
+#           text = "  Download  ",
 #           theme = list(fill = '#ddd', stroke = '#888'),
 #           symbol = ''
 #         )
@@ -668,7 +671,7 @@ switchButton <- function(inputId, label, value=FALSE, col = "GB", type="TF") {
 #         contextButton = list(
 #           menuItems = c("downloadPDF", "downloadCSV"),
 #           titleKey = "Click here to download",
-#           text = 'Download',
+#           text = "  Download  ",
 #           theme = list(fill = '#ddd', stroke = '#888'),
 #           symbol = ''
 #         )

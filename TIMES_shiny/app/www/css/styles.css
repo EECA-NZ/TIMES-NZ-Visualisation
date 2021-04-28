@@ -1,245 +1,258 @@
 body {
 
-  font-family: Source Sans Pro;
+    font-family: Source Sans Pro;
+    
+  }
   
-}
-
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
- 
-  background-color: #41B496;
-
-}
-
-.nav-pills>li>a {
+  .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+   
+    background-color: #41B496;
   
-  border-radius: 5px; 
-  line-height: 7px;
-  /* width: 100px; */
-  /* height: 40px; */
-  padding: 9px;
-  border-style: solid;
-  border-width: thin;
-  border-color: #41B496;
-  color: #41B496; 
-  font-size: 18px;
-}
-
-button.btn.radiobtn.btn-default {
+  }
   
-  border-radius: 50px;
-  
-}
-
-
-.selectize-input {
-  
-  border-radius: 50px;
-  
-}
-
-.well {
-  
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  
-}
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
-  
-  color: white;
-  background-color: #3C4C49;
-  border-radius: 50px;
-  
-}
-
-.navbar-default .navbar-nav>li>a:hover{
-  
-  background-color: transparent;
-  color: #3C4C49;
-  
-}
-  
-.navbar-default .navbar-nav>li>a {
-  
-    color: #3C4C49;
+  .nav-pills>li>a {
+    
+    border-radius: 5px; 
+    line-height: 7px;
+    /* width: 100px; */
+    /* height: 40px; */
+    padding: 9px;
     border-style: solid;
-    border-color: #3C4C49;
+    border-width: thin;
+    border-color: #41B496;
+    color: #41B496; 
+    font-size: 18px;
+  }
+  
+  button.btn.radiobtn.btn-default {
+    
     border-radius: 50px;
     
-}
-  
-.navbar-brand {
-  
-  padding-left: 0;
-  
-}
+  }
   
   
-.navbar-nav li a {
-  font-size: 18px;
-
-  } 
-
-
-[data-value="About"]{ 
+  .selectize-input {
+    
+    border-radius: 50px;
+    
+  }
+  
+  .well {
+    
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    
+  }
+  
+  .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    
+    color: white;
+    background-color: #3C4C49;
+    border-radius: 50px;
+    
+  }
+  
+  .navbar-default .navbar-nav>li>a:hover{
+    
+    background-color: transparent;
+    color: #3C4C49;
+    
+  }
+    
+  .navbar-default .navbar-nav>li>a {
+    
+      color: #3C4C49;
+      border-style: solid;
+      border-color: #3C4C49;
+      border-radius: 50px;
+      
+  }
+    
+  .navbar-brand {
+    
+    padding-left: 0;
+    
+  }
+    
+    
+  .navbar-nav li a {
+    font-size: 18px;
+  
+    } 
+  
+  
+  [data-value="About"]{ 
+      position: absolute;
+      overflow: hidden;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      border-radius: 10px;
+  }  
+    
+      
+      
+  .fa.fa-info-circle {
+    
+    font-size: 14px;
+    vertical-align: super;
     position: absolute;
-    overflow: hidden;
-    top: 0px;
+    right: 10px;
+    
+  }
+  
+  
+  #intro > i {
+  
+    position: relative;
+    vertical-align: unset;
+    left: 0;
+  
+  }
+  
+  .popover {
+    
+    font-size:12px;
+    font-family: Source Sans Pro;
+    
+  }
+  
+  
+  /* ************************** */
+  /* Adding CSS switch bottom   */
+  /* ******************** */
+  
+  /* All switch */
+  .onoffswitch {
+    width: auto;
+    position: relative;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    font-family: Source Sans Pro 
+  }
+  
+  .onoffswitch-checkbox {
+    display: none;
+  }
+  
+  /* This is designe the switch */
+  .onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 1px solid #b8b7b7; border-radius: 50px;
+  }
+  
+  .onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+  }
+  
+  .onoffswitch-inner:before {
+    display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
+    font-size: 18px; color: white; font-family: Source Sans Pro;
+    box-sizing: border-box;
+  }
+  
+  .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
+    font-size: 18px; color: white; font-family: Source Sans Pro;
+    box-sizing: border-box;
+  }
+  
+  
+  /* All switch - default div class */
+  .onoffswitch-inner:before {
+    content: " ";
+    padding-left: 10px;
+  }
+  
+  .onoffswitch-inner:after {
+    content: " ";
+    padding-right: 10px;
+    text-align: right;
+  }
+  
+  /* Changing the switch*/
+  .onoffswitch-switch {
+    display: block; width: 30px; height: 24px; margin: 4.5px;
+    position: absolute; top: 0; bottom: 0;
+    border-radius: 20px;
+    transition: all 0.1s ease-in 0s; 
+    opacity: .99;
+    align-items: left;
+  }
+  
+  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
-    bottom: 0px;
-    border-radius: 10px;
-}  
+  }
+  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+  }
   
-    
-    
-.fa.fa-info-circle {
+  /* Color change */
+  /* RedGreen */
+  .RedGreen .onoffswitch-inner:before {
+    background-color: #41B496; color: #ffffff;
+  }
+  .RedGreen .onoffswitch-inner:after {
+    background-color: #3C4C49; color: #ffffff;
+  }
   
-  font-size: 14px;
-  vertical-align: super;
-  position: absolute;
-  right: 10px;
+  .RedGreen .onoffswitch-switch {
+    background:  #ffffff;
+    border: 2px solid #ffffff
+  }
   
-}
-
-
-#intro.actionButton.info-circle{
   
-  left: 10px;
-}
-.popover {
+  /* Text change */
   
-  font-size:12px;
-  font-family: Source Sans Pro;
+  /* Changing the text in the switch*/
+  /* True / False */
+  .TrueFalse .onoffswitch-inner:before {
+    content: "Fuels Grouped";
+  }
   
-}
-
-
-/* ************************** */
-/* Adding CSS switch bottom   */
-/* ******************** */
-
-/* All switch */
-.onoffswitch {
-  width: auto;
-  position: relative;
-  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-  font-family: Source Sans Pro 
-}
-
-.onoffswitch-checkbox {
-  display: none;
-}
-
-/* This is designe the switch */
-.onoffswitch-label {
-  display: block; overflow: hidden; cursor: pointer;
-  border: 1px solid #b8b7b7; border-radius: 50px;
-}
-.onoffswitch-inner {
-  display: block; width: 200%; margin-left: -100%;
-  transition: margin 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-  display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
-  font-size: 18px; color: white; font-family: Source Sans Pro;
-  box-sizing: border-box;
-}
-
-/* All switch - default div class */
-.onoffswitch-inner:before {
-  content: " ";
-  padding-left: 10px;
-}
-
-.onoffswitch-inner:after {
-  content: " ";
-  padding-right: 10px;
-  text-align: right;
-}
-
-/* Changing the switch*/
-.onoffswitch-switch {
-  display: block; width: 20px; height: 20px; margin: 6.8px;
-  position: absolute; top: 0; bottom: 0;
-  border-radius: 10px;
-  transition: all 0.1s ease-in 0s; 
-  opacity: 0.8;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-  right: 0px;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0;
-}
-
-/* Color change */
-/* RedGreen */
-.RedGreen .onoffswitch-inner:before {
-  background-color: #41B496; color: #ffffff;
-}
-.RedGreen .onoffswitch-inner:after {
-  background-color: #3C4C49; color: #ffffff;
-}
-
-.RedGreen .onoffswitch-switch {
-  background:  #ffffff;
-  border: 2px solid #ffffff
-}
-
-
-/* Text change */
-
-/* Changing the text in the switch*/
-/* True / False */
-.TrueFalse .onoffswitch-inner:before {
-  content: "Fuels Grouped";
-}
-
-.TrueFalse .onoffswitch-inner:after {
-  content: "Fuels Separately Displayed";
-}
-
-
-
-/* Text change */
-/* On / Off */
-.OnOff .onoffswitch-inner:before {
-  content: "Key Insights";
-}
-
-.OnOff .onoffswitch-inner:after {
-  content: "Assumptions";
-}
-
-
-
-
-/* Creating wrapper and box  */
-.wrapper {
-  display: grid;
-  width: auto;
-  grid-template-columns: auto auto ;
-  grid-gap: 10px;
-  background-color: #fff;
-}
-
-.box {
-  background-color: #444;
-  color: #fff;
-  border-radius: 20px;
-  padding: 20px;
-  font-size: 16px;
-}
-
-/* Setting the background colours for the boxes  */
-.box.a{
-  background-color: #00af8c;
-}
-
-.box.b{
-  background-color: #164057;
-}
+  .TrueFalse .onoffswitch-inner:after {
+    content: "Fuels Separately Displayed";
+  }
+  
+  
+  
+  /* Text change */
+  /* On / Off */
+  .OnOff .onoffswitch-inner:before {
+    content: "Key Insights";
+  }
+  
+  .OnOff .onoffswitch-inner:after {
+    content: "Assumptions";
+  }
+  
+  
+  
+  
+  /* Creating wrapper and box  */
+  .wrapper {
+    display: grid;
+    width: auto;
+    grid-template-columns: auto auto ;
+    grid-gap: 10px;
+    background-color: #fff;
+  }
+  
+  .box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 16px;
+  }
+  
+  /* Setting the background colours for the boxes  */
+  .box.a{
+    background-color: #00af8c;
+  }
+  
+  .box.b{
+    background-color: #164057;
+  }
