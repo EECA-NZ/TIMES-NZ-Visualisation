@@ -104,10 +104,14 @@ button.btn.radiobtn.btn-default {
 }
 
 
-#intro.actionButton.info-circle{
-  
-  left: 10px;
+#intro > i {
+
+  position: relative;
+  vertical-align: unset;
+  left: 0;
+
 }
+
 .popover {
   
   font-size:12px;
@@ -166,7 +170,6 @@ button.btn.radiobtn.btn-default {
   position: absolute; top: 0; bottom: 0;
   border-radius: 10px;
   transition: all 0.1s ease-in 0s; 
-  opacity: 0.8;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {

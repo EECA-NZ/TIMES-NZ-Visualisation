@@ -43,20 +43,18 @@ ui <- navbarPage(
                 The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
                 "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and sophistication to sectors, subsectors, technologies and end uses. 
                 In particular, the 2020 update of EECA’s Energy End Use Database provides a greatly improved input dataset. 
-                There are two scenarios <insert scenario names here> in TIMES-NZ 2.0.  
-                The scenarios are modelled using an integrated energy-systems model known which is based on the IEA ETSAP TIMES model.  
-                The TIMES-NZ model simultaneously represents all components of the energy system, ensuring any interdependencies are reflected.
-                ." 
+                There are two scenarios <insert scenario names here> in TIMES-NZ 2.0 ." 
                 , collapse = "\n"),
           HTML("<br><br>"),
-          actionButton(inputId = "intro", 
-                       label = HTML("Click here for a quick introduction tour"))
-                       # icon = icon("info-circle")
-                       # id = "actionButton btn-lg")
-          # align = "center"
-        )
-        
-      ),
+          div(
+            actionButton(inputId = "intro", 
+                         label = HTML("Click here for a quick introduction tour"),
+                         icon = icon("info-circle")),#,
+            # id = "actionButton btn-lg")
+            align = "center")
+          # )
+          
+        )),
       
       fluidRow(
         
