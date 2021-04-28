@@ -283,6 +283,7 @@ server <- function(input, output, session){
     introjs(session,
             options = list("nextLabel" = "Next",
                            "prevLabel" = "Previous",
+                           "skipLabel" = "Exit",
                            "doneLabel" = "Done"),
             events = list(onbeforechange = readCallback("switchTabs")#,
                           # "oncomplete"=I('alert("Done")')
