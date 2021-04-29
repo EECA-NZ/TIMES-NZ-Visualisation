@@ -283,3 +283,12 @@ button.btn.radiobtn.btn-default {
 .box.b{
   background-color: #164057;
 }
+
+
+/* Adding iframe style */
+.frame-boader {
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}

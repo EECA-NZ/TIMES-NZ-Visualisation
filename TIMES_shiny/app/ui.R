@@ -536,8 +536,13 @@ ui <- navbarPage(
                    sub-sectoral GDP forecasts for future service demand from the commercial, agriculture and industrial sectors, and population to form the basis of the residential service demand projections.
                    These results provide some insight into our future energy system, we hope you find them useful."
               , collapse = "\n"),
-        HTML("<br><br>")
-        
+        HTML("<br><br>"),
+        div(
+
+         
+        HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+        HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/HYS-0L7mods" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+        align = "center")
       ))
     
     
