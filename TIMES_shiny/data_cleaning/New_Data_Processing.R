@@ -7,7 +7,7 @@ options(scipen=999) # eliminates scientific notation
 
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
-coh_raw <- read.csv(file = "Kea-v78-2.VD",
+coh_raw <- read.csv(file = "Kea-v79.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -20,7 +20,7 @@ coh_raw <- read.csv(file = "Kea-v78-2.VD",
 
 
 
-ind_raw <- read.csv(file = "Tui-v78-2.VD",
+ind_raw <- read.csv(file = "Tui-v79.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -157,7 +157,7 @@ insight_list <- distinct(insight_df, Parameter)  %>% pull(Parameter)
 
 # Ordered attributes
 order_attr = c("Emissions","Fuel Consumption", "Demand",  "Annualised Capital Costs", "Number of Vehicles", 
-               "Distance Travelled", "Electricity Generation",   "Gross Electricity Storage" )
+               "Distance Travelled", "Electricity Generation",   "Gross Electricity Storage", "Grid Injection (from Storage)" )
 
 
 #Create the R data set for Shiny to use

@@ -599,7 +599,7 @@ server <- function(input, output, session){
       group_var = group_by(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Residential",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
-      plot_title = paste0(" Residential", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      plot_title = paste0("Residential ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
