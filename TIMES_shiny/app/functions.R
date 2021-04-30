@@ -161,6 +161,7 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
              labels = list(format ='{value}'),
              reversedStacks = FALSE
     ) %>%
+    # hc_title(text = " ") %>% 
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
                 style= list(
                   color= '#000000',
@@ -172,6 +173,11 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
     # Adding credits
     hc_credits(
       text = credit_text,
+      # Changing the position of credit
+      position = list(
+        align= 'left',
+        x = 10
+      ),
       # href = "https://www.eeca.govt.nz/",
       enabled = TRUE
     ) %>%
@@ -181,11 +187,15 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
       filename = filename ,
       buttons = list(
         contextButton = list(
+          # Changing the position of download
+          verticalAlign = 'bottom' ,
+          y = -5,
           menuItems = c("downloadPDF", "downloadCSV"),
           titleKey = "Click here to download",
           text = "  Download  ",
           theme = list(fill = '#f7f7f7', 
                        stroke = '#41B496',
+                       r = 7,
                        states = list(hover=list(fill='#41B496'), 
                        select = list(stroke='#41B496',fill ='#41B496')
                        )
@@ -214,7 +224,11 @@ generic_charts <- function(data, group_var, unit, filename, plot_title, input_ch
                       animation = list(duration=1000),
                       # Turning off markers on area stack plot
                       marker = list(enabled = FALSE),
-                      lang = list(thousandsSep= ',')))
+                      lang = list(thousandsSep= ','),
+                      navigation = list(buttonOptions = 
+                                          list(verticalAlign = 'bottom' ,
+                                               y = -20))
+                      ))
   } else {
     # Adding options for line chart
     hc <- hc %>% 
@@ -376,7 +390,12 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
     hc_credits(
       text = "TIMES-NZ 2.0",
       # href = "https://www.eeca.govt.nz/",
-      enabled = TRUE
+      enabled = TRUE,
+      # Changing the position of credit
+      position = list(
+        align= 'left',
+        x= 10
+      )
     ) %>%
     # Downloading data or image file
     hc_exporting(
@@ -384,10 +403,13 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
       filename = filename ,
       buttons = list(
         contextButton = list(
+          # Changing the position of download
+          verticalAlign = 'bottom' ,
+          y = -5,
           menuItems = c("downloadPDF", "downloadCSV"),
           titleKey = "Click here to download",
           text = "  Download  ",
-          theme = list(fill = '#f7f7f7', stroke = '#41B496',
+          theme = list(fill = '#f7f7f7', stroke = '#41B496',r = 7,
                        states = list(hover=list(fill='#41B496'), 
                                      select= list(stroke='#41B496',fill ='#41B496'))),
           symbol = ''

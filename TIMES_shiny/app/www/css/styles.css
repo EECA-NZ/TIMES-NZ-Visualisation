@@ -128,19 +128,18 @@ button.btn.radiobtn.btn-default {
 
 /* Changing the switch*/
 .onoffswitch-switch {
-  display: block; width: 30px; height: 24px; margin: 4.5px;
+  display: block; width: 30px; height: 24px; margin: 5px;
   position: absolute; top: 0; bottom: 0;
   border-radius: 20px;
   transition: all 0.1s ease-in 0s; 
   opacity: .99;
-  align-items: left;
+  align-items: left;  
 }
 
 
 .onoffswitch {
   width: auto;
   position: relative;
-  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
   font-family: Source Sans Pro 
 }
 
@@ -158,10 +157,17 @@ button.btn.radiobtn.btn-default {
   transition: margin 0.3s ease-in 0s;
 }
 
-.onoffswitch-inner:before, .onoffswitch-inner:after {
+.onoffswitch-inner:before{
   display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
   font-size: 18px; color: white; font-family: Source Sans Pro;
-  box-sizing: border-box;
+  box-sizing: border-box; padding-left: 60px;
+}
+
+
+.onoffswitch-inner:after {
+  display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
+  font-size: 18px; color: white; font-family: Source Sans Pro;
+  box-sizing: border-box; padding-left: 60px;
 }
 
 /* All switch - default div class */
@@ -169,7 +175,7 @@ button.btn.radiobtn.btn-default {
   content: " ";
   padding-left: 10px;
   /* position: absolute; */
-  z-index: -1;
+  /* z-index: -1;
   top: -8%; 
   right: -8%; 
   bottom: -8%; 
@@ -177,7 +183,7 @@ button.btn.radiobtn.btn-default {
   border-radius: inherit;
   box-shadow: 
       inset 0 2px 1px rgba(0,0,0,0.15),
-      0 2px 5px rgba(200,200,200,0.1);
+      0 2px 5px rgba(200,200,200,0.1); */
 }
 
 .onoffswitch-inner:after {
@@ -185,7 +191,7 @@ button.btn.radiobtn.btn-default {
   padding-right: 10px;
   text-align: right;
   /* position: absolute; */
-  z-index: -1;
+  /* z-index: -1;
   top: -8%; 
   right: -8%; 
   bottom: -8%; 
@@ -193,18 +199,10 @@ button.btn.radiobtn.btn-default {
   border-radius: inherit;
   box-shadow: 
       inset 0 2px 1px rgba(0,0,0,0.15),
-      0 2px 5px rgba(200,200,200,0.1);
+      0 2px 5px rgba(200,200,200,0.1); */
 }
 
-/* Changing the switch*/
-.onoffswitch-switch {
-  display: block; width: 30px; height: 24px; margin: 4.5px;
-  position: absolute; top: 0; bottom: 0;
-  border-radius: 20px;
-  transition: all 0.1s ease-in 0s; 
-  opacity: .99;
-  align-items: left;
-}
+
 
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {

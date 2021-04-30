@@ -284,7 +284,7 @@ server <- function(input, output, session){
             options = list("nextLabel" = "Next",
                            "prevLabel" = "Previous",
                            "skipLabel" = "Exit",
-                           "doneLabel" = "Done"),
+                           "doneLabel" = "Exit"),
             events = list(onbeforechange = readCallback("switchTabs")#,
                           # "oncomplete"=I('alert("Done")')
             )
