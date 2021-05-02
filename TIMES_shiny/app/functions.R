@@ -2,27 +2,45 @@
 
 
 
+########################################
+######### Highchart Options ############
+########################################
 
 # Setting language options in highchart
 hcoptslang <- getOption("highcharter.lang")
+
 # Adding thousand separator to highchart
 hcoptslang$thousandsSep <- ","
+
 # updating the language settings
 options(highcharter.lang = hcoptslang)
 
-# Get max y from current filters
+
+########################################
+#########  Functions NEEDED  ###########
+########################################
+
+# Get max y from current filters (for the generic plotting function)
 get_max_y <- function(data, group_var, input_chart_type){
   
   total_by_grp <- data %>% 
-    group_by(!!sym(group_var), Period, scen) %>%  
-    summarise(Value = sum(Value), .groups = "drop") %>% 
-    ungroup()
-  
+      
+      group_by(!!sym(group_var), Period, scen) %>%  
+      
+      summarise(Value = sum(Value), .groups = "drop") %>% 
+      
+      ungroup()
+  # Extracting the periods
   total_by_period <- data %>% 
+    
     group_by(Period, scen) %>%  
+    
     summarise(Value = sum(Value), .groups = "drop") %>% 
+    
     ungroup()
   
+  
+  # Conditions to skip around percentage plots
   if(input_chart_type == "column_percent"){
     
     max_val <- 100
@@ -42,193 +60,301 @@ get_max_y <- function(data, group_var, input_chart_type){
 }
 
 
+# # Get max y from current filters (for the assumption plotting function)
+# get_max_y_assumptions <- function(data, group_var, input_chart_type){
+#   
+#   total <- data %>% 
+#     filter(Parameter == group_var) %>% 
+#     group_by(Period) %>% 
+#     summarise(Value = sum(Value)) %>% 
+#     ungroup()
+#   
+#   total_by_scenario <- data %>% 
+#     filter(Parameter == group_var)
+#   
+#   if(input_chart_type == "column_percent"){
+#     
+#     max_val <- 100
+#     
+#   } else if(input_chart_type %in% c("column", "area")) {
+#     
+#     max_val <- max(total$Value)
+#     
+#   } else {
+#     
+#     max_val <- max(total_by_scenario$Value)
+#     
+#   }
+#   
+#   return(max_val)
+#   
+# }
 
-get_max_y_assumptions <- function(data, group_var, input_chart_type){
-  
-  total <- data %>% 
-    filter(Parameter == group_var) %>% 
-    group_by(Period) %>% 
-    summarise(Value = sum(Value)) %>% 
-    ungroup()
-  
-  total_by_scenario <- data %>% 
-    filter(Parameter == group_var)
-  
-  if(input_chart_type == "column_percent"){
-    
-    max_val <- 100
-    
-  } else if(input_chart_type %in% c("column", "area")) {
-    
-    max_val <- max(total$Value)
-    
-  } else {
-    
-    max_val <- max(total_by_scenario$Value)
-    
-  }
-  
-  return(max_val)
-  
-}
 
 
 
+########################################
+######### Highchart Options ############
+########################################
 
 # Plotting theme to use
 my_theme <-  hc_theme(
-  chart = list(style = list(
-    fontFamily = "Source Sans Pro",
-    color= '#666666'
+  
+  chart = list(
+    # Setting the fonts used
+    style = list(
+      
+    fontFamily = "Source Sans Pro",   # Font style used 
+    
+    color= '#666666'                  # Font color used 
+    
   )))
 
 
-# Plotting function
-generic_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y, credit_text) {
+# Generic Plotting function
+generic_charts <- function(data,             # The filtered data 
+                           group_var,        # The stacking (fill-by) variable
+                           unit,             # Metric selected 
+                           filename,         # Download name
+                           plot_title,       # Plot title
+                           input_chart_type, # Type of plot 
+                           max_y,            # Maximum y value
+                           credit_text       # 
+                           ) {
   
+  # Conditions for percentage plots
   if (input_chart_type == "column_percent") {
     
-    chart_type <-"column"
-    stacking_type <- "percent"
-    Y_label <- "Percent"
+    chart_type    <- "column"    # Setting the plot type 
+    
+    stacking_type <- "percent"   # Setting the stacking type
+    
+    Y_label       <- "Percent"   # Setting the Y-label
     
   } else {
     
-    chart_type <-input_chart_type
-    stacking_type <- "normal"
-    Y_label <-  unit
+    chart_type    <- input_chart_type   # Setting the plot type 
+    
+    stacking_type <- "normal"           # Setting the stacking type
+    
+    Y_label       <-  unit              # Setting the Y-label
     
   }
   
-  total_by_year <- data %>% 
-    group_by(Period) %>% 
-    summarise(Value = sum(Value)) %>% 
-    ungroup() 
   
-  data <- data %>% 
-    group_by(!!sym(group_var), Period) %>%  
-    summarise(Value = sum(Value), .groups = "drop") %>% 
-    arrange(desc(Value)) %>%
-    mutate(Value = signif(Value,3)) %>% 
-    ungroup() %>% 
+  # Data processing
+  data <- data %>%                          # Filtered data 
+    
+    group_by(!!sym(group_var), Period) %>%  # Group fill-by and period 
+    
+    summarise(Value   = sum(Value), 
+              .groups = "drop") %>%         # Sum up period value 
+    
+    # This helps to sort chart by value
+    arrange(desc(Value)) %>%                # Sorting value 
+    
+    mutate(Value = signif(Value,3)) %>%     # Apply 3 significant values
+    
+    ungroup() %>%                           # Remove grouping
+    
+    # Generate pivot table / Summary table 
     pivot_wider(
-      names_from = {{group_var}}, values_from = Value, 
-      values_fn = sum, values_fill = 0
+      
+      names_from = {{group_var}},           
+      
+      values_from = Value,                  # The values to use 
+      
+      values_fn = sum,                      # Use the sum function 
+      
+      values_fill = 0                       # Setting zero if NULL
+      
     ) %>%
-    arrange(Period) %>%
-    as.data.frame() 
+    
+    arrange(Period) %>%                     # Arrange the period
+    
+    as.data.frame()                         # Convert to data-frame
   
+  
+  # Extracting the grouped by value 
   measure_columns <- names(data)[-1]
+  
+  # Extracting the periods
   categories_column <- names(data)[1]
   
   
+  # Generating the data-list for highchart series 
   data_list <- map(1:length(measure_columns), function(x) {
     
     list(data = data[, x + 1], 
          
+         # Setting the series name
          name = names(data)[x + 1], 
          
-         marker = list(symbol=  schema_colors %>% 
-                                filter(Fuel == names(data)[x + 1]) %>% 
-                                pull(Symbol)),
+         # Setting marker/symbol
+         marker = 
+           
+           list(symbol =  schema_colors %>% 
+                        
+                        # Extracting the symbol from the color-schema    
+                        filter(Fuel == names(data)[x + 1]) %>% 
+                      
+                        pull(Symbol)),
+         
+         # Setting the color hex code
          color = schema_colors %>% 
-           filter(Fuel ==names(data)[x + 1]) %>% 
-           pull(Colors)
+           
+                     # Extracting the color from the color-schema 
+                     filter(Fuel == names(data)[x + 1]) %>% 
+                     
+                     pull(Colors)
     )
   })
-  # data_list <- map(1:length(measure_columns), function(x) {
-  #   list(data = data[, x + 1], name = names(data)[x + 1])
-  # })
+
+
   
-  # # Extracting the needed colors from the color scheme
-  # cols <- schema_colors[order(schema_colors$Fuel),] %>%  
-  #   filter(Fuel %in% measure_columns) %>% 
-  #   select(Colors) %>% 
-  #   as.data.frame()
-  
+  # Highchart 
   hc <- highchart() %>%
-    hc_chart(type = chart_type,
-             # Added a zoom buttom
-             zoomType ='xy' ,
-             # Font type
-             style = list(fontFamily = "Source Sans Pro",
-                          fontSize='15px') ) %>%
-    hc_add_series_list(data_list) %>% 
+    
+    hc_chart(
+             type = chart_type, # Setting the type of plot
+             
+             zoomType ='xy' ,  # Added a zoom option
+             
+             # Setting the style  
+             style = list(
+                          fontFamily = "Source Sans Pro", # Font type
+                          
+                          fontSize='15px'                 # Font size
+                          
+                          ) ) %>%
+    
+    # Adding the data series created
+    # The color and marker are added in the data_list
+    hc_add_series_list(data_list) %>%  
+    
+    # Turn off reversed legend
     hc_legend(reversed = FALSE) %>%
+    
+    # Add categories for the x-axis 
     hc_xAxis(categories = sort(unique(data$Period))) %>%
-    hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
-             # Keep values and remove and notations
-             labels = list(format ='{value}'),
-             reversedStacks = FALSE
+    
+    # Adding the Y axis options
+    hc_yAxis(
+          title = list(text = Y_label),   # Adding Label text
+          
+          max = max_y,                    # Setting the y max value
+          
+          min = 0,                        # Setting the y min value 
+          
+          # Keep values and remove and notations
+          labels = list(format ='{value}'),
+          
+          # The keeps the stacked plot in a sorted order (Small values on top)
+          reversedStacks = FALSE
+          
     ) %>%
-    # hc_title(text = " ") %>% 
+
+    
+    # Adding the title (The subtitle was used instead of "title")
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
-                style= list(
-                  color= '#000000',
-                  fontSize='16px'
-                  # fontWeight: 'bold'
+                
+                style = list(
+                  
+                  color = '#000000',       # Color 
+                  
+                  fontSize ='16px'         # Font size
+                  
+                  # fontWeight = 'bold'    # To use bold font
+                  
                 )) %>% 
-    # Adding colors to plot 
-    # hc_colors(colors =  cols$Colors) %>% 
+    
+
     # Adding credits
     hc_credits(
-      text = credit_text,
+      
+      text = credit_text,                 # The credit text
+      
       # Changing the position of credit
       position = list(
-        align= 'left',
-        x = 10
-      ),
-      # href = "https://www.eeca.govt.nz/",
-      enabled = TRUE
+              
+              align= 'left',              # Keeping text left 
+              
+              x = 10                      # Padding in the x direction
+            ),
+      # href = "https://www.eeca.govt.nz/", # Reference the text
+      
+      enabled = TRUE                      # Show the credit
+      
     ) %>%
+    
     # Downloading data or image file
     hc_exporting(
-      enabled = TRUE,
-      filename = filename ,
+      
+      enabled = TRUE,                    # Allow download option
+      
+      filename = filename ,              # Setting the file name
+      
+      # Designing the download button
       buttons = list(
+        
         contextButton = list(
+          
           # Changing the position of download
-          verticalAlign = 'bottom' ,
-          y = -5,
-          menuItems = c("downloadPDF", "downloadCSV"),
-          titleKey = "Click here to download",
-          text = "  Download  ",
-          theme = list(fill = '#f7f7f7', 
-                       stroke = '#41B496',
-                       r = 7,
-                       states = list(hover=list(fill='#41B496'), 
-                       select = list(stroke='#41B496',fill ='#41B496')
+          verticalAlign = 'bottom' ,     # Keeping the button at the bottom 
+          
+          y = -5,                        # Padding in the y direction
+          
+          menuItems = c("downloadPDF", "downloadCSV"), # List to download
+          
+          titleKey = "Click here to download",  # Key title
+          
+          text = "  Download  ",         # The text in the button
+          
+          # Setting the them for the download button 
+          theme = list(
+                       fill = '#f7f7f7',     # The fill color
+                       
+                       stroke = '#41B496',   # The bars around the text
+                       
+                       r = 7,                # Adding a curve around the button 
+                       
+                       states = list(hover=list(fill='#41B496'), # Hover color'
+                                     
+                       select = list(stroke='#41B496',
+                                     fill ='#41B496')            # Select color
+                       
                        )
                        ),
-          symbol = ''
+          symbol = ''                       # Use a null symbol
         )
       ),
-      menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
-                                 downloadCSV = list(text = "Download data"))
+      
+      # Defining the selected download options
+      menuItemDefinitions = list(
+                          downloadPDF = list(text = "Download image"),
+                                 
+                          downloadCSV = list(text = "Download data"))
     ) %>% 
-    # # Adding a caption
-    # hc_caption(
-    #   text = caption_text, 
-    #   useHTML = TRUE
-    # ) %>% 
+
     # Adding theme 
     hc_add_theme(my_theme) 
-  # %>% 
-  #   # Set the tooltip to three decimal places
-  #   hc_tooltip(valueDecimals=2) 
+
   
+  # Setting unique options for non-line chart
   if(chart_type != "line"){
     hc <- hc %>% 
       hc_plotOptions(
-        series = list(stacking = as.character(stacking_type),
-                      animation = list(duration=1000),
-                      # Turning off markers on area stack plot
-                      marker = list(enabled = FALSE),
-                      lang = list(thousandsSep= ','),
-                      navigation = list(buttonOptions = 
-                                          list(verticalAlign = 'bottom' ,
-                                               y = -20))
-                      ))
+        series = list(
+          
+                stacking = as.character(stacking_type), # Stacking type
+                
+                animation = list(duration=1000),        # Animation duration
+                
+                # Turning off markers on area stack plot
+                marker = list(enabled = FALSE),         # Turing off markers 
+                
+                lang = list(thousandsSep= ',')          # Setting 
+                ))
   } else {
     # Adding options for line chart
     hc <- hc %>% 
@@ -366,7 +492,7 @@ assumption_charts <- function(data, group_var, unit, filename, plot_title, input
   
   hc <- highchart() %>%
     hc_chart(type = chart_type,
-             # Added a zoom buttom
+             # Added a zoom button
              zoomType ='xy' ,
              # Font type
              style = list(fontFamily = "Source Sans Pro",
