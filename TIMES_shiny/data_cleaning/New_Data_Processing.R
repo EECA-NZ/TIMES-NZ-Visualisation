@@ -54,6 +54,7 @@ caption_list <- read_xlsx("Caption_Table.xlsx")
 # schema_unit   <- read_xlsx("Schema_unit.xlsx") 
 
 needed_attributes <- c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut")
+non_emission_fuel <- c("Electricity", "Wood",  "Hydrogen")
 
 # # These are Commodities used for analysis 
 # needed_Commodities <- c("AGRELC", "AGRPET", "AGRDSL", "AGRFOL", "AGRCOA", "AGRNGA", 
@@ -84,6 +85,8 @@ clean_df <- raw_df %>%
           filter(
                 Attribute %in% needed_attributes
                  ) %>%
+          # Setting Emission values to zero for  non emission fuel ("Electricity", "Wood",  "Hydrogen")
+          mutate(Value = ifelse(Fuel %in% non_emission_fuel &  Parameters == 'Emissions', 0,Value) ) %>% 
           # complete data for all period by padding zeros
           complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, FuelGroup),fill = list(Value = 0)) %>% 
           # Change Electricity to Other

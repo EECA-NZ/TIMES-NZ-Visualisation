@@ -244,7 +244,7 @@ generic_charts <- function(data,             # The filtered data
           
           max = max_y,                    # Setting the y max value
           
-          min = 0,                        # Setting the y min value 
+          min = NULL,                        # Setting the y min value 
           
           # Keep values and remove and notations
           labels = list(format ='{value}'),

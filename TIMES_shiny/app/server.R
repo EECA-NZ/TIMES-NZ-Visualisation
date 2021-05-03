@@ -315,8 +315,20 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
+    # Selecting "All Transport Subsectors"
+    if (input$subsector == "All Subsectors") {
+      
+      select_sector = "All Transport Subsectors"
+      
+    } else{
+      
+      select_sector = input$subsector
+      
+    }
+      
+    
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(Subsector == select_sector) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -327,8 +339,20 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
+    # Selecting "All Industry  Subsectors"
+    if (input$subsector == "All Subsectors") {
+      
+      select_sector = "All Industry Subsectors"
+      
+    } else{
+      
+      select_sector = input$subsector
+      
+    }
+    
+    
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(Subsector == select_sector) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -339,8 +363,20 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
+    # Selecting "All Commercial Subsectors"
+    if (input$subsector == "All Subsectors") {
+      
+      select_sector = "All Commercial Subsectors"
+      
+    } else{
+      
+      select_sector = input$subsector
+      
+    }
+    
+    
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(Subsector == select_sector) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -351,8 +387,20 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
+    # Selecting "All Residential Subsectors"
+    if (input$subsector == "All Subsectors") {
+      
+      select_sector = "All Residential Subsectors"
+      
+    } else{
+      
+      select_sector = input$subsector
+      
+    }
+    
+    
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(Subsector == select_sector) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -363,8 +411,20 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
+    # Selecting "All Agriculture Subsectors"
+    if (input$subsector == "All Subsectors") {
+      
+      select_sector = "All Agriculture Subsectors"
+      
+    } else{
+      
+      select_sector = input$subsector
+      
+    }
+    
+    
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(Subsector == select_sector) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -375,8 +435,20 @@ server <- function(input, output, session){
     
     req(input$subsector)
     
+    # Selecting "All Other Subsectors"
+    if (input$subsector == "All Subsectors") {
+      
+      select_sector = "All Other Subsectors"
+      
+    } else{
+      
+      select_sector = input$subsector
+      
+    }
+    
+    
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(Subsector == select_sector) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
