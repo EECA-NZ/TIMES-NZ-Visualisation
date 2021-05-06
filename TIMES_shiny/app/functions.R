@@ -20,11 +20,12 @@ options(highcharter.lang = hcoptslang)
 #########  Functions NEEDED  ###########
 ########################################
 
-# Get max y from current filters (for the generic plotting function)
+# Function to get max y from current filters (for the generic plotting function)
 get_max_y <- function(data, group_var, input_chart_type){
   
   total_by_grp <- data %>% 
       
+      # !!sym is used to call the group_var as a string
       group_by(!!sym(group_var), Period, scen) %>%  
       
       summarise(Value = sum(Value), .groups = "drop") %>% 
@@ -61,6 +62,7 @@ get_max_y <- function(data, group_var, input_chart_type){
 
 
 # # Get max y from current filters (for the assumption plotting function)
+# Currently not needed since we don't limit the max value
 # get_max_y_assumptions <- function(data, group_var, input_chart_type){
 #   
 #   total <- data %>% 
@@ -145,6 +147,7 @@ generic_charts <- function(data,             # The filtered data
   # Data processing
   data <- data %>%                          # Filtered data 
     
+    # !!sym is used to call the group_var as a string
     group_by(!!sym(group_var), Period) %>%  # Group fill-by and period 
     
     summarise(Value   = sum(Value), 
@@ -264,7 +267,7 @@ generic_charts <- function(data,             # The filtered data
                   
                   fontSize ='16px'         # Font size
                   
-                  # fontWeight = 'bold'    # To use bold font
+                  # fontWeight = 'bold'    # For bold font
                   
                 )) %>% 
     
@@ -353,16 +356,20 @@ generic_charts <- function(data,             # The filtered data
                 # Turning off markers on area stack plot
                 marker = list(enabled = FALSE),         # Turing off markers 
                 
-                lang = list(thousandsSep= ',')          # Setting 
+                lang = list(thousandsSep= ',')          # Setting thousand sep
                 ))
   } else {
+    
     # Adding options for line chart
     hc <- hc %>% 
       hc_plotOptions(
         series = list(animation = list(duration=2000),
                       # Setting the size of the markers
                       marker = list(radius= 2.5)#,
+                      
                       # Adding label at the end of line
+                      # Not needed now but uncomment to implement this if needed
+                      
                       # dataLabels = list(
                       #   enabled= TRUE,
                       #   # crop= FALSE,
@@ -379,57 +386,63 @@ generic_charts <- function(data,             # The filtered data
                       #         return this.series.name;
                       #         }
                       #   }"))
-                      # This turns animation off
+                      
+                      # This turns animation off (Uncomment to implement this)
                       # animation = FALSE,
         )) 
-      # %>% 
-      # hc_legend(enabled= FALSE)
+
     
   }
   
+  # Options for column percent chart
   if (input_chart_type == "column_percent") {
+    
     hc <- hc %>%
+      
+      # Showing the percentage and value in the tooltip
       hc_tooltip(
-        pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'#,
-        # shared = TRUE
-      ) 
+        
+        pointFormat = '<span style="color={series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>'
+      
+        ) 
     
   }
   
+  
+  # Options for column chart
   if (input_chart_type == "column") {
     
-    # hc <- hc %>% 
-    #   hc_add_series(
-    #   data = total_by_year,
-    #   hcaes(x = as.factor(Period), y = Value),
-    #   type = "scatter",
-    #   name = "Column total:",
-    #   showInLegend = FALSE
-    # ) 
-    # %>% 
-    #   hc_plotOptions(scatter = list(
-    #     color = "#000000",
-    #     # visible = TRUE,
-    #     tooltip = list(pointFormat = '<span style="color={series.color}"></span> <b>{point.total:.1f}</b><br/>'
-    #   )))
-    
     hc <- hc %>%
+      
+      # Adding 
       hc_tooltip(
-        footerFormat = 'Column total: <b>{point.total:,.4f} </b>'#,
-        # shared = TRUE
+        
+        # Adding total column value to tooltip
+        footerFormat = 'Column total: <b>{point.total:,.4f} </b>'
+        
       )
-  #     hc_yAxis(stackLabels = list(enabled = TRUE, format = '{total:.0f}'))
-  #   
   }
   
+  # This returns the plotting object
   return(hc)
   
 }
 
 
 
-# Plotting function
-assumption_charts <- function(data, group_var, unit, filename, plot_title, input_chart_type, max_y) {
+
+
+# Plotting function assumption 
+# This follows the same structure as the generic plotting function.
+
+assumption_charts <- function(data,             # The filtered data 
+                              group_var,        # The stacking (fill-by) variable
+                              unit,             # Metric selected 
+                              filename,         # Download name
+                              plot_title,       # Plot title
+                              input_chart_type, # Type of plot 
+                              max_y             # Maximum y value
+                          ) {
   
   if (input_chart_type == "column_percent") {
     

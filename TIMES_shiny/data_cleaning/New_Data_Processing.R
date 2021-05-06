@@ -54,24 +54,9 @@ caption_list <- read_xlsx("Caption_Table.xlsx")
 # schema_unit   <- read_xlsx("Schema_unit.xlsx") 
 
 needed_attributes <- c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut")
-non_emission_fuel <- c("Electricity", "Wood",  "Hydrogen")
 
-# # These are Commodities used for analysis 
-# needed_Commodities <- c("AGRELC", "AGRPET", "AGRDSL", "AGRFOL", "AGRCOA", "AGRNGA", 
-#             "AGRGEO", "AGRLPG", "COMELC", "COMDSL", "COMPET", "COMCOA", 
-#             "COMFOL", "COMNGA", "COMGEO", "COMLPG", "INDELC", "INDNGA", 
-#             "INDFOL", "INDDSL", "OILWST", "INDCOA", "INDGEO", "INDLPG", 
-#             "ELCCOA", "ELCNGA", "ELCWOD", "FOL", "JET", "COA", "GEO", 
-#             "NGA", "WOD", "BDSL", "BIG", "ELCD", "ELCDD", "INDWOD", "INDBIG", 
-#             "INDPET", "RESELC", "RESLPG", "RESNGA", "RESCOA", "RESDSL", "RESWOD", 
-#             "RESGEO", "RESSOL", "AGRWST", "OILI", "TRAELC", "TRAPET", "TRADSL", 
-#             "TRALPG", "TRAFOL", "TRAJET", "MNCWST", "INDOSWOD", "ELCBIG", 
-#             "RESPET", "AGRWOD", "COMBIG", "H2R", "AGRH2R", 
-#             "COMH2R", "ELCGEO", "ELCHYD", "ELCSOL", "ELCWIN", 
-#             "HYD", "WIN", "DIJ", "DID", "AGRCO2", "COMCO2", 
-#             "INDCO2", "TOTCO2", "ELCCO2", "GASCO2", "RESCO2", 
-#             "REFCO2", "TRACO2", "ELCOIL", "H2D", "ANMMNR", "ELCBIL", 
-#             "LNG", "TRAH2R", "ELCCOL", "COMPLT", "PLT", "COMWOD", "ACT", "-")
+non_emission_fuel <- c("Electricity", "Wood", "Hydrogen", "Hydro", "Wind", "Solar", "Biogas")
+
 
 # Merge all data ---------------------------------------------------------------
 
@@ -109,14 +94,88 @@ clean_df <- raw_df %>%
           # Removed all Annualised Capital Costs and Technology Capacity
           filter(Parameters != "Annualised Capital Costs", Parameters != "Technology Capacity") %>% 
           # Replace any NAs in the dataset with missing
-          mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
+          mutate(across(where(is.character), ~ifelse(is.na(.), "", .))) 
 
 
-# # Add colors form the color schema
-# combined_df <- inner_join(clean_df,schema_colors,by = c("Fuel")) 
 
 
-combined_df <- clean_df
+# Calculating the new heating and cooling values
+
+
+# Filter out the cooling values
+Cool_Var1 <- clean_df %>% 
+          filter(
+            Subsector  == "Detached Dwellings" & 
+            Parameters == "Fuel Consumption"  &
+            Technology == "Heat Pump (Multi-Split)" & 
+            Enduse     == "Space Cooling" 
+                      )
+# Filter out the cooling values to multiple
+Cool_Multiple_Var <- clean_df %>%  
+                  filter(
+                    Subsector  == "Detached Dwellings" &
+                    Parameters == "Demand" & 
+                    Technology == "Heat Pump (Multi-Split)" &
+                    Enduse     == "Space Cooling"
+                    ) 
+
+
+# Filter out the heating values to multiple
+Heat_Var1 <- clean_df %>% 
+                  filter(
+                    Subsector  == "Detached Dwellings" & 
+                      Parameters == "Fuel Consumption"  &
+                      Technology == "Heat Pump (Multi-Split)" & 
+                      Enduse     == "Space Heating" 
+                  )
+
+
+# Filter out the heating values to multiple
+Heat_Multiple_Var <- clean_df %>%  
+                  filter(
+                    Subsector  == "Detached Dwellings" &
+                      Parameters == "Demand" & 
+                      Technology == "Heat Pump (Multi-Split)" &
+                      Enduse     == "Space Heating"
+                  ) 
+
+
+# Filter out the values to divide
+divide_df <- clean_df %>% 
+                  filter(
+                    Subsector  == "Detached Dwellings" &
+                    Parameters  == "Demand" & 
+                    Technology == "Heat Pump (Multi-Split)"
+                  ) %>% group_by(scen, Sector, Subsector,  Technology, 
+                                 Unit, Parameters,Fuel, Period, FuelGroup) %>% 
+                    summarise(Value = sum(Value), .groups = "drop") 
+
+
+# Creating the new cooling
+new_cooling <- Cool_Var1 %>% 
+          mutate(Value = (Cool_Var1$Value * Cool_Multiple_Var$Value)/divide_df$Value )
+
+# Creating the new heating
+new_heating <-  Heat_Var1 %>% 
+          mutate(Value = (Heat_Var1$Value * Heat_Multiple_Var$Value)/divide_df$Value )
+
+
+# Replacing all NaN with 0
+new_cooling[is.na(new_cooling)] <- 0
+new_heating[is.na(new_heating)] <- 0
+
+# Adding all the needed new data set
+combined_df <- rbind(clean_df %>%
+                       
+                     # Filter out the duplicated cooling and heating 
+                     filter(!(
+                            Parameters == "Fuel Consumption"  &
+                            Technology == "Heat Pump (Multi-Split)")
+                        ),    
+                     # Adding the new data
+                     new_cooling, # new cooling
+                     new_heating  # new heating
+                     )
 
 
 # 

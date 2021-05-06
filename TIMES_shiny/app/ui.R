@@ -1,4 +1,10 @@
 # Load libraries
+# These are the libraries needed for the App. 
+# All the these libraries and depended packages are archived in the environment
+# To restore the the archived libraries one needs to run the line below
+#  renv::restore()
+
+
 library(shiny)
 library(shinyBS)
 library(bslib)
@@ -8,7 +14,6 @@ library(highcharter)
 library(tidyverse)
 library(readr)
 library(stringr)
-library(stringi) # Only used for the placeholder text (i.e. stri_rand_lipsum()). Can be removed later.
 library(shinyWidgets) # For the fancy radio buttons
 library(shinyhelper)
 library(rintrojs) # Needed for the introductory tour
@@ -16,144 +21,140 @@ library(rintrojs) # Needed for the introductory tour
 # Source script that loads data
 ## This is where the .rda file is loaded (and where the hierarchy dataframe is created)
 source("data/load_data.R")
+
 # Load the plot functions 
 source("functions.R")
+
+
 
 # Start of the user interface code
 ui <- navbarPage(
   
+  # Page title. Currently set to black since it is not needed
   title = "",
   
-  
-  # title = "EECA",
-  # theme = bs_theme(version = 4, bootswatch = "litera"),
+
+  # USing the readable theme
   theme = shinytheme("readable"),
   
-  # Background tab
+  #########################################
+  ############# Background tab ############
+  #########################################
   tabPanel(
     
+    # Title of the tab
     "Overview",
     
+    # Defining the background content
     fluidRow(
       
       column(
+        
         width = 12,
+        
         h3("Background"),
-        paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios. 
-                The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
-              "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and sophistication to sectors, subsectors, technologies and end uses. 
-                In particular, the 2020 update of EECA’s Energy End Use Database provides a greatly improved input dataset. 
-                There are two scenarios <insert scenario names here> in TIMES-NZ 2.0 ." 
+        
+        # The tgext in the back ground
+        paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key 
+              model outputs and assumptions for the latest TIMES-NZ scenarios. 
+              The TIMES-NZ project grew out of BEC2060, an exploration of possible 
+              energy futures based on contrasted scenarios. The latest iteration 
+              of TIMES-NZ builds on the BEC2060 work, and has been developed in 
+              partnership between EECA, BEC and PSI adding more detail 
+              and sophistication to sectors, subsectors, technologies and end uses. 
+              In particular, the 2020 update of EECA’s Energy End Use Database
+              provides a greatly improved input dataset. 
+              There are two scenarios <insert scenario names here> in TIMES-NZ 2.0 ." 
+              
               , collapse = "\n"),
+        
+        # Adding the introduction tour button 
         HTML("<br><br>"),
+        
         div(
           actionButton(inputId = "intro", 
+                       
                        label = HTML("Click here for a quick introduction tour"),
-                       icon = icon("info-circle")),#,
-          # id = "actionButton btn-lg")
-          align = "center")
-        # )
-        
+                       
+                       icon = icon("info-circle")),
+
+                        align = "center")
+
       )),
     
+    
+    # Adding the Energy System Scenarios row
     fluidRow(
       
       column(
+        
         width = 12,
+        
         h3("TIMES-NZ 2.0 Energy System Scenarios"),
+        
         # Adding Kea and Tui comment 
         HTML("<div class='wrapper'>
                 
-                <div class='box a'><strong>Kea </strong>represents a future in which climate change is seen as the most pressing issue. 
-                A broad economic transformation is pursued by New Zealand society and government, 
-                deliberately choosing to be a global leader in the pursuit of a low-emissions society.</div>
-               
-                
-                <div class='box b'><strong>Tui </strong>represents a future in which global communities,
-                businesses and governments believe that climate change is only one of several competing priorities.</div>
-                </div>"
-             
+        <div class='box a'><strong>Kea </strong>represents a future in which 
+        climate change is seen as the most pressing issue. A broad economic 
+        transformation is pursued by New Zealand society and government, 
+        deliberately choosing to be a global leader in the pursuit of a 
+        low-emissions society.</div>
+       
+        
+        <div class='box b'><strong>Tui </strong>represents a future in which 
+        global communities, businesses and governments believe that climate 
+        change is only one of several competing priorities.</div>
+        </div>"
+     
              
         )
       )
       
-      # )
       
     ),
     
+    
+    # Adding the Assumption and Key insight plots
     fluidRow(
       
       column(
         
         width = 12,
-        # offset = 1, # centering the plot
-        
-        
-        
-        
+
         HTML("<br><br><br>"),
         
-        # HTML("<div data-v-6cbd4e52='' class='bbc-view-toggle active-residential'><div id='toggle'></div><div class='toggle-pill active'><span 
-        # class='normal-copy'>For home</span><span class='takeover-copy'>Home</span></div><div 
-        # class='toggle-pill business-pill'><span class='normal-copy'>For business</span><span class='takeover-copy'>Business</span></div></div>"),
-        # # div(div('data-v-6cbd4e52'='',
-        # #     class='bbc-view-toggle active-residential',
-        # #     id="toggle"),
-        # #       div(class="toggle-pill active",
-        # #           class="normal-copy">For home</span><span class="takeover-copy">Home</span></div>
-        # #       <div class="toggle-pill business-pill"><span class="normal-copy">For business</span><span class="takeover-copy">Business</span>))
-        # 
-        # 
-        #         # This is the switch for showing/not showing the assumptions plot. Defaults to FALSE.
-        #         conditionalPanel(condition = "input.showAssumptions == 0", helpText("Show assumptions")),
-        #         conditionalPanel(condition = "input.showAssumptions == 1", helpText("Hide assumptions")),
-        #         prettySwitch("showAssumptions", "", value = FALSE, status = "success"),
-        # 
-        #         # This next panel only shows when the showAssumptions switch is clicked (i.e. it becomes TRUE)
-        #         conditionalPanel(
-        # 
-        #           # This is the condition that must be satisfied for this panel to be shown. 1 is the same as TRUE in this case.
-        #           condition = "input.showAssumptions == 1",
-        # 
-        #           # Below here is what gets shown when the condition is met.
-        
+        # Adding a sidebar for selection
         sidebarLayout(
           
           sidebarPanel = sidebarPanel(
             
             width = 3,
             
-            # radioGroupButtons(
-            #   inputId = "chart_type_assumptions",
-            #   label = NULL,
-            #   individual = TRUE,
-            #   choices = c(
-            #     `<i class='fa fa-line-chart'></i>` = "line",
-            #     `<i class='fa fa-bar-chart'></i>` = "column",
-            #     `<i class='fa fa-area-chart'></i>` = "area",
-            #     `<i class='fa fa-percent'></i>` = "column_percent"
-            #   )
-            # ),
-            # Adding switch 
+            # Adding switch button
             # Adding an introduction tour
             introBox(data.step = 1, data.intro = intro$text[1],
+                     
+                     # Used spa to add tooltip info
                      span(switchButton(inputId = "Insght_Switch",
+                                       
                                        label = NULL, 
+                                       
                                        value = TRUE, col = "RG", type = "OO"),
+                          
+                          
+                          # Tooltip info 
                           title="Switch to show Key Insight or Assumptions")),
             
             
+            # Adding the dropbox 
             span(uiOutput("Assumption_drop_downs"), 
+                 
                  title="Dropdown for selecting Parameter")
-            # conditionalPanel(condition = "input$Insght_Switch == 'NO'", 
-            #                  selectInput("assumptions", label = NULL, 
-            #                              choices = assumptions_list)),
-            # conditionalPanel(condition = "input$Insght_Switch == 'OFF'", 
-            #                  selectInput("insight", label = NULL, 
-            #                              choices = insight_list))
             
           ),
           
+          # Adding the key insight and assumtption plot 
           mainPanel = mainPanel(
             
             width = 9,
@@ -178,90 +179,110 @@ ui <- navbarPage(
     
   ),
   
-  # Data Explorer tab
+  
+  #########################################
+  ########## Data Explorer tab ############
+  #########################################
   tabPanel(
     
     "Data Explorer",
     
-    # The sidebarLayout is a specific built-in layout type which takes two arguments: a sidebarPanel and a mainPanel.
+    # The sidebarLayout is a specific built-in layout type which takes 
+    # two arguments: a sidebarPanel and a mainPanel.
+    
+    
     sidebarLayout(
       
+      # Creating the chart type selection
       sidebarPanel = sidebarPanel(
         
         width = 3,
+        
         introBox(data.step = 2, data.intro = intro$text[2],
+                 
+                 # These are the buttons used
                  radioGroupButtons(
+                   
                    inputId = "chart_type",
+                   
                    label = NULL,
+                   
                    individual = TRUE,
+                   
                    choices = c(
-                     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                     `<i class='fa fa-bar-chart'></i>` = "column",
-                     `<i class='fa fa-area-chart'></i>` = "area" ,
-                     `<i class='fa fa-percent'></i>` = "column_percent"
+                   `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+                   `<i class='fa fa-bar-chart'></i>` = "column",
+                   `<i class='fa fa-area-chart'></i>` = "area" ,
+                   `<i class='fa fa-percent'></i>` = "column_percent"
                    )
+                   
                  )),
         
-        # Intro for fuel switch
+        # Adding intro-tour for fuel switch
         introBox(data.step = 3, data.intro = intro$text[3],
                  # Adding switch 
                  span(switchButton(inputId = "Fuel_Switch",
+                                   
                                    label = NULL, 
+                                   
                                    value = TRUE, col = "RG", type = "TF"),
-                      title="Toggle to show fuels grouped by either Renewables and Fossil Fuels, or all fuels separately displayed (eg, Electricity, Coal, Solar etc)"
+                      
+                      title="Toggle to show fuels grouped by either Renewables 
+                            and Fossil Fuels, or all fuels separately displayed 
+                            (eg, Electricity, Coal, Solar etc)"
                  )),
         
-        # Intro for drilldowns
+        # Intro-tour for drilldowns
         introBox(data.step = 4, data.intro = intro$text[4],
                  
-                 # This is where the drop downs are inserted in to the UI. They are created dynamically on the server side.       
+                 # This is where the drop downs are inserted in to the UI. 
+                 # They are created dynamically on the server side.  
+                 # The metric dropdown is added separately 
                  uiOutput("drop_downs")),
         
         
-        # Intro for Metric
+        # Intro-tour for Metric
         introBox(data.step = 5, data.intro = intro$text[5],
+                 
+                 # Adding the metric dropdown
                  selectInput(
+                   
                    "unit",
+                   
                    label = NULL,
+                   
                    choices = unique(sort(hierarchy$Parameters))
+                   
                  )),
         
       ),
       
+      # Adding the Secto tabs
       mainPanel = mainPanel(
+        
+        width = 9,
         
         introBox(data.step = 6, data.intro = intro$text[6],
                  
                  tabsetPanel(
                    
-                   id = "tabs", # This is needed so that we can reference when someone clicks a tab
+                   # This is needed so that we can reference when someone clicks a tab
+                   id = "tabs", 
                    
                    type = "pills",
                    
+                   # Adding All Sector tab
                    tabPanel(
                      
                      "All Sectors",
                      
-                     value = "Overview", # This is the value (of input$tabs) returned when the user clicks the 'Overview' tab
+                     # This is the value (of input$tabs) returned when the user 
+                     # clicks the 'Overview' tab
+                     value = "Overview", 
                      
                      fluidRow(
                        
-                       # Again, these are the chart type buttons. Have turned off the percent button here as it doesn't make sense for how it is currently set up
-                       # column(
-                       #   width = 4,
-                       #   # radioButtons("chart_type_assumptions", "", choices = c("line", "column", "area", "column_percent"), inline = TRUE)
-                       #   # radioGroupButtons(
-                       #   #   inputId = "chart_type_overview",
-                       #   #   label = "",
-                       #   #   individual = TRUE,
-                       #   #   choices = c(
-                       #   #     `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                       #   #     `<i class='fa fa-bar-chart'></i>` = "column",
-                       #   #     `<i class='fa fa-area-chart'></i>` = "area" ,
-                       #   #     `<i class='fa fa-percent'></i>` = "column_percent"
-                       #   #   )
-                       #   # )
-                       # ),
+
                        
                        # Plot outputs
                        column(
@@ -542,7 +563,17 @@ ui <- navbarPage(
         div(
         HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
         HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/HYS-0L7mods" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-        align = "center")
+        align = "center"),
+        
+        # div( HTML(' <div class="page-width accordion-wrapper">
+        #   <div class="accordion wide">
+        #   <button id="accHeading2145" aria-controls="accToggle2145" class="js-trigger accordion-trigger" aria-expanded="false">Heavy transport</button>
+        #   
+        #   <div id="accToggle2145" class="js-toggle accordion-toggle typography" aria-expanded="false" aria-hidden="true" aria-labelledby="accHeading2145">
+        #   <p>Similarly to the light fleet, conventional biofuels can be a short-term quick win for the existing truck fleet.</p><p>At the horizon of drop-in biofuel potential uptake (2035-2040), our view is that heavy electric vehicles (HEV) will present a better total cost of ownership (TCO). The largest cost component of HEVs is the large battery required. With declining prices of Li-Ion batteries, <a rel="noreferrer external" class="external" rel="external" title="Open external link" href="https://about.bnef.com/blog/behind-scenes-take-lithium-ion-battery-prices/" target="_blank">this will become less of an issue by 2035<span class="nonvisual-indicator">(external link)</span></a>. EVs have the benefit of lower fuel costs than diesel/Biofuel vehicles, which will allow for cost competitiveness or benefits from a TCO perspective.</p>
+        #   </div>
+        #   </div>
+        #   </div>'))
       ))
     
     
