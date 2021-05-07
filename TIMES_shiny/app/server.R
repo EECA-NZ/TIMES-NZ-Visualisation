@@ -212,7 +212,7 @@ server <- function(input, output, session){
   })
   
   
-  # Selecting the type of data based on switch
+  # Selecting the type of data based on switch (Key insight or Assumptions)
   filtered_assumptions <- reactive({
     req(input$assumptions)
     if (input$Insght_Switch == FALSE){
@@ -224,6 +224,19 @@ server <- function(input, output, session){
     }
       
   })
+  
+  # Selecting title based on switch (Key insight or Assumptions)
+  filtered_assumptions_title <- reactive({
+    req(input$assumptions)
+    if (input$Insght_Switch == FALSE){
+        "Assumption"
+    }else{
+        "Key insight"
+    }
+    
+  })
+  
+  
   
 
   # This is used to select the group by values
@@ -303,7 +316,8 @@ server <- function(input, output, session){
     req(input$subsector)
     
     caption_lists <- caption_list %>%
-      filter(Subsector == input$subsector) %>% 
+      filter(
+             Tab       == "Overview") %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -328,7 +342,8 @@ server <- function(input, output, session){
       
     
     caption_lists <- caption_list %>%
-      filter(Subsector == select_sector) %>% 
+      filter(Subsector == select_sector,
+             Tab       ==   "Transport") %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -352,7 +367,8 @@ server <- function(input, output, session){
     
     
     caption_lists <- caption_list %>%
-      filter(Subsector == select_sector) %>% 
+      filter(Subsector == select_sector,
+             Tab       == "Industrial") %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -376,7 +392,9 @@ server <- function(input, output, session){
     
     
     caption_lists <- caption_list %>%
-      filter(Subsector == select_sector) %>% 
+      filter(Subsector == select_sector,
+             Tab       == "Commercial"
+             ) %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -400,7 +418,8 @@ server <- function(input, output, session){
     
     
     caption_lists <- caption_list %>%
-      filter(Subsector == select_sector) %>% 
+      filter(Subsector == select_sector,
+             Tab       == "Residential") %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -424,7 +443,8 @@ server <- function(input, output, session){
     
     
     caption_lists <- caption_list %>%
-      filter(Subsector == select_sector) %>% 
+      filter(Subsector == select_sector,
+             Tab       == "Agriculture") %>% 
       pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
@@ -448,8 +468,10 @@ server <- function(input, output, session){
     
     
     caption_lists <- caption_list %>%
-      filter(Subsector == select_sector) %>% 
+      filter(Subsector == select_sector,
+             Tab       == "Other") %>% 
       pull(Comment)
+    
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
@@ -474,7 +496,7 @@ server <- function(input, output, session){
         data = assumptions_data,
         group_var = Scenario,
         unit = assumptions_data$Unit[1],
-        filename = paste("Assumption", input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
+        filename = paste(filtered_assumptions_title(), input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
         plot_title = paste0(assumptions_data$Title[1]),
         input_chart_type = "line",
         max_y = NULL #max_y_assumptions()

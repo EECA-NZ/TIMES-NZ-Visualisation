@@ -178,11 +178,83 @@ combined_df <- rbind(clean_df %>%
                      )
 
 
+
+
+# # Biofuel computation
 # 
-# # Create 'hierarchy' file. Based on all combinations of dropdowns.
-# hierarchy <- combined_df %>%
-#   distinct(Sector, Subsector,Enduse, Technology,Unit) %>%
-#   arrange(across())
+# end_use <- c("Heavy Truck", "Medium Truck")
+# end_use <- "Heavy Truck"
+# # Filter out needed values
+# needed_df <- clean_df %>% 
+#   filter(
+#     Sector     == "Transport" & 
+#     Parameters == "Fuel Consumption"  &
+#     Fuel       == "Biodiesel"  & 
+#     Enduse     == end_use 
+#   ) %>% arrange(scen)
+# 
+# # Filter multiply values  
+# Multiple_df <- clean_df %>%  
+#   filter(
+#     Sector     == "Transport" & 
+#     Parameters == "Fuel Consumption"  &
+#     Fuel       == "Diesel"  & 
+#     Enduse     == end_use 
+#   ) %>% arrange(scen)
+# 
+# # Filter out divide values
+# divide_df <- clean_df %>% 
+#   filter(
+#     Sector     == "Transport" & 
+#     Parameters == "Fuel Consumption"  &
+#     Fuel       == "Diesel" 
+#   ) %>% group_by(scen, 
+#                  Sector,
+#                  Parameters,
+#                  Fuel, 
+#                  Period, 
+#                  FuelGroup) %>% 
+#   
+#   summarise(Value = sum(Value), .groups = "drop") %>% 
+#             arrange(scen)
+# 
+# 
+# 
+# # Adding 
+# new_needed_df <- needed_df %>% 
+#         mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
+# 
+# new_Multiple_df <- Multiple_df %>% 
+#         mutate(Value = Multiple_df$Value - new_needed_df$Value )
+# 
+# # Adding all computed values to the data frame
+# combined_df <- rbind(combined_df %>%
+#                        
+#                        # Filter out the duplicated cooling and heating 
+#                        filter(!(
+#                          Parameters == "Fuel Consumption"  &
+#                          Fuel       == "Biodiesel"  & 
+#                          Enduse     == end_use )
+#                        ),    
+#                        # Adding the new data
+#                        new_needed_df # new cooling
+# 
+#               )
+# 
+# # Adding all computed values to the data frame
+# combined_df <- rbind(combined_df %>%
+#                        
+#                        # Filter out the duplicated cooling and heating 
+#                        filter(!(
+#                          Parameters == "Fuel Consumption"  &
+#                          Fuel       == "Diesel"  & 
+#                          Enduse     == end_use )
+#                        ),    
+#                      # Adding the new data
+#                      new_Multiple_df   # new heating
+# )
+
+
 
 
 # List generation
