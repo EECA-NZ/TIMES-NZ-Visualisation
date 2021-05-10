@@ -1,3 +1,5 @@
+# Define server logic to summarize and view selected dataset
+
 server <- function(input, output, session){
 
   # Required for creating the event handlers for shinyhelper
@@ -6,13 +8,18 @@ server <- function(input, output, session){
   # Filter data based on dropdowns
   filtered_data <- reactive({
     
-    # This condition is used to add "Select Metric" to the "unit" drop-downs
+    # This condition is used to add "Select Metric" to the "unit/parameters" drop-downs
     if (input$unit == "Select Metric"){
+      
       unit_selected = "Emissions"
+      
     }else{
+      
       unit_selected = input$unit
+      
     }
     
+    # This is the logic for the drilldown data
     combined_df %>%
       purrr::when(
         
@@ -65,8 +72,10 @@ server <- function(input, output, session){
 
   
   
-  # A reactive object based on the hierarchy dataset. When on the overview tab, it shows all subsectors/data groups.
-  # When not on the overview tab it filters to the current tab (using the value returned by input$tabs)
+  # A reactive object based on the hierarchy dataset. 
+  # When on the overview tab, it shows all subsectors/data groups.
+  # When not on the overview tab it filters to the current tab 
+  # (using the value returned by input$tabs)
   filtered_dropdowns <- reactive({
     
     if(input$tabs == "Overview"){
@@ -81,22 +90,32 @@ server <- function(input, output, session){
     
   })
   
-  # These are the dropdowns that are generated dynamically and served up to the UI (via the call to uiOutput())
+  # These are the dropdowns that are generated dynamically and served up to 
+  # the UI (via the call to uiOutput())
   output$drop_downs <- renderUI({
     
-    # Explicitly changing the 'All Subsectors' name for Overview tab. Underneath, it still 'points'
+    # Explicitly changing the 'All Subsectors' name for Overview tab. 
+    # Underneath, it still 'points'
     # to 'All Subsectors' (e.g. in the hierarchy)
     subsector_list <- unique(filtered_dropdowns()$Subsector)
+    
     if(input$tabs == "Overview"){
+      
       subsector_list <- c("All Sectors" = "All Subsectors")
+      
     }
     
+    # Creaing the selct inputs/ Choices
     tagList(
+      
       selectInput(
+        
         "subsector",
+        
         label = NULL,
-        # choices = unique(filtered_dropdowns()$Subsector)
+        
         choices = subsector_list
+        
       ),
       selectInput(
         "enduse",
@@ -107,12 +126,7 @@ server <- function(input, output, session){
         "tech",
         label = NULL,
         choices = unique(filtered_dropdowns()$Technology)
-      )#,
-      # selectInput(
-      #   "unit",
-      #   label = NULL,
-      #   choices = unique(sort(filtered_dropdowns()$Parameters))
-      # )
+      )
       
     )
     
@@ -809,18 +823,5 @@ server <- function(input, output, session){
     
     
   })
-  # observeEvent(input$unit, {
-  #   
-  #   req(input$subsector)
-  #   
-  #   print(input$tabs)
-  #   print(input$subsector)
-  #   print(input$enduse)
-  #   print(input$tech)
-  #   print(input$unit)
-  #   print(filtered_data())
-  #   
-  #   
-  # })
-  
+
 }

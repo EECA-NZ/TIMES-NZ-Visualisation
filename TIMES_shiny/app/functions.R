@@ -689,8 +689,11 @@ assumption_charts <- function(data,             # The filtered data
 
 # Helper function to order attributes
 order_attribute <- function(dat, order_str){
+  
   dat %>% 
+    
     factor(levels = order_str, ordered = TRUE) %>% 
+    
     unique() %>% sort() %>%  as.character()
 }
 
@@ -699,15 +702,24 @@ order_attribute <- function(dat, order_str){
 
 # Helper function to preprocess data for Y-label (min, max values)
 get_range <- function(dat, group_var){
+  
   dat %>% 
-    group_by({{group_var}}, Period) %>%  
+    group_by({{group_var}}, Period) %>% 
+    
     summarise(Value = sum(Value), .groups = "drop") %>% 
+    
     ungroup() %>% 
+    
     pivot_wider(
+      
       names_from = {{group_var}}, values_from = Value, 
+      
       values_fn = sum, values_fill = 0
+      
     ) %>%
+    
     as.data.frame() %>% 
+    
     range()
 }
 
@@ -741,7 +753,7 @@ hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14p
 
 
 # Customised TRUE-FALSE switch button for Rshiny
-# Only sing CSS3 code (No javascript)
+# Only using CSS3 code (No javascript)
 #
 # Adapted from Sébastien Rochette
 
@@ -749,7 +761,7 @@ hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14p
 #' into a nice true/false or on/off switch button
 #' No javascript involved. Only CSS code.
 #' 
-#' To be used with CSS script 'button.css' stored in a 'www' folder in your Shiny app folder
+#' To be used with CSS script 'styles.css' stored in the 'www' folder 
 #' 
 #' @param inputId The input slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.

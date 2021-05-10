@@ -19,10 +19,11 @@ library(shinyhelper)
 library(rintrojs) # Needed for the introductory tour
 
 # Source script that loads data
-## This is where the .rda file is loaded (and where the hierarchy dataframe is created)
+# This is where the .rda file is loaded and the hierarchy dataframe is created
 source("data/load_data.R")
 
-# Load the plot functions 
+
+# Load the plot functions and the helper functions
 source("functions.R")
 
 
@@ -54,7 +55,7 @@ ui <- navbarPage(
         
         h3("Background"),
         
-        # The tgext in the back ground
+        # The background text
         paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key 
               model outputs and assumptions for the latest TIMES-NZ scenarios. 
               The TIMES-NZ project grew out of BEC2060, an exploration of possible 
@@ -220,6 +221,7 @@ ui <- navbarPage(
         
         # Adding intro-tour for fuel switch
         introBox(data.step = 3, data.intro = intro$text[3],
+                 
                  # Adding switch 
                  span(switchButton(inputId = "Fuel_Switch",
                                    
@@ -289,21 +291,8 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         # h3("Kea",hover_popup(text = textOutput("assumptions_popup", inline = TRUE), icon_type = "fa-info-circle")),
-                         # h3(textOutput("caption"))
-                         
-                         # h3("Kea", hover_popup(text = "The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.",
-                         #                       icon_type = "fa-info-circle")),
                          h3("Kea", uiOutput("info_overview", inline = TRUE)),
-                         # %>% 
-                         #   helper(
-                         #     type = "inline",
-                         #     title = "Kea scenario - overview",
-                         #     content = c("Draft commentary: The Kea scenario shows that petrol has high consumption until 2035 at which point in sharply decreases due to XXXXXXXX.  Whereas in the Tui scenario the decrease happens at the same time yet is not as aggressive.  In Tui there is also a slight update of LPG due to #### being constrained."
-                         #     ),
-                         #     size = "m",
-                         #     colour = "#3C4C49"
-                         #   ),
+
                          
                          highchartOutput("overview_kea") 
                          
@@ -458,9 +447,7 @@ ui <- navbarPage(
                    
                    # Adding Agriculture stuff
                    tabPanel(span("Agriculture", title="Agriculture, Forestry and Fishing"),
-                            # "Agriculture, Forestry and Fishing",
-                            # bsTooltip("Agriculture", "The wait times will be broken into this many equally spaced bins",
-                            #           "right"),
+
                             value = "Agriculture",
                             
                             fluidRow(
@@ -491,9 +478,9 @@ ui <- navbarPage(
                    
                    # Adding Other stuff
                    tabPanel(
-                     span("Electricity", title = "Electricity Generation"),
-                     # "Electricity Generation",
                      
+                     span("Electricity", title = "Electricity Generation"),
+
                      value = "Other",
                      
                      fluidRow(
@@ -531,11 +518,16 @@ ui <- navbarPage(
     
   ),  
   
-  # About tab
+  
+  ##############################
+  ######### About tab ##########
+  ##############################
+  
+  # Adding the About Tab 
   tabPanel(
     
     # For some reason the title doesn't like the name "About".
-    # I used "About " to get my way around 
+    # "About " was used to get around this 
     title = "About ",
     
     # icon = icon("info"),
@@ -543,9 +535,13 @@ ui <- navbarPage(
     fluidRow(
       
       column(
+        
         width = 12,
+        
         h3("About"),
+        
         # includeHTML("intro_text.html"),
+        
         paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios.
                    The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
               "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and 
@@ -559,12 +555,15 @@ ui <- navbarPage(
               , collapse = "\n"),
         HTML("<br><br>"),
         
+        
         # Embedding  video into the App
         div(
         HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
         HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/HYS-0L7mods" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
         align = "center"),
         
+        
+        # Embedding colapsing tabs
         # div( HTML(' <div class="page-width accordion-wrapper">
         #   <div class="accordion wide">
         #   <button id="accHeading2145" aria-controls="accToggle2145" class="js-trigger accordion-trigger" aria-expanded="false">Heavy transport</button>
@@ -589,13 +588,24 @@ ui <- navbarPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css"),
     tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})")
   ),
-  footer = tags$footer(img(src="img/EECA_BEC.svg", height = 120, width = 660),
+  
+  # Adding the Footer to the App
+  footer = tags$footer(
+                      # Image
+                      img(src="img/EECA_BEC.svg",
+                          
+                       height = 120, 
+                       
+                       width = 660),
+                      
                        align = "center",
+                      
                        style = "
-  position: absolute;
-  width:100%;
-  padding: 80px;"
-  ),
-  collapsible =FALSE
+                            position: absolute;
+                            width:100%;
+                            padding: 80px;"
+                            ),
+  
+                collapsible =FALSE
   
 )
