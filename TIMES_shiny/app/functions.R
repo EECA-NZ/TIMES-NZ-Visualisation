@@ -297,6 +297,8 @@ generic_charts <- function(data,             # The filtered data
       
       filename = filename ,              # Setting the file name
       
+      width = 3200,
+      
       # Designing the download button
       buttons = list(
         
@@ -307,7 +309,7 @@ generic_charts <- function(data,             # The filtered data
           
           y = -5,                        # Padding in the y direction
           
-          menuItems = c("downloadPDF", "downloadCSV"), # List to download
+          menuItems = c("downloadPNG", "downloadPDF", "downloadCSV"), # List to download
           
           titleKey = "Click here to download",  # Key title
           
@@ -334,9 +336,11 @@ generic_charts <- function(data,             # The filtered data
       
       # Defining the selected download options
       menuItemDefinitions = list(
-                          downloadPDF = list(text = "Download image"),
+                          downloadPNG = list(text = "Download PNG image"),
+                          
+                          downloadPDF = list(text = "Download PDF document"),
                                  
-                          downloadCSV = list(text = "Download data"))
+                          downloadCSV = list(text = "Download Data"))
     ) %>% 
 
     # Adding theme 
@@ -447,21 +451,31 @@ assumption_charts <- function(data,             # The filtered data
   if (input_chart_type == "column_percent") {
     
     chart_type <-"column"
+    
     stacking_type <- "percent"
+    
     Y_label <- "Percent"
     
   } else {
     
     chart_type <-input_chart_type
+    
     stacking_type <- "normal"
+    
     Y_label <-  unit
     
   }
   
   total_by_year <- data %>% 
+    
     group_by(Period) %>% 
+    
     summarise(Value = sum(Value)) %>% 
+    
     ungroup() 
+  
+  
+  
   
   data <- data %>% 
     group_by({{group_var}}, Period) %>%  
@@ -478,45 +492,59 @@ assumption_charts <- function(data,             # The filtered data
   categories_column <- names(data)[1]
   
   
-  
+  # Generating the data-list for highchart series 
   data_list <- map(1:length(measure_columns), function(x) {
     
     list(data = data[, x + 1], 
          
+         # Setting the series name
          name = names(data)[x + 1], 
          
-         marker = list(symbol=  schema_colors %>% 
-                         filter(Fuel == names(data)[x + 1]) %>% 
-                         pull(Symbol)),
+         # Setting marker/symbol
+         marker = 
+           
+           list(symbol =  schema_colors %>% 
+                  
+                  # Extracting the symbol from the color-schema    
+                  filter(Fuel == names(data)[x + 1]) %>% 
+                  
+                  pull(Symbol)),
+         
+         # Setting the color hex code
          color = schema_colors %>% 
-           filter(Fuel ==names(data)[x + 1]) %>% 
+           
+           # Extracting the color from the color-schema 
+           filter(Fuel == names(data)[x + 1]) %>% 
+           
            pull(Colors)
     )
   })
-  # data_list <- map(1:length(measure_columns), function(x) {
-  #   list(data = data[, x + 1], name = names(data)[x + 1])
-  # })
-  
-  # # Extracting the needed colors from the color scheme
-  # cols <- schema_colors[order(schema_colors$Fuel),] %>%  
-  #   filter(Fuel %in% measure_columns) %>% 
-  #   select(Colors) %>% 
-  #   as.data.frame()
-  
+
+
+
   hc <- highchart() %>%
-    hc_chart(type = chart_type,
-             # Added a zoom button
-             zoomType ='xy' ,
-             # Font type
-             style = list(fontFamily = "Source Sans Pro",
-                          fontSize='15px') ) %>%
+    
+    hc_chart(
+             type = chart_type, # Setting the type of plot
+             
+             zoomType ='xy' ,# Added a zoom button
+             
+             style = list(fontFamily = "Source Sans Pro", # Font type
+                          
+                          fontSize = '15px' # Size 
+                           ) ) %>%
+    
     hc_add_series_list(data_list) %>% 
+    
     hc_legend(reversed = FALSE) %>% 
+    
     hc_xAxis(categories = sort(unique(data$Period))) %>%
+    
     hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
              labels = list(format ='{value}')
     ) %>%
+    
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
                 style= list(
                   color= '#000000',
@@ -538,35 +566,60 @@ assumption_charts <- function(data,             # The filtered data
     ) %>%
     # Downloading data or image file
     hc_exporting(
-      enabled = TRUE,
-      filename = filename ,
+      
+      enabled = TRUE,                    # Allow download option
+      
+      filename = filename ,              # Setting the file name
+      
+      width = 3200,
+      
+      # Designing the download button
       buttons = list(
+        
         contextButton = list(
+          
           # Changing the position of download
-          verticalAlign = 'bottom' ,
-          y = -5,
-          menuItems = c("downloadPDF", "downloadCSV"),
-          titleKey = "Click here to download",
-          text = "  Download  ",
-          theme = list(fill = '#f7f7f7', stroke = '#41B496',r = 7,
-                       states = list(hover=list(fill='#41B496'), 
-                                     select= list(stroke='#41B496',fill ='#41B496'))),
-          symbol = ''
+          verticalAlign = 'bottom' ,     # Keeping the button at the bottom 
+          
+          y = -5,                        # Padding in the y direction
+          
+          menuItems = c("downloadPNG", "downloadPDF", "downloadCSV"), # List to download
+          
+          titleKey = "Click here to download",  # Key title
+          
+          text = "  Download  ",         # The text in the button
+          
+          # Setting the them for the download button 
+          theme = list(
+            fill = '#f7f7f7',     # The fill color
+            
+            stroke = '#41B496',   # The bars around the text
+            
+            r = 7,                # Adding a curve around the button 
+            
+            states = list(hover=list(fill='#41B496'), # Hover color'
+                          
+                          select = list(stroke='#41B496',
+                                        fill ='#41B496')            # Select color
+                          
+            )
+          ),
+          symbol = ''                       # Use a null symbol
         )
       ),
-      menuItemDefinitions = list(downloadPDF = list(text = "Download image"),
-                                 downloadCSV = list(text = "Download data"))
+      
+      # Defining the selected download options
+      menuItemDefinitions = list(
+        downloadPNG = list(text = "Download PNG image"),
+        
+        downloadPDF = list(text = "Download PDF document"),
+        
+        downloadCSV = list(text = "Download Data"))
     ) %>% 
-    # # Adding a caption
-    # hc_caption(
-    #   text = caption_text, 
-    #   useHTML = TRUE
-    # ) %>% 
+
     # Adding theme 
     hc_add_theme(my_theme) 
-  # %>% 
-  #   # Set the tooltip to three decimal places
-  #   hc_tooltip(valueDecimals=2) 
+
   
   if(chart_type != "line"){
     hc <- hc %>% 
@@ -658,7 +711,10 @@ get_range <- function(dat, group_var){
     range()
 }
 
+
 # Hover button
+# This helper function was created to help display the pop-up tooltip. 
+# It it is currently not used
 hover_popup <- function(text, icon_type = "fa-question-circle", font_size = "14px") {
   HTML(
     paste0(
@@ -758,146 +814,3 @@ switchButton <- function(inputId, label, value=FALSE, col = "GB", type="TF") {
     ) 
   }
 }
-
-
-
-
-
-
-# This is a generic function for stacked area chart
-# generic_stacking_charts <- function(data = NA,
-#                               categories_column = NA,
-#                               measure_columns = NA,
-#                               chart_type = NA,
-#                               stacking_type = NA,
-#                               filename = NA) {
-# 
-#     chart <- highchart() %>%
-#     hc_xAxis(categories = data[, categories_column],
-#              title = categories_column)
-#   
-#   # This will create the needed series to add
-#   # The invisible function around add_series suppresses the returned output
-#   invisible(lapply(1:length(measure_columns), function(colNumber) {
-#     chart <<-
-#       hc_add_series(
-#         hc = chart,
-#         name = measure_columns[colNumber],
-#         data = data[, measure_columns[colNumber]]
-#       )
-#   }))
-#   
-#   chart %>%
-#     hc_chart(type = chart_type) %>%
-#     hc_plotOptions(series = list(stacking = as.character(stacking_type))) %>%
-#     hc_legend(reversed = TRUE) %>% 
-#     # Downloading data or png file
-#     hc_exporting(
-#       enabled = TRUE,
-#       filename = paste(filename, chart_type, "Chart", sep = " ") ,
-#       buttons = list(
-#         contextButton = list(
-#           menuItems = c("downloadPDF", "downloadCSV"),
-#           titleKey = "Click here to download",
-#           text = "  Download  ",
-#           theme = list(fill = '#ddd', stroke = '#888'),
-#           symbol = ''
-#         )
-#       ),
-#       menuItemDefinitions = list(downloadPDF = list(text = "Download image"))
-#     )
-#   
-#     # Can add more plot options here
-# }
-
-# Towards line plot functionality
-
-# line_plot_assumptions <- function(data = NA, 
-#                       filen_title= NA,
-#                       chart_type = NA){
-#   
-#   hchart(data,
-#          type = chart_type, hcaes(x = Period, y= Value, group = Scenario)) %>% 
-#     # Add more plot options
-#     hc_title(text = filen_title) %>%
-#     hc_xAxis(categories = unique(data$Period)) %>%
-#     hc_yAxis(title = list(text = unique(data$Units))) %>%
-#     hc_xAxis(title = "") %>% 
-#     # hc_xAxis(title = filename) %>% 
-#     # Downloading data or png file
-#     hc_exporting(
-#       enabled = TRUE,
-#       filename = paste(filen_title, chart_type, "Chart", sep = " "),
-#       buttons = list(
-#         contextButton = list(
-#           menuItems = c("downloadPDF", "downloadCSV"),
-#           titleKey = "Click here to download",
-#           text = "  Download  ",
-#           theme = list(fill = '#ddd', stroke = '#888'),
-#           symbol = ''
-#         )
-#       ),
-#       menuItemDefinitions = list(downloadPDF = list(text = "Download image"))
-#     )
-#     # hc_exporting(enabled = TRUE, filename = paste(filen_title, chart_type, "Chart", sep = " "), 
-#     #              buttons = list(contextButton = list(menuItems = c("downloadPDF", "downloadCSV" ))))
-# }
-
-
-# `<i class='fa fa-bar-chart'></i>`
-
-
-
-# line_plot_overiew <- function(data = NA, 
-#                                   filen_title= NA,
-#                                   chart_type = NA){
-#   
-#   hchart(data,
-#          type = chart_type, hcaes(x = Period, y= Value, group = Scenario)) %>% 
-#     # Add more plot options
-#     hc_title(text = filen_title) %>%
-#     hc_xAxis(categories = unique(data$Period)) %>%
-#     # hc_yAxis(title = list(text = unique(data$Units))) %>%
-#     # hc_xAxis(title = filename) %>% 
-#     # Downloading data or png file
-#     hc_exporting(
-#       enabled = TRUE,
-#       filename = paste(filen_title, chart_type, "Chart", sep = " "),
-#       buttons = list(contextButton = list(
-#         menuItems = c("downloadPDF", "downloadCSV")
-#       ),
-#       menuItemDefinitions = list(downloadPDF = list(text = "Download image"))
-#       )
-#     )
-#   
-# }
-
-
-
-# 
-# 
-# 
-# generic_stacking_charts(
-#   data = sample_data,
-#   chart_type = "column",
-#   categories_column = categories_column,
-#   measure_columns = measure_columns,
-#   stacking_type = "normal"
-# )
-
-
-# hc_yAxis(title = list(text = Y_label),
-#          min = ymin,
-#          max = ymax 
-# ) %>%
-
-# Add a generice line plot
-
-# get_period_list <- function(data, group_var){
-#   total_by_period <- data %>% 
-#     group_by(Period, scen) %>%  
-#     summarise(Value = sum(Value), .groups = "drop") %>% 
-#     ungroup()
-#   return(unique(total_by_period$Period))
-# }
-

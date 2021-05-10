@@ -243,9 +243,15 @@ server <- function(input, output, session){
   group_by <- reactive(
     {
       if (input$Fuel_Switch == TRUE){
+        
+        # Selecting Fuel Group
         names(filtered_data())[10]
+        
       } else{
+        
+        # Selecting detailed Fuel 
         names(filtered_data())[8]
+        
           }
       
     }

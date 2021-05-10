@@ -179,80 +179,243 @@ combined_df <- rbind(clean_df %>%
 
 
 
+##########################################################################################################
+# Biofuel computation for "Heavy Truck", "Medium Truck", "Car/SUV", "Van/Ute", "Bus", " Passenger Rail", "Freight Rail"
+##########################################################################################################
 
-# # Biofuel computation
-# 
-# end_use <- c("Heavy Truck", "Medium Truck")
+# "Bus", Bus does not have Biofuel
+end_uses <- c("Heavy Truck", "Medium Truck", "Car/SUV", "Van/Ute", " Passenger Rail", "Freight Rail")
 # end_use <- "Heavy Truck"
-# # Filter out needed values
-# needed_df <- clean_df %>% 
-#   filter(
-#     Sector     == "Transport" & 
-#     Parameters == "Fuel Consumption"  &
-#     Fuel       == "Biodiesel"  & 
-#     Enduse     == end_use 
-#   ) %>% arrange(scen)
+
+for (end_use in end_uses) {
+  
+    # Filter out needed values
+    needed_df <- clean_df %>%
+      filter(
+        Sector     == "Transport" &
+        Parameters == "Fuel Consumption"  &
+        Fuel       == "Biodiesel"  &
+        Enduse     == end_use
+      ) %>% arrange(scen)
+    
+    # Filter multiply values
+    Multiple_df <- clean_df %>%
+      filter(
+        Sector     == "Transport" &
+        Parameters == "Fuel Consumption"  &
+        Fuel       == "Diesel"  &
+        Enduse     == end_use
+      ) %>% arrange(scen)
+    
+    # Filter out divide values
+    divide_df <- clean_df %>%
+      filter(
+        Sector     == "Transport" &
+        Parameters == "Fuel Consumption"  &
+        Fuel       == "Diesel"
+      ) %>% group_by(scen,
+                     Sector,
+                     Parameters,
+                     Fuel,
+                     Period,
+                     FuelGroup) %>%
+    
+      summarise(Value = sum(Value), .groups = "drop") %>%
+                arrange(scen)
+    
+    
+    
+    # Adding
+    new_needed_df <- needed_df %>%
+            mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
+    
+    new_Multiple_df <- Multiple_df %>%
+            mutate(Value = Multiple_df$Value - new_needed_df$Value )
+    
+    # Adding all computed values to the data frame
+    combined_df <- rbind(combined_df %>%
+    
+                           # Filter out the duplicated cooling and heating
+                           filter(!(
+                             Parameters == "Fuel Consumption"  &
+                             Fuel       == "Biodiesel"  &
+                             Enduse     == end_use )
+                           ),
+                           # Adding the new data
+                           new_needed_df # new cooling
+    
+                  )
+    
+    # Adding all computed values to the data frame
+    combined_df <- rbind(combined_df %>%
+    
+                           # Filter out the duplicated cooling and heating
+                           filter(!(
+                             Parameters == "Fuel Consumption"  &
+                             Fuel       == "Diesel"  &
+                             Enduse     == end_use )
+                           ),
+                         # Adding the new data
+                         new_Multiple_df   # new heating
+    )
+
+}
+
+
 # 
-# # Filter multiply values  
-# Multiple_df <- clean_df %>%  
-#   filter(
-#     Sector     == "Transport" & 
-#     Parameters == "Fuel Consumption"  &
-#     Fuel       == "Diesel"  & 
-#     Enduse     == end_use 
-#   ) %>% arrange(scen)
 # 
-# # Filter out divide values
-# divide_df <- clean_df %>% 
-#   filter(
-#     Sector     == "Transport" & 
-#     Parameters == "Fuel Consumption"  &
-#     Fuel       == "Diesel" 
-#   ) %>% group_by(scen, 
-#                  Sector,
-#                  Parameters,
-#                  Fuel, 
-#                  Period, 
-#                  FuelGroup) %>% 
+# ##########################################################################################################
+# # Biofuel computation for Domestic Aviation, International Aviation
+# ##########################################################################################################
+# 
+# end_uses <- c("Domestic Aviation", "International Aviation")
+# 
+# for (end_use in end_uses) {
 #   
-#   summarise(Value = sum(Value), .groups = "drop") %>% 
-#             arrange(scen)
-# 
-# 
-# 
-# # Adding 
-# new_needed_df <- needed_df %>% 
-#         mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
-# 
-# new_Multiple_df <- Multiple_df %>% 
-#         mutate(Value = Multiple_df$Value - new_needed_df$Value )
-# 
-# # Adding all computed values to the data frame
-# combined_df <- rbind(combined_df %>%
-#                        
-#                        # Filter out the duplicated cooling and heating 
-#                        filter(!(
-#                          Parameters == "Fuel Consumption"  &
-#                          Fuel       == "Biodiesel"  & 
-#                          Enduse     == end_use )
-#                        ),    
+#   # Filter out needed values
+#   needed_df <- clean_df %>%
+#     filter(
+#       Sector     == "Transport" &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Drop-In Jet"  &
+#         Enduse     == end_use
+#     ) %>% arrange(scen)
+#   
+#   # Filter multiply values
+#   Multiple_df <- clean_df %>%
+#     filter(
+#       Sector     == "Transport" &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Jet Fuel"  &
+#         Enduse     == end_use
+#     ) %>% arrange(scen)
+#   
+#   # Filter out divide values
+#   divide_df <- clean_df %>%
+#     filter(
+#       Sector     == "Transport" &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Jet Fuel"
+#     ) %>% group_by(scen,
+#                    Sector,
+#                    Parameters,
+#                    Fuel,
+#                    Period,
+#                    FuelGroup) %>%
+#     
+#     summarise(Value = sum(Value), .groups = "drop") %>%
+#     arrange(scen)
+#   
+#   
+#   
+#   # Adding
+#   new_needed_df <- needed_df %>%
+#     mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
+#   
+#   new_Multiple_df <- Multiple_df %>%
+#     mutate(Value = Multiple_df$Value - new_needed_df$Value )
+#   
+#   # Adding all computed values to the data frame
+#   combined_df <- rbind(combined_df %>%
+#                          
+#                          # Filter out the duplicated cooling and heating
+#                          filter(!(
+#                            Parameters == "Fuel Consumption"  &
+#                              Fuel       == "Drop-In Jet"  &
+#                              Enduse     == end_use )
+#                          ),
 #                        # Adding the new data
 #                        new_needed_df # new cooling
-# 
-#               )
-# 
-# # Adding all computed values to the data frame
-# combined_df <- rbind(combined_df %>%
 #                        
-#                        # Filter out the duplicated cooling and heating 
-#                        filter(!(
-#                          Parameters == "Fuel Consumption"  &
-#                          Fuel       == "Diesel"  & 
-#                          Enduse     == end_use )
-#                        ),    
-#                      # Adding the new data
-#                      new_Multiple_df   # new heating
-# )
+#   )
+#   
+#   # Adding all computed values to the data frame
+#   combined_df <- rbind(combined_df %>%
+#                          
+#                          # Filter out the duplicated cooling and heating
+#                          filter(!(
+#                            Parameters == "Fuel Consumption"  &
+#                              Fuel       == "Jet Fuel"  &
+#                              Enduse     == end_use )
+#                          ),
+#                        # Adding the new data
+#                        new_Multiple_df   # new heating
+#   )
+#   
+# }
+
+
+
+
+
+
+
+##########################################################################################################
+# Biofuel computation for Domestic Aviation, International Aviation
+##########################################################################################################
+
+end_uses <- c("Heavy Truck", "Medium Truck", "Car/SUV", "Van/Ute", "Bus", " Passenger Rail", "Freight Rail")
+
+for (end_use in end_uses) {
+  
+  # Filter out needed values
+  needed_df <- clean_df %>%
+    filter(
+      Subsector  == "Road Transport" &
+        Parameters == "Emissions"  &
+        Fuel       == "Biodiesel"  &
+        Enduse     == end_use
+    ) %>% arrange(scen)
+  
+  # Filter multiply values
+  Multiple_df <- clean_df %>%
+    filter(
+      Subsector  == "Road Transport" &
+        Parameters == "Fuel Consumption"  &
+        Fuel       == "Biodiesel"  &
+        Enduse     == end_use
+    ) %>% arrange(scen)
+  
+  # Filter out divide values
+  divide_df <- clean_df %>%
+    filter(
+      Subsector  == "Road Transport" &
+        Parameters == "Fuel Consumption"  &
+        Fuel       == "Biodiesel"
+    ) %>% group_by(scen,
+                   Sector,
+                   Parameters,
+                   Fuel,
+                   Period,
+                   FuelGroup) %>%
+    
+    summarise(Value = sum(Value), .groups = "drop") %>%
+    arrange(scen)
+  
+  
+  # Adding
+  new_needed_df <- needed_df %>%
+    mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
+  
+  # Adding all computed values to the data frame
+  combined_df <- rbind(combined_df %>%
+                         
+                         # Filter out the duplicated cooling and heating
+                         filter(!(
+                           Parameters == "Emissions"  &
+                             Fuel       == "Biodiesel"  &
+                             Enduse     == end_use )
+                         ),
+                       # Adding the new data
+                       new_needed_df # new cooling
+                       
+  )
+  
+}
+
+
+
+
 
 
 
