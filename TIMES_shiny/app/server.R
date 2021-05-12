@@ -255,6 +255,7 @@ server <- function(input, output, session){
   
   # Setting the radiogroup based on selections
   output$radioGroup <- renderUI({
+    
   # These are the buttons used
     if (input$Tech_Fuel_Switch == TRUE){
             radioGroupButtons(
@@ -334,7 +335,7 @@ server <- function(input, output, session){
     })
 
   # This is used to select the group by values
-  group_by <- reactive(
+  group_by_val <- reactive(
     {
       req(input$plot_by)
 
@@ -403,7 +404,7 @@ server <- function(input, output, session){
     
     get_max_y(
       data = filtered_data(),
-      group_var = group_by(),
+      group_var = group_by_val(),
       input_chart_type = input$chart_type
     )
     
@@ -677,13 +678,13 @@ server <- function(input, output, session){
   # Kea
   output$overview_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste( "Kea", unique(plot_data_kea$Parameters), "All Sectors", input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
@@ -697,13 +698,13 @@ server <- function(input, output, session){
   # Tui
   output$overview_tui <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", unique(plot_data_tui$Parameters), "All Sectors", input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
@@ -718,13 +719,13 @@ server <- function(input, output, session){
   # Kea
   output$transport_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Transport")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Transport",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Transport ",unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -738,11 +739,13 @@ server <- function(input, output, session){
   #Tui
   output$transport_tui <- renderHighchart({
     
+    req(input$subsector, group_by_val())
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Transport")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste("Tui", "Transport",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Transport ",unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -761,13 +764,13 @@ server <- function(input, output, session){
   # Kea
   output$industry_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Industry")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Industry",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Industry ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -781,11 +784,13 @@ server <- function(input, output, session){
   #Tui
   output$industry_tui <- renderHighchart({
     
+    req(input$subsector, group_by_val())
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Industry")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste("Tui", "Industry",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Industry ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -804,13 +809,13 @@ server <- function(input, output, session){
   # Kea
   output$Commercial_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Commercial")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Commercial", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Commercial ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -824,11 +829,13 @@ server <- function(input, output, session){
   #Tui
   output$Commercial_tui <- renderHighchart({
     
+    req(input$subsector, group_by_val())
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Commercial")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste("Tui", "Commercial",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Commercial ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -845,13 +852,13 @@ server <- function(input, output, session){
   # Kea
   output$Residential_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Residential")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Residential",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Residential ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -865,11 +872,13 @@ server <- function(input, output, session){
   #Tui
   output$Residential_tui <- renderHighchart({
     
+    req(input$subsector, group_by_val())
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Residential")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste("Tui", "Residential", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Residential ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -887,13 +896,13 @@ server <- function(input, output, session){
   # Kea
   output$Agriculture_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Agriculture")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Agriculture",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Agriculture ",unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -907,11 +916,13 @@ server <- function(input, output, session){
   #Tui
   output$Agriculture_tui <- renderHighchart({
     
+    req(input$subsector, group_by_val())
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Agriculture")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui","Agriculture",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Agriculture ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -929,13 +940,13 @@ server <- function(input, output, session){
   # Kea
   output$Other_kea <- renderHighchart({
     
-    req(input$subsector)
+    req(input$subsector, group_by_val())
     
     plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Other")
     
     generic_charts(
       data = plot_data_kea,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_kea$Unit),
       filename = paste("Kea", "Electricity",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Electricity ",unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
@@ -949,11 +960,13 @@ server <- function(input, output, session){
   #Tui
   output$Other_tui <- renderHighchart({
     
+    req(input$subsector, group_by_val())
+    
     plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Other")
     
     generic_charts(
       data = plot_data_tui,
-      group_var = group_by(),
+      group_var = group_by_val(),
       unit = unique(plot_data_tui$Unit),
       filename = paste( "Tui", "Electricity", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
       plot_title = paste0("Electricity ",unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),

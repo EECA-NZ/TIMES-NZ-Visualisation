@@ -271,9 +271,9 @@ ui <- navbarPage(
       mainPanel = mainPanel(
         
         # Using this to hide the error
-        tags$style(type="text/css",
-                   ".shiny-output-error { visibility: hidden; }",
-                   ".shiny-output-error:before { visibility: hidden; }"),
+        # tags$style(type="text/css",
+        #            ".shiny-output-error { visibility: hidden; }",
+        #            ".shiny-output-error:before { visibility: hidden; }"),
         
         width = 9,
         
