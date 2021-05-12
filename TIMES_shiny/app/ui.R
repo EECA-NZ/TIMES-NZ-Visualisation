@@ -17,6 +17,7 @@ library(stringr)
 library(shinyWidgets) # For the fancy radio buttons
 library(shinyhelper)
 library(rintrojs) # Needed for the introductory tour
+library(shinyjs)
 
 # Source script that loads data
 # This is where the .rda file is loaded and the hierarchy dataframe is created
@@ -53,21 +54,17 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("Background"),
+        h3("TIMES-NZ 2.0 Energy System Scenarios "),
         
         # The background text
-        paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key 
-              model outputs and assumptions for the latest TIMES-NZ scenarios. 
-              The TIMES-NZ project grew out of BEC2060, an exploration of possible 
-              energy futures based on contrasted scenarios. The latest iteration 
-              of TIMES-NZ builds on the BEC2060 work, and has been developed in 
-              partnership between EECA, BEC and PSI adding more detail 
-              and sophistication to sectors, subsectors, technologies and end uses. 
-              In particular, the 2020 update of EECA’s Energy End Use Database
-              provides a greatly improved input dataset. 
-              There are two scenarios <insert scenario names here> in TIMES-NZ 2.0 ." 
+        HTML("The TIMES-NZ 2.0 New Zealand Energy System Scenarios website 
+              presents model insights outputs and assumptions for the latest 
+              TIMES-NZ scenarios. TIMES-NZ 2.0 has been developed by <a href='https://www.eeca.govt.nz/'>EECA</a>  in 
+              partnership with the <a href='https://www.bec.org.nz/'>Business Energy Council New Zealand</a>  and The 
+              <a href='https://www.psi.ch/en'>Paul Scherrer Institut</a>. There are two scenarios Kea (Cohesive) and 
+              Tui(Individualistic) in TIMES-NZ 2.0 . " ),
               
-              , collapse = "\n"),
+
         
         # Adding the introduction tour button 
         HTML("<br><br>"),
@@ -91,21 +88,19 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("TIMES-NZ 2.0 Energy System Scenarios"),
+        h3("Scenarios"),
         
         # Adding Kea and Tui comment 
         HTML("<div class='wrapper'>
                 
-        <div class='box a'><strong>Kea </strong>represents a future in which 
-        climate change is seen as the most pressing issue. A broad economic 
-        transformation is pursued by New Zealand society and government, 
-        deliberately choosing to be a global leader in the pursuit of a 
-        low-emissions society.</div>
+        <div class='box a'><strong>Kea </strong>represents a scenario where 
+        climate change is prioritised as the most pressing issue and New Zealand 
+        deliberately pursues cohesive ways to achieve a low-emissions economy.</div>
        
         
-        <div class='box b'><strong>Tui </strong>represents a future in which 
-        global communities, businesses and governments believe that climate 
-        change is only one of several competing priorities.</div>
+        <div class='box b'><strong>Tui </strong>represents a scenario where 
+        climate change is an important issue to be addressed as one of many 
+        priorities.  </div>
         </div>"
      
              
@@ -201,39 +196,47 @@ ui <- navbarPage(
         
         introBox(data.step = 2, data.intro = intro$text[2],
                  
-                 # These are the buttons used
-                 radioGroupButtons(
-                   
-                   inputId = "chart_type",
-                   
-                   label = NULL,
-                   
-                   individual = TRUE,
-                   
-                   choices = c(
-                   `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                   `<i class='fa fa-bar-chart'></i>` = "column",
-                   `<i class='fa fa-area-chart'></i>` = "area" ,
-                   `<i class='fa fa-percent'></i>` = "column_percent"
-                   )
-                   
-                 )),
-        
-        # Adding intro-tour for fuel switch
-        introBox(data.step = 3, data.intro = intro$text[3],
+                 uiOutput("radioGroup")
                  
-                 # Adding switch 
-                 span(switchButton(inputId = "Fuel_Switch",
-                                   
-                                   label = NULL, 
-                                   
-                                   value = TRUE, col = "RG", type = "TF"),
-                      
-                      title="Toggle to show fuels grouped by either Renewables 
-                            and Fossil Fuels, or all fuels separately displayed 
-                            (eg, Electricity, Coal, Solar etc)"
-                 )),
+          ),
         
+        
+        
+        # Adding tech and fuel switch
+        span(switchButton(inputId = "Tech_Fuel_Switch",
+
+                          label = NULL,
+
+                          value = TRUE, col = "RG", type = "YN"),
+             
+             # uiOutput("switch"),
+
+             title="Toggle to show fuels grouped by either Renewables
+                            and Fossil Fuels, or all fuels separately displayed
+                            (eg, Electricity, Coal, Solar etc)"
+        ),
+        # 
+        # # Adding intro-tour for fuel switch
+        # introBox(data.step = 3, data.intro = intro$text[3],
+        #          
+        #          # Adding group fuel and fuel switch 
+        #          span(switchButton(inputId = "Fuel_Switch",
+        #                            
+        #                            label = NULL, 
+        #                            
+        #                            value = TRUE, col = "RG", type = "TF"),
+        #               
+        #               title="Toggle to show fuels grouped by either Renewables 
+        #                     and Fossil Fuels, or all fuels separately displayed 
+        #                     (eg, Electricity, Coal, Solar etc)"
+        #          )),
+        
+        
+        
+        uiOutput("plot_by_dropdowns"),
+        
+        
+
         # Intro-tour for drilldowns
         introBox(data.step = 4, data.intro = intro$text[4],
                  
@@ -255,11 +258,13 @@ ui <- navbarPage(
                    
                    choices = unique(sort(hierarchy$Parameters))
                    
-                 )),
+                 ))
+        
+
         
       ),
       
-      # Adding the Secto tabs
+      # Adding the Sector tabs
       mainPanel = mainPanel(
         
         width = 9,

@@ -8,6 +8,7 @@ server <- function(input, output, session){
   # Filter data based on dropdowns
   filtered_data <- reactive({
     
+
     # This condition is used to add "Select Metric" to the "unit/parameters" drop-downs
     if (input$unit == "Select Metric"){
       
@@ -250,26 +251,152 @@ server <- function(input, output, session){
     
   })
   
+ 
+  
+  # Setting the radiogroup based on selections
+  output$radioGroup <- renderUI({
+  # These are the buttons used
+    if (input$Tech_Fuel_Switch == TRUE){
+            radioGroupButtons(
+              
+              
+              inputId = "chart_type",
+              
+              label = NULL,
+              
+              individual = TRUE,
+              
+              choices = c(
+                `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+                `<i class='fa fa-bar-chart'></i>` = "column",
+                `<i class='fa fa-area-chart'></i>` = "area" ,
+                `<i class='fa fa-percent'></i>` = "column_percent"
+              )
+              
+            )
+    } else{
+      radioGroupButtons(
+        
+        
+        inputId = "chart_type",
+        
+        label = NULL,
+        
+        individual = TRUE,
+        
+        choices = c(
+          `<i class='fa fa-bar-chart'></i>` = "column",
+          `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+          `<i class='fa fa-area-chart'></i>` = "area" ,
+          `<i class='fa fa-percent'></i>` = "column_percent"
+        )
+        
+      )
+    }
+  
+    
+  })
   
   
+  output$plot_by_dropdowns <- renderUI({
+    
+    if (input$Tech_Fuel_Switch == FALSE) {
+      
+      tagList(
+        # Adding the metric dropdown
+        selectInput(
+          
+          "plot_by",
+          
+          label = NULL,
+          
+          choices = c("Technology Group" ,"Technology")
+          
+        )
+      )
+      
+    }else{
+      
+      tagList(
+        # Adding the plot by dropdown
+        selectInput(
+          
+          "plot_by",
+          
+          label = NULL,
+          
+          choices = c("Fuels Grouped", "Fuels Separated")
+          
+        )
+      )
+    }
+    
+    })
 
   # This is used to select the group by values
   group_by <- reactive(
     {
-      if (input$Fuel_Switch == TRUE){
-        
+      req(input$plot_by)
+
+      if (input$Tech_Fuel_Switch == TRUE & input$plot_by == "Fuels Grouped" ){
+
         # Selecting Fuel Group
-        names(filtered_data())[10]
+        # names(filtered_data()[10])
+        "FuelGroup"
+
+      } else if( input$Tech_Fuel_Switch == TRUE & input$plot_by == "Fuels Separated" ) {
+
+        # Selecting detailed Fuel
+        # names(filtered_data()[4])
+        "Fuel"
+
+      } else if( input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technology" ) {
+
+        # Selecting detailed technology
+        # names(filtered_data()[8])
         
-      } else{
-        
-        # Selecting detailed Fuel 
-        names(filtered_data())[8]
-        
-          }
-      
+        "Technology"
+
+      } else if(input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technology Group") {
+
+        # Selecting detailed technology
+        # names(filtered_data()[11])
+        "Technology_Group"
+
+      }
+
     }
   )
+
+  
+  
+
+  # group_by <- reactive(
+  #   {
+  #     if (input$plot_by == "Plot by" ){
+  #       
+  #       # Selecting Fuel Group
+  #       names(filtered_data())[10]
+  #       
+  #     } else if(input$plot_by == "Fuels Grouped" ) {
+  #       
+  #       # Selecting detailed Fuel 
+  #       names(filtered_data())[10]
+  #       
+  #     } else if(input$plot_by ==  "Fuels Separated" ) {
+  #       
+  #       # Selecting detailed Fuel 
+  #       names(filtered_data())[8]
+  #       
+  #     } else if(input$plot_by == "Technology") {
+  #       
+  #       # Selecting detailed Fuel 
+  #       names(filtered_data())[4]
+  #       
+  #     } 
+  #     
+  #   }
+  # )
   
   # Get max y for current filtered data
   max_y <- reactive({
@@ -324,6 +451,20 @@ server <- function(input, output, session){
     )
   })
   
+  # observeEvent(input$Tech_Fuel_Switch, {
+  #   
+  #   if (input$Tech_Fuel_Switch == FALSE){
+  #     
+  #     shinyjs::hide("Fuel_Switch")
+  #     
+  #   }else{
+  #     
+  #     shinyjs::show("Fuel_Switch")
+  #     
+  #   }
+  #   
+  # })
+  
   
   #############################
   ####### Adding tooltips #####
@@ -333,7 +474,7 @@ server <- function(input, output, session){
   
   output$info_overview <- renderUI({
     
-    req(input$subsector)
+    req(input$subsector, input$Tech_Fuel_Switch, input$plot_by)
     
     caption_lists <- caption_list %>%
       filter(
@@ -347,7 +488,7 @@ server <- function(input, output, session){
   # Create unique for each tab
   output$info_transport <- renderUI({
     
-    req(input$subsector)
+    req(input$subsector, input$Tech_Fuel_Switch, input$plot_by)
     
     # Selecting "All Transport Subsectors"
     if (input$subsector == "All Subsectors") {
