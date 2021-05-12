@@ -593,6 +593,7 @@ for (subsector in subsectors){
   divide_df <- clean_df %>%
     filter(
       Sector     ==  "Industry" &
+        Subsector %in% c("Construction", "Mining") &
         Parameters == "Fuel Consumption" &
         Fuel       == "Drop-In Diesel" &
         Enduse     == "Motive Power, Mobile" &
@@ -635,72 +636,72 @@ for (subsector in subsectors){
 ###############################################################################
 # Emissions Biofuel computation for Industry: Other subsectors
 ###############################################################################
-
-subsectors <- c("Other")
-
-for (subsector in subsectors){
-  # Filter out needed values
-  needed_df <- clean_df %>%
-    filter(
-      Sector     ==  "Industry" &
-        Subsector  == subsector &
-        Parameters == "Emissions"  &
-        Fuel       == "Drop-In Diesel"  &
-        Enduse     == "Other" &
-        scen       == "Kea"
-    )
-  
-  # Filter multiply values
-  Multiple_df <- clean_df %>%
-    filter(
-      Sector     ==  "Industry" &
-        Subsector  == subsector &
-        Parameters == "Fuel Consumption"  &
-        Fuel       == "Drop-In Diesel"  &
-        Enduse     == "Other" &
-        scen       == "Kea"
-    ) 
-  
-  # Filter out divide values
-  divide_df <- clean_df %>%
-    filter(
-      Sector     ==  "Industry" &
-        Parameters == "Fuel Consumption" &
-        Fuel       == "Drop-In Diesel" &
-        Enduse     == "Other" &
-        scen       == "Kea"
-    ) %>% group_by(scen,
-                   Sector,
-                   Fuel,
-                   Period,
-                   FuelGroup) %>%
-    
-    summarise(Value = sum(Value), .groups = "drop") 
-  
-  
-  # Adding
-  new_needed_df <- needed_df %>%
-    mutate(Value = 0.6 * ( needed_df$Value * Multiple_df$Value)/divide_df$Value )
-  
-  # Adding all computed values to the data frame
-  combined_df <- rbind(combined_df %>%
-                         
-                         # Filter out the duplicated df
-                         filter(!(
-                           Sector     ==  "Industry" &
-                             Subsector  == subsector &
-                             Parameters == "Emissions"  &
-                             Fuel       == "Drop-In Diesel"  &
-                             Enduse     == "Other" &
-                             scen       == "Kea"
-                         )
-                         ),
-                       # Adding the new data
-                       new_needed_df 
-                       
-  )
-  
-}
+# 
+# subsectors <- c("Other")
+# 
+# for (subsector in subsectors){
+#   # Filter out needed values
+#   needed_df <- clean_df %>%
+#     filter(
+#       Sector     ==  "Industry" &
+#         Subsector  == subsector &
+#         Parameters == "Emissions"  &
+#         Fuel       == "Drop-In Diesel"  &
+#         Enduse     == "Other" &
+#         scen       == "Kea"
+#     )
+#   
+#   # Filter multiply values
+#   Multiple_df <- clean_df %>%
+#     filter(
+#       Sector     ==  "Industry" &
+#         Subsector  == subsector &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Drop-In Diesel"  &
+#         Enduse     == "Other" &
+#         scen       == "Kea"
+#     ) 
+#   
+#   # Filter out divide values
+#   divide_df <- clean_df %>%
+#     filter(
+#       Sector     ==  "Industry" &
+#         Parameters == "Fuel Consumption" &
+#         Fuel       == "Drop-In Diesel" &
+#         Enduse     == "Other" &
+#         scen       == "Kea"
+#     ) %>% group_by(scen,
+#                    Sector,
+#                    Fuel,
+#                    Period,
+#                    FuelGroup) %>%
+#     
+#     summarise(Value = sum(Value), .groups = "drop") 
+#   
+#   
+#   # Adding
+#   new_needed_df <- needed_df %>%
+#     mutate(Value = 0.6 * ( needed_df$Value * Multiple_df$Value)/divide_df$Value )
+#   
+#   # Adding all computed values to the data frame
+#   combined_df <- rbind(combined_df %>%
+#                          
+#                          # Filter out the duplicated df
+#                          filter(!(
+#                            Sector     ==  "Industry" &
+#                              Subsector  == subsector &
+#                              Parameters == "Emissions"  &
+#                              Fuel       == "Drop-In Diesel"  &
+#                              Enduse     == "Other" &
+#                              scen       == "Kea"
+#                          )
+#                          ),
+#                        # Adding the new data
+#                        new_needed_df 
+#                        
+#   )
+#   
+# }
 
 
 
@@ -738,6 +739,7 @@ for (subsector in subsectors) {
   divide_df <- clean_df %>%
     filter(
       Sector     == "Industry" &
+        Subsector %in% c("Construction", "Mining") &
         Parameters == "Fuel Consumption"  &
         Fuel       == "Diesel" &
         Enduse     == "Motive Power, Mobile" &
@@ -796,98 +798,98 @@ for (subsector in subsectors) {
   
 }
 
-
-##########################################################################################################
-# Fuel Consumption Biofuel computation for Industry:  "Other"
-##########################################################################################################
-
-subsectors <- c("Other")
-
-for (subsector in subsectors) {
-  
-  # Filter out needed values
-  needed_df <- clean_df %>%
-    filter(
-      Sector     == "Industry" &
-        Parameters == "Fuel Consumption"  &
-        Fuel       == "Drop-In Diesel"  &
-        Subsector  == subsector &
-        Enduse     == "Other" &
-        scen       == "Kea"
-    ) %>% arrange(scen)
-  
-  # Filter multiply values
-  Multiple_df <- clean_df %>%
-    filter(
-      Sector     == "Industry" &
-        Parameters == "Fuel Consumption"  &
-        Fuel       == "Diesel"  &
-        Subsector  == subsector &
-        Enduse     == "Other" &
-        scen       == "Kea"
-    ) %>% arrange(scen)
-  
-  # Filter out divide values
-  divide_df <- clean_df %>%
-    filter(
-      Sector     == "Industry" &
-        Parameters == "Fuel Consumption"  &
-        Fuel       == "Diesel" &
-        Enduse     == "Other" &
-        scen       == "Kea"
-    ) %>% group_by(scen,
-                   Sector,
-                   Parameters,
-                   Fuel,
-                   Period,
-                   FuelGroup) %>%
-    
-    summarise(Value = sum(Value), .groups = "drop") %>%
-    arrange(scen)
-  
-  
-  
-  # Adding
-  new_needed_df <- needed_df %>%
-    mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
-  
-  new_Multiple_df <- Multiple_df %>%
-    mutate(Value = Multiple_df$Value - new_needed_df$Value )
-  
-  # Adding all computed values to the data frame
-  combined_df <- rbind(combined_df %>%
-                         
-                         # Filter out the duplicated df
-                         filter(!(
-                           Sector     == "Industry" &
-                             Parameters == "Fuel Consumption"  &
-                             Fuel       == "Drop-In Diesel"  &
-                             Subsector  == subsector &
-                             Enduse     == "Other" &
-                             scen       == "Kea" )
-                         ),
-                       # Adding the new data
-                       new_needed_df 
-                       
-  )
-  
-  # Adding all computed values to the data frame
-  combined_df <- rbind(combined_df %>%
-                         
-                         # Filter out the duplicated df
-                         filter(!(
-                           Sector     == "Industry" &
-                             Parameters == "Fuel Consumption"  &
-                             Fuel       == "Diesel"  &
-                             Subsector  == subsector &
-                             Enduse     == "Other" &
-                             scen       == "Kea" )
-                         ),
-                       # Adding the new data
-                       new_Multiple_df   # new multiple df
-  )
-  
-}
+# 
+# ##########################################################################################################
+# # Fuel Consumption Biofuel computation for Industry:  "Other"
+# ##########################################################################################################
+# 
+# subsectors <- c("Other")
+# 
+# for (subsector in subsectors) {
+#   
+#   # Filter out needed values
+#   needed_df <- clean_df %>%
+#     filter(
+#       Sector     == "Industry" &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Drop-In Diesel"  &
+#         Subsector  == subsector &
+#         Enduse     == "Other" &
+#         scen       == "Kea"
+#     ) %>% arrange(scen)
+#   
+#   # Filter multiply values
+#   Multiple_df <- clean_df %>%
+#     filter(
+#       Sector     == "Industry" &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Diesel"  &
+#         Subsector  == subsector &
+#         Enduse     == "Other" &
+#         scen       == "Kea"
+#     ) %>% arrange(scen)
+#   
+#   # Filter out divide values
+#   divide_df <- clean_df %>%
+#     filter(
+#       Sector     == "Industry" &
+#         Parameters == "Fuel Consumption"  &
+#         Fuel       == "Diesel" &
+#         Enduse     == "Other" &
+#         scen       == "Kea"
+#     ) %>% group_by(scen,
+#                    Sector,
+#                    Parameters,
+#                    Fuel,
+#                    Period,
+#                    FuelGroup) %>%
+#     
+#     summarise(Value = sum(Value), .groups = "drop") %>%
+#     arrange(scen)
+#   
+#   
+#   
+#   # Adding
+#   new_needed_df <- needed_df %>%
+#     mutate(Value = (needed_df$Value * Multiple_df$Value)/divide_df$Value )
+#   
+#   new_Multiple_df <- Multiple_df %>%
+#     mutate(Value = Multiple_df$Value - new_needed_df$Value )
+#   
+#   # Adding all computed values to the data frame
+#   combined_df <- rbind(combined_df %>%
+#                          
+#                          # Filter out the duplicated df
+#                          filter(!(
+#                            Sector     == "Industry" &
+#                              Parameters == "Fuel Consumption"  &
+#                              Fuel       == "Drop-In Diesel"  &
+#                              Subsector  == subsector &
+#                              Enduse     == "Other" &
+#                              scen       == "Kea" )
+#                          ),
+#                        # Adding the new data
+#                        new_needed_df 
+#                        
+#   )
+#   
+#   # Adding all computed values to the data frame
+#   combined_df <- rbind(combined_df %>%
+#                          
+#                          # Filter out the duplicated df
+#                          filter(!(
+#                            Sector     == "Industry" &
+#                              Parameters == "Fuel Consumption"  &
+#                              Fuel       == "Diesel"  &
+#                              Subsector  == subsector &
+#                              Enduse     == "Other" &
+#                              scen       == "Kea" )
+#                          ),
+#                        # Adding the new data
+#                        new_Multiple_df   # new multiple df
+#   )
+#   
+# }
 
 
 # Replacing all NaN with 0
