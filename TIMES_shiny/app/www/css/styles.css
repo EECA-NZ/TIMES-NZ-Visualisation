@@ -4,10 +4,6 @@ body {
   
 }
 
-a:link {
-  color: rgb(0, 0, 0);
-}
-
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
  
@@ -263,14 +259,14 @@ button.btn.radiobtn.btn-default {
 /*  Fuel and Technolo */
 /* Yes / No */
 .YesNo .onoffswitch-inner:before {
-  content: "Plot by Fuel";
-  background-color: #3C4C49; color: #ffffff;
+  content: "Group by Fuels";
+  background-color: #41B496; color: #000000;
   font-weight: lighter;
 }
 
 .YesNo .onoffswitch-inner:after {
-  content: "Plot by Technology";
-  background-color: #41B496; color: #000000;
+  content: "Group by Technologies";
+  background-color: #3C4C49; color: #ffffff; 
   font-weight: lighter;
 }
 

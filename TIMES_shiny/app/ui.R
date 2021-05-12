@@ -59,9 +59,12 @@ ui <- navbarPage(
         # The background text
         HTML("The TIMES-NZ 2.0 New Zealand Energy System Scenarios website 
               presents model insights outputs and assumptions for the latest 
-              TIMES-NZ scenarios. TIMES-NZ 2.0 has been developed by <a href='https://www.eeca.govt.nz/'>EECA</a>  in 
-              partnership with the <a href='https://www.bec.org.nz/'>Business Energy Council New Zealand</a>  and The 
-              <a href='https://www.psi.ch/en'>Paul Scherrer Institut</a>. There are two scenarios Kea (Cohesive) and 
+              TIMES-NZ scenarios. TIMES-NZ 2.0 has been developed by 
+              <a href='https://www.eeca.govt.nz/' style='color:#000000;'>EECA</a> 
+              in partnership with the <a href='https://www.bec.org.nz/' 
+              style='color:#000000;'>Business Energy Council New Zealand</a>  
+              and The <a href='https://www.psi.ch/en' style='color:#000000;'>
+              Paul Scherrer Institut</a>. There are two scenarios Kea (Cohesive) and 
               Tui(Individualistic) in TIMES-NZ 2.0 . " ),
               
 
@@ -266,6 +269,11 @@ ui <- navbarPage(
       
       # Adding the Sector tabs
       mainPanel = mainPanel(
+        
+        # Using this to hide the error
+        tags$style(type="text/css",
+                   ".shiny-output-error { visibility: hidden; }",
+                   ".shiny-output-error:before { visibility: hidden; }"),
         
         width = 9,
         
