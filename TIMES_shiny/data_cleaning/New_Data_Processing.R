@@ -81,7 +81,7 @@ clean_df <- raw_df %>%
           mutate(Sector = ifelse(Sector == "Electricity", "Other" , Sector)) %>% 
           # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
-                 Unit = ifelse(Parameters == "Emissions", "Mt CO2", Unit )) %>% 
+                 Unit = ifelse(Parameters == "Emissions", "Mt CO2/yr", Unit )) %>% 
           # Modifying Attribute values: Change Annualised Capital Costs to Billion NZD
           mutate(Value = ifelse(Parameters == "Annualised Capital Costs", Value/1000,Value),
                  Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit),
@@ -913,7 +913,9 @@ sector_list <-distinct(hierarchy_lits, Sector) # sector list
 # Reading in assumption data
 assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
   gather(Period, Value, `2022`:`2060`) %>%
-  mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))
+  mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))  %>% 
+  # Changing total GDP 2022 period to 2018
+  mutate(Period =  ifelse(Parameter == "Total GDP" & Period == 2022, 2018,Period))
 
 
 assumptions_list <- distinct(assumptions_df, Parameter) %>% pull(Parameter)

@@ -206,18 +206,17 @@ ui <- navbarPage(
         
         
         # Adding tech and fuel switch
+        introBox(data.step = 3, data.intro = intro$text[3],
         span(switchButton(inputId = "Tech_Fuel_Switch",
 
                           label = NULL,
 
-                          value = TRUE, col = "RG", type = "YN"),
+                          value = TRUE, col = "RG", type = "TF"),
              
              # uiOutput("switch"),
 
-             title="Toggle to show fuels grouped by either Renewables
-                            and Fossil Fuels, or all fuels separately displayed
-                            (eg, Electricity, Coal, Solar etc)"
-        ),
+             title=HTML("Toggle to switch between <b>Plot by Fuels</b> and <b>Plot by Technologies</b>")
+        )),
         # 
         # # Adding intro-tour for fuel switch
         # introBox(data.step = 3, data.intro = intro$text[3],
@@ -235,13 +234,16 @@ ui <- navbarPage(
         #          )),
         
         
-        
-        uiOutput("plot_by_dropdowns"),
+        introBox(data.step = 4, data.intro = intro$text[4],
+                 span(uiOutput("plot_by_dropdowns"),
+                      title=HTML("Dropdown to select between Fuels or Technologies in groups or separated")  
+                      )
+        ),
         
         
 
         # Intro-tour for drilldowns
-        introBox(data.step = 4, data.intro = intro$text[4],
+        introBox(data.step = 5, data.intro = intro$text[5],
                  
                  # This is where the drop downs are inserted in to the UI. 
                  # They are created dynamically on the server side.  
@@ -250,7 +252,7 @@ ui <- navbarPage(
         
         
         # Intro-tour for Metric
-        introBox(data.step = 5, data.intro = intro$text[5],
+        introBox(data.step = 6, data.intro = intro$text[6],
                  
                  # Adding the metric dropdown
                  selectInput(
@@ -277,7 +279,7 @@ ui <- navbarPage(
         
         width = 9,
         
-        introBox(data.step = 6, data.intro = intro$text[6],
+        introBox(data.step = 7, data.intro = intro$text[7],
                  
                  tabsetPanel(
                    

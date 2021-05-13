@@ -235,11 +235,11 @@ button.btn.radiobtn.btn-default {
 /* Changing the text in the switch*/
 /* True / False */
 .TrueFalse .onoffswitch-inner:before {
-  content: "Fuels Grouped";
+  content: "Plot by Fuels";
 }
 
 .TrueFalse .onoffswitch-inner:after {
-  content: "Fuels Separated";
+  content: "Plot by Technologies";
 }
 
 
@@ -259,13 +259,13 @@ button.btn.radiobtn.btn-default {
 /*  Fuel and Technolo */
 /* Yes / No */
 .YesNo .onoffswitch-inner:before {
-  content: "Group by Fuels";
+  content: "Plot by Fuel";
   background-color: #41B496; color: #000000;
   font-weight: lighter;
 }
 
 .YesNo .onoffswitch-inner:after {
-  content: "Group by Technologies";
+  content: "Plot by Technologies";
   background-color: #3C4C49; color: #ffffff; 
   font-weight: lighter;
 }

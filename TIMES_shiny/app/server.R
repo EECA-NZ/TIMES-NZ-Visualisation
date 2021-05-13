@@ -256,45 +256,64 @@ server <- function(input, output, session){
   # Setting the radiogroup based on selections
   output$radioGroup <- renderUI({
     
-  # These are the buttons used
-    if (input$Tech_Fuel_Switch == TRUE){
-            radioGroupButtons(
-              
-              
-              inputId = "chart_type",
-              
-              label = NULL,
-              
-              individual = TRUE,
-              
-              choices = c(
-                `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-                `<i class='fa fa-bar-chart'></i>` = "column",
-                `<i class='fa fa-area-chart'></i>` = "area" ,
-                `<i class='fa fa-percent'></i>` = "column_percent"
-              )
-              
-            )
-    } else{
-      radioGroupButtons(
-        
-        
-        inputId = "chart_type",
-        
-        label = NULL,
-        
-        individual = TRUE,
-        
-        choices = c(
-          `<i class='fa fa-bar-chart'></i>` = "column",
-          `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-          `<i class='fa fa-area-chart'></i>` = "area" ,
-          `<i class='fa fa-percent'></i>` = "column_percent"
-        )
-        
+    radioGroupButtons(
+      
+      
+      inputId = "chart_type",
+      
+      label = NULL,
+      
+      individual = TRUE,
+      
+      choices = c(
+        `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+        `<i class='fa fa-bar-chart'></i>` = "column",
+        `<i class='fa fa-area-chart'></i>` = "area" ,
+        `<i class='fa fa-percent'></i>` = "column_percent"
       )
-    }
-  
+      
+    )
+    
+  #   
+  # # These are the buttons used
+  #   if (input$Tech_Fuel_Switch == TRUE){
+  #           radioGroupButtons(
+  #             
+  #             
+  #             inputId = "chart_type",
+  #             
+  #             label = NULL,
+  #             
+  #             individual = TRUE,
+  #             
+  #             choices = c(
+  #               `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+  #               `<i class='fa fa-bar-chart'></i>` = "column",
+  #               `<i class='fa fa-area-chart'></i>` = "area" ,
+  #               `<i class='fa fa-percent'></i>` = "column_percent"
+  #             )
+  #             
+  #           )
+  #   } else{
+  #     radioGroupButtons(
+  #       
+  #       
+  #       inputId = "chart_type",
+  #       
+  #       label = NULL,
+  #       
+  #       individual = TRUE,
+  #       
+  #       choices = c(
+  #         `<i class='fa fa-bar-chart'></i>` = "column",
+  #         `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
+  #         `<i class='fa fa-area-chart'></i>` = "area" ,
+  #         `<i class='fa fa-percent'></i>` = "column_percent"
+  #       )
+  #       
+  #     )
+  #   }
+  # 
     
   })
   
@@ -311,7 +330,7 @@ server <- function(input, output, session){
           
           label = NULL,
           
-          choices = c("Technology Group" ,"Technology")
+          choices = c("Technologies Grouped" ,"Technologies Separated")
           
         )
       )
@@ -351,14 +370,14 @@ server <- function(input, output, session){
         # names(filtered_data()[4])
         "Fuel"
 
-      } else if( input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technology" ) {
+      } else if( input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technologies Separated" ) {
 
         # Selecting detailed technology
         # names(filtered_data()[8])
         
         "Technology"
 
-      } else if(input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technology Group") {
+      } else if(input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technologies Grouped") {
 
         # Selecting detailed technology
         # names(filtered_data()[11])
