@@ -729,7 +729,7 @@ server <- function(input, output, session){
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
   })
@@ -770,7 +770,7 @@ server <- function(input, output, session){
       plot_title = paste0("Transport ",unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
     
@@ -815,7 +815,7 @@ server <- function(input, output, session){
       plot_title = paste0("Industry ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
     
@@ -860,7 +860,7 @@ server <- function(input, output, session){
       plot_title = paste0("Commercial ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
     
@@ -903,7 +903,7 @@ server <- function(input, output, session){
       plot_title = paste0("Residential ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
     
@@ -947,7 +947,7 @@ server <- function(input, output, session){
       plot_title = paste0("Agriculture ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
     
@@ -991,7 +991,7 @@ server <- function(input, output, session){
       plot_title = paste0("Electricity ",unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
       input_chart_type = input$chart_type,
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Tui")
+      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
     

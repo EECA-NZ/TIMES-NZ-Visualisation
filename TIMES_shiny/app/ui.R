@@ -65,7 +65,7 @@ ui <- navbarPage(
               style='color:#000000;'>Business Energy Council New Zealand</a>  
               and The <a href='https://www.psi.ch/en' style='color:#000000;'>
               Paul Scherrer Institut</a>. There are two scenarios Kea (Cohesive) and 
-              Tui(Individualistic) in TIMES-NZ 2.0 . " ),
+              T\u16b\u12b (Individualistic) in TIMES-NZ 2.0 . " ),
               
 
         
@@ -101,7 +101,7 @@ ui <- navbarPage(
         deliberately pursues cohesive ways to achieve a low-emissions economy.</div>
        
         
-        <div class='box b'><strong>Tui </strong>represents a scenario where 
+        <div class='box b'><strong>T\u16b\u12b </strong>represents a scenario where 
         climate change is an important issue to be addressed as one of many 
         priorities.  </div>
         </div>"
@@ -317,7 +317,7 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         h3("Tui", ),
+                         h3("T\u16b\u12b", ),
                          
                          highchartOutput("overview_tui")
                          
@@ -349,7 +349,7 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         h3("Tui"),
+                         h3("T\u16b\u12b"),
                          
                          highchartOutput("transport_tui")
                        )
@@ -385,7 +385,7 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         h3("Tui"),
+                         h3("T\u16b\u12b"),
                          
                          highchartOutput("industry_tui")
                        )
@@ -419,7 +419,7 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         h3("Tui"),
+                         h3("T\u16b\u12b"),
                          
                          highchartOutput("Commercial_tui")
                        )
@@ -452,7 +452,7 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         h3("Tui"),
+                         h3("T\u16b\u12b"),
                          
                          highchartOutput("Residential_tui")
                        )
@@ -482,7 +482,7 @@ ui <- navbarPage(
                                 
                                 width = 12,
                                 
-                                h3("Tui"),
+                                h3("T\u16b\u12b"),
                                 
                                 highchartOutput("Agriculture_tui")
                               )
@@ -515,7 +515,7 @@ ui <- navbarPage(
                          
                          width = 12,
                          
-                         h3("Tui"),
+                         h3("T\u16b\u12b"),
                          
                          highchartOutput("Other_tui")
                        )
