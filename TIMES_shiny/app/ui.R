@@ -54,34 +54,23 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("TIMES-NZ 2.0 Energy System Scenarios "),
+        h3("New Zealand Energy System Scenarios TIMES-NZ 2.0"),
         
         # The background text
-        HTML("The TIMES-NZ 2.0 New Zealand Energy System Scenarios website 
-              presents model insights outputs and assumptions for the latest 
-              TIMES-NZ scenarios. TIMES-NZ 2.0 has been developed by 
-              <a href='https://www.eeca.govt.nz/' style='color:#000000;'>EECA</a> 
-              in partnership with the <a href='https://www.bec.org.nz/' 
-              style='color:#000000;'>Business Energy Council New Zealand</a>  
-              and The <a href='https://www.psi.ch/en' style='color:#000000;'>
-              Paul Scherrer Institut</a>. There are two scenarios Kea (Cohesive) and 
-              T\u16b\u12b (Individualistic) in TIMES-NZ 2.0 . " ),
+        HTML(" Climate change is the most urgent environmental issue of our time. 
+             About 40% of New Zealand’s total greenhouse gas emissions come from 
+             our energy use and the challenge is to get this number down.
+            The TIMES-NZ 2.0 New Zealand Energy System Scenarios website presents model 
+             insights for the latest TIMES-NZ scenarios. TIMES-NZ 2.0 has been 
+             developed by <a href='https://www.eeca.govt.nz/' style='color:#000000;
+             '>EECA</a> in partnership with the  <a href='https://www.bec.org.nz/' 
+             style='color:#000000;'>Business Energy Council New Zealand</a>   and <a 
+             href='https://www.psi.ch/en' style='color:#000000;'> The Paul 
+             Scherrer Institut</a>." ),
               
 
         
-        # Adding the introduction tour button 
-        HTML("<br><br>"),
-        
-        div(
-          actionButton(inputId = "intro", 
-                       
-                       label = HTML("Click here for a quick introduction tour"),
-                       
-                       icon = icon("info-circle")),
 
-                        align = "center")
-
-      )),
     
     
     # Adding the Energy System Scenarios row
@@ -92,6 +81,9 @@ ui <- navbarPage(
         width = 12,
         
         h3("Scenarios"),
+        
+        HTML("TIMES-NZ 2.0 includes two two 
+        scenarios Kea (Cohesive) and T\u16b\u12b (Individualistic): <br><br>"),
         
         # Adding Kea and Tui comment 
         HTML("<div class='wrapper'>
@@ -108,6 +100,9 @@ ui <- navbarPage(
      
              
         )
+
+        
+      )),
       )
       
       
@@ -553,42 +548,104 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("About"),
+        h3("New Zealand Energy System Scenarios TIMES-NZ 2.0"),
         
-        # includeHTML("intro_text.html"),
+        HTML("The TIMES-NZ 2.0 Scenarios, developed by <a href='https://www.eeca.govt.nz/' style='color:#000000;
+             '>EECA</a> in partnership with the  <a href='https://www.bec.org.nz/' 
+             style='color:#000000;'>Business Energy Council New Zealand</a>   and <a 
+             href='https://www.psi.ch/en' style='color:#000000;'> The Paul 
+             Scherrer Institut</a> are based 
+        on the International Energy Agency Energy Technology Systems Analysis 
+        Program TIMES model, an energy system model that has been used by over 
+        60 countries worldwide. <br><br> TIMES-NZ is a technology-based optimisation 
+        model that represents the entire New Zealand energy system, encompassing 
+        energy carriers and processes from primary resources to final energy 
+        consumption. TIMES-NZ is based on the IEA ETSAP TIMES  energy model 
+        generator, and models scenarios  for the energy system, incorporating 
+        both technical, engineering and economic considerations.   
+        TIMES is an integrated energy system model, meaning that it 
+        simultaneously models all components of the energy system, 
+        ensuring that any interdependencies and trade-offs are reflected.
+        <br><br>TIMES uses a linear-programming solver to minimise the total 
+        discounted energy system cost  over the entire modelled time horizon. 
+        The cost minimisation is achieved by choosing between technologies and 
+        fuels to meet expected energy demand. The model effectively ‘invests in’ 
+        the various available technologies based on the combinations of cost, 
+        efficiency and fuel availability. TIMES models are particularly suited 
+        to explore the evolution of possible least-cost configurations of the system.
+        The scenarios were originally developed by the BEC2060 project - 
+        this updated TIMES-NZ model adds more detail and sophistication to sectors, 
+        subsectors, technologies and end uses."),
         
-        paste("Welcome to the TIMES-NZ 2.0 website. This site presents the key model outputs and assumptions for the latest TIMES-NZ scenarios.
-                   The TIMES-NZ project grew out of BEC2060, an exploration of possible energy futures based on contrasted scenarios.",
-              "The latest iteration of TIMES-NZ builds on the BEC2060 work, and has been developed in partnership between EECA, BEC and PSI adding more detail and 
-                   sophistication to sectors, subsectors, technologies and end uses. In particular, the 2020 update of EECA’s Energy End Use Database provides a greatly improved input dataset.
-                   There are two scenarios <insert scenario names here> in TIMES-NZ 2.0.  The scenarios are modelled using an integrated energy-systems model known which is based on the IEA ETSAP TIMES model.  
-                   The TIMES-NZ model simultaneously represents all components of the energy system, ensuring any interdependencies are reflected. 
-                   TIMES is a bottom-up, technology based system model that selects from available technologies to produce a least-cost energy system, optimised according to input constraints over the medium to long-term.
-                   Other forecast inputs come from a variety of reputable sources (MoT, MBIE, MfE, MPI)– including transport outlook scenarios for projections of the need for passenger and freight transport, 
-                   sub-sectoral GDP forecasts for future service demand from the commercial, agriculture and industrial sectors, and population to form the basis of the residential service demand projections.
-                   These results provide some insight into our future energy system, we hope you find them useful."
-              , collapse = "\n"),
+        h3("The TIMES-NZ 2.0 Scenarios " ),
+        
+        HTML("The TIMES-NZ 2.0 project grew out of BEC2060, which provided two 
+             plausible and coherent scenarios about New Zealand’s energy future: 
+             Kea and Tui. These scenarios have been extended in this latest 
+             iteration to include more granular data."),
+        
+        
+        # Adding Kea and Tui comment 
+        HTML("<div class='wrapper'>
+                
+        <div class='box a'><strong> Kea (cohesive) </strong> <br>
+        <strong>Kea</strong> represents a scenario where climate change is prioritised as the 
+        most pressing issue and New Zealand deliberately pursues cohesive 
+        ways to achieve a low-emissions economy.</div>
+       
+        
+        <div class='box b'><strong>Tui (individualistic)</strong><br>
+        <strong>Tūī</strong> represents a scenario where climate change is an 
+        important issue to be addressed as one of many priorities.  </div>
+        </div>"
+             
+             
+        ),
+        
+        
+        # HTML("<strong> Kea (cohesive) </strong> <br>
+        # <strong>Kea</strong> represents a scenario where climate change is prioritised as the 
+        # most pressing issue and New Zealand deliberately pursues cohesive 
+        # ways to achieve a low-emissions economy.
+        # <br><br>
+        # <strong>Tui (individualistic)</strong><br>
+        # <strong>Tūī</strong> represents a scenario where climate change is an 
+        # important issue to be addressed as one of many priorities. <br><br>"),
+        
+        h3("Find out more about TIMES-NZ 2.0"),
+        HTML("For more details about the TIMES-NZ 2.0 update follow this 
+        link to the documentation outlining all the data  input assumptions and  
+        underlying information to understand and interpret the results from 
+        the TIMES-NZ 2.0 scenarios.  
+        Link to documentation <a href='https://www.eeca.govt.nz/' style='color:#000000;
+             '><i class='fa fa-file-pdf-o' style='font-size:28px;color:grey'></a></i>"
+
+        
+             
+          
+        ),
+        
         HTML("<br><br>"),
+        # Adding the introduction tour button 
+        # HTML("<br><br>"),
         
+        div(
+          actionButton(inputId = "intro", 
+                       
+                       label = HTML("Click here for a quick introduction tour"),
+                       
+                       icon = icon("info-circle")),
+          
+          align = "center")
         
         # Embedding  video into the App
-        div(
-        HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-        HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/HYS-0L7mods" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-        align = "center"),
+        # div(
+        # HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+        # HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/HYS-0L7mods" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+        # align = "center"),
         
         
-        # Embedding colapsing tabs
-        # div( HTML(' <div class="page-width accordion-wrapper">
-        #   <div class="accordion wide">
-        #   <button id="accHeading2145" aria-controls="accToggle2145" class="js-trigger accordion-trigger" aria-expanded="false">Heavy transport</button>
-        #   
-        #   <div id="accToggle2145" class="js-toggle accordion-toggle typography" aria-expanded="false" aria-hidden="true" aria-labelledby="accHeading2145">
-        #   <p>Similarly to the light fleet, conventional biofuels can be a short-term quick win for the existing truck fleet.</p><p>At the horizon of drop-in biofuel potential uptake (2035-2040), our view is that heavy electric vehicles (HEV) will present a better total cost of ownership (TCO). The largest cost component of HEVs is the large battery required. With declining prices of Li-Ion batteries, <a rel="noreferrer external" class="external" rel="external" title="Open external link" href="https://about.bnef.com/blog/behind-scenes-take-lithium-ion-battery-prices/" target="_blank">this will become less of an issue by 2035<span class="nonvisual-indicator">(external link)</span></a>. EVs have the benefit of lower fuel costs than diesel/Biofuel vehicles, which will allow for cost competitiveness or benefits from a TCO perspective.</p>
-        #   </div>
-        #   </div>
-        #   </div>'))
-      ))
+    ))
     
     
   ),

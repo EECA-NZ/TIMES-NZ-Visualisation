@@ -284,21 +284,21 @@ button.btn.radiobtn.btn-default {
 }
 
 .box {
-  background-color: #444;
-  color: #fff;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   border-radius: 20px;
   padding: 20px;
   font-size: 16px;
 }
 
 /* Setting the background colours for the boxes  */
-.box.a{
+/* .box.a{
   background-color: #00af8c;
 }
 
 .box.b{
   background-color: #164057;
-}
+} */
 
 
 /* Adding iframe style */

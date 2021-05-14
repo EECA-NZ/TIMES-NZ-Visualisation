@@ -116,7 +116,7 @@ Cool_Var1 <- clean_df %>%
 Cool_Multiple_Var <- clean_df %>%  
                   filter(
                     Subsector  == "Detached Dwellings" &
-                    Parameters == "Demand" & 
+                    Parameters == "End Use Demand" & 
                     Technology == "Heat Pump (Multi-Split)" &
                     Enduse     == "Space Cooling"
                     ) 
@@ -136,7 +136,7 @@ Heat_Var1 <- clean_df %>%
 Heat_Multiple_Var <- clean_df %>%  
                   filter(
                     Subsector  == "Detached Dwellings" &
-                      Parameters == "Demand" & 
+                      Parameters == "End Use Demand" & 
                       Technology == "Heat Pump (Multi-Split)" &
                       Enduse     == "Space Heating"
                   ) 
@@ -146,7 +146,7 @@ Heat_Multiple_Var <- clean_df %>%
 divide_df <- clean_df %>% 
                   filter(
                     Subsector  == "Detached Dwellings" &
-                    Parameters  == "Demand" & 
+                    Parameters  == "End Use Demand" & 
                     Technology == "Heat Pump (Multi-Split)"
                   ) %>% group_by(scen, Sector, Subsector,  Technology, 
                                  Unit, Parameters,Fuel, Period, FuelGroup) %>% 
@@ -923,16 +923,18 @@ assumptions_list <- distinct(assumptions_df, Parameter) %>% pull(Parameter)
 
 
 # Reading in insight data
-
-insight_df <- read_excel(path = "Key-Insight.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
+# extract assumptions for charting
+insight_df <- read_excel(path = "Key-Insight.xlsx", sheet = "Sheet1") %>% 
   gather(Period, Value, `2018`:`2060`) 
 
 insight_list <- distinct(insight_df, Parameter)  %>% pull(Parameter)
 
 
 # Ordered attributes
-order_attr = c("Emissions","Fuel Consumption", "Demand",  "Annualised Capital Costs", "Number of Vehicles", 
-               "Distance Travelled", "Electricity Generation",   "Gross Electricity Storage", "Grid Injection (from Storage)" )
+order_attr = c("Emissions","Fuel Consumption", "End Use Demand", "Annualised Capital Costs", 
+               "Number of Vehicles", "Distance Travelled", "Electricity Generation",   
+               "Gross Electricity Storage", "Grid Injection (from Storage)", 
+               "Feedstock"  )
 
 
 #Create the R data set for Shiny to use

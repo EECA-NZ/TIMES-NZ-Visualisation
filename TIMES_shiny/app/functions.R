@@ -259,7 +259,7 @@ generic_charts <- function(data,             # The filtered data
 
     
     # Adding the title (The subtitle was used instead of "title")
-    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+    hc_subtitle(text = paste0(str_to_sentence(plot_title), " (", Y_label , ")"),
                 
                 style = list(
                   
@@ -295,7 +295,7 @@ generic_charts <- function(data,             # The filtered data
       
       enabled = TRUE,                    # Allow download option
       
-      filename = filename ,              # Setting the file name
+      filename = str_to_sentence(filename) ,              # Setting the file name
       
       width = 3200,
       
@@ -545,7 +545,7 @@ assumption_charts <- function(data,             # The filtered data
              labels = list(format ='{value}')
     ) %>%
     
-    hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+    hc_subtitle(text = paste0(str_to_sentence(plot_title), " (", Y_label , ")"),
                 style= list(
                   color= '#000000',
                   fontSize='16px'
@@ -569,7 +569,7 @@ assumption_charts <- function(data,             # The filtered data
       
       enabled = TRUE,                    # Allow download option
       
-      filename = filename ,              # Setting the file name
+      filename = str_to_sentence(filename) ,              # Setting the file name
       
       width = 3200,
       
