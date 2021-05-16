@@ -1,3 +1,36 @@
+# Description: ui.R defines the UI component of the Shiny app, such as the buttons, pickers, menus, 
+# etc. ui.R also loads all the required libraries, the datasets and the functions. 
+#
+# Input: www/*
+# 
+# Output: Generates the front facing app that the user can interface with. 
+#
+# Author: Kenny Graham (KG) and Conrad MacCormick (CM)
+#
+# Dependencies: 
+# The libraries that are required by the ui.R are version controlled using renv. Refer to 
+# https://rstudio.github.io/renv/articles/renv.html on restoring the state of the environment 
+# using the lock file. use renv::restore() to restore
+# 
+# ui.R also depends on three other source files: 
+# - server.R
+# - load_data.R
+# - functions.R
+#
+# ui.R also depends on css file to define the layout of the web app, and the components defined 
+# in the folder www, e.g.,  www/css/styles.css are required for .css formatting of the UI 
+# elements in the app when it is loaded. 
+#  
+# Notes:
+# 
+# Issues:
+#
+# History (reverse order): 
+# 17 May 2021 KG v1 - Wrote the deliverable source code 
+#
+# ================================================================================================ #
+
+
 # Load libraries
 # These are the libraries needed for the App. 
 # All the these libraries and depended packages are archived in the environment
@@ -82,7 +115,7 @@ ui <- navbarPage(
         
         h3("Scenarios"),
         
-        HTML("TIMES-NZ 2.0 includes two two 
+        HTML("TIMES-NZ 2.0 includes two
         scenarios Kea (Cohesive) and T\u16b\u12b (Individualistic): <br><br>"),
         
         # Adding Kea and Tui comment 

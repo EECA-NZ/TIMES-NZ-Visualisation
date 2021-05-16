@@ -1,4 +1,30 @@
-# Define server logic to summarize and view selected dataset
+# ================================================================================================ #
+# Description: server.R defines the responses to the user inputs to the interactive components 
+# defined in ui.R, i.e., carrying out data processing to visualise the data properly. 
+# The logic and data filtering are implemented here. 
+#
+# Input: Interactive user inputs passed in from ui.R 
+# 
+# Output: Sends corresponding response outputs back through the "output" object passed into 
+# the function. 
+#
+# Author: Kenny Graham (KG) and Conrad MacCormick (CM)
+#
+# Dependencies: 
+# server.R depends on three other source files: 
+# - ui.R
+# - load_data.R
+# - functions.R
+#
+# Notes:
+# 
+# Issues:
+#
+# History (reverse order): 
+# 17 May 2021 KG v1 - Wrote the deliverable source code 
+#
+#
+
 
 server <- function(input, output, session){
 
@@ -167,8 +193,11 @@ server <- function(input, output, session){
     
     # Ordering the attributes 
     order_Parameters <- c("Select Metric", order_attribute(df$Parameters,order_attr))
+    
     updateSelectInput(session, "enduse", choices = sort(unique(df$Enduse)))
+    
     updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
+    
     updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
@@ -180,13 +209,17 @@ server <- function(input, output, session){
       df <- filtered_dropdowns() #%>% filter(Enduse == input$enduse)
       
     } else {
-      df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse)
+      df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, 
+                                            Enduse == input$enduse)
       
     }
     # Ordering the attributes 
     order_Parameters <- c("Select Metric", order_attribute(df$Parameters,order_attr))
+    
     updateSelectInput(session, "unit", choices = sort(order_Parameters))
+    
     updateSelectInput(session, "tech", choices = sort(unique(df$Technology)))
+    
     updateSelectInput(session, "unit", choices = order_Parameters)
     
   }, ignoreNULL = TRUE)
@@ -195,12 +228,15 @@ server <- function(input, output, session){
   
   
   observeEvent(input$tech, {
-    if (input$subsector == "All Subsectors" & input$enduse == "All Enduse" & input$tech == "All Technology") {
+    if (input$subsector == "All Subsectors" & 
+          input$enduse  == "All Enduse" & 
+          input$tech    == "All Technology") {
       
       df <- filtered_dropdowns() #%>% filter(Enduse == input$enduse)
       
     } else {
-      df <- filtered_dropdowns() %>% filter(Subsector == input$subsector, Enduse == input$enduse, 
+      df <- filtered_dropdowns() %>% filter(Subsector  == input$subsector,
+                                            Enduse     == input$enduse, 
                                             Technology == input$tech)
       
     }
@@ -229,24 +265,37 @@ server <- function(input, output, session){
   
   # Selecting the type of data based on switch (Key insight or Assumptions)
   filtered_assumptions <- reactive({
+    
     req(input$assumptions)
+    
     if (input$Insght_Switch == FALSE){
+      
     assumptions_df %>% 
+        
       filter(Parameter == input$assumptions)
+      
     }else{
+      
       insight_df %>% 
+        
         filter(Parameter == input$assumptions)
     }
       
   })
   
-  # Selecting title based on switch (Key insight or Assumptions)
+  # Selecting Key insight or Assumptions title  based on switch (Key insight or Assumptions)
   filtered_assumptions_title <- reactive({
+    
     req(input$assumptions)
+    
     if (input$Insght_Switch == FALSE){
+      
         "Assumption"
+      
     }else{
+      
         "Key insight"
+      
     }
     
   })
@@ -361,26 +410,25 @@ server <- function(input, output, session){
       if (input$Tech_Fuel_Switch == TRUE & input$plot_by == "Fuels Grouped" ){
 
         # Selecting Fuel Group
-        # names(filtered_data()[10])
+
         "FuelGroup"
 
       } else if( input$Tech_Fuel_Switch == TRUE & input$plot_by == "Fuels Separated" ) {
 
         # Selecting detailed Fuel
-        # names(filtered_data()[4])
+
         "Fuel"
 
       } else if( input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technologies Separated" ) {
 
         # Selecting detailed technology
-        # names(filtered_data()[8])
         
         "Technology"
 
       } else if(input$Tech_Fuel_Switch == FALSE & input$plot_by == "Technologies Grouped") {
 
-        # Selecting detailed technology
-        # names(filtered_data()[11])
+        # Selecting grouped technology
+        
         "Technology_Group"
 
       }
@@ -390,41 +438,17 @@ server <- function(input, output, session){
 
   
   
-
-  # group_by <- reactive(
-  #   {
-  #     if (input$plot_by == "Plot by" ){
-  #       
-  #       # Selecting Fuel Group
-  #       names(filtered_data())[10]
-  #       
-  #     } else if(input$plot_by == "Fuels Grouped" ) {
-  #       
-  #       # Selecting detailed Fuel 
-  #       names(filtered_data())[10]
-  #       
-  #     } else if(input$plot_by ==  "Fuels Separated" ) {
-  #       
-  #       # Selecting detailed Fuel 
-  #       names(filtered_data())[8]
-  #       
-  #     } else if(input$plot_by == "Technology") {
-  #       
-  #       # Selecting detailed Fuel 
-  #       names(filtered_data())[4]
-  #       
-  #     } 
-  #     
-  #   }
-  # )
-  
   # Get max y for current filtered data
   max_y <- reactive({
     
     get_max_y(
+      
       data = filtered_data(),
+      
       group_var = group_by_val(),
+      
       input_chart_type = input$chart_type
+      
     )
     
   })
@@ -435,62 +459,48 @@ server <- function(input, output, session){
     
     
     get_max_y_assumptions(
+      
       data = filtered_assumptions(),
+      
       group_var = input$assumptions,
+      
       input_chart_type = "line"
+      
     )
     
   })
   
   
-  
-  # output$assumptions_popup <- renderText({
-  #   req(input$subsector)
-  #   
-  #   caption_lists <- caption_list %>%
-  #     filter(Subsector == input$subsector) %>% 
-  #     pull(Comment)
-  #   
-  #   return(as.character(caption_lists))
-  #   
-  # })
-  
+
   #############################
   ####### Adding intro tour ###
   #############################
 
   observeEvent(input$intro, {
+    
     introjs(session,
+            
             options = list("nextLabel" = "Next",
+                           
                            "prevLabel" = "Previous",
+                           
                            "skipLabel" = "Exit",
+                           
                            "doneLabel" = "Exit"),
-            events = list(onbeforechange = readCallback("switchTabs")#,
-                          # "oncomplete"=I('alert("Done")')
+            
+            events = list(onbeforechange = readCallback("switchTabs")
+                         
             )
     )
   })
   
-  # observeEvent(input$Tech_Fuel_Switch, {
-  #   
-  #   if (input$Tech_Fuel_Switch == FALSE){
-  #     
-  #     shinyjs::hide("Fuel_Switch")
-  #     
-  #   }else{
-  #     
-  #     shinyjs::show("Fuel_Switch")
-  #     
-  #   }
-  #   
-  # })
+
   
   
   #############################
   ####### Adding tooltips #####
   #############################
-  # 
-  # 
+
   
   output$info_overview <- renderUI({
     
@@ -498,8 +508,8 @@ server <- function(input, output, session){
     
     caption_lists <- caption_list %>%
       filter(
-             Tab       == "Overview") %>% 
-      pull(Comment)
+             Tab  == "Overview") %>% 
+              pull(Comment)
     
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
@@ -657,10 +667,7 @@ server <- function(input, output, session){
     popify(icon("info-circle"), NULL , caption_lists, placement = "left", trigger = "hover")
     
   })
-  # captions <- reactive(
-  #   caption_lists<- caption_list %>% filter(Subsector == input$subsector) %>% pull(Comment)
-  # 
-  #   )
+
   
   ##################################
   #### Assumption  Plotting ########
@@ -671,16 +678,24 @@ server <- function(input, output, session){
     
       # Read the filtered assumptions/insight dataset and then split by scenario.
       assumptions_data <- filtered_assumptions() %>%
+        
         rename(Unit = Units) 
       
       assumption_charts(
+        
         data = assumptions_data,
+        
         group_var = Scenario,
+        
         unit = assumptions_data$Unit[1],
+        
         filename = paste(filtered_assumptions_title(), input$assumptions,"line", "(" ,assumptions_data$Unit[1] , ")", sep = " "),
+        
         plot_title = paste0(assumptions_data$Title[1]),
+        
         input_chart_type = "line",
-        max_y = NULL #max_y_assumptions()
+        
+        max_y = NULL 
       )
   
 })
@@ -703,12 +718,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste( "Kea", unique(plot_data_kea$Parameters), "All Sectors", input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0(unique(plot_data_kea$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
@@ -723,12 +745,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste( "Tui", unique(plot_data_tui$Parameters), "All Sectors", input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0(unique(plot_data_tui$Parameters), " for ", "All Sectors", ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
@@ -744,12 +773,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste("Kea", "Transport",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Transport ",unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
@@ -764,12 +800,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste("Tui", "Transport",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Transport ",unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
@@ -789,12 +832,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste("Kea", "Industial",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Industrial ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
@@ -809,12 +859,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste("Tui", "Industrial",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Industrial ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
@@ -834,12 +891,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste("Kea", "Commercial", unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Commercial ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
@@ -854,12 +918,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste("Tui", "Commercial",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Commercial ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
@@ -877,13 +948,20 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste("Kea", "Residential",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Residential ", unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
-      credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
+     
+       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
   })
@@ -897,12 +975,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste("Tui", "Residential", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Residential ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
@@ -921,12 +1006,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste("Kea", "Agriculture",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Agriculture ",unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
@@ -941,12 +1033,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste( "Tui","Agriculture",  unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Agriculture ", unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
@@ -955,7 +1054,8 @@ server <- function(input, output, session){
   
   
   
-  ## Plot output for Other page
+  ## Plot output for Other(Electricity) page
+  # Electricity generation was used to replace other
   # Kea
   output$Other_kea <- renderHighchart({
     
@@ -965,12 +1065,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_kea,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_kea$Unit),
+      
       filename = paste("Kea", "Electricity Generation",  unique(plot_data_kea$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Electricity Generation ",unique(plot_data_kea$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: Kea")
     )
     
@@ -985,12 +1092,19 @@ server <- function(input, output, session){
     
     generic_charts(
       data = plot_data_tui,
+      
       group_var = group_by_val(),
+      
       unit = unique(plot_data_tui$Unit),
+      
       filename = paste( "Tui", "Electricity Generation", unique(plot_data_tui$Parameters), input$subsector, input$enduse, input$tech , "(" ,input$chart_type , ")", sep = " "),
+      
       plot_title = paste0("Electricity Generation ",unique(plot_data_tui$Parameters), " for ",input$subsector, ", ", input$enduse," and " ,input$tech ),
+      
       input_chart_type = input$chart_type,
+      
       max_y = max_y(),
+      
       credit_text = paste0("TIMES-NZ 2.0", ", Scenario: T\u16b\u12b")
     )
     
