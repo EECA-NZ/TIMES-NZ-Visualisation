@@ -445,7 +445,8 @@ assumption_charts <- function(data,             # The filtered data
                               filename,         # Download name
                               plot_title,       # Plot title
                               input_chart_type, # Type of plot 
-                              max_y             # Maximum y value
+                              max_y,            # Maximum y value
+                              caption           # Plot caption
                           ) {
   
   if (input_chart_type == "column_percent") {
@@ -557,12 +558,12 @@ assumption_charts <- function(data,             # The filtered data
     hc_credits(
       text = "TIMES-NZ 2.0",
       # href = "https://www.eeca.govt.nz/",
-      enabled = TRUE,
-      # Changing the position of credit
-      position = list(
-        align= 'left',
-        x= 10
-      )
+      enabled = TRUE
+      # # Changing the position of credit
+      # position = list(
+      #   align= 'left',
+      #   x= 10
+      # )
     ) %>%
     # Downloading data or image file
     hc_exporting(
@@ -578,10 +579,10 @@ assumption_charts <- function(data,             # The filtered data
         
         contextButton = list(
           
-          # Changing the position of download
-          verticalAlign = 'bottom' ,     # Keeping the button at the bottom 
-          
-          y = -5,                        # Padding in the y direction
+          # # Changing the position of download
+          # verticalAlign = 'bottom' ,     # Keeping the button at the bottom 
+          # 
+          # y = -5,                        # Padding in the y direction
           
           menuItems = c("downloadPNG", "downloadPDF", "downloadCSV"), # List to download
           
@@ -615,6 +616,10 @@ assumption_charts <- function(data,             # The filtered data
         downloadPDF = list(text = "Download PDF document"),
         
         downloadCSV = list(text = "Download Data"))
+    ) %>% 
+    hc_caption(
+      text = caption, 
+      useHTML = TRUE
     ) %>% 
 
     # Adding theme 

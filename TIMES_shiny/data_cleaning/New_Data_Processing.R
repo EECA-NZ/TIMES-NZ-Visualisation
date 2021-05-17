@@ -930,6 +930,9 @@ insight_df <- read_excel(path = "Key-Insight.xlsx", sheet = "Sheet1") %>%
 insight_list <- distinct(insight_df, Parameter)  %>% pull(Parameter)
 
 
+# Reading in assumption key insight comments
+Assumptions_Insight_df <- read_excel(path = "Assumptions_Insight_comments.xlsx")
+
 # Ordered attributes
 order_attr = c("Emissions","Fuel Consumption", "End Use Demand", "Annualised Capital Costs", 
                "Number of Vehicles", "Distance Travelled", "Electricity Generation",   
@@ -945,6 +948,7 @@ save(combined_df, # data for charting
      assumptions_list,  # list of assumptions for input$assumptions drop-down
      insight_df,  # data behind insight 
      insight_list,  # list of insight for input$insight drop-down
+     Assumptions_Insight_df, # Add Assumptions Insight comments
      schema_colors, # Color scheme
      order_attr, # Ordered attribute
      caption_list, # Add caption list,
