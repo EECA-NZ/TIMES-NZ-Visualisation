@@ -90,7 +90,7 @@ ui <- navbarPage(
         h3("New Zealand Energy System Scenarios TIMES-NZ 2.0"),
         
         # The background text
-        HTML(" Climate change is the most urgent environmental issue of our time. 
+        HTML("Climate change is one of the most urgent environmental issue of our time. 
         About 40% of New Zealand’s total greenhouse gas emissions come from our 
         energy use and the challenge is to get this number down. The New Zealand 
         Energy Scenarios Times-NZ 2.0 website presents model insights for the 
@@ -665,7 +665,7 @@ ui <- navbarPage(
         
         HTML("<br><br>"),
         # Adding the introduction tour button 
-        # HTML("<br><br>"),
+
         
         div(
           actionButton(inputId = "intro", 
@@ -674,7 +674,17 @@ ui <- navbarPage(
                        
                        icon = icon("info-circle")),
           
-          align = "center")
+          align = "center"),
+        
+        
+        
+        #  Creative Commons Attribution 3.0 New Zealand License
+        HTML("<br>"),
+        div(HTML('<a rel="license" href="https://creativecommons.org/licenses/by/3.0/nz/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/nz/88x31.png" /></a>
+          <br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/3.0/nz/">
+          Creative Commons Attribution 3.0 New Zealand License</a>.') )
+          
         
         # Embedding  video into the App
         # div(
