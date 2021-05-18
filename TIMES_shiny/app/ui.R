@@ -91,15 +91,16 @@ ui <- navbarPage(
         
         # The background text
         HTML(" Climate change is the most urgent environmental issue of our time. 
-             About 40% of New Zealand’s total greenhouse gas emissions come from 
-             our energy use and the challenge is to get this number down.
-            The TIMES-NZ 2.0 New Zealand Energy System Scenarios website presents model 
-             insights for the latest TIMES-NZ scenarios. TIMES-NZ 2.0 has been 
-             developed by <a href='https://www.eeca.govt.nz/' style='color:#000000;
-             '>EECA</a> in partnership with the  <a href='https://www.bec.org.nz/' 
-             style='color:#000000;'>Business Energy Council New Zealand</a>   and <a 
-             href='https://www.psi.ch/en' style='color:#000000;'> The Paul 
-             Scherrer Institut</a>." ),
+        About 40% of New Zealand’s total greenhouse gas emissions come from our 
+        energy use and the challenge is to get this number down. The New Zealand 
+        Energy Scenarios Times-NZ 2.0 website presents model insights for the 
+        latest TIMES-NZ scenarios to contribute to decision making in businesses 
+        and Government. 
+        TIMES-NZ 2.0 was developed by  <a href='https://www.eeca.govt.nz/' 
+        style='color:#333333; '>EECA</a> in partnership with the  
+        <a href='https://www.bec.org.nz/' style='color:#333333;'>Business Energy 
+        Council New Zealand</a>   and <a href='https://www.psi.ch/en' 
+        style='color:#333333;'> The Paul Scherrer Institut</a>." ),
               
 
         
@@ -121,14 +122,15 @@ ui <- navbarPage(
         # Adding Kea and Tui comment 
         HTML("<div class='wrapper'>
                 
-        <div class='box a'><strong>Kea </strong>represents a scenario where 
+        <div class='box a'><strong>Kea </strong> represents a scenario where 
         climate change is prioritised as the most pressing issue and New Zealand 
         deliberately pursues cohesive ways to achieve a low-emissions economy.</div>
        
         
-        <div class='box b'><strong>T\u16b\u12b </strong>represents a scenario where 
-        climate change is an important issue to be addressed as one of many 
-        priorities.  </div>
+        <div class='box b'><strong>T\u16b\u12b </strong>represents a scenario 
+        where climate change is an important issue to be addressed as one of 
+        many priorities, with most decisions being left up to individuals and 
+        market mechanisms.  </div>
         </div>"
      
              
@@ -583,58 +585,63 @@ ui <- navbarPage(
         
         h3("New Zealand Energy System Scenarios TIMES-NZ 2.0"),
         
-        HTML("The TIMES-NZ 2.0 Scenarios, developed by <a href='https://www.eeca.govt.nz/' style='color:#000000;
+        HTML("The NEW ZEALAND ENERGY SCENARIOS TIMES-NZ 2.0 , developed by  
+              <a href='https://www.eeca.govt.nz/' style='color:#333333;
              '>EECA</a> in partnership with the  <a href='https://www.bec.org.nz/' 
-             style='color:#000000;'>Business Energy Council New Zealand</a>   and <a 
-             href='https://www.psi.ch/en' style='color:#000000;'> The Paul 
-             Scherrer Institut</a> are based 
-        on the International Energy Agency Energy Technology Systems Analysis 
-        Program TIMES model, an energy system model that has been used by over 
-        60 countries worldwide. <br><br> TIMES-NZ is a technology-based optimisation 
-        model that represents the entire New Zealand energy system, encompassing 
-        energy carriers and processes from primary resources to final energy 
-        consumption. TIMES-NZ is based on the IEA ETSAP TIMES  energy model 
-        generator, and models scenarios  for the energy system, incorporating 
-        both technical, engineering and economic considerations.   
-        TIMES is an integrated energy system model, meaning that it 
-        simultaneously models all components of the energy system, 
-        ensuring that any interdependencies and trade-offs are reflected.
+             style='color:#333333;'>Business Energy Council New Zealand</a>   and <a 
+             href='https://www.psi.ch/en' style='color:#333333;'> The Paul 
+             Scherrer Institut</a> is based on the International Energy Agency 
+             Energy Technology Systems Analysis Program TIMES model, an energy 
+             system model that has been used by over 60 countries worldwide. 
+             <br><br> TIMES-NZ 2.0 is a technology-based optimisation model 
+             that represents the entire New Zealand energy system, encompassing 
+             energy carriers and processes from primary resources to final 
+             energy consumption. The modelis based on the IEA ETSAP TIMES 
+             energy model generator, and models scenarios for the energy system, 
+             incorporating both technical, engineering and economic considerations. 
+             TIMES is an integrated energy system model, meaning that it 
+             simultaneously models all components of the energy system, 
+             ensuring that any interdependencies and trade-offs are reflected.
         <br><br>TIMES uses a linear-programming solver to minimise the total 
-        discounted energy system cost  over the entire modelled time horizon. 
-        The cost minimisation is achieved by choosing between technologies and 
-        fuels to meet expected energy demand. The model effectively ‘invests in’ 
-        the various available technologies based on the combinations of cost, 
-        efficiency and fuel availability. TIMES models are particularly suited 
-        to explore the evolution of possible least-cost configurations of the system.
-        The scenarios were originally developed by the BEC2060 project - 
-        this updated TIMES-NZ model adds more detail and sophistication to sectors, 
-        subsectors, technologies and end uses."),
+             discounted energy system cost over the entire modelled time horizon. 
+             The cost minimisation is achieved by choosing between technologies 
+             and fuels to meet expected energy demand. The model effectively 
+             ‘invests in’ the various available technologies based on the 
+             combinations of cost, efficiency and fuel availability. 
+             TIMES models are particularly suited to explore the evolution of 
+             possible least-cost configurations of the system. The scenarios were 
+             originally developed by the BEC2060 project - this updated 
+             TIMES-NZ model adds more detail and sophistication to sectors, 
+             subsectors, technologies and end uses"),
         
         h3("The TIMES-NZ 2.0 Scenarios " ),
         
-        HTML("The TIMES-NZ 2.0 project grew out of BEC2060, which provided two 
-             plausible and coherent scenarios about New Zealand’s energy future: 
-             Kea and Tui. These scenarios have been extended in this latest 
-             iteration to include more granular data."),
+        HTML("The NEW ZEALAND ENERGY SCENARIOS TIMES-NZ 2.0 project grew out of 
+             BEC2060, which provided two plausible and coherent scenarios about 
+             New Zealand’s energy future: Kea and Tui. These scenarios have been 
+             extended in this latest iteration to include more granular data."),
         
         
         # Adding Kea and Tui comment 
         HTML("<div class='wrapper'>
                 
         <div class='box a'><strong> Kea (cohesive) </strong> <br>
-        <strong>Kea</strong> represents a scenario where climate change is prioritised as the 
-        most pressing issue and New Zealand deliberately pursues cohesive 
-        ways to achieve a low-emissions economy.</div>
+        <strong>Kea</strong> represents a scenario where 
+        climate change is prioritised as the most pressing issue and New Zealand 
+        deliberately pursues cohesive ways to achieve a low-emissions economy.</div>
        
         
-        <div class='box b'><strong>Tui (individualistic)</strong><br>
-        <strong>Tūī</strong> represents a scenario where climate change is an 
-        important issue to be addressed as one of many priorities.  </div>
+        <div class='box b'><strong>T\u16b\u12b (individualistic)</strong><br>
+        <strong>T\u16b\u12b</strong> represents a scenario where climate change is an 
+        important issue to be addressed as one of many priorities, 
+        with most decisions being left up to individuals and 
+        market mechanisms.  </div>
         </div>"
              
              
         ),
         
+ 
         
         # HTML("<strong> Kea (cohesive) </strong> <br>
         # <strong>Kea</strong> represents a scenario where climate change is prioritised as the 
@@ -646,11 +653,9 @@ ui <- navbarPage(
         # important issue to be addressed as one of many priorities. <br><br>"),
         
         h3("Find out more about TIMES-NZ 2.0"),
-        HTML("For more details about the TIMES-NZ 2.0 update follow this 
-        link to the documentation outlining all the data  input assumptions and  
-        underlying information to understand and interpret the results from 
-        the TIMES-NZ 2.0 scenarios.  
-        Link to documentation <a href='https://www.eeca.govt.nz/' style='color:#000000;
+        HTML("Read the TIMES-NZ 2.0 Methodology and Insights paper for full about 
+        the data input assumptions and underlining information 
+        <a href='https://www.eeca.govt.nz/' style='color:#333333;
              '><i class='fa fa-file-pdf-o' style='font-size:28px;color:grey'></a></i>"
 
         

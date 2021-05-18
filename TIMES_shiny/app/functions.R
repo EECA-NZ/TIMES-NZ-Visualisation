@@ -543,7 +543,11 @@ assumption_charts <- function(data,             # The filtered data
     
     hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
              # Keep values and remove and notations
-             labels = list(format ='{value}')
+             labels = list(
+                          # format ='{value}'
+                           formatter = JS("function() {
+                           return Highcharts.numberFormat(this.value, 0, '.', ',');
+                        }"))
     ) %>%
     
     hc_subtitle(text = paste0(str_to_sentence(plot_title), " (", Y_label , ")"),

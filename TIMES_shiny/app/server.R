@@ -300,6 +300,16 @@ server <- function(input, output, session){
     
   })
   
+  
+  assumption_insight_caption <- reactive({
+    
+    req(input$assumptions)
+    
+    Assumptions_Insight_df %>% 
+      filter(Title == input$assumptions) %>% 
+        pull(Comments)
+  
+  })
  
   
   # Setting the radiogroup based on selections
@@ -504,7 +514,7 @@ server <- function(input, output, session){
   
   output$info_overview <- renderUI({
     
-    req(input$subsector, input$Tech_Fuel_Switch, input$plot_by)
+    req(input$subsector,  input$plot_by)
     
     caption_lists <- caption_list %>%
       filter(
@@ -518,7 +528,7 @@ server <- function(input, output, session){
   # Create unique for each tab
   output$info_transport <- renderUI({
     
-    req(input$subsector, input$Tech_Fuel_Switch, input$plot_by)
+    req(input$subsector, input$plot_by)
     
     # Selecting "All Transport Subsectors"
     if (input$subsector == "All Subsectors") {
@@ -695,7 +705,8 @@ server <- function(input, output, session){
         
         input_chart_type = "line",
         
-        max_y = NULL 
+        max_y = NULL ,
+        caption = assumption_insight_caption()
       )
   
 })
