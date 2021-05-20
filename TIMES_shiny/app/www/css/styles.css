@@ -308,3 +308,21 @@ button.btn.radiobtn.btn-default {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+.logo_image {
+  position: relative;
+  top:30px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 650px) {
+  .logo_image { display: none; }
+}
+
+
+
+/* making image responsive */
+/* img[Attributes=Style] {
+  height: 120px;
+  aspect-ratio: auto 660 / 120;
+  width: 660px;
+} */

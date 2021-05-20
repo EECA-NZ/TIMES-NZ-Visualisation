@@ -2,7 +2,7 @@
 library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
 library(tidyverse) # data manipulation, gather and spread commands
-library(writexl) # for writing excel 
+# library(writexl) # for writing excel 
 options(scipen=999) # eliminates scientific notation
 
 

@@ -87,7 +87,7 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("New Zealand Energy System Scenarios TIMES-NZ 2.0"),
+        h3("New Zealand Energy Scenarios TIMES-NZ 2.0"),
         
         # The background text
         HTML("Climate change is one of the most urgent environmental issue of our time. 
@@ -98,8 +98,8 @@ ui <- navbarPage(
         and Government. 
         TIMES-NZ 2.0 was developed by  <a href='https://www.eeca.govt.nz/' 
         style='color:#333333; '>EECA</a> in partnership with the  
-        <a href='https://www.bec.org.nz/' style='color:#333333;'>Business Energy 
-        Council New Zealand</a>   and <a href='https://www.psi.ch/en' 
+        <a href='https://www.bec.org.nz/' style='color:#333333;'>BusinessNZ 
+        Energy Council (BEC)</a>   and <a href='https://www.psi.ch/en' 
         style='color:#333333;'> The Paul Scherrer Institut</a>." ),
               
 
@@ -583,12 +583,12 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("New Zealand Energy System Scenarios TIMES-NZ 2.0"),
+        h3("New Zealand Energy Scenarios TIMES-NZ 2.0"),
         
         HTML("The NEW ZEALAND ENERGY SCENARIOS TIMES-NZ 2.0 , developed by  
               <a href='https://www.eeca.govt.nz/' style='color:#333333;
-             '>EECA</a> in partnership with the  <a href='https://www.bec.org.nz/' 
-             style='color:#333333;'>Business Energy Council New Zealand</a>   and <a 
+             '>EECA</a> in partnership with the <a href='https://www.bec.org.nz/' 
+             style='color:#333333;'>BusinessNZ Energy Council (BEC)</a> and <a 
              href='https://www.psi.ch/en' style='color:#333333;'> The Paul 
              Scherrer Institut</a> is based on the International Energy Agency 
              Energy Technology Systems Analysis Program TIMES model, an energy 
@@ -665,7 +665,12 @@ ui <- navbarPage(
         
         HTML("<br><br>"),
         # Adding the introduction tour button 
-
+        # Embedding  video into the App
+        div(
+          HTML('<iframe class="frame-boader" width="440" height="248" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="440" height="248" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          align = "center"),
+        
         
         div(
           actionButton(inputId = "intro", 
@@ -680,18 +685,13 @@ ui <- navbarPage(
         
         #  Creative Commons Attribution 3.0 New Zealand License
         HTML("<br>"),
-        div(HTML('<a rel="license" href="https://creativecommons.org/licenses/by/3.0/nz/">
-          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/nz/88x31.png" /></a>
-          <br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/3.0/nz/">
-          Creative Commons Attribution 3.0 New Zealand License</a>.') )
+        div(HTML('<a rel="license" href="https://creativecommons.org/licenses/by/4.0">
+          <img alt="Creative Commons License" style="border-width:0" src="img/creative_logo.svg"   /></a>
+          <br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0">
+          Creative Commons Attribution 4.0 New Zealand License</a>.') ),
           
         
-        # Embedding  video into the App
-        # div(
-        # HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-        # HTML('<iframe class="frame-boader" width="540" height="304" src="https://www.youtube.com/embed/HYS-0L7mods" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-        # align = "center"),
-        
+
         
     ))
     
@@ -711,21 +711,12 @@ ui <- navbarPage(
   
   # Adding the Footer to the App
   footer = tags$footer(
-                      # Image
-                      img(src="img/EECA_BEC.svg",
-                          
-                       height = 120, 
-                       
-                       width = 660),
-                      
-                       align = "center",
-                      
-                       style = "
-                            position: absolute;
-                            width:100%;
-                            padding: 80px;"
-                            ),
+    div(HTML('
+          <img class="logo_image" style="border-width:0; " src="img/EECA_BEC.svg" height = 120 width = 660   /></a>
+          </img>.'), align = "center")),
   
                 collapsible =FALSE
   
+  
+
 )
