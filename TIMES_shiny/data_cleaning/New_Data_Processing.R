@@ -942,8 +942,8 @@ order_attr = c("Emissions","Fuel Consumption", "End Use Demand", "Annualised Cap
 
 #Create the R data set for Shiny to use
 save(combined_df, # data for charting
-     fuel_list,  # list of fuel for input$fuel_choice drop down
-     sector_list,  # list of Sectors for input$sector_choice drop down
+     fuel_list,  # list of fuel
+     sector_list,  # list of Sectors 
      assumptions_df,  # data behind assumptions
      assumptions_list,  # list of assumptions for input$assumptions drop-down
      insight_df,  # data behind insight 
