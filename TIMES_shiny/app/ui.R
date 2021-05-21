@@ -101,9 +101,10 @@ ui <- navbarPage(
         <a href='https://www.bec.org.nz/' style='color:#333333;'>BusinessNZ 
         Energy Council (BEC)</a>   and <a href='https://www.psi.ch/en' 
         style='color:#333333;'> The Paul Scherrer Institut</a>. <br><br>
-        Welcome to our visualisation tool. The tool will allow you to explore 
-        how New Zealand energy futures may look like based on outputs from the 
-        New Zealand Energy Scenarios TIMES-NZ 2.0. " ),
+        Welcome to the New Zealand Energy Scenarios TIMES-NZ 2.0 visualisation tool. 
+        This tool will allow you to explore how New Zealand energy futures may 
+        look like based on outputs from the New Zealand Energy Scenarios TIMES-NZ 
+        2.0 model." ),
               
 
         
@@ -670,8 +671,8 @@ ui <- navbarPage(
         # Adding the introduction tour button 
         # Embedding  video into the App
         div(
-          HTML('<iframe class="frame-boader" width="440" height="248" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-          HTML('<iframe class="frame-boader" width="440" height="248" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
           align = "center"),
         
         
@@ -714,8 +715,8 @@ ui <- navbarPage(
   
   # Adding the Footer to the App
   footer = tags$footer(
-    div(HTML('
-          <img class="logo_image" style="border-width:0; " src="img/EECA_BEC.svg" height = 120 width = 660   /></a>
+    div(HTML('<a href="https://www.eeca.govt.nz/">
+          <img class="logo_image" style="border-width:0; " src="img/EECA_BEC.svg" height = 120 width = 660  </a>
           </img>'), align = "center")),
   
                 collapsible =FALSE
