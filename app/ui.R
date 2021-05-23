@@ -622,7 +622,7 @@ ui <- navbarPage(
         
         HTML("The NEW ZEALAND ENERGY SCENARIOS TIMES-NZ 2.0 project grew out of 
              BEC2060, which provided two plausible and coherent scenarios about 
-             New Zealand’s energy future: Kea and T\u16b\u12b. These scenarios have been 
+             New Zealand's energy future: Kea and T\u16b\u12b. These scenarios have been 
              extended in this latest iteration to include more granular data."),
         
         
@@ -670,8 +670,9 @@ ui <- navbarPage(
         HTML("<br><br>"),
         # Adding the introduction tour button 
         # Embedding  video into the App
+        # <iframe width="1280" height="720" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         div(
-          HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/onCzuMmZZuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
           HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
           align = "center"),
         
