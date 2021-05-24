@@ -657,14 +657,11 @@ ui <- navbarPage(
         # important issue to be addressed as one of many priorities. <br><br>"),
         
         h3("Find out more about TIMES-NZ 2.0"),
-        HTML("Read the TIMES-NZ 2.0 Methodology and Insights paper for full about 
-        the data input assumptions and underlining information. 
-        <a href='https://www.eeca.govt.nz/' style='color:#333333;
+        HTML("Read the TIMES-NZ 2.0 Methodology and Insights paper for full 
+        information about the data input assumptions and underlining information. 
+        <a href='https://www.eeca.govt.nz/New-Zealand-Energy-Scenarios-TIMES-NZ-2.pdf' target='_blank' rel='noopener noreferrer' style='color:#333333;
              '><i class='fa fa-file-pdf-o' style='font-size:28px;color:grey'></a></i>"
 
-        
-             
-          
         ),
         
         HTML("<br><br>"),
@@ -672,8 +669,8 @@ ui <- navbarPage(
         # Embedding  video into the App
         # <iframe width="1280" height="720" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         div(
-          HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-          HTML('<iframe class="frame-boader" width="500" height="280" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="560" height="315" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="560" height="315" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
           align = "center"),
         
         
