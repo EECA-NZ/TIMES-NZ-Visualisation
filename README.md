@@ -1,6 +1,5 @@
 # TIMES-NZ 2.0 Data Visualization App
-This repository contains README, the source code and data behind TIMES-NZ shiny Data Visualization App. The App is located [here](https://times-nz-model-eeca.shinyapps.io/TIMES_V2/).
-and it can be viewed through [EECA's website](https://www.eeca.govt.nz/new-zealand-energy-scenarios-times-nz-2-0/?stage=Stage). 
+This repository contains README, the source code and data behind TIMES-NZ shiny Data Visualization App. The App is located [here](https://times-nz-model-eeca.shinyapps.io/TIMES_V2/) and it can be viewed through [EECA's website](http://www.eeca.govt.nz/TIMES-NZ). 
 
 ## Background
 The New Zealand Energy Scenarios Times-NZ 2.0 website presents model insights for the latest TIMES-NZ scenarios to contribute to decision making in businesses and Government. This New Zealand Energy Scenarios TIMES-NZ 2.0 visualization tool will allow you to explore how New Zealand energy futures may look like based on outputs from the New Zealand Energy Scenarios TIMES-NZ 2.0 model. A detailed description of the  model and the App is found [here](https://www.eeca.govt.nz/New-Zealand-Energy-Scenarios-TIMES-NZ-2.pdf).
