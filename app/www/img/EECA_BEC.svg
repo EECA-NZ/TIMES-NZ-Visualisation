@@ -19,7 +19,7 @@
    inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"><metadata
    id="metadata158"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs156"><inkscape:perspective
      sodipodi:type="inkscape:persp3d"
      inkscape:vp_x="0 : 264.56696 : 1"
@@ -35,8 +35,8 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1920"
-   inkscape:window-height="1018"
+   inkscape:window-width="1366"
+   inkscape:window-height="705"
    id="namedview154"
    showgrid="false"
    units="mm"
@@ -45,8 +45,8 @@
    inkscape:zoom="0.34785123"
    inkscape:cx="1059.2781"
    inkscape:cy="666.89046"
-   inkscape:window-x="-6"
-   inkscape:window-y="-6"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
    inkscape:window-maximized="1"
    inkscape:current-layer="svg152"
    inkscape:document-rotation="0"
@@ -352,4 +352,4 @@
      id="tspan86"
      x="652.33911"
      y="58.594189"
-     style="stroke-width:1.5334">The TIMES NZ model is brought to you by</tspan></text></svg>
+     style="stroke-width:1.5334">The TIMES-NZ model is brought to you by</tspan></text></svg>

@@ -46,7 +46,7 @@ hierarchy <- combined_df %>%
       Parameters
     ) %>% 
       mutate(
-        Enduse = "All Enduse"
+        Enduse = "All End Use"
       )
   ) %>% 
   union_all(

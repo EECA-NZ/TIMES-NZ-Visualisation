@@ -1,3 +1,44 @@
+# ================================================================================================ #
+# Description: The New_Data_Processing.R performs the data cleaning and calculations
+# needed for the App. It depends on model output and schema
+#
+# Input: 
+#
+# Model inputs:
+#   "Kea-v79.VD"   Kea model 
+#   "Tui-v79.VD"   Tui model
+# 
+# Schema inputs
+#   "Schema.xlsx" For restricting TIMES model and 'natural language' translations from TIMES codes                
+#   "Schema_colors.xlsx"  To specify the color and shape for each Fuel and Technology              
+#   "Schema_Technology.xlsx" For defining the Technology groups 
+# 
+# Assumtion and Key insight data
+#   "Assumptions.xlsx"                      The assumption data            
+#   "Key-Insight.xlsx"                      The Key-Insight data
+#   "Assumptions_Insight_comments.xlsx"     Plot commentary
+# 
+# Captions and pup-ups data
+#   "Caption_Table.xlsx"                # Pup-up caption
+#   "intro.csv"                         # Text for introduction to tour
+
+     
+# 
+# Output: Data for App
+#
+# Author: Kenny Graham (KG) and Conrad MacCormick (CM)
+#
+# Dependencies: 
+#
+# Notes:
+# 
+# Issues:
+#
+# History (reverse order): 
+# 17 May 2021 KG v1 - Wrote the deliverable source code 
+#
+#
+
 #Load libraries required
 library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
@@ -81,7 +122,7 @@ clean_df <- raw_df %>%
           mutate(Sector = ifelse(Sector == "Electricity", "Other" , Sector)) %>% 
           # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
-                 Unit = ifelse(Parameters == "Emissions", "Mt CO2/yr", Unit )) %>% 
+                 Unit = ifelse(Parameters == "Emissions", "Mt CO<sup>2</sup>/yr", Unit )) %>% 
           # Modifying Attribute values: Change Annualised Capital Costs to Billion NZD
           mutate(Value = ifelse(Parameters == "Annualised Capital Costs", Value/1000,Value),
                  Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit),

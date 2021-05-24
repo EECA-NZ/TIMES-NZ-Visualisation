@@ -243,7 +243,7 @@ generic_charts <- function(data,             # The filtered data
     
     # Adding the Y axis options
     hc_yAxis(
-          title = list(text = Y_label),   # Adding Label text
+          title = list(text = Y_label,useHTML= TRUE),   # Adding Label text
           
           max = max_y,                    # Setting the y max value
           
@@ -260,6 +260,8 @@ generic_charts <- function(data,             # The filtered data
     
     # Adding the title (The subtitle was used instead of "title")
     hc_subtitle(text = paste0(str_to_sentence(plot_title), " (", Y_label , ")"),
+                
+                useHTML= TRUE,
                 
                 style = list(
                   
@@ -541,7 +543,7 @@ assumption_charts <- function(data,             # The filtered data
     
     hc_xAxis(categories = sort(unique(data$Period))) %>%
     
-    hc_yAxis(title = list(text = Y_label), max = max_y, min = 0,
+    hc_yAxis(title = list(text = Y_label, useHTML= TRUE), max = max_y, min = 0,
              # Keep values and remove and notations
              labels = list(
                           # format ='{value}'
@@ -551,6 +553,9 @@ assumption_charts <- function(data,             # The filtered data
     ) %>%
     
     hc_subtitle(text = paste0(plot_title, " (", Y_label , ")"),
+                
+                useHTML= TRUE,
+                
                 style= list(
                   color= '#000000',
                   fontSize='16px'

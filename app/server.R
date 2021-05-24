@@ -61,7 +61,7 @@ server <- function(input, output, session){
       ) %>% 
       purrr::when(
         
-        input$enduse != "All Enduse" ~
+        input$enduse != "All End Use" ~
           
           filter(
             ., Enduse == input$enduse
@@ -204,7 +204,7 @@ server <- function(input, output, session){
   
   
   observeEvent(input$enduse, {
-    if (input$subsector == "All Subsectors" & input$enduse == "All Enduse") {
+    if (input$subsector == "All Subsectors" & input$enduse == "All End Use") {
       
       df <- filtered_dropdowns() #%>% filter(Enduse == input$enduse)
       
@@ -229,7 +229,7 @@ server <- function(input, output, session){
   
   observeEvent(input$tech, {
     if (input$subsector == "All Subsectors" & 
-          input$enduse  == "All Enduse" & 
+          input$enduse  == "All End Use" & 
           input$tech    == "All Technology") {
       
       df <- filtered_dropdowns() #%>% filter(Enduse == input$enduse)
@@ -256,7 +256,7 @@ server <- function(input, output, session){
       selectInput("assumptions", label = NULL, choices = assumptions_list)
       
     }else{
-      selectInput("assumptions", label = NULL, choices = insight_list)
+      selectInput("assumptions", label = NULL, choices = sort(insight_list))
     }
   
     
