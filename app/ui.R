@@ -658,8 +658,10 @@ ui <- navbarPage(
         # important issue to be addressed as one of many priorities. <br><br>"),
         
         h3("Find out more about TIMES-NZ 2.0"),
-        HTML("Read the TIMES-NZ 2.0 Methodology and Insights paper for full 
-        information about the data input assumptions and underlining information. 
+        HTML("For more detail about the data input assumptions and methodology of 
+        TIMES-NZ 2.0, read the TIMES-NZ 2.0 Methodology and Insights paper 
+        “New Zealand Energy Scenarios TIMES-NZ 2.0. - 
+        <i>A guide to understanding the TIMES-NZ 2.0 model</i>”. 
         <a href='https://www.eeca.govt.nz/New-Zealand-Energy-Scenarios-TIMES-NZ-2.pdf' target='_blank' rel='noopener noreferrer' style='color:#333333;
              '><i class='fa fa-file-pdf-o' style='font-size:28px;color:grey'></a></i>"
 

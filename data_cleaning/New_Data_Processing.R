@@ -122,7 +122,7 @@ clean_df <- raw_df %>%
           mutate(Sector = ifelse(Sector == "Electricity", "Other" , Sector)) %>% 
           # Modifying Attribute values: Changed emission to Mt C02
           mutate(Value = ifelse(Parameters == "Emissions", Value/1000,Value),
-                 Unit = ifelse(Parameters == "Emissions", "Mt CO<sup>2</sup>/yr", Unit )) %>% 
+                 Unit = ifelse(Parameters == "Emissions", "Mt CO<sub>2</sub>/yr", Unit )) %>% 
           # Modifying Attribute values: Change Annualised Capital Costs to Billion NZD
           mutate(Value = ifelse(Parameters == "Annualised Capital Costs", Value/1000,Value),
                  Unit = ifelse(Parameters == "Annualised Capital Costs", "Billion NZD", Unit),
