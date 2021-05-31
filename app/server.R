@@ -333,47 +333,7 @@ server <- function(input, output, session){
       
     )
     
-  #   
-  # # These are the buttons used
-  #   if (input$Tech_Fuel_Switch == TRUE){
-  #           radioGroupButtons(
-  #             
-  #             
-  #             inputId = "chart_type",
-  #             
-  #             label = NULL,
-  #             
-  #             individual = TRUE,
-  #             
-  #             choices = c(
-  #               `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-  #               `<i class='fa fa-bar-chart'></i>` = "column",
-  #               `<i class='fa fa-area-chart'></i>` = "area" ,
-  #               `<i class='fa fa-percent'></i>` = "column_percent"
-  #             )
-  #             
-  #           )
-  #   } else{
-  #     radioGroupButtons(
-  #       
-  #       
-  #       inputId = "chart_type",
-  #       
-  #       label = NULL,
-  #       
-  #       individual = TRUE,
-  #       
-  #       choices = c(
-  #         `<i class='fa fa-bar-chart'></i>` = "column",
-  #         `<i class="fa fa-line-chart" aria-hidden="true"></i>` = "line",
-  #         `<i class='fa fa-area-chart'></i>` = "area" ,
-  #         `<i class='fa fa-percent'></i>` = "column_percent"
-  #       )
-  #       
-  #     )
-  #   }
-  # 
-    
+
   })
   
   

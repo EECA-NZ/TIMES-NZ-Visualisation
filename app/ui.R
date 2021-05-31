@@ -27,7 +27,7 @@
 #
 # History (reverse order): 
 # 17 May 2021 KG v1 - Wrote the deliverable source code 
-#
+# 25 May 2021 KG Deployed App
 # ================================================================================================ #
 
 
@@ -251,22 +251,7 @@ ui <- navbarPage(
 
              title=HTML("Toggle to switch between <b>Plot by Fuels</b> and <b>Plot by Technologies</b>")
         )),
-        # 
-        # # Adding intro-tour for fuel switch
-        # introBox(data.step = 3, data.intro = intro$text[3],
-        #          
-        #          # Adding group fuel and fuel switch 
-        #          span(switchButton(inputId = "Fuel_Switch",
-        #                            
-        #                            label = NULL, 
-        #                            
-        #                            value = TRUE, col = "RG", type = "TF"),
-        #               
-        #               title="Toggle to show fuels grouped by either Renewables 
-        #                     and Fossil Fuels, or all fuels separately displayed 
-        #                     (eg, Electricity, Coal, Solar etc)"
-        #          )),
-        
+
         
         introBox(data.step = 4, data.intro = intro$text[4],
                  span(uiOutput("plot_by_dropdowns"),
@@ -648,15 +633,6 @@ ui <- navbarPage(
         
  
         
-        # HTML("<strong> Kea (cohesive) </strong> <br>
-        # <strong>Kea</strong> represents a scenario where climate change is prioritised as the 
-        # most pressing issue and New Zealand deliberately pursues cohesive 
-        # ways to achieve a low-emissions economy.
-        # <br><br>
-        # <strong>Tui (individualistic)</strong><br>
-        # <strong>Tūī</strong> represents a scenario where climate change is an 
-        # important issue to be addressed as one of many priorities. <br><br>"),
-        
         h3("Find out more about TIMES-NZ 2.0"),
         HTML("For more detail about the data input assumptions and methodology of 
         TIMES-NZ 2.0, read the TIMES-NZ 2.0 Methodology and Insights paper 
@@ -668,12 +644,10 @@ ui <- navbarPage(
         ),
         
         HTML("<br><br>"),
-        # Adding the introduction tour button 
-        # Embedding  video into the App
-        # <iframe width="1280" height="720" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
         div(
           HTML('<iframe class="frame-boader" width="560" height="315" src="https://www.youtube.com/embed/yxNVJMkPvhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
-          HTML('<iframe class="frame-boader" width="560" height="315" src="https://www.youtube.com/embed/539RsIH7VG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+          HTML('<iframe class="frame-boader" width="560" height="315" src="https://www.youtube.com/embed/cX0SgDliiMk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
           align = "center"),
         
         
