@@ -13,7 +13,7 @@
 #   "Schema_colors.xlsx"  To specify the color and shape for each Fuel and Technology              
 #   "Schema_Technology.xlsx" For defining the Technology groups 
 # 
-# Assumtion and Key insight data
+# Assumption and Key insight data
 #   "Assumptions.xlsx"                      The assumption data            
 #   "Key-Insight.xlsx"                      The Key-Insight data
 #   "Assumptions_Insight_comments.xlsx"     Plot commentary

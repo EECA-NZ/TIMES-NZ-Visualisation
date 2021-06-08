@@ -3,7 +3,7 @@ library(rsconnect) # Library needed for the App
 
 deployApp(
   # Name of Account 
-  account = "times-nz-model-eeca", 
+  account = "eeca-nz", 
   
   # App Name
   appName = "TIMES_V2",
