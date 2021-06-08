@@ -9,13 +9,13 @@ There are two main R project associated with this App.
 1. The data processing project (TIMES_shiny_data_cleaning.Rproj) which is in the data_cleaning folder. 
 	- To Run:
 		- Open `TIMES_shiny_data_cleaning.Rproj` project file in the data_cleaning folder.
-		- Run `renv::restore()` in the Console to install all needed environment and packages.
-		- Run `source('New_Data_Processing.R', echo=TRUE)` in the Console to generate the needed data.
+		- Run `renv::restore()` in the Rstudio Console to install all needed environment and packages.
+		- Run `source('New_Data_Processing.R', echo=TRUE)` in the Rstudio Console to generate the needed data.
 2. The Shiny App project (TIMES_shiny_app.Rproj) which is in the app folder.
 	- To Run:
 		- Open `TIMES_shiny_app.Rproj` project file in the app folder. 
-		- Run `renv::restore()` to install all needed environment and packages for the app. 
-		- Run `shiny::runApp()` in the Console to run the App.
+		- Run `renv::restore()` in Rstudio Console to install all needed environment and packages for the app. 
+		- Run `shiny::runApp()` in the Rstudio Console to run the App.
 
 ## Deploy App
 To deploy the app run `source('Deploy_App.R', echo=TRUE)` in the Console. One needs to configure the rsconnect package to use EECA's shinyapps.io account. A detailed description to configure the rsconnect is located [here](https://shiny.rstudio.com/articles/shinyapps.html). Before running the `'Deploy_App.R'` script, one need to set up EECA's shinyapps.io account  using the `rsconnect` package. Shinyapps.io automatically generates a secret token, which the `rsconnect` package can use to reach the shinyapps.io account. A step by step instruction on the RStudio to the shenyapp.io is found [here](https://shiny.rstudio.com/articles/shinyapps.html) under the Configure rsconnect section. 
