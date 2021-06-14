@@ -7,6 +7,7 @@ The New Zealand Energy Scenarios Times-NZ 2.0 website presents model insights fo
 ## Software requirements
 - [R (v4+)](https://cran.r-project.org/bin/windows/base/)
 - [RStudio (v1.4+)](https://www.rstudio.com/products/rstudio/)
+- [Rtools40](https://cran.r-project.org/bin/windows/Rtools/)
 
 ## To run the app
 There are two R project folders associated with this app:
