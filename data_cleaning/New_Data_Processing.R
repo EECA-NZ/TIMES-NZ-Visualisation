@@ -43,16 +43,19 @@
 library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
 library(tidyverse) # data manipulation, gather and spread commands
+library(conflicted)
 # library(writexl) # for writing excel 
 options(scipen=999) # eliminates scientific notation
 
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
+# code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
 coh_raw <- read.csv(file = "Kea-v79.VD",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
+  filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
          scen = "Kea") %>% 
   filter(!(Period %in% c(2016)),
@@ -66,13 +69,14 @@ ind_raw <- read.csv(file = "Tui-v79.VD",
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
+  filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
          scen = "Tui") %>% 
   filter(!(Period %in% c(2016)),
          Commodity != "COseq", 
          Period != "2020")
 
-# Merge the two scenario 
+# Merge the two scenarios
 raw_df <- union_all(coh_raw, ind_raw)
 
 period_list <- raw_df %>% distinct(Period) %>% filter(between(Period, 2000, 2100))
@@ -105,8 +109,8 @@ non_emission_fuel <- c("Electricity", "Wood", "Hydrogen", "Hydro", "Wind", "Sola
 
 
 clean_df <- raw_df %>%  
-          # map the schema to the raw data
-          inner_join(schema_all, raw_df, by = c("Attribute", "Process", "Commodity")) %>% 
+          # map the schema to the raw data. code was implicitly doing an outer join - this is now done explicitly
+          inner_join(schema_all, raw_df, by = c("Attribute", "Process", "Commodity"), relationship = "many-to-many") %>%
           # map the technology schema to the data
           inner_join(schema_technology, clean_df, by = c("Technology")) %>% 
           # Extract the needed attributes and Commodities
