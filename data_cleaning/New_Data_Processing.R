@@ -47,6 +47,7 @@ library(conflicted)
 # library(writexl) # for writing excel 
 options(scipen=999) # eliminates scientific notation
 
+conflicts_prefer(dplyr::filter)
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
 # code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
@@ -142,6 +143,7 @@ clean_df <- raw_df %>%
           filter(Parameters != "Annualised Capital Costs", Parameters != "Technology Capacity") %>% 
           # Replace any NAs in the dataset with missing
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .))) 
+
 
 
 
@@ -944,7 +946,8 @@ combined_df[is.na(combined_df)] <- 0
 # List generation
 hierarchy_lits <- combined_df %>%
   distinct(Sector, Subsector,Enduse, Technology,Unit,Fuel) %>%
-  arrange(across())
+  arrange(across(everything()))
+
 
 fuel_list <- distinct(hierarchy_lits,Fuel) # Fuel list
 sector_list <-distinct(hierarchy_lits, Sector) # sector list
@@ -958,7 +961,7 @@ sector_list <-distinct(hierarchy_lits, Sector) # sector list
 # Reading in assumption data
 assumptions_df <- read_excel(path = "Assumptions.xlsx", sheet = "Sheet1") %>% # extract assumptions for charting
   gather(Period, Value, `2022`:`2060`) %>%
-  mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))  %>% 
+  mutate(across(c(tool_tip_pre, tool_tip_trail), ~replace_na(., "")))  %>%
   # Changing total GDP 2022 period to 2018
   mutate(Period =  ifelse(Parameter == "Total GDP" & Period == 2022, 2018,Period))
 
