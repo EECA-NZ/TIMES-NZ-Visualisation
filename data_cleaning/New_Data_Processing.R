@@ -5,8 +5,8 @@
 # Input: 
 #
 # Model inputs:
-#   "Kea-v79.VD"   Kea model 
-#   "Tui-v79.VD"   Tui model
+#   "Kea-v2_1.vd"   Kea model
+#   "Tui-v2_1.vd"   Tui model
 # 
 # Schema inputs
 #   "Schema.xlsx" For restricting TIMES model and 'natural language' translations from TIMES codes                
@@ -21,8 +21,7 @@
 # Captions and pup-ups data
 #   "Caption_Table.xlsx"                # Pup-up caption
 #   "intro.csv"                         # Text for introduction to tour
-
-     
+#
 # 
 # Output: Data for App
 #
@@ -51,7 +50,7 @@ conflicts_prefer(dplyr::filter)
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
 # code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
-coh_raw <- read.csv(file = "Kea-v79.VD",
+coh_raw <- read.csv(file = "Kea-v2_1.vd",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -65,7 +64,7 @@ coh_raw <- read.csv(file = "Kea-v79.VD",
 
 
 
-ind_raw <- read.csv(file = "Tui-v79.VD",
+ind_raw <- read.csv(file = "Tui-v2_1.vd",
                     skip = 12,
                     header = FALSE, #first row read in is data not column names
                     stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
