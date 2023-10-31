@@ -50,10 +50,10 @@ conflicts_prefer(dplyr::filter)
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
 # code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
-coh_raw <- read.csv(file = "Kea-v2_1.vd",
+coh_raw <- read.csv(file = "kea-v2_1_2-ref.vd",
                     skip = 12,
-                    header = FALSE, #first row read in is data not column names
-                    stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
+                    header = FALSE, # first row read in is data not column names
+                    stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
@@ -62,12 +62,10 @@ coh_raw <- read.csv(file = "Kea-v2_1.vd",
          Commodity != "COseq", 
          Period != "2020")
 
-
-
-ind_raw <- read.csv(file = "Tui-v2_1.vd",
+ind_raw <- read.csv(file = "tui-v2_1_2-ref.vd",
                     skip = 12,
-                    header = FALSE, #first row read in is data not column names
-                    stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
+                    header = FALSE, # first row read in is data not column names
+                    stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
