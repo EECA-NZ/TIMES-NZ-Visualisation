@@ -39,10 +39,10 @@
 #
 
 #Load libraries required
+library(conflicted)
 library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
 library(tidyverse) # data manipulation, gather and spread commands
-library(conflicted)
 # library(writexl) # for writing excel 
 options(scipen=999) # eliminates scientific notation
 
@@ -50,7 +50,7 @@ conflicts_prefer(dplyr::filter)
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
 # code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
-coh_raw <- read.csv(file = "kea-v2_1_2-ref.vd",
+coh_raw <- read.csv(file = "kea-v2_1_2.vd",
                     skip = 12,
                     header = FALSE, # first row read in is data not column names
                     stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -62,7 +62,7 @@ coh_raw <- read.csv(file = "kea-v2_1_2-ref.vd",
          Commodity != "COseq", 
          Period != "2020")
 
-ind_raw <- read.csv(file = "tui-v2_1_2-ref.vd",
+ind_raw <- read.csv(file = "tui-v2_1_2.vd",
                     skip = 12,
                     header = FALSE, # first row read in is data not column names
                     stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
