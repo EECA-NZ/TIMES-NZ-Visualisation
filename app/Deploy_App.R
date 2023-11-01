@@ -6,7 +6,7 @@ deployApp(
   account = "eeca-nz", 
   
   # App Name
-  appName = "TIMES_V2",
+  appName = "TIMES_v2_1_2",
   
   # The file to be uploaded
   appFiles = c("data", 

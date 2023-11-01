@@ -5,8 +5,8 @@
 # Input: 
 #
 # Model inputs:
-#   "Kea-v79.VD"   Kea model 
-#   "Tui-v79.VD"   Tui model
+#   "Kea-v2_1.vd"   Kea model
+#   "Tui-v2_1.vd"   Tui model
 # 
 # Schema inputs
 #   "Schema.xlsx" For restricting TIMES model and 'natural language' translations from TIMES codes                
@@ -21,8 +21,7 @@
 # Captions and pup-ups data
 #   "Caption_Table.xlsx"                # Pup-up caption
 #   "intro.csv"                         # Text for introduction to tour
-
-     
+#
 # 
 # Output: Data for App
 #
@@ -40,10 +39,10 @@
 #
 
 #Load libraries required
+library(conflicted)
 library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
 library(tidyverse) # data manipulation, gather and spread commands
-library(conflicted)
 # library(writexl) # for writing excel 
 options(scipen=999) # eliminates scientific notation
 
@@ -51,10 +50,10 @@ conflicts_prefer(dplyr::filter)
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
 # code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
-coh_raw <- read.csv(file = "Kea-v79.VD",
+coh_raw <- read.csv(file = "kea-v2_1_2.vd",
                     skip = 12,
-                    header = FALSE, #first row read in is data not column names
-                    stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
+                    header = FALSE, # first row read in is data not column names
+                    stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
@@ -63,12 +62,10 @@ coh_raw <- read.csv(file = "Kea-v79.VD",
          Commodity != "COseq", 
          Period != "2020")
 
-
-
-ind_raw <- read.csv(file = "Tui-v79.VD",
+ind_raw <- read.csv(file = "tui-v2_1_2.vd",
                     skip = 12,
-                    header = FALSE, #first row read in is data not column names
-                    stringsAsFactors = FALSE, #use character variable type instead of factors - easier to join to other table but less computationally efficient
+                    header = FALSE, # first row read in is data not column names
+                    stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
