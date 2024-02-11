@@ -2,12 +2,13 @@
 This repository contains the README, source code and data behind the TIMES-NZ visualisation tool. The app is located on the [shinyapps.io](https://shinyapps.io) platform [here](https://eeca-nz.shinyapps.io/TIMES_V2/) and it can be viewed through [EECA's website](http://www.eeca.govt.nz/TIMES-NZ).
 
 ## Background
-The New Zealand Energy Scenarios Times-NZ website presents model insights for the latest TIMES-NZ scenarios to contribute to decision making by businesses and Government. The New Zealand Energy Scenarios TIMES-NZ visualisation tool allows users to explore how New Zealand energy futures may look like based on outputs from the New Zealand Energy Scenarios TIMES-NZ model. A detailed description of the  model and the app is found on the [EECA website](https://www.eeca.govt.nz/New-Zealand-Energy-Scenarios-TIMES-NZ-2.pdf).
+The New Zealand Energy Scenarios Times-NZ website presents model insights for the latest TIMES-NZ scenarios to contribute to decision making by businesses and Government. The New Zealand Energy Scenarios TIMES-NZ 2.0 visualisation tool allows users to explore how New Zealand energy futures may look like based on outputs from the [New Zealand Energy Scenarios TIMES-NZ 2.0 model](https://github.com/EECA-NZ/TIMES-NZ-Model-Files). A detailed description of the  model and the app is found on the [EECA website](https://www.eeca.govt.nz/New-Zealand-Energy-Scenarios-TIMES-NZ-2.pdf).
 
 ## Software requirements
 - [R (v4+)](https://cran.r-project.org/bin/windows/base/)
 - [RStudio (v1.4+)](https://www.rstudio.com/products/rstudio/)
 - [Rtools40](https://cran.r-project.org/bin/windows/Rtools/)
+- [TIMES-NZ model outputs (v2.0)](https://github.com/EECA-NZ/TIMES-NZ-Model-Files/releases/tag/v2.0.0)
 
 ## To run the app
 There are two R project folders associated with this app:
