@@ -1,0 +1,20 @@
+Fuel,FuelGroup
+Electricity,Electricity
+Green Hydrogen,Electricity
+Coal,Fossil Fuels
+Diesel,Fossil Fuels
+Fuel Oil,Fossil Fuels
+Jet Fuel,Fossil Fuels
+LPG,Fossil Fuels
+Natural Gas,Fossil Fuels
+Petrol,Fossil Fuels
+Waste Incineration,Fossil Fuels
+Biodiesel,Renewables (direct use)
+Biogas,Renewables (direct use)
+Drop-In Diesel,Renewables (direct use)
+Drop-In Jet,Renewables (direct use)
+Geothermal,Renewables (direct use)
+Hydro,Renewables (direct use)
+Solar,Renewables (direct use)
+Wind,Renewables (direct use)
+Wood,Renewables (direct use)
