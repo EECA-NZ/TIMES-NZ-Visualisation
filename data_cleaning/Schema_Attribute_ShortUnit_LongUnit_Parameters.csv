@@ -1,0 +1,5 @@
+Attribute,ShortUnit,LongUnit,Parameters
+VAR_FIn,PJ,PJ,Fuel Consumption
+VAR_FOut,PJ,PJ,End Use Demand
+VAR_Cap,,000 Vehicles,Number of Vehicles
+VAR_FOut,BVkm,Billion Vehicle Kilometres,Distance Travelled
