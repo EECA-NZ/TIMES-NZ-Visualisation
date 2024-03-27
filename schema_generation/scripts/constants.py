@@ -1,5 +1,6 @@
 """
 This modulue contains constants and functions used to clean and process the VD files.
+Test
 """
 import os
 
@@ -29,9 +30,9 @@ INPUT_VD_FILES = [
 # Path to the TIMES base.dd file containing commodity to unit mappings.
 BASE_DD_FILEPATH = os.path.join(project_base_path, "data/input", "base.dd")
 
-ITEMS_LIST_COMMODITY_CSV = os.path.join(project_base_path, "data/input", "Items List-Commodity-20240322165327.csv")
+ITEMS_LIST_COMMODITY_CSV = os.path.join(project_base_path, "data/input", "Items-List-Commodity-20240327154442.csv")
 
-ITEMS_LIST_PROCESS_CSV = os.path.join(project_base_path, "data/input", "Items-List-Process-20240110105048.csv")
+ITEMS_LIST_PROCESS_CSV = os.path.join(project_base_path, "data/input", "Items-List-Process-20240327154428.csv")
 
 # Definitions for paths and schemas of VEDA 'Items List' export CSV files used for creating mappings and rules.
 COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE = {
