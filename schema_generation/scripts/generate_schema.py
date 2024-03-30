@@ -16,8 +16,10 @@ if __name__ == "__main__":
 
     # Rename columns to avoid losing information
     main_df['Attribute'] = main_df['Attribute'].replace(
-        {'VAR_CapM': 'VAR_Cap',
-         'VAR_ActM': 'VAR_Cap'
+        {'VAR_Act': 'VAR_Cap',
+         'VAR_CapM': 'VAR_Cap',
+         'VAR_ActM': 'VAR_Cap',
+         'VAR_NcapM': 'VAR_Cap',
          }
     )
 
