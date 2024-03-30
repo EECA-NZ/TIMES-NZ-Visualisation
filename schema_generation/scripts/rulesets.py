@@ -21,37 +21,36 @@ import os
 from constants import *
 from helpers import *
 
-
-# Replace with the correct project_base_path variable initialization if necessary
-project_base_path = get_project_base_path()
+schema = pd.read_csv(SCHEMA_FILEPATH).drop_duplicates()
+schema = schema[OUT_COLS].dropna().drop_duplicates().sort_values(by=OUT_COLS)
 
 # Generate rulesets for 'Set' attributes and descriptions
 commodity_set_rules = itemlist_column_to_ruleset(
     COMMODITY_TO_SET["Items-List-CSV"],
     COMMODITY_TO_SET["ParseColumn"],
     COMMODITY_TO_SET["Schema"],
-    COMMODITY_TO_SET["MatchColumn"]
+    COMMODITY_TO_SET["MatchColumn"],
 )
 
 process_set_rules = itemlist_column_to_ruleset(
     PROCESS_TO_SET["Items-List-CSV"],
     PROCESS_TO_SET["ParseColumn"],
     PROCESS_TO_SET["Schema"],
-    PROCESS_TO_SET["MatchColumn"]
+    PROCESS_TO_SET["MatchColumn"],
 )
 
-commodity_rules = itemlist_column_to_ruleset(
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Items-List-CSV"],
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["ParseColumn"],
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Schema"],
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["MatchColumn"]
-)
+#commodity_rules = itemlist_column_to_ruleset(
+#    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Items-List-CSV"],
+#    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["ParseColumn"],
+#    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Schema"],
+#    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["MatchColumn"],
+#)
 
 process_rules = itemlist_column_to_ruleset(
     PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Items-List-CSV"],
     PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["ParseColumn"],
     PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Schema"],
-    PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["MatchColumn"]
+    PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["MatchColumn"],
 )
 
 # Rules for assigning units to commodities based on the TIMES base.dd definitions
@@ -101,7 +100,7 @@ PARAMS_RULES = [
         {"Parameters": "Number of Vehicles"},
     ),
     (
-        {"Attribute": "VAR_FIn", "Unit": "PJ", "Set": "NRG"},
+        {"Attribute": "VAR_FIn", "Unit": "PJ"},
         {"Parameters": "Fuel Consumption"},
     ),
     (
@@ -109,7 +108,7 @@ PARAMS_RULES = [
         {"Parameters": "Distance Travelled"},
     ),
     (
-        {"Attribute": "VAR_Cap", "Unit": "GW", "Set": ".DMD."},
+        {"Attribute": "VAR_Cap", "Unit": "GW"},
         {"Parameters": "Technology Capacity"},
     ),
     ({"Attribute": "VAR_FOut", "Unit": "kt CO2"}, {"Parameters": "Emissions"}),
@@ -172,12 +171,12 @@ PARAMS_RULES = [
 
 # Aggregating all rulesets for application in the processing script in the specified order
 RULESETS = [
-    commodity_set_rules,
-    process_set_rules,
-    commodity_rules,
-    process_rules,
-    commodity_unit_rules,
-    FUEL_TO_FUELGROUP_RULES,
-    SECTOR_CAPACITY_RULES,
-    PARAMS_RULES,
+    ("commodity_set_rules", commodity_set_rules),
+    #("commodity_rules", commodity_rules),
+    ("commodity_unit_rules", commodity_unit_rules),
+    ("process_set_rules", process_set_rules),
+    ("process_rules", process_rules),
+    ("FUEL_TO_FUELGROUP_RULES", FUEL_TO_FUELGROUP_RULES),
+    ("SECTOR_CAPACITY_RULES", SECTOR_CAPACITY_RULES),
+    ("PARAMS_RULES", PARAMS_RULES),
 ]

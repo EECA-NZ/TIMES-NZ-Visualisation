@@ -67,7 +67,8 @@ def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column):
     """
     Reads a CSV file to create rules based on the contents of a specified column.
     This function can handle both parsing of complex descriptions into multiple attributes
-    and simple mappings like assigning 'Set' values.
+    and simple mappings like assigning 'Set' values. It also logs a warning if the same
+    item_name is mapped to different dictionaries.
 
     :param filepath: Path to the CSV file.
     :param parse_column: The column to parse, which can be 'Description' or 'Set'.
@@ -79,15 +80,21 @@ def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column):
     df = pd.read_csv(filepath)
     for _, row in df.iterrows():
         item_name = row["Name"]
+        new_mapping = None
         if len(schema) == 1:
-            mapping[item_name] = {schema[0]: row[parse_column]}
+            new_mapping = {schema[0]: row[parse_column]}
         else:
             parts = [x.strip() for x in row[parse_column].split("-:-")]
             if len(parts) == len(schema):
-                mapping[item_name] = dict(zip(schema, parts))
+                new_mapping = dict(zip(schema, parts))
             else:
-                logging.warning("Warning: Description for %s does not match expected format. %s: %s",
-                                item_name, parse_column, row[parse_column])
+                logging.warning("Warning: Description for %s %s does not match expected format. %s: %s",
+                                match_column, item_name, parse_column, row[parse_column])
+        if new_mapping is not None:
+            # Check if item_name already has a mapping
+            if item_name in mapping and mapping[item_name] != new_mapping:
+                logging.warning(f"{match_column} {item_name} is mapped to different dictionaries. Existing: {mapping[item_name]}, New: {new_mapping}")
+            mapping[item_name] = new_mapping
     rules = []
     for item_name, attributes in mapping.items():
         condition = {match_column: item_name} if match_column else {}
@@ -187,3 +194,24 @@ def apply_rules(schema, rules):
             if pd.notna(value_to_set) and value_to_set != "":
                 schema.loc[filtered_indices, column] = value_to_set
     return schema
+
+
+def add_emissions_rows(main_df):
+    """
+    For every VAR_FOut row in the DataFrame, duplicate it with Unit='kt CO2' and
+    Parameters='Emissions', keeping other values identical.
+
+    :param main_df: The original DataFrame containing model data.
+    :return: DataFrame with added emissions rows for each VAR_FOut entry.
+    """
+    # Filter to only VAR_FOut rows
+    f_out_rows = main_df[main_df['Attribute'] == 'VAR_FOut'].copy()
+
+    # Update the Unit and Parameters columns for the duplicated rows
+    f_out_rows['Unit'] = 'kt CO2'
+    f_out_rows['Parameters'] = 'Emissions'
+
+    # Append these updated rows to the original DataFrame using concat
+    augmented_df = pd.concat([main_df, f_out_rows], ignore_index=True)
+
+    return augmented_df

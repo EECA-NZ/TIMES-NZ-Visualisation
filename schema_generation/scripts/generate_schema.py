@@ -14,6 +14,13 @@ if __name__ == "__main__":
 
     main_df = read_and_concatenate(INPUT_VD_FILES)
 
+    # Rename columns to avoid losing information
+    main_df['Attribute'] = main_df['Attribute'].replace(
+        {'VAR_CapM': 'VAR_Cap',
+         'VAR_ActM': 'VAR_Cap'
+         }
+    )
+
     # Add and subtract columns
     main_df = add_missing_columns(main_df, OUT_COLS + SUP_COLS)
     logging.info(
@@ -30,8 +37,12 @@ if __name__ == "__main__":
                  main_df.head().to_string(index=False))
 
     # Populate the columns according to the rulesets
-    for ruleset in RULESETS:
+    for name, ruleset in RULESETS:
+        logging.info("Applying ruleset: %s", name)
         main_df = apply_rules(main_df, ruleset)
+    
+    logging.info("Adding emission rows for VAR_FOut rows: %s", name)
+    main_df = add_emissions_rows(main_df)
 
     schema = pd.read_csv(SCHEMA_FILEPATH).drop_duplicates()
     schema = schema.merge(
@@ -53,16 +64,16 @@ if __name__ == "__main__":
     message, main_df, schema, correct_rows, missing_rows, extra_rows = compare_tables(
         OUTPUT_FILEPATH, SCHEMA_FILEPATH
     )
-    logging.info(message)
+    print(message)
     if not extra_rows.empty and not missing_rows.empty:
         first_extra_row = extra_rows.head(1)
         first_missing_row = missing_rows.head(1)
         columns_to_compare = set(main_df.columns).intersection(schema.columns)
         comparison_df = compare_rows_to_df(
-            first_extra_row, first_missing_row, list(columns_to_compare)
+            first_extra_row, first_missing_row, ['Attribute', 'Process', 'Commodity'] + list(columns_to_compare)
         )
-        logging.info("\nDetailed row comparison in DataFrame format:\n")
-        logging.info(comparison_df.to_string(index=False))
+        logging.info("\nDetailed row comparison:\n")
+        print(comparison_df.to_string(index=False))
     else:
         logging.info("Either extra_rows or missing_rows DataFrame is empty.")
 

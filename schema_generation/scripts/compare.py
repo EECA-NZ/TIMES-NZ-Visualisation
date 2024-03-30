@@ -92,8 +92,9 @@ def compare_tables(output_filepath, reference_filepath):
     differences.append(f"Number of missing rows: {len(missing_rows)}")
     differences.append(f"Number of extra rows: {len(extra_rows)}")
 
-    differences.append(f"\nFirst 5 missing rows: {missing_rows.head().to_string(index=False)}")
-    differences.append(f"\nFirst 5 extra rows: {extra_rows.head().to_string(index=False)}")
+    with pd.option_context('display.max_rows', None):
+        differences.append(f"\nMissing rows:\n {missing_rows.to_string(index=False)}")
+        # differences.append(f"\nExtra rows:\n {extra_rows.to_string(index=False)}")
 
     # Final output
     if differences:
