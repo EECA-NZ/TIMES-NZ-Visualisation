@@ -142,6 +142,16 @@ PARAMS_RULES = [
     ({"Attribute": "VAR_FOut", "Unit": "PJ", "Process": "EWSTINC20"}, {"Parameters": "Electricity Generation"})
 ]
 
+
+EMMISSIONS_COMMODITY_RULES = [
+({'Unit': 'kt CO2', 'Sector': 'Transport', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'TRACO2'}),
+({'Unit': 'kt CO2', 'Sector': 'Industry', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'INDCO2'}),
+({'Unit': 'kt CO2', 'Sector': 'Commercial', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'COMCO2'}),
+({'Unit': 'kt CO2', 'Sector': 'Agriculture', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'AGRCO2'}),
+({'Unit': 'kt CO2', 'Sector': 'Residential', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'RESCO2'}),
+({'Unit': 'kt CO2', 'Sector': 'Electricity', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'ELCCO2'}),
+]
+
 # Aggregating all rulesets for application in the processing script in the specified order
 RULESETS = [
     ("process_baseyear_rules", process_baseyear_rules), # process rules but with '00' appended at the end of the process name
@@ -150,4 +160,5 @@ RULESETS = [
     ("FUEL_TO_FUELGROUP_RULES", FUEL_TO_FUELGROUP_RULES),
     ("SECTOR_CAPACITY_RULES", SECTOR_CAPACITY_RULES),
     ("PARAMS_RULES", PARAMS_RULES),
+    ("EMMISSIONS_COMMODITY_RULES", EMMISSIONS_COMMODITY_RULES),
 ]
