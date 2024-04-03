@@ -3,18 +3,16 @@ Defines rulesets used for data processing and transformation in the project. Eac
 used to set values in the schema DataFrame based on conditions.
 
 Each rule is a tuple containing a condition dictionary, a rule_type, and an actions dictionary.
-The condition dictionary contains key-value pairs that must match the DataFrame row.
-The rule_type - either 'inplace' or 'newrow' - specifies whether the rule should update the existing row or a copy of it.
-The actions dictionary contains key-value pairs to set in the schema DataFrame row.
+* The condition dictionary contains key-value pairs that must match the DataFrame row.
+* The rule_type - either 'inplace' or 'newrow' - specifies whether the rule should update the existing row or a copy of it.
+* The actions dictionary contains key-value pairs to set in the schema DataFrame row.
 
-Rulesets are defined as lists of tuples. Each tuple contains a condition dictionary, specifying the criteria a row must
-meet for the rule to apply, and an actions dictionary, specifying the updates to be made to the row when the condition
-is met. When a ruleset is applied, rules are applied in order of specificity, from least to most specific.
-A more specific rule's condition dictionary has a superset of the keys of a less specific one.
+Rulesets are defined as lists of tuples. When a ruleset is applied, rules are applied in order of specificity, from least
+to most specific. A more specific rule's condition dictionary has a superset of the keys of a less specific one.
 
 When a sequence of rulesets is applied, later rulesets can override the effects of earlier ones.
 
-These rulesets are applied in a sequence determined by the RULESETS list (defined at the end of this module)
+The rulesets are applied in a sequence determined by the RULESETS list (defined at the end of this module)
 to ensure data consistency and completeness.
 """
 import pandas as pd
