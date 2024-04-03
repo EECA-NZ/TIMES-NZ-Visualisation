@@ -1898,6 +1898,15 @@ Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2045,Foss
 Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2050,Fossil Fuels,Heating/Cooling,0
 Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2055,Fossil Fuels,Heating/Cooling,0
 Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2060,Fossil Fuels,Heating/Cooling,0
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2018,Electricity,Heating/Cooling,0
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2025,Electricity,Heating/Cooling,0
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2030,Electricity,Heating/Cooling,0
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2035,Electricity,Heating/Cooling,0.004020833333333333
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2040,Electricity,Heating/Cooling,0.005017121212121212
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2045,Electricity,Heating/Cooling,0.005911120465636369
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2050,Electricity,Heating/Cooling,0.014892200404040396
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2055,Electricity,Heating/Cooling,0.015199488080808064
+Kea,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2060,Electricity,Heating/Cooling,0.015482550606060604
 Kea,Commercial,Education,Burner,Space Heating,Mt CO<sub>2</sub>/yr,Emissions,Natural Gas,2018,Fossil Fuels,Heating/Cooling,0.01265912224724
 Kea,Commercial,Education,Burner,Space Heating,Mt CO<sub>2</sub>/yr,Emissions,Natural Gas,2025,Fossil Fuels,Heating/Cooling,0.00527463426968332
 Kea,Commercial,Education,Burner,Space Heating,Mt CO<sub>2</sub>/yr,Emissions,Natural Gas,2030,Fossil Fuels,Heating/Cooling,0
@@ -11510,6 +11519,15 @@ Kea,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2045
 Kea,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2050,Fossil Fuels,Mobile Motive Power,0.13726657471601417
 Kea,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2055,Fossil Fuels,Mobile Motive Power,0.14295788025269954
 Kea,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2060,Fossil Fuels,Mobile Motive Power,0.14864918578938566
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2018,Fossil Fuels,Mobile Motive Power,2.46068346841534
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2025,Fossil Fuels,Mobile Motive Power,1.688323426293263
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2030,Fossil Fuels,Mobile Motive Power,1.7461150334136801
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2035,Fossil Fuels,Mobile Motive Power,1.803031558479049
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2040,Fossil Fuels,Mobile Motive Power,1.859364695507736
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2045,Fossil Fuels,Mobile Motive Power,1.932057006293679
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2050,Fossil Fuels,Mobile Motive Power,2.015655432917817
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2055,Fossil Fuels,Mobile Motive Power,2.099253859541944
+Kea,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2060,Fossil Fuels,Mobile Motive Power,2.182852286166081
 Kea,Transport,Rail,Train,Freight Rail,PJ,Fuel Consumption,Electricity,2018,Electricity,Mobile Motive Power,0.05379089501162788
 Kea,Transport,Rail,Train,Freight Rail,PJ,Fuel Consumption,Electricity,2025,Electricity,Mobile Motive Power,0.03853927399512697
 Kea,Transport,Rail,Train,Freight Rail,PJ,Fuel Consumption,Electricity,2030,Electricity,Mobile Motive Power,0.03984338145975223
@@ -12320,6 +12338,15 @@ Kea,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,20
 Kea,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,2050,Fossil Fuels,Mobile Motive Power,13.70765756655515
 Kea,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,2055,Fossil Fuels,Mobile Motive Power,15.20373058693192
 Kea,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,2060,Fossil Fuels,Mobile Motive Power,16.86308712029639
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2018,Fossil Fuels,Mobile Motive Power,10.28620347169753
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2025,Fossil Fuels,Mobile Motive Power,10.78659941499064
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2030,Fossil Fuels,Mobile Motive Power,10.322879024995679
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2035,Fossil Fuels,Mobile Motive Power,10.647321961991409
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2040,Fossil Fuels,Mobile Motive Power,11.14267361732249
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2045,Fossil Fuels,Mobile Motive Power,12.35880068300097
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2050,Fossil Fuels,Mobile Motive Power,13.70765756655515
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2055,Fossil Fuels,Mobile Motive Power,15.20373058693192
+Kea,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2060,Fossil Fuels,Mobile Motive Power,16.86308712029639
 Tui,Agriculture,Dairy Cattle Farming,Farm Bike,Off-road Motorbike Use,Mt CO<sub>2</sub>/yr,Emissions,Electricity,2018,Electricity,Mobile Motive Power,0
 Tui,Agriculture,Dairy Cattle Farming,Farm Bike,Off-road Motorbike Use,Mt CO<sub>2</sub>/yr,Emissions,Electricity,2025,Electricity,Mobile Motive Power,0
 Tui,Agriculture,Dairy Cattle Farming,Farm Bike,Off-road Motorbike Use,Mt CO<sub>2</sub>/yr,Emissions,Electricity,2030,Electricity,Mobile Motive Power,0
@@ -14246,6 +14273,15 @@ Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2045,Foss
 Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2050,Fossil Fuels,Heating/Cooling,0
 Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2055,Fossil Fuels,Heating/Cooling,0
 Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Coal,2060,Fossil Fuels,Heating/Cooling,0
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2018,Electricity,Heating/Cooling,0
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2025,Electricity,Heating/Cooling,0
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2030,Electricity,Heating/Cooling,0
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2035,Electricity,Heating/Cooling,0.00435917854217044
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2040,Electricity,Heating/Cooling,0.00485534847877196
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2045,Electricity,Heating/Cooling,0.0051493052642200285
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2050,Electricity,Heating/Cooling,0.005175457333402262
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2055,Electricity,Heating/Cooling,0.005245941699724363
+Tui,Commercial,Education,Boiler,Water Heating,PJ,Fuel Consumption,Electricity,2060,Electricity,Heating/Cooling,0.005248985589399493
 Tui,Commercial,Education,Burner,Space Heating,Mt CO<sub>2</sub>/yr,Emissions,Natural Gas,2018,Fossil Fuels,Heating/Cooling,0.01265912224724
 Tui,Commercial,Education,Burner,Space Heating,Mt CO<sub>2</sub>/yr,Emissions,Natural Gas,2025,Fossil Fuels,Heating/Cooling,0.00527463426968332
 Tui,Commercial,Education,Burner,Space Heating,Mt CO<sub>2</sub>/yr,Emissions,Natural Gas,2030,Fossil Fuels,Heating/Cooling,0
@@ -23930,6 +23966,15 @@ Tui,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2045
 Tui,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2050,Fossil Fuels,Mobile Motive Power,0.13849594999349402
 Tui,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2055,Fossil Fuels,Mobile Motive Power,0.14198463433778322
 Tui,Transport,Rail,Train,Freight Rail,Mt CO<sub>2</sub>/yr,Emissions,Diesel,2060,Fossil Fuels,Mobile Motive Power,0.14547331868207236
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2018,Fossil Fuels,Mobile Motive Power,2.46068346841534
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2025,Fossil Fuels,Mobile Motive Power,1.6500573830337129
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2030,Fossil Fuels,Mobile Motive Power,1.736119021793144
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2035,Fossil Fuels,Mobile Motive Power,1.8396108044585109
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2040,Fossil Fuels,Mobile Motive Power,1.9175993914531921
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2045,Fossil Fuels,Mobile Motive Power,1.978585848000729
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2050,Fossil Fuels,Mobile Motive Power,2.033732286104072
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2055,Fossil Fuels,Mobile Motive Power,2.084985378577946
+Tui,Transport,Rail,Train,Freight Rail,PJ,End Use Demand,Diesel,2060,Fossil Fuels,Mobile Motive Power,2.13623847105182
 Tui,Transport,Rail,Train,Freight Rail,PJ,Fuel Consumption,Electricity,2018,Electricity,Mobile Motive Power,0.05379089501162788
 Tui,Transport,Rail,Train,Freight Rail,PJ,Fuel Consumption,Electricity,2025,Electricity,Mobile Motive Power,0.037646761670882795
 Tui,Transport,Rail,Train,Freight Rail,PJ,Fuel Consumption,Electricity,2030,Electricity,Mobile Motive Power,0.03964202334190037
@@ -24740,6 +24785,15 @@ Tui,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,20
 Tui,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,2050,Fossil Fuels,Mobile Motive Power,17.40408283359023
 Tui,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,2055,Fossil Fuels,Mobile Motive Power,18.48739491108908
 Tui,Transport,Shipping,Ship,International Shipping,PJ,End Use Demand,Fuel Oil,2060,Fossil Fuels,Mobile Motive Power,19.628223176246422
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2018,Fossil Fuels,Mobile Motive Power,10.28620347169753
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2025,Fossil Fuels,Mobile Motive Power,9.48958760949168
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2030,Fossil Fuels,Mobile Motive Power,10.66106321478242
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2035,Fossil Fuels,Mobile Motive Power,12.393855596212319
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2040,Fossil Fuels,Mobile Motive Power,14.60639576089536
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2045,Fossil Fuels,Mobile Motive Power,16.00008814334396
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2050,Fossil Fuels,Mobile Motive Power,17.40408283359023
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2055,Fossil Fuels,Mobile Motive Power,18.48739491108908
+Tui,Transport,Shipping,Ship,International Shipping,PJ,Fuel Consumption,Fuel Oil,2060,Fossil Fuels,Mobile Motive Power,19.628223176246422
 Kea,Residential,Detached Dwellings,Heat Pump (Multi-Split),Space Cooling,PJ,Fuel Consumption,Electricity,2018,Electricity,Heating/Cooling,0
 Kea,Residential,Detached Dwellings,Heat Pump (Multi-Split),Space Cooling,PJ,Fuel Consumption,Electricity,2025,Electricity,Heating/Cooling,0.028213300282949775
 Kea,Residential,Detached Dwellings,Heat Pump (Multi-Split),Space Cooling,PJ,Fuel Consumption,Electricity,2030,Electricity,Heating/Cooling,0.2639776691876508
