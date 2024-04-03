@@ -25,13 +25,17 @@ if __name__ == "__main__":
     # Subset the rows and drop duplicates
     main_df = main_df[main_df["Attribute"].isin(ATTRIBUTE_ROWS_TO_KEEP)].drop_duplicates()
 
+
     # Populate the columns according to the rulesets
     for name, ruleset in RULESETS:
         logging.info("Applying ruleset: %s", name)
         main_df = apply_rules(main_df, ruleset)
-    
-    logging.info("Adding emission rows for VAR_FOut rows: %s", name)
+
+    logging.info("Adding emission rows for VAR_FOut rows")
     main_df = add_emissions_rows(main_df)
+
+    logging.info("Apply emissions rule again")
+    main_df = apply_rules(main_df, RULESETS[-1][1])
 
     schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
     schema = schema.merge(
@@ -67,4 +71,3 @@ if __name__ == "__main__":
         logging.info("Either extra_rows or missing_rows DataFrame is empty.")
 
     logging.info("The files have been concatenated and saved to %s", OUTPUT_SCHEMA_FILEPATH)
-    

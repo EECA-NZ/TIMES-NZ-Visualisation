@@ -40,7 +40,7 @@ ITEMS_LIST_COMMODITY_GROUPS_CSV = os.path.join(project_base_path, "data/input", 
 COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE = {
     "Items-List-CSV": ITEMS_LIST_COMMODITY_CSV,
     "ParseColumn": "Description",
-    "Schema": ["NA1", "NA2", "Fuel", "Enduse"], # ["Sector", "Subsector", "Fuel", "Enduse"],
+    "Schema": ["NA1", "NA2", "Fuel", "NA3"], # ["Sector", "Subsector", "Fuel", "Enduse"],
     "MatchColumn": "Commodity",
 }
 

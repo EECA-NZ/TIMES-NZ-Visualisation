@@ -56,7 +56,9 @@ process_rules = itemlist_column_to_ruleset(
 process_baseyear_rules = generate_augmented_ruleset(process_rules)
 
 # Rules for assigning units to commodities based on the TIMES base.dd definitions
-commodity_unit_rules = base_dd_commodity_unit_rules(BASE_DD_FILEPATH)
+commodity_unit_rules = base_dd_commodity_unit_rules(
+    BASE_DD_FILEPATH,
+    )
 
 # Predefined rules for mapping fuels to their respective fuel groups
 FUEL_TO_FUELGROUP_RULES = [
@@ -92,6 +94,7 @@ SECTOR_CAPACITY_RULES = [
     ({"Attribute": "VAR_Cap", "Sector": "Residential"}, {"Unit": "GW"}),
     ({"Attribute": "VAR_Cap", "Sector": "Electricity"}, {"Unit": "GW"}),
     ({"Attribute": "VAR_Cap", "Sector": "Green Hydrogen"}, {"Unit": "GW"}),
+    ({"Attribute": "VAR_Cap", "Sector": "Primary Fuel Supply"}, {"Unit": "GW"}),
 ]
 
 # General parameter rules for processing data, including basic and specific categorizations
@@ -152,10 +155,16 @@ EMMISSIONS_COMMODITY_RULES = [
 ({'Unit': 'kt CO2', 'Sector': 'Electricity', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'ELCCO2'}),
 ]
 
+#EMMISSIONS_COMMODITY_RULES_2 = [
+#({'Attribute': 'VAR_FIn', 'Sector': 'Transport', 'FuelGroup': 'Fossil Fuels'}, {'Commodity': 'TRACO2'}),
+#]
+
+
 # Aggregating all rulesets for application in the processing script in the specified order
 RULESETS = [
     ("process_baseyear_rules", process_baseyear_rules), # process rules but with '00' appended at the end of the process name
     ("process_rules", process_rules),
+    ("commodity_rules", commodity_rules),
     ("commodity_unit_rules", commodity_unit_rules),
     ("FUEL_TO_FUELGROUP_RULES", FUEL_TO_FUELGROUP_RULES),
     ("SECTOR_CAPACITY_RULES", SECTOR_CAPACITY_RULES),
