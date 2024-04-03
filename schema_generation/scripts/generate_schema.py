@@ -1,11 +1,10 @@
-import os
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 from constants import *
 from helpers import *
-from rulesets import RULESETS
+from rulesets import RULESETS, MISSING_ROWS
 
 if __name__ == "__main__":
     project_base_path = get_project_base_path()
@@ -43,6 +42,9 @@ if __name__ == "__main__":
         on=["Attribute", "Process", "Commodity"],
         how="left",
     )
+
+    logging.info("Adding missing rows")
+    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
 
     main_df = main_df[OUT_COLS].fillna('-').drop_duplicates().sort_values(by=OUT_COLS)
     schema = schema[OUT_COLS].fillna('-').drop_duplicates().sort_values(by=OUT_COLS)

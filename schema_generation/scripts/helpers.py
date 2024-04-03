@@ -63,7 +63,7 @@ def add_missing_columns(df, missing_columns):
     return df
 
 
-def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column):
+def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column, rule_type):
     """
     Reads a CSV file to create rules based on the contents of a specified column.
     This function can handle both parsing of complex descriptions into multiple attributes
@@ -98,11 +98,11 @@ def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column):
     rules = []
     for item_name, attributes in mapping.items():
         condition = {match_column: item_name} if match_column else {}
-        rules.append((condition, attributes))
+        rules.append((condition, rule_type, attributes))
     return rules
 
 
-def base_dd_commodity_unit_rules(base_dd_filepath):
+def base_dd_commodity_unit_rules(base_dd_filepath, rule_type):
     """
     Extracts the mapping of commodities to units from the specified section of a file.
     Assumes the section starts after 'SET COM_UNIT' and the opening '/', and ends at the next '/'.
@@ -138,7 +138,7 @@ def base_dd_commodity_unit_rules(base_dd_filepath):
     for commodity, unit in commodity_unit_mapping.items():
         condition = {"Commodity": commodity}
         actions = {"Unit": unit}
-        rules.append((condition, actions))
+        rules.append((condition, rule_type, actions))
     return rules
 
 
@@ -153,15 +153,15 @@ def sort_rules_by_specificity(rules):
     """
     # Convert each rule's condition dictionary keys to frozensets for easy comparison
     rule_sets = [
-        (frozenset(condition.keys()), condition, actions)
-        for condition, actions in rules
+        (frozenset(condition.keys()), condition, rule_type, actions)
+        for condition, rule_type, actions in rules
     ]
     # Sort rules based on the length of the condition keys as a primary criterion
     # and the lexicographical order of the keys as a secondary criterion for stability
     sorted_rules = sorted(rule_sets, key=lambda x: (len(x[0]), x[0]))
     # Rebuild sorted rules from sorted rule sets
     sorted_rules_rebuilt = [
-        (condition, actions) for _, condition, actions in sorted_rules
+        (condition, rule_type, actions) for _, condition, rule_type, actions in sorted_rules
     ]
     return sorted_rules_rebuilt
 
@@ -175,24 +175,36 @@ def apply_rules(schema, rules):
     :return: Modified DataFrame with rules applied.
     """
     sorted_rules = sort_rules_by_specificity(rules)
-    for condition, actions in sorted_rules:
-        query_conditions_parts = []
-        local_vars = {}
-        for i, (key, value) in enumerate(condition.items()):
-            if pd.notna(value) and value != "":
-                query_placeholder = f"@value_{i}"
-                query_conditions_parts.append(f"`{key}` == {query_placeholder}")
-                local_vars[f"value_{i}"] = value
-        query_conditions = " & ".join(query_conditions_parts)
-        if not query_conditions:
-            continue
-        # Filter schema DataFrame based on the query derived from the rule's conditions
-        # Pass local_vars to query() to make external variables available
-        filtered_indices = schema.query(query_conditions, local_dict=local_vars).index
-        # Apply actions for filtered rows, ensuring we ignore empty updates
-        for column, value_to_set in actions.items():
-            if pd.notna(value_to_set) and value_to_set != "":
-                schema.loc[filtered_indices, column] = value_to_set
+    new_rows = []
+    for condition, rule_type, actions in sorted_rules:
+        if rule_type == "inplace":
+            query_conditions_parts = []
+            local_vars = {}
+            for i, (key, value) in enumerate(condition.items()):
+                if pd.notna(value) and value != "":
+                    query_placeholder = f"@value_{i}"
+                    query_conditions_parts.append(f"`{key}` == {query_placeholder}")
+                    local_vars[f"value_{i}"] = value
+            query_conditions = " & ".join(query_conditions_parts)
+            if not query_conditions:
+                continue
+            # Filter schema DataFrame based on the query derived from the rule's conditions
+            # Pass local_vars to query() to make external variables available
+            filtered_indices = schema.query(query_conditions, local_dict=local_vars).index
+            # Apply actions for filtered rows, ensuring we ignore empty updates
+            for column, value_to_set in actions.items():
+                if pd.notna(value_to_set) and value_to_set != "":
+                    schema.loc[filtered_indices, column] = value_to_set
+        elif rule_type == "newrow":
+            # Apply newrow rule logic
+            for _, row in schema.iterrows():
+                if all(row.get(key, None) == value for key, value in condition.items()):
+                    new_row = row.to_dict()
+                    new_row.update(actions)
+                    new_rows.append(new_row)
+    if new_rows:
+        new_rows_df = pd.DataFrame(new_rows)
+        schema = pd.concat([schema, new_rows_df], ignore_index=True)
     return schema
 
 
@@ -257,12 +269,12 @@ def generate_augmented_ruleset(ruleset):
     :return: The augmented ruleset.
     """
     new_ruleset = []
-    for condition, actions in ruleset:
+    for condition, rule_type, actions in ruleset:
         process_name = condition['Process']
         if not process_name.endswith('00'):
             new_condition = condition.copy()  # Create a copy of the condition dictionary
             new_condition['Process'] = process_name + '00'  # Append '00' to the process name
-            new_ruleset.append((new_condition, actions))  # Create a new rule with the modified condition and original actions
+            new_ruleset.append((new_condition, rule_type, actions))  # Create a new rule with the modified condition and original actions
     return new_ruleset
 
 

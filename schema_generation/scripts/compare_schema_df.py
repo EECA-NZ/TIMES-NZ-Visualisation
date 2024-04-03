@@ -7,10 +7,7 @@ python scripts/process.py
 python scripts/compare.py
 """
 
-import os
 import logging
-import pandas as pd
-
 from constants import OUTPUT_SCHEMA_FILEPATH, REFERENCE_SCHEMA_FILEPATH
 from helpers import *
 
