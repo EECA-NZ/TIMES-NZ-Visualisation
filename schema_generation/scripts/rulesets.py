@@ -2,9 +2,10 @@
 Defines rulesets used for data processing and transformation in the project. Each ruleset consists of rules that are
 used to set values in the schema DataFrame based on conditions.
 
-Each rule is a tuple containing a condition dictionary and an actions dictionary.
+Each rule is a tuple containing a condition dictionary, a rule_type, and an actions dictionary.
 The condition dictionary contains key-value pairs that must match the DataFrame row.
-The actions dictionary contains key-value pairs to set in the schemaDataFrame row.
+The rule_type - either 'inplace' or 'newrow' - specifies whether the rule should update the existing row or a copy of it.
+The actions dictionary contains key-value pairs to set in the schema DataFrame row.
 
 Rulesets are defined as lists of tuples. Each tuple contains a condition dictionary, specifying the criteria a row must
 meet for the rule to apply, and an actions dictionary, specifying the updates to be made to the row when the condition
@@ -24,37 +25,36 @@ schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
 schema = schema[OUT_COLS].dropna().drop_duplicates().sort_values(by=OUT_COLS)
 
 # Not currently being used. TODO: Could "Set" membership allow the "Parameters" column to be inferred, simplifying PARAMS_RULES?
-#
-## Generate rulesets for 'Set' attributes and descriptions
-#commodity_set_rules = itemlist_column_to_ruleset(
-#    COMMODITY_TO_SET["Items-List-CSV"],
-#    COMMODITY_TO_SET["ParseColumn"],
-#    COMMODITY_TO_SET["Schema"],
-#    COMMODITY_TO_SET["MatchColumn"],
-#    "inplace",
-#)
-#
-#process_set_rules = itemlist_column_to_ruleset(
-#    PROCESS_TO_SET["Items-List-CSV"],
-#    PROCESS_TO_SET["ParseColumn"],
-#    PROCESS_TO_SET["Schema"],
-#    PROCESS_TO_SET["MatchColumn"],
-#    "inplace",
-#)
+# Generate rulesets for 'Set' attributes and descriptions
+commodity_set_rules = itemlist_column_to_ruleset(
+    ITEMS_LIST_COMMODITY_CSV,
+    "Set",
+    ["Set"],
+    "Commodity",
+    "inplace",
+)
+
+process_set_rules = itemlist_column_to_ruleset(
+    ITEMS_LIST_PROCESS_CSV,
+    "Set",
+    ["Set"],
+    "Process",
+    "inplace",
+)
 
 commodity_rules = itemlist_column_to_ruleset(
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Items-List-CSV"],
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["ParseColumn"],
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Schema"],
-    COMMODITY_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["MatchColumn"],
+    ITEMS_LIST_COMMODITY_CSV,
+    "Description",
+    ["NA1", "NA2", "Fuel", "NA3"], # ["Sector", "Subsector", "Fuel", "Enduse"],
+    "Commodity",
     "inplace",
 )
 
 process_rules = itemlist_column_to_ruleset(
-    PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Items-List-CSV"],
-    PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["ParseColumn"],
-    PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["Schema"],
-    PROCESS_TO_SECTOR_SUBSECTOR_FUEL_ENDUSE["MatchColumn"],
+    ITEMS_LIST_PROCESS_CSV,
+    "Description",
+    ["Sector", "Subsector", "Enduse", "Technology", "Fuel"],
+    "Process",
     "inplace",
 )
 

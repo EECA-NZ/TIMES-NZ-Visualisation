@@ -17,11 +17,11 @@ python scripts\generate_schema.py
 Note that this will also automatically provide a comparison between the `reference_schema_df` and the newly generated schema file.
 * Generate the `combined_df` based on the new automated process:
 ```bash
-Rscript scripts\output_combined_df.R
+Rscript scripts\generate_output_combined_df.R
 ```
 * Generate the `combined_df` based on the reference schema file:
 ```bash
-Rscript scripts\reference_combined_df.R
+Rscript scripts\generate_reference_combined_df.R
 ```
 * Compare the two combined_df files
 ```bash

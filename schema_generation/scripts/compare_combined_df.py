@@ -1,10 +1,12 @@
 """
-This script compares two DataFrames and reports differences between them.
+This script compares the two final "combined" DataFrames that result from merging
+the schema dataframe and the TIMES VD outputs, and reports differences between them.
 It also provides a detailed comparison of the first extra and missing rows.
 
 Usage:
-python scripts/process.py
-python scripts/compare.py
+python scripts/compare_combined_df.py
+
+See the README for the overall workflow.
 """
 
 import logging

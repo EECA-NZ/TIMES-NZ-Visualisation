@@ -1,3 +1,17 @@
+"""
+This script fetches the latest "Items List" export files from the TIMES `Exported_files` directory,
+renames them to remove the timestamp and converts them to CSV. This is to ease the process of updating
+the schema generation process with the latest data.
+
+Usage:
+* First, using VEDA, export the "Items List" files for Commodity, Commodity Groups, and Process.
+* Run this script to fetch the latest files and convert them to CSV:
+
+python scripts/fetch_items_lists.py
+"""
+
+
+
 import os
 import pandas as pd
 from datetime import datetime

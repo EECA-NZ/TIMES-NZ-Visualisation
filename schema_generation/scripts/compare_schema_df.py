@@ -1,10 +1,12 @@
 """
-This script compares two DataFrames and reports differences between them.
+This script compares the "schema" DataFrame that results from the auto-generation
+process with the manually created one, and reports differences between them.
 It also provides a detailed comparison of the first extra and missing rows.
 
 Usage:
-python scripts/process.py
-python scripts/compare.py
+python scripts/compare_schema_df.py
+
+See the README for the overall workflow.
 """
 
 import logging

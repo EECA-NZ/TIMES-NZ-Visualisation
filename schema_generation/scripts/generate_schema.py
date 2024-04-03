@@ -1,3 +1,14 @@
+"""
+This script reads several input data sources:
+* the VEDA Data (VD) files
+* the 'Items List' CSV files for Commodity, Commodity Groups, and Process
+* the Base.dd file containing commodity to unit mappings
+
+It combines the information to generate a schema file, which is saved in the 'data\output' directory.
+
+The new schema file is then compared to the manually-created reference schema file in 'data\reference'.
+"""
+
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

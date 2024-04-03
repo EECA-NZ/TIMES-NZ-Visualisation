@@ -1,4 +1,7 @@
-import os
+"""
+Functions used for data processing and transformation, and comparison of DataFrames.
+"""
+
 import re
 import logging
 import pandas as pd
@@ -70,6 +73,8 @@ def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column, rul
     and simple mappings like assigning 'Set' values. It also logs a warning if the same
     item_name is mapped to different dictionaries.
 
+    A special sentinel value '-:-' is used to split the description into parts.
+
     :param filepath: Path to the CSV file.
     :param parse_column: The column to parse, which can be 'Description' or 'Set'.
     :param schema: Expected schema of the parsed data. For 'Set', this would typically be just ["Set"].
@@ -93,7 +98,8 @@ def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column, rul
         if new_mapping is not None:
             # Check if item_name already has a mapping
             if item_name in mapping and mapping[item_name] != new_mapping:
-                logging.warning(f"{match_column} {item_name} is mapped to different dictionaries. Existing: {mapping[item_name]}, New: {new_mapping}")
+                logging.warning("%s %s is mapped to different dictionaries. Existing: %s, New: %s",
+                                match_column, item_name, mapping[item_name], new_mapping)
             mapping[item_name] = new_mapping
     rules = []
     for item_name, attributes in mapping.items():
