@@ -24,42 +24,46 @@ schema = schema[OUT_COLS].dropna().drop_duplicates().sort_values(by=OUT_COLS)
 
 # Not currently being used. TODO: Could "Set" membership allow the "Parameters" column to be inferred, simplifying PARAMS_RULES?
 # Generate rulesets for 'Set' attributes and descriptions
-commodity_set_rules = itemlist_column_to_ruleset(
-    ITEMS_LIST_COMMODITY_CSV,
-    "Set",
-    ["Set"],
-    "Commodity",
-    "inplace",
+commodity_set_rules = csv_columns_to_ruleset(
+    filepath=ITEMS_LIST_COMMODITY_CSV,
+    target_column_map={"Name": "Commodity"},
+    parse_column="Set",
+    separator="-:-",
+    schema=["Set"],
+    rule_type="inplace",
 )
 
-process_set_rules = itemlist_column_to_ruleset(
-    ITEMS_LIST_PROCESS_CSV,
-    "Set",
-    ["Set"],
-    "Process",
-    "inplace",
+process_set_rules = csv_columns_to_ruleset(
+    filepath=ITEMS_LIST_PROCESS_CSV,
+    target_column_map={"Name": "Process"},
+    parse_column="Set",
+    separator="-:-",
+    schema=["Set"],
+    rule_type="inplace",
 )
 
-commodity_rules = itemlist_column_to_ruleset(
-    ITEMS_LIST_COMMODITY_CSV,
-    "Description",
-    ["NA1", "NA2", "Fuel", "NA3"], # ["Sector", "Subsector", "Fuel", "Enduse"],
-    "Commodity",
-    "inplace",
+commodity_rules = csv_columns_to_ruleset(
+    filepath=ITEMS_LIST_COMMODITY_CSV,
+    target_column_map={"Name": "Commodity"},
+    parse_column="Description",
+    separator="-:-",
+    schema=["NA1", "NA2", "Fuel", "NA3"], # ["Fuel", "Enduse"],
+    rule_type="inplace",
 )
 
-process_rules = itemlist_column_to_ruleset(
-    ITEMS_LIST_PROCESS_CSV,
-    "Description",
-    ["Sector", "Subsector", "Enduse", "Technology", "Fuel"],
-    "Process",
-    "inplace",
+process_rules = csv_columns_to_ruleset(
+    filepath=ITEMS_LIST_PROCESS_CSV,
+    target_column_map={"Name": "Process"},
+    parse_column="Description",
+    separator="-:-",
+    schema=["Sector", "Subsector", "Enduse", "Technology", "Fuel"], # "ParametersOverride", "DisplayCapacity"
+    rule_type="inplace",
 )
 
 # Rules for assigning units to commodities based on the TIMES base.dd definitions
 commodity_unit_rules = base_dd_commodity_unit_rules(
-    BASE_DD_FILEPATH,
-    "inplace",
+    filepath=BASE_DD_FILEPATH,
+    rule_type="inplace",
     )
 
 # Predefined rules for mapping fuels to their respective fuel groups
