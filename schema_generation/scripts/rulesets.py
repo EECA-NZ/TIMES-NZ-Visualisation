@@ -56,8 +56,6 @@ process_rules = itemlist_column_to_ruleset(
     "inplace",
 )
 
-process_baseyear_rules = generate_augmented_ruleset(process_rules)
-
 # Rules for assigning units to commodities based on the TIMES base.dd definitions
 commodity_unit_rules = base_dd_commodity_unit_rules(
     BASE_DD_FILEPATH,
@@ -161,7 +159,6 @@ DIRECT_EMISSIONS_RULES = [
 
 # Aggregating all rulesets for application in the processing script in the specified order
 RULESETS = [
-    ("process_baseyear_rules", process_baseyear_rules), # process rules but with '00' appended at the end of the process name
     ("process_rules", process_rules),
     ("commodity_rules", commodity_rules),
     ("commodity_unit_rules", commodity_unit_rules),

@@ -402,7 +402,7 @@ VAR_Cap,C_OTH-MPS_-LPG,-,Commercial,Other (Commercial),Stationary Motor,LPG,"Mot
 VAR_Cap,C_OTH-MPS_-PET,-,Commercial,Other (Commercial),Stationary Motor,Petrol,"Motive Power, Stationary",GW,Technology Capacity,Fossil Fuels
 VAR_Cap,C_OTH-OTH_ELEC-ELC00,-,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
 VAR_Cap,C_OTH-OTH_Elec-ELC,-,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
-VAR_Cap,C_OTH-OTH_Elec-ELC00,-,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
+VAR_Cap,C_OTH-OTH_Elec-ELC00,-,-,-,-,-,-,-,-,-
 VAR_Cap,C_OTH-SC_AIRHP-ELC,-,Commercial,Other (Commercial),Heat Pump,Electricity,Space Heating,GW,Technology Capacity,Electricity
 VAR_Cap,C_OTH-SC_AIRHP-ELC00,-,Commercial,Other (Commercial),Heat Pump,Electricity,Space Cooling,GW,Technology Capacity,Electricity
 VAR_Cap,C_OTH-SC_GHP-ELC,-,Commercial,Other (Commercial),Heat Pump,Electricity,Space Cooling,GW,Technology Capacity,Electricity
@@ -1587,7 +1587,7 @@ VAR_FIn,C_OTH-MPS_-LPG,COMLPG,Commercial,Other (Commercial),Stationary Motor,LPG
 VAR_FIn,C_OTH-MPS_-PET,COMPET,Commercial,Other (Commercial),Stationary Motor,Petrol,"Motive Power, Stationary",PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,C_OTH-OTH_ELEC-ELC00,COMELC,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
 VAR_FIn,C_OTH-OTH_Elec-ELC,COMELC,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
-VAR_FIn,C_OTH-OTH_Elec-ELC00,COMELC,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
+VAR_FIn,C_OTH-OTH_Elec-ELC00,COMELC,-,-,-,-,-,PJ,Fuel Consumption,-
 VAR_FIn,C_OTH-SC_AIRHP-ELC,COMELC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Heating,PJ,Fuel Consumption,Electricity
 VAR_FIn,C_OTH-SC_AIRHP-ELC00,COMELC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Cooling,PJ,Fuel Consumption,Electricity
 VAR_FIn,C_OTH-SC_GHP-ELC,COMELC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Cooling,PJ,Fuel Consumption,Electricity
@@ -1819,7 +1819,7 @@ VAR_FIn,ELCTENGACHP00,ELCNGA,Electricity,Thermal,Combined Heat/Power,Natural Gas
 VAR_FIn,ELCTENGACHP00,ELCWOD,Electricity,Thermal,Combined Heat/Power,Wood,Electricity Production,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,ELCTENGAOCGT00,ELCNGA,Electricity,Thermal,Open Cycle Gas Turbine (Existing),Natural Gas,Electricity Production,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,ENGA_CCS30,COseq,-,-,-,-,-,kt CO2,-,-
-VAR_FIn,ENGA_CCS30,ELCNGA,-,-,-,-,-,PJ,Fuel Consumption,-
+VAR_FIn,ENGA_CCS30,ELCNGA,-,-,-,Natural Gas,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,ENGA_GTCC20,ELCNGA,Electricity,Thermal,Combined Cycle Gas Turbine (New),Natural Gas,Electricity Production,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,ENGA_GTCCF20,ELCNGA,Electricity,Thermal,Open Cycle Gas Turbine (New),Natural Gas,Electricity Production,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,ENUC_EPR30,ELCURN,Electricity,Nuclear,Nuclear: Gen3 (EPR) - 2030,Uranium,Electricity Production,PJ,Fuel Consumption,-
@@ -1901,7 +1901,7 @@ VAR_FIn,FTE_AGRDSL,DID,Agriculture,-,-,Drop-In Diesel,-,PJ,Fuel Consumption,Rene
 VAR_FIn,FTE_AGRDSL,DSL,Agriculture,-,-,Petrol,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_AGRFOL,FOL,Agriculture,-,-,Fuel Oil,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_AGRGEO,GEO,Agriculture,-,-,Geothermal,-,PJ,Fuel Consumption,Renewables (direct use)
-VAR_FIn,FTE_AGRH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to agriculture sector (decentralized),-,-,PJ,Fuel Consumption,-
+VAR_FIn,FTE_AGRH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to agriculture sector (decentralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_AGRH2R,H2R,Primary Fuel Supply,Hydrogen,Hydrogen supply to Agriculture sector (centralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_AGRLPG,LPG,Agriculture,-,-,Crude Oil (imported),-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_AGRNGA,NGA,Agriculture,-,-,Natural Gas,-,PJ,Fuel Consumption,Fossil Fuels
@@ -1914,7 +1914,7 @@ VAR_FIn,FTE_COMCOA_00,COL,Commercial,-,-,Coal Lignite,-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_COMDSL_00,DSL,Commercial,-,-,Petrol,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_COMFOL_00,FOL,Commercial,-,-,Fuel Oil,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_COMGEO_00,GEO,Commercial,-,-,Geothermal,-,PJ,Fuel Consumption,Renewables (direct use)
-VAR_FIn,FTE_COMH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to commercial sector (decentralized),-,-,PJ,Fuel Consumption,-
+VAR_FIn,FTE_COMH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to commercial sector (decentralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_COMH2R,H2R,Primary Fuel Supply,Hydrogen,Hydrogen supply to commercial sector (centralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_COMLPG_00,LPG,Commercial,-,-,Crude Oil (imported),-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_COMNGA_00,NGA,Commercial,-,-,Natural Gas,-,PJ,Fuel Consumption,Fossil Fuels
@@ -1936,13 +1936,13 @@ VAR_FIn,FTE_ELCTID,TID,Electricity,-,-,Tidal,-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_ELCURN,URN,Electricity,-,-,Uranium,-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_ELCWIN,WIN,Electricity,-,-,Wind,-,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_ELCWOD,WOD,Electricity,-,-,Biomass - wood,-,PJ,Fuel Consumption,-
-VAR_FIn,FTE_INDH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to industry sector (decentralized),-,-,PJ,Fuel Consumption,-
+VAR_FIn,FTE_INDH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to industry sector (decentralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_INDH2R,H2R,Primary Fuel Supply,Hydrogen,Hydrogen supply to industry sector (centralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_RESCOA_00,COA,Residential,-,-,Coal,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_RESCOA_00,COL,Residential,-,-,Coal Lignite,-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_RESDSL_00,DSL,Residential,-,-,Petrol,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_RESGEO_00,GEO,Residential,-,-,Geothermal,-,PJ,Fuel Consumption,Renewables (direct use)
-VAR_FIn,FTE_RESH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to residential sector (decentralized),-,-,PJ,Fuel Consumption,-
+VAR_FIn,FTE_RESH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to residential sector (decentralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_RESH2R,H2R,Primary Fuel Supply,Hydrogen,Hydrogen supply to residential sector (centralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_RESLPG_00,LPG,Residential,-,-,Crude Oil (imported),-,PJ,Fuel Consumption,-
 VAR_FIn,FTE_RESNGA_00,NGA,Residential,-,-,Natural Gas,-,PJ,Fuel Consumption,Fossil Fuels
@@ -1961,7 +1961,7 @@ VAR_FIn,FTE_TRADSL,BDSL,Transport,Road Transport,Internal Combustion Engine,Biod
 VAR_FIn,FTE_TRADSL,DID,Transport,-,-,Drop-In Diesel,-,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_TRADSL,DSL,Transport,-,-,Petrol,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE_TRAFOL,FOL,Transport,-,-,Fuel Oil,-,PJ,Fuel Consumption,Fossil Fuels
-VAR_FIn,FTE_TRAH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to transport sector (decentralized),-,-,PJ,Fuel Consumption,-
+VAR_FIn,FTE_TRAH2D,H2D,Primary Fuel Supply,Hydrogen,Hydrogen supply to transport sector (decentralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_TRAH2R,H2R,Primary Fuel Supply,Hydrogen,Hydrogen supply to transport sector (centralized),Green Hydrogen,-,PJ,Fuel Consumption,Electricity
 VAR_FIn,FTE_TRAJET,DIJ,Transport,-,-,Drop-In Jet,-,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_TRAJET,DIJ,Transport,Aviation,Plane,Drop-In Jet,Domestic Aviation,PJ,Fuel Consumption,Renewables (direct use)
@@ -3537,8 +3537,8 @@ VAR_FOut,C_OTH-OTH_ELEC-ELC00,C_OTH-OTH,Commercial,Other (Commercial),Electronic
 VAR_FOut,C_OTH-OTH_ELEC-ELC00,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
 VAR_FOut,C_OTH-OTH_Elec-ELC,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,End Use Demand,Electricity
 VAR_FOut,C_OTH-OTH_Elec-ELC,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-OTH_Elec-ELC00,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,End Use Demand,Electricity
-VAR_FOut,C_OTH-OTH_Elec-ELC00,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
+VAR_FOut,C_OTH-OTH_Elec-ELC00,C_OTH-OTH,-,-,-,-,-,PJ,End Use Demand,-
+VAR_FOut,C_OTH-OTH_Elec-ELC00,C_OTH-OTH,-,-,-,-,-,kt CO2,Emissions,-
 VAR_FOut,C_OTH-SC_AIRHP-ELC,C_OTH-SC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Heating,PJ,End Use Demand,Electricity
 VAR_FOut,C_OTH-SC_AIRHP-ELC,C_OTH-SC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
 VAR_FOut,C_OTH-SC_AIRHP-ELC00,C_OTH-SC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Cooling,PJ,End Use Demand,Electricity
@@ -3931,8 +3931,8 @@ VAR_FOut,C_WSR-WH_INSTANT-NGA,COMCO2,Commercial,Warehouses/Supermarkets/Retail,I
 VAR_FOut,C_WSR-WH_INSTANT-NGA,COMCO2,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater,Natural Gas,Water Heating,kt CO2,Fuel Consumption,Fossil Fuels
 VAR_FOut,C_WSR-WH_INSTANT-NGA,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater,Natural Gas,Water Heating,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,C_WSR-WH_INSTANT-NGA,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater,Natural Gas,Water Heating,kt CO2,Emissions,Fossil Fuels
-VAR_FOut,D-H2_ELCNGA,ELCNGA,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,-,-,PJ,End Use Demand,-
-VAR_FOut,D-H2_ELCNGA,ELCNGA,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,-,-,kt CO2,Emissions,-
+VAR_FOut,D-H2_ELCNGA,ELCNGA,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,Natural Gas,-,PJ,End Use Demand,Fossil Fuels
+VAR_FOut,D-H2_ELCNGA,ELCNGA,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,Natural Gas,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,D-H2_Trailer,H2R,Primary Fuel Supply,Hydrogen,Tube Trailer (NI and SI),Green Hydrogen,-,PJ,End Use Demand,Electricity
 VAR_FOut,D-H2_Trailer,H2R,Primary Fuel Supply,Hydrogen,Tube Trailer (NI and SI),Green Hydrogen,-,kt CO2,Emissions,Electricity
 VAR_FOut,DARY-AIR-ELC-CMPR,DARY-AIR,Industry,Dairy Product Manufacturing,Compressor,Electricity,Compressed Air,PJ,End Use Demand,Electricity

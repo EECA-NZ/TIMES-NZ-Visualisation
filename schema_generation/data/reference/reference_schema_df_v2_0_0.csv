@@ -694,12 +694,9 @@ VAR_FIn,C_OFFC-OTH_EELC-ELC,COMELC,Commercial,Office Blocks,Electronics and Othe
 VAR_FIn,C_OFFC-OTH_EELC-ELC00,COMELC,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
 VAR_FOut,C_OFFC-OTH_EELC-ELC,C_OFFC-OTH,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,End Use Demand,Electricity
 VAR_FOut,C_OFFC-OTH_EELC-ELC00,C_OFFC-OTH,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,End Use Demand,Electricity
-VAR_Cap,C_OTH-OTH_Elec-ELC00,-,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
 VAR_Cap,C_OTH-OTH_Elec-ELC,-,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
 VAR_FIn,C_OTH-OTH_Elec-ELC,COMELC,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
-VAR_FIn,C_OTH-OTH_Elec-ELC00,COMELC,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
 VAR_FOut,C_OTH-OTH_Elec-ELC,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,End Use Demand,Electricity
-VAR_FOut,C_OTH-OTH_Elec-ELC00,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,End Use Demand,Electricity
 VAR_Cap,C_WSR-OTH_ELEC-ELC00,-,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
 VAR_Cap,C_WSR-OTH_ELEC-ELC,-,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,GW,Technology Capacity,Electricity
 VAR_FIn,C_WSR-OTH_ELEC-ELC,COMELC,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,PJ,Fuel Consumption,Electricity
@@ -2338,7 +2335,6 @@ VAR_FOut,R_JDW-OTH_Elec-ELC00,R_JDW-OTH,Residential,Joined Dwellings,Electronics
 VAR_FOut,C_OFFC-OTH_EELC-ELC,C_OFFC-OTH,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
 VAR_FOut,C_OFFC-OTH_EELC-ELC00,C_OFFC-OTH,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
 VAR_FOut,C_OTH-OTH_Elec-ELC,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-OTH_Elec-ELC00,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
 VAR_FOut,C_WSR-OTH_ELEC-ELC,C_WSR-OTH,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
 VAR_FOut,C_WSR-OTH_ELEC-ELC00,C_WSR-OTH,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
 VAR_FOut,MEAT-PH-STM_HW-ELC-ELCTECH,MEAT-PH-STM_HW,Industry,Meat Processing,Electrotech,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity

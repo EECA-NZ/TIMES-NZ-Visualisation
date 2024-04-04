@@ -16,6 +16,10 @@ import os
 import pandas as pd
 from datetime import datetime
 
+SOURCE_DIR = r"C:\Users\cattonw\git\TIMES-NZ-Model-Files\TIMES-NZ\Exported_files"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+TARGET_DIR = os.path.join(SCRIPT_DIR, os.pardir, 'data', 'input')
+
 def fetch_and_convert_latest_item_lists(source_directory, target_directory):
     # Define patterns for commodity and process files
     commodity_pattern = "Items List-Commodity("
@@ -53,21 +57,19 @@ def fetch_and_convert_latest_item_lists(source_directory, target_directory):
         df = pd.read_excel(latest_commodity_file["path"])
         output_path = os.path.join(target_directory, "Items-List-Commodity.csv")
         df.to_csv(output_path, index=False)
-        print(f"Latest commodity list saved to {output_path}")
+        print(f"Latest commodity list {latest_commodity_file['path']} saved to {output_path}")
 
     if latest_process_file["path"]:
         df = pd.read_excel(latest_process_file["path"])
         output_path = os.path.join(target_directory, "Items-List-Process.csv")
         df.to_csv(output_path, index=False)
-        print(f"Latest process list saved to {output_path}")
+        print(f"Latest process list {latest_process_file['path']} saved to {output_path}")
     
     if latest_commodity_groups_file["path"]:
         df = pd.read_excel(latest_commodity_groups_file["path"])
         output_path = os.path.join(target_directory, "Items-List-Commodity-Groups.csv")
         df.to_csv(output_path, index=False)
-        print(f"Latest commodity groups list saved to {output_path}")
+        print(f"Latest commodity groups list {latest_commodity_groups_file['path']} saved to {output_path}")
 
 if __name__ == "__main__":
-    source_dir = r"C:\Users\cattonw\git\TIMES-NZ-Model-Files\TIMES-NZ\Exported_files"
-    target_dir = r"C:\Users\cattonw\git\TIMES-NZ-Visualisation\schema_generation\data\input"
-    fetch_and_convert_latest_item_lists(source_dir, target_dir)
+    fetch_and_convert_latest_item_lists(SOURCE_DIR, TARGET_DIR)

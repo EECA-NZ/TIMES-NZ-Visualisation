@@ -265,25 +265,6 @@ def process_commodity_groups(filepath, main_df):
     return augmented_main_df
 
 
-def generate_augmented_ruleset(ruleset):
-    """
-    Generate an augmented ruleset by creating rules for processes that do not end with '00'.
-    The new ruleset will label processes ending with '00' as if the 00 suffix was removed.
-    It is assumed that the processes ending with '00' are base-year processes.
-
-    :param ruleset: The original ruleset to augment.
-    :return: The augmented ruleset.
-    """
-    new_ruleset = []
-    for condition, rule_type, actions in ruleset:
-        process_name = condition['Process']
-        if not process_name.endswith('00'):
-            new_condition = condition.copy()  # Create a copy of the condition dictionary
-            new_condition['Process'] = process_name + '00'  # Append '00' to the process name
-            new_ruleset.append((new_condition, rule_type, actions))  # Create a new rule with the modified condition and original actions
-    return new_ruleset
-
-
 def stringify_and_strip(df):
     """
     Convert all columns to string and strip whitespace from them.

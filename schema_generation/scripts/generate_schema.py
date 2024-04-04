@@ -35,7 +35,6 @@ if __name__ == "__main__":
     # Subset the rows and drop duplicates
     main_df = main_df[main_df["Attribute"].isin(ATTRIBUTE_ROWS_TO_KEEP)].drop_duplicates()
 
-
     # Populate the columns according to the rulesets
     for name, ruleset in RULESETS:
         logging.info("Applying ruleset: %s", name)
