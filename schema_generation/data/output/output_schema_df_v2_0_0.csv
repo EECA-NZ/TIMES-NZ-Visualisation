@@ -697,7 +697,7 @@ VAR_Cap,FOOD-RFGR-ELC-Refriger,-,Industry,Other Food Processing (Non Dairy/Meat 
 VAR_Cap,FOOD-RFGR-ELC-Refriger15,-,Industry,Other Food Processing (Non Dairy/Meat Processing),Refrigerator,Electricity,Refrigeration,GW,Technology Capacity,Electricity
 VAR_Cap,FTE-INDBIG_00,-,Industry,-,-,Biogas,-,GW,Technology Capacity,Renewables (direct use)
 VAR_Cap,FTE-INDCOA_00,-,Industry,-,-,Coal,-,GW,Technology Capacity,Fossil Fuels
-VAR_Cap,FTE-INDDSL_00,-,Industry,Construction,Internal Combustion Engine,Diesel,"Motive Power, Mobile",GW,Technology Capacity,Fossil Fuels
+VAR_Cap,FTE-INDDSL_00,-,Industry,-,-,Diesel,-,GW,Technology Capacity,Fossil Fuels
 VAR_Cap,FTE-INDFOL_00,-,Industry,-,-,Fuel Oil,-,GW,Technology Capacity,Fossil Fuels
 VAR_Cap,FTE-INDGEO_00,-,Industry,-,-,Geothermal,-,GW,Technology Capacity,Renewables (direct use)
 VAR_Cap,FTE-INDLPG_00,-,Industry,-,-,LPG,-,GW,Technology Capacity,Fossil Fuels
@@ -1849,7 +1849,7 @@ VAR_FIn,EXPJET1,JET,Primary Fuel Supply,Petroleum,-,Jet Fuel,-,PJ,Fuel Consumpti
 VAR_FIn,EXPLPG1,LPG,Primary Fuel Supply,Petroleum,-,Crude Oil (imported),-,PJ,Fuel Consumption,-
 VAR_FIn,EXPNGA1,NGA,Primary Fuel Supply,Natural Gas,Export - Natural Gas,Natural Gas,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,EXPOIL1,OILD,Primary Fuel Supply,Petroleum,-,Crude Oil,-,PJ,Fuel Consumption,-
-VAR_FIn,EXPOTH1,OTH,Primary Fuel Supply,Petroleum,-,Aviation Fuel,-,PJ,Fuel Consumption,-
+VAR_FIn,EXPOTH1,OTH,Primary Fuel Supply,Petroleum,-,Other fuels from refinery,-,PJ,Fuel Consumption,-
 VAR_FIn,EXPPET1,PET,Primary Fuel Supply,Petroleum,-,LPG,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FOOD-MoTP-Stat-DSL-st_ngn,INDDSL,Industry,Other Food Processing (Non Dairy/Meat Processing),Stationary Motor,Diesel,"Motive Power, Stationary",PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FOOD-MoTP-Stat-ELC-Motor,INDELC,Industry,Other Food Processing (Non Dairy/Meat Processing),Stationary Motor,Electricity,"Motive Power, Stationary",PJ,Fuel Consumption,Electricity
@@ -1886,9 +1886,10 @@ VAR_FIn,FOOD-RFGR-ELC-Refriger15,INDELC,Industry,Other Food Processing (Non Dair
 VAR_FIn,FTE-INDBIG_00,BIG,Industry,-,-,Biogas,-,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE-INDCOA_00,COA,Industry,-,-,Coal,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE-INDCOA_00,COL,Industry,-,-,Coal Lignite,-,PJ,Fuel Consumption,-
+VAR_FIn,FTE-INDDSL_00,DID,Industry,-,-,Drop-In Diesel,-,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE-INDDSL_00,DID,Industry,Construction,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE-INDDSL_00,DID,Industry,Mining,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",PJ,Fuel Consumption,Renewables (direct use)
-VAR_FIn,FTE-INDDSL_00,DSL,Industry,Construction,Internal Combustion Engine,Petrol,"Motive Power, Mobile",PJ,Fuel Consumption,Fossil Fuels
+VAR_FIn,FTE-INDDSL_00,DSL,Industry,-,-,Petrol,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE-INDFOL_00,FOL,Industry,-,-,Fuel Oil,-,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,FTE-INDGEO_00,GEO,Industry,-,-,Geothermal,-,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE-INDLPG_00,LPG,Industry,-,-,Crude Oil (imported),-,PJ,Fuel Consumption,-
@@ -2078,7 +2079,7 @@ VAR_FIn,MTHOL-FDSTCK-NGA-FDSTCK,NGA,Industry,Methanol,Feedstock,Natural Gas,Feed
 VAR_FIn,MTHOL-FDSTCK-NGA-FDSTCK15,NGA,Industry,Methanol,Feedstock,Natural Gas,Feedstock,PJ,Feedstock,Fossil Fuels
 VAR_FIn,MTHOL-PH_REFRM-NGA-REFRM,INDNGA,Industry,Methanol,Reformer,Natural Gas,Process Heat Reformer,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,MTHOL-PH_REFRM-NGA-REFRM15,INDNGA,Industry,Methanol,Reformer,Natural Gas,Process Heat Reformer,PJ,Fuel Consumption,Fossil Fuels
-VAR_FIn,Non_NRG_OTH,OTH,Primary Fuel Supply,Natural Gas,Non Energy Use of Natural Gas,Aviation Fuel,-,PJ,Fuel Consumption,-
+VAR_FIn,Non_NRG_OTH,OTH,Primary Fuel Supply,Natural Gas,Non Energy Use of Natural Gas,Other fuels from refinery,-,PJ,Fuel Consumption,-
 VAR_FIn,OTH-BGS-BGS-Tech,INDBIG,Industry,Other (Industry),Other,Biogas,Other,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,OTH-BGS-BGS-Tech15,INDBIG,Industry,Other (Industry),Other,Biogas,Other,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,OTH-COA-COA-Tech,INDCOA,Industry,Other (Industry),Other,Coal,Other,PJ,Fuel Consumption,Fossil Fuels
@@ -4287,10 +4288,10 @@ VAR_FOut,FTE-INDCOA_00,INDCO2,Industry,-,-,Coal,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,FTE-INDCOA_00,INDCO2,Industry,-,-,Coal,-,kt CO2,Fuel Consumption,Fossil Fuels
 VAR_FOut,FTE-INDCOA_00,INDCOA,Industry,-,-,Coal,-,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,FTE-INDCOA_00,INDCOA,Industry,-,-,Coal,-,kt CO2,Emissions,Fossil Fuels
-VAR_FOut,FTE-INDDSL_00,INDCO2,Industry,Construction,Internal Combustion Engine,Petrol,"Motive Power, Mobile",kt CO2,Emissions,Fossil Fuels
-VAR_FOut,FTE-INDDSL_00,INDCO2,Industry,Construction,Internal Combustion Engine,Petrol,"Motive Power, Mobile",kt CO2,Fuel Consumption,Fossil Fuels
-VAR_FOut,FTE-INDDSL_00,INDDSL,Industry,Construction,Internal Combustion Engine,Diesel,"Motive Power, Mobile",PJ,End Use Demand,Fossil Fuels
-VAR_FOut,FTE-INDDSL_00,INDDSL,Industry,Construction,Internal Combustion Engine,Diesel,"Motive Power, Mobile",kt CO2,Emissions,Fossil Fuels
+VAR_FOut,FTE-INDDSL_00,INDCO2,Industry,-,-,Petrol,-,kt CO2,Emissions,Fossil Fuels
+VAR_FOut,FTE-INDDSL_00,INDCO2,Industry,-,-,Petrol,-,kt CO2,Fuel Consumption,Fossil Fuels
+VAR_FOut,FTE-INDDSL_00,INDDSL,Industry,-,-,Diesel,-,PJ,End Use Demand,Fossil Fuels
+VAR_FOut,FTE-INDDSL_00,INDDSL,Industry,-,-,Diesel,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,FTE-INDFOL_00,INDCO2,Industry,-,-,Fuel Oil,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,FTE-INDFOL_00,INDCO2,Industry,-,-,Fuel Oil,-,kt CO2,Fuel Consumption,Fossil Fuels
 VAR_FOut,FTE-INDFOL_00,INDFOL,Industry,-,-,Fuel Oil,-,PJ,End Use Demand,Fossil Fuels
@@ -4509,8 +4510,8 @@ VAR_FOut,IMPLPG1,LPG,Primary Fuel Supply,Petroleum,-,Crude Oil (imported),-,PJ,E
 VAR_FOut,IMPLPG1,LPG,Primary Fuel Supply,Petroleum,-,Crude Oil (imported),-,kt CO2,Emissions,-
 VAR_FOut,IMPOIL1,OILI,Primary Fuel Supply,Petroleum,-,Crude Oil (domestic),-,PJ,End Use Demand,-
 VAR_FOut,IMPOIL1,OILI,Primary Fuel Supply,Petroleum,-,Crude Oil (domestic),-,kt CO2,Emissions,-
-VAR_FOut,IMPOTH1,OTH,Primary Fuel Supply,Petroleum,-,Aviation Fuel,-,PJ,End Use Demand,-
-VAR_FOut,IMPOTH1,OTH,Primary Fuel Supply,Petroleum,-,Aviation Fuel,-,kt CO2,Emissions,-
+VAR_FOut,IMPOTH1,OTH,Primary Fuel Supply,Petroleum,-,Other fuels from refinery,-,PJ,End Use Demand,-
+VAR_FOut,IMPOTH1,OTH,Primary Fuel Supply,Petroleum,-,Other fuels from refinery,-,kt CO2,Emissions,-
 VAR_FOut,IMPPET1,PET,Primary Fuel Supply,Petroleum,-,LPG,-,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,IMPPET1,PET,Primary Fuel Supply,Petroleum,-,LPG,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,MEAT-MoTP-Stat-DSL-st_ngn,INDCO2,Industry,Meat Processing,Stationary Motor,Diesel,"Motive Power, Stationary",kt CO2,Emissions,Fossil Fuels
@@ -4995,8 +4996,8 @@ VAR_FOut,REFEOIL00,FOL,Primary Fuel Supply,Refinery,Oil production,Fuel Oil,-,PJ
 VAR_FOut,REFEOIL00,FOL,Primary Fuel Supply,Refinery,Oil production,Fuel Oil,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,REFEOIL00,JET,Primary Fuel Supply,Refinery,Oil production,Jet Fuel,-,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,REFEOIL00,JET,Primary Fuel Supply,Refinery,Oil production,Jet Fuel,-,kt CO2,Emissions,Fossil Fuels
-VAR_FOut,REFEOIL00,OTH,Primary Fuel Supply,Refinery,Oil production,Aviation Fuel,-,PJ,End Use Demand,-
-VAR_FOut,REFEOIL00,OTH,Primary Fuel Supply,Refinery,Oil production,Aviation Fuel,-,kt CO2,Emissions,-
+VAR_FOut,REFEOIL00,OTH,Primary Fuel Supply,Refinery,Oil production,Other fuels from refinery,-,PJ,End Use Demand,-
+VAR_FOut,REFEOIL00,OTH,Primary Fuel Supply,Refinery,Oil production,Other fuels from refinery,-,kt CO2,Emissions,-
 VAR_FOut,REFEOIL00,PET,Primary Fuel Supply,Refinery,Oil production,LPG,-,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,REFEOIL00,PET,Primary Fuel Supply,Refinery,Oil production,LPG,-,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,REFEOIL00,REFCO2,Primary Fuel Supply,Refinery,Oil production,-,-,PJ,End Use Demand,-

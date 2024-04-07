@@ -66,49 +66,55 @@ def add_missing_columns(df, missing_columns):
     return df
 
 
-def itemlist_column_to_ruleset(filepath, parse_column, schema, match_column, rule_type):
+def csv_columns_to_ruleset(filepath=None, target_column_map=None, parse_column=None, separator=None, schema=None, rule_type=None):
     """
-    Reads a CSV file to create rules based on the contents of a specified column.
-    This function can handle both parsing of complex descriptions into multiple attributes
-    and simple mappings like assigning 'Set' values. It also logs a warning if the same
-    item_name is mapped to different dictionaries.
+    Reads a CSV file to create rules for updating or appending to a DataFrame based on
+    the contents of a specified column and a mapping of source to target columns. This
+    function can handle parsing complex descriptions into attributes, mapping values to 
+    'Set' or similar, and ensures consistency across complex keys that might map to 
+    multiple DataFrame columns.
 
-    A special sentinel value '-:-' is used to split the description into parts.
+    A special sentinel value '-:-' is used to split the parse_column into schema parts.
 
-    :param filepath: Path to the CSV file.
-    :param parse_column: The column to parse, which can be 'Description' or 'Set'.
-    :param schema: Expected schema of the parsed data. For 'Set', this would typically be just ["Set"].
-    :param match_column: The column in the DataFrame to match against the 'Name' from the CSV file.
-    :return: A list of rules for data transformation.
+    :param filepath: Path to the CSV file that contains the data to parse.
+    :param target_column_map: A dictionary mapping column names in the source CSV
+                                to target DataFrame columns for rule conditions.
+    :param parse_column: The column from which to parse data (e.g., 'Description' or 'Set').
+    :param schema: A list of attribute names expected in the parse_column after splitting.
+    :param rule_type: The type of rule to create, which informs how the rule is applied.
+                      For example, 'inplace' for in-place updates, or 'newrow' for
+                      appending new rows to the DataFrame.
+    :return: A list of rules, each defined as a tuple containing a condition dictionary
+             (for matching against DataFrame rows), a rule type (e.g., 'inplace', 'newrow'),
+             and a dictionary of attribute updates or values to append.
     """
+    assert(filepath and target_column_map and parse_column and schema and rule_type)
     mapping = {}
     df = pd.read_csv(filepath)
     for _, row in df.iterrows():
-        item_name = row["Name"]
+        # Create the key tuple based on the target_column_map
+        key_tuple = tuple(row[col] for col in target_column_map.keys())
         new_mapping = None
-        if len(schema) == 1:
-            new_mapping = {schema[0]: row[parse_column]}
+        parts = [x.strip() for x in row[parse_column].split(separator)]
+        if len(parts) == len(schema):
+            new_mapping = dict(zip(schema, parts))
         else:
-            parts = [x.strip() for x in row[parse_column].split("-:-")]
-            if len(parts) == len(schema):
-                new_mapping = dict(zip(schema, parts))
-            else:
-                logging.warning("Warning: Description for %s %s does not match expected format. %s: %s",
-                                match_column, item_name, parse_column, row[parse_column])
+            logging.warning("Warning: %s for %s does not match expected format. %s: %s",
+                            parse_column, key_tuple, parse_column, row[parse_column])
         if new_mapping is not None:
-            # Check if item_name already has a mapping
-            if item_name in mapping and mapping[item_name] != new_mapping:
-                logging.warning("%s %s is mapped to different dictionaries. Existing: %s, New: %s",
-                                match_column, item_name, mapping[item_name], new_mapping)
-            mapping[item_name] = new_mapping
+            # Check if key_tuple already has a mapping
+            if key_tuple in mapping and mapping[key_tuple] != new_mapping:
+                logging.warning("%s is mapped to different dictionaries. Existing: %s, New: %s",
+                                key_tuple, mapping[key_tuple], new_mapping)
+            mapping[key_tuple] = new_mapping
     rules = []
-    for item_name, attributes in mapping.items():
-        condition = {match_column: item_name} if match_column else {}
+    for key_tuple, attributes in mapping.items():
+        condition = {target: key for target, key in zip(target_column_map.values(), key_tuple)}
         rules.append((condition, rule_type, attributes))
     return rules
 
 
-def base_dd_commodity_unit_rules(base_dd_filepath, rule_type):
+def base_dd_commodity_unit_rules(filepath=None, rule_type=None):
     """
     Extracts the mapping of commodities to units from the specified section of a file.
     Assumes the section starts after 'SET COM_UNIT' and the opening '/', and ends at the next '/'.
@@ -116,8 +122,9 @@ def base_dd_commodity_unit_rules(base_dd_filepath, rule_type):
     :param base_dd_filepath: Path to the TIMES base.dd file containing the definitions.
     :return: A list of rules, where each rule is a tuple of a condition and actions.
     """
+    assert(filepath and rule_type)
     commodity_unit_mapping = {}
-    with open(base_dd_filepath, "r", encoding="utf-8") as file:
+    with open(filepath, "r", encoding="utf-8") as file:
         capture = False  # Flag to start capturing data
         for line in file:
             line = line.strip()
