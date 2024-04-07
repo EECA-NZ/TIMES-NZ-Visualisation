@@ -56,7 +56,7 @@ process_rules = csv_columns_to_ruleset(
     target_column_map={"Name": "Process"},
     parse_column="Description",
     separator="-:-",
-    schema=["Sector", "Subsector", "Enduse", "Technology", "Fuel"], # "ParametersOverride", "DisplayCapacity"
+    schema=["Sector", "Subsector", "Enduse", "Technology", "Fuel", "ParametersOverride", "DisplayCapacity"],
     rule_type="inplace",
 )
 
