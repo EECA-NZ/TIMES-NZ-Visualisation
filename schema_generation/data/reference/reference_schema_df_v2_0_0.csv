@@ -606,7 +606,6 @@ VAR_FOut,WOOD-AIR-ELC-CMPR,WOOD-AIR,Industry,Wood Product Manufacturing,Compress
 VAR_FOut,WOOD-AIR-ELC-CMPR15,WOOD-AIR,Industry,Wood Product Manufacturing,Compressor,Electricity,Compressed Air,PJ,End Use Demand,Electricity
 VAR_Cap,EGEOCONSFLSH20,-,Electricity,Geothermal,Geothermal (Consented),Geothermal,Electricity Production,GW,Technology Capacity,Renewables (direct use)
 VAR_FOut,EGEOCONSFLSH20,ELC,Electricity,Geothermal,Geothermal (Consented),Geothermal,Electricity Production,PJ,Electricity Generation,Renewables (direct use)
-VAR_FOut,EGEOCONSFLSH20,ELCCO2,Electricity,Geothermal,Geothermal (Consented),Geothermal,Electricity Production,kt CO2,Emissions,Renewables (direct use)
 VAR_Cap,R_DDW-CK_Appl-NGA00,-,Residential,Detached Dwellings,Cooking Element,Natural Gas,Cooking,GW,Technology Capacity,Fossil Fuels
 VAR_Cap,R_DDW-CK_Appl-LPG00,-,Residential,Detached Dwellings,Cooking Element,LPG,Cooking,GW,Technology Capacity,Fossil Fuels
 VAR_Cap,R_DDW-CK_Appl-ELC00,-,Residential,Detached Dwellings,Cooking Element,Electricity,Cooking,GW,Technology Capacity,Electricity
@@ -949,15 +948,12 @@ VAR_FOut,R_JDW-WH_Gasheat-NGA00,R_JDW-WH,Residential,Joined Dwellings,Gas Heater
 VAR_FOut,R_JDW-WH_Gasheat-NGA00,RESCO2,Residential,Joined Dwellings,Gas Heater,Natural Gas,Water Heating,kt CO2,Emissions,Fossil Fuels
 VAR_Cap,ELCREGEO00,-,Electricity,Geothermal,Geothermal (Existing),Geothermal,Electricity Production,GW,Technology Capacity,Renewables (direct use)
 VAR_FOut,ELCREGEO00,ELC,Electricity,Geothermal,Geothermal (Existing),Geothermal,Electricity Production,PJ,Electricity Generation,Renewables (direct use)
-VAR_FOut,ELCREGEO00,ELCCO2,Electricity,Geothermal,Geothermal (Existing),Geothermal,Electricity Production,kt CO2,Emissions,Renewables (direct use)
 VAR_Cap,DARY-PH-STM_HW-GEO-Heat15,-,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,GW,Technology Capacity,Renewables (direct use)
 VAR_Cap,DARY-PH-STM_HW-GEO-Heat,-,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,GW,Technology Capacity,Renewables (direct use)
 VAR_FIn,DARY-PH-STM_HW-GEO-Heat,INDGEO,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,DARY-PH-STM_HW-GEO-Heat15,INDGEO,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FOut,DARY-PH-STM_HW-GEO-Heat,DARY-PH-STM_HW,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
-VAR_FOut,DARY-PH-STM_HW-GEO-Heat,INDCO2,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_FOut,DARY-PH-STM_HW-GEO-Heat15,DARY-PH-STM_HW,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
-VAR_FOut,DARY-PH-STM_HW-GEO-Heat15,INDCO2,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_Cap,FOOD-PH-STM_HW-BGS-Heat,-,Industry,Other Food Processing (Non Dairy/Meat Processing),Boiler,Biogas,Process Heat Steam/Hot Water,GW,Technology Capacity,Renewables (direct use)
 VAR_FIn,FOOD-PH-STM_HW-BGS-Heat,INDBIG,Industry,Other Food Processing (Non Dairy/Meat Processing),Boiler,Biogas,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FOut,FOOD-PH-STM_HW-BGS-Heat,FOOD-PH-STM_HW,Industry,Other Food Processing (Non Dairy/Meat Processing),Boiler,Biogas,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
@@ -965,17 +961,13 @@ VAR_Cap,PLPPPR-PH-STM_HW-GEO-Heat15,-,Industry,Pulp and Paper Manufacturing,Heat
 VAR_Cap,PLPPPR-PH-STM_HW-GEO-Heat,-,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,GW,Technology Capacity,Renewables (direct use)
 VAR_FIn,PLPPPR-PH-STM_HW-GEO-Heat,INDGEO,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,PLPPPR-PH-STM_HW-GEO-Heat15,INDGEO,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
-VAR_FOut,PLPPPR-PH-STM_HW-GEO-Heat,INDCO2,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_FOut,PLPPPR-PH-STM_HW-GEO-Heat,PLPPPR-PH-STM_HW,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
-VAR_FOut,PLPPPR-PH-STM_HW-GEO-Heat15,INDCO2,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_FOut,PLPPPR-PH-STM_HW-GEO-Heat15,PLPPPR-PH-STM_HW,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
 VAR_Cap,WOOD-PH-STM_HW-GEO-Heat15,-,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,GW,Technology Capacity,Renewables (direct use)
 VAR_Cap,WOOD-PH-STM_HW-GEO-Heat,-,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,GW,Technology Capacity,Renewables (direct use)
 VAR_FIn,WOOD-PH-STM_HW-GEO-Heat,INDGEO,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,WOOD-PH-STM_HW-GEO-Heat15,INDGEO,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,Fuel Consumption,Renewables (direct use)
-VAR_FOut,WOOD-PH-STM_HW-GEO-Heat,INDCO2,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_FOut,WOOD-PH-STM_HW-GEO-Heat,WOOD-PH-STM_HW,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
-VAR_FOut,WOOD-PH-STM_HW-GEO-Heat15,INDCO2,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_FOut,WOOD-PH-STM_HW-GEO-Heat15,WOOD-PH-STM_HW,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,PJ,End Use Demand,Renewables (direct use)
 VAR_Cap,DARY-PH-MVR_DRY-ELC-HPmp,-,Industry,Dairy Product Manufacturing,Heat Pump,Electricity,Process Heat Evaporation/Drying,GW,Technology Capacity,Electricity
 VAR_FIn,DARY-PH-MVR_DRY-ELC-HPmp,INDELC,Industry,Dairy Product Manufacturing,Heat Pump,Electricity,Process Heat Evaporation/Drying,PJ,Fuel Consumption,Electricity
@@ -1625,7 +1617,6 @@ VAR_FOut,OTH-PET-PET-Tech15,INDCO2,Industry,Other (Industry),Other,Petrol,Other,
 VAR_FOut,OTH-PET-PET-Tech15,OTH-PET,Industry,Other (Industry),Other,Petrol,Other,PJ,End Use Demand,Fossil Fuels
 VAR_Cap,EGEOFLSH20,-,Electricity,Geothermal,Geothermal (Other),Geothermal,Electricity Production,GW,Technology Capacity,Renewables (direct use)
 VAR_FOut,EGEOFLSH20,ELC,Electricity,Geothermal,Geothermal (Other),Geothermal,Electricity Production,PJ,Electricity Generation,Renewables (direct use)
-VAR_FOut,EGEOFLSH20,ELCCO2,Electricity,Geothermal,Geothermal (Other),Geothermal,Electricity Production,kt CO2,Emissions,Renewables (direct use)
 VAR_Cap,R_DDW-CK_Oven-COA00,-,Residential,Detached Dwellings,Oven,Coal,Cooking,GW,Technology Capacity,Fossil Fuels
 VAR_FIn,R_DDW-CK_Oven-COA00,RESCOA,Residential,Detached Dwellings,Oven,Coal,Cooking,PJ,Fuel Consumption,Fossil Fuels
 VAR_FOut,R_DDW-CK_Oven-COA00,R_DDW-CK,Residential,Detached Dwellings,Oven,Coal,Cooking,PJ,End Use Demand,Fossil Fuels
@@ -2256,393 +2247,23 @@ VAR_FOut,C_OTH-WH_Boiler-PLT,C_OTH-WH,Commercial,Other (Commercial),Boiler,Wood,
 VAR_FOut,EHYD-RR-NSmall20,ELC,Electricity,Hydro,Hydro Run of River (New <30MW),Hydro,Electricity Production,PJ,Electricity Generation,Renewables (direct use)
 VAR_FOut,R_JDW-SH_HP-ELC,R_JDW-SH,Residential,Joined Dwellings,Heat Pump,Electricity,Space Heating,PJ,End Use Demand,Electricity
 VAR_FIn,R_JDW-SH_HP-ELC,RESELC,Residential,Joined Dwellings,Heat Pump,Electricity,Space Heating,PJ,Fuel Consumption,Electricity
-VAR_FOut,R_JDW-SH_HP-ELC,R_JDW-SH,Residential,Joined Dwellings,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,EHYD-RR-NSmall20,ELC,Electricity,Hydro,Hydro Run of River (New <30MW),Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,T_P_BBEVELC15,T_P_Bus,Transport,Road Transport,Battery Electric Vehicle,Electricity,Bus,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_BusBEVELC,T_P_Bus,Transport,Road Transport,Battery Electric Vehicle,Electricity,Bus,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_CBEVELC,T_P_Car,Transport,Road Transport,Battery Electric Vehicle,Electricity,Car/SUV,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_CBEVNEW15,T_P_Car,Transport,Road Transport,Battery Electric Vehicle,Electricity,Car/SUV,kt CO2,Emissions,Electricity
-VAR_FOut,T_F_HTrBEVELC,T_F_HTrk,Transport,Road Transport,Battery Electric Vehicle,Electricity,Heavy Truck,kt CO2,Emissions,Electricity
-VAR_FOut,T_F_MBEVELC15,T_F_MTrk,Transport,Road Transport,Battery Electric Vehicle,Electricity,Medium Truck,kt CO2,Emissions,Electricity
-VAR_FOut,T_F_MTrBEVELC,T_F_MTrk,Transport,Road Transport,Battery Electric Vehicle,Electricity,Medium Truck,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_McyBEVELC,T_P_Mcy,Transport,Road Transport,Battery Electric Vehicle,Electricity,Motorcycles,kt CO2,Emissions,Electricity
-VAR_FOut,T_C_CBEVELC,T_C_Car,Transport,Road Transport,Battery Electric Vehicle,Electricity,Van/Ute,kt CO2,Emissions,Electricity
-VAR_FOut,T_C_CBEVNEW15,T_C_Car,Transport,Road Transport,Battery Electric Vehicle,Electricity,Van/Ute,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-MVR_DRY-WOD-Boiler,DARY-PH-MVR_DRY,Industry,Dairy Product Manufacturing,Boiler,Wood,Process Heat Evaporation/Drying,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,DARY-PH-MVR_PRE-WOD-Boiler,DARY-PH-MVR_PRE,Industry,Dairy Product Manufacturing,Boiler,Wood,Process Heat Evaporation/Drying,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,DARY-PH-MVR_TVR-WOD-Boiler,DARY-PH-MVR_TVR,Industry,Dairy Product Manufacturing,Boiler,Wood,Process Heat Evaporation/Drying,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,DARY-PH-TVR_DRY-WOD-Boiler,DARY-PH-TVR_DRY,Industry,Dairy Product Manufacturing,Boiler,Wood,Process Heat Evaporation/Drying,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,DARY-PH-TVR_EVP-WOD-Boiler,DARY-PH-TVR_EVP,Industry,Dairy Product Manufacturing,Boiler,Wood,Process Heat Evaporation/Drying,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,DARY-PH-STM_HW-ELC-Boiler,DARY-PH-STM_HW,Industry,Dairy Product Manufacturing,Boiler,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-STM_HW-WOD-Boiler,DARY-PH-STM_HW,Industry,Dairy Product Manufacturing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_EDU-SH_Boiler-ELC,C_EDU-SH,Commercial,Education,Boiler,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-PH_Boiler-H2R,C_HLTH-PH,Commercial,Healthcare,Boiler,Green Hydrogen,Process Heat,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-WH_Cylinder-ELC00,C_EDU-WH,Commercial,Education,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,AINDC-SH-Boiler-WOD,AINDC-SH,Agriculture,Indoor Cropping,Boiler,Wood,Space Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,MEAT-PH-STM_HW-WOD-Boiler,MEAT-PH-STM_HW,Industry,Meat Processing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,MNNG-PH-STM_HW-WOD-Boiler,MNNG-PH-STM_HW,Industry,Mining,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,MNRL-PH-STM_HW-WOD-Boiler,MNRL-PH-STM_HW,Industry,Non-Metallic Mineral Product Manufacturing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_OFFC-SH_Boiler-ELC,C_OFFC-SH,Commercial,Office Blocks,Boiler,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-WH_Boiler-ELC,C_HLTH-WH,Commercial,Healthcare,Boiler,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-SH_Boiler-ELC,C_OTH-SH,Commercial,Other (Commercial),Boiler,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-WH_Cylinder-ELC00,C_HLTH-WH,Commercial,Healthcare,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-PH-STM_HW-ELC-Boiler,FOOD-PH-STM_HW,Industry,Other Food Processing (Non Dairy/Meat Processing),Boiler,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-PH-STM_HW-WOD-Boiler,FOOD-PH-STM_HW,Industry,Other Food Processing (Non Dairy/Meat Processing),Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CHMCL-PH-STM_HW-ELC-Boiler,CHMCL-PH-STM_HW,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Boiler,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,CHMCL-PH-STM_HW-WOD-Boiler,CHMCL-PH-STM_HW,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,PLPPPR-PH-STM_HW-WOD-BLR15,PLPPPR-PH-STM_HW,Industry,Pulp and Paper Manufacturing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,PLPPPR-PH-STM_HW-WOD-Boiler,PLPPPR-PH-STM_HW,Industry,Pulp and Paper Manufacturing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,REFI-PH-STM_HW-ELC-Boiler,REFI-PH-STM_HW,Industry,Refining,Boiler,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,REFI-PH-STM_HW-WOD-Boiler,REFI-PH-STM_HW,Industry,Refining,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_WSR-SH_Boiler-ELC,C_WSR-SH,Commercial,Warehouses/Supermarkets/Retail,Boiler,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-WH_AirHP-ELC00,C_OFFC-WH,Commercial,Office Blocks,Heat Pump,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-PH-STM_HW-ELC-BLR15,WOOD-PH-STM_HW,Industry,Wood Product Manufacturing,Boiler,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-PH-STM_HW-ELC-Boiler,WOOD-PH-STM_HW,Industry,Wood Product Manufacturing,Boiler,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-PH-STM_HW-WOD-BLR15,WOOD-PH-STM_HW,Industry,Wood Product Manufacturing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,WOOD-PH-STM_HW-WOD-Boiler,WOOD-PH-STM_HW,Industry,Wood Product Manufacturing,Boiler,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,R_DDW-SH_Burner-WOD00,R_DDW-SH,Residential,Detached Dwellings,Burner,Wood,Space Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,R_DDW-WH_BRNWB-WOD00,R_DDW-WH,Residential,Detached Dwellings,Burner (with Wetback),Wood,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,AFORE-MoTP-Mob-CY--H2R,AFORE-MoTP-Mob-CY,Agriculture,Forestry,Cable Yarder (Forestry),Green Hydrogen,Cable Yarding (Forestry),kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-CD_Dryer-ELC00,R_DDW-CD,Residential,Detached Dwellings,Clothes Dryer,Electricity,Clothes Drying,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-CD_Dryer-ELC00,R_JDW-CD,Residential,Joined Dwellings,Clothes Dryer,Electricity,Clothes Drying,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-CW_Washer-ELC,R_DDW-CW,Residential,Detached Dwellings,Clothes Washer,Electricity,Clothes Washing,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-CW_Washer-ELC00,R_DDW-CW,Residential,Detached Dwellings,Clothes Washer,Electricity,Clothes Washing,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-CW_Washer-ELC,R_JDW-CW,Residential,Joined Dwellings,Clothes Washer,Electricity,Clothes Washing,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-CW_Washer-ELC00,R_JDW-CW,Residential,Joined Dwellings,Clothes Washer,Electricity,Clothes Washing,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-AIR-ELC-CMPR,DARY-AIR,Industry,Dairy Product Manufacturing,Compressor,Electricity,Compressed Air,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-AIR-ELC-CMPR15,DARY-AIR,Industry,Dairy Product Manufacturing,Compressor,Electricity,Compressed Air,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-AIR-ELC-CMPR,PLPPPR-AIR,Industry,Pulp and Paper Manufacturing,Compressor,Electricity,Compressed Air,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-AIR-ELC-CMPR15,PLPPPR-AIR,Industry,Pulp and Paper Manufacturing,Compressor,Electricity,Compressed Air,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-AIR-ELC-CMPR,WOOD-AIR,Industry,Wood Product Manufacturing,Compressor,Electricity,Compressed Air,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-AIR-ELC-CMPR15,WOOD-AIR,Industry,Wood Product Manufacturing,Compressor,Electricity,Compressed Air,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-CK_Appl-ELC00,R_DDW-CK,Residential,Detached Dwellings,Cooking Element,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-CK_Appl-ELC00,R_JDW-CK,Residential,Joined Dwellings,Cooking Element,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-CK_Elements-ELC,C_WSR-CK,Commercial,Warehouses/Supermarkets/Retail,Cooking Element,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-CK_Elements-ELC00,C_WSR-CK,Commercial,Warehouses/Supermarkets/Retail,Cooking Element,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-CK_Induction-ELC,C_WSR-CK,Commercial,Warehouses/Supermarkets/Retail,Cooking Element (Induction) ,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-WH_Boiler-ELC,C_OFFC-WH,Commercial,Office Blocks,Boiler,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-WH_Cylinder-ELC00,C_OFFC-WH,Commercial,Office Blocks,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-DW_Dwash-ELC,R_DDW-DW,Residential,Detached Dwellings,Dishwasher,Electricity,Dishwashing,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-DW_Dwash-ELC00,R_DDW-DW,Residential,Detached Dwellings,Dishwasher,Electricity,Dishwashing,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-DW_Dwash-ELC,R_JDW-DW,Residential,Joined Dwellings,Dishwasher,Electricity,Dishwashing,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-DW_Dwash-ELC00,R_JDW-DW,Residential,Joined Dwellings,Dishwasher,Electricity,Dishwashing,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-OTH_Elec-ELC00,R_DDW-OTH,Residential,Detached Dwellings,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-OTH_ELEC-ELC,C_EDU-OTH,Commercial,Education,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-OTH_ELEC-ELC00,C_EDU-OTH,Commercial,Education,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-OTH_ELEC-ELC,C_HLTH-OTH,Commercial,Healthcare,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-OTH_ELEC-ELC00,C_HLTH-OTH,Commercial,Healthcare,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-OTH_Elec-ELC00,R_JDW-OTH,Residential,Joined Dwellings,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-OTH_EELC-ELC,C_OFFC-OTH,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-OTH_EELC-ELC00,C_OFFC-OTH,Commercial,Office Blocks,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-OTH_Elec-ELC,C_OTH-OTH,Commercial,Other (Commercial),Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-OTH_ELEC-ELC,C_WSR-OTH,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-OTH_ELEC-ELC00,C_WSR-OTH,Commercial,Warehouses/Supermarkets/Retail,Electronics and Other Appliances,Electricity,Electronics and Other Appliances,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-PH-STM_HW-ELC-ELCTECH,MEAT-PH-STM_HW,Industry,Meat Processing,Electrotech,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-TVR_EVP-ELC-Fan,DARY-PH-TVR_EVP,Industry,Dairy Product Manufacturing,Fan,Electricity,Process Heat Evaporation/Drying,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-MVR_Fan-ELC-Fan,DARY-PH-MVR_Fan,Industry,Dairy Product Manufacturing,Fan,Electricity,Process Heat MVR Fan,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-MVR_Fan-ELC-Fan15,DARY-PH-MVR_Fan,Industry,Dairy Product Manufacturing,Fan,Electricity,Process Heat MVR Fan,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-Fan-ELC-Fan,PLPPPR-Fan,Industry,Pulp and Paper Manufacturing,Fan,Electricity,Fan,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-Fan-ELC-Fan15,PLPPPR-Fan,Industry,Pulp and Paper Manufacturing,Fan,Electricity,Fan,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-Fan-ELC-Fan,WOOD-Fan,Industry,Wood Product Manufacturing,Fan,Electricity,Drying,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-Fan-ELC-Fan15,WOOD-Fan,Industry,Wood Product Manufacturing,Fan,Electricity,Drying,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Mob-Bike--ELC,ADCF-MoTP-Mob-Bike,Agriculture,Dairy Cattle Farming,Farm Bike,Electricity,Off-road Motorbike Use,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-MoTP-Mob-Bike--ELC,ALIVE-MoTP-Mob-Bike,Agriculture,Livestock Farming,Farm Bike,Electricity,Off-road Motorbike Use,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-LT_CFL-ELC00,R_DDW-LT,Residential,Detached Dwellings,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-LT_FLU-ELC,C_EDU-LT,Commercial,Education,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-LT_FLU-ELC00,C_EDU-LT,Commercial,Education,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-LT_FLU-ELC,C_HLTH-LT,Commercial,Healthcare,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-LT_FLU-ELC00,C_HLTH-LT,Commercial,Healthcare,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-LT_CFL-ELC00,R_JDW-LT,Residential,Joined Dwellings,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-LT_FLU-ELC,C_OFFC-LT,Commercial,Office Blocks,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-LT_FLU-ELC00,C_OFFC-LT,Commercial,Office Blocks,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-LT_FLU-ELC,C_OTH-LT,Commercial,Other (Commercial),Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-LT_FLU-ELC00,C_OTH-LT,Commercial,Other (Commercial),Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-LT_FLU-ELC,C_WSR-LT,Commercial,Warehouses/Supermarkets/Retail,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-LT_FLU-ELC00,C_WSR-LT,Commercial,Warehouses/Supermarkets/Retail,Lights (Fluorescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,ALU-PH-FURN-ELC-Furn,ALU-PH-FURN,Industry,Aluminium,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,ALU-PH-FURN-ELC-Furn15,ALU-PH-FURN,Industry,Aluminium,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,METAL-PH-FURN-ELC-Furn,METAL-PH-FURN,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,METAL-PH-FURN-ELC-Furn15,METAL-PH-FURN,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,METAL-PH-FURN-WOD-Furn,METAL-PH-FURN,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,IIS-PH-FURN-ELC-Furn,IIS-PH-FURN,Industry,Iron/Steel,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,IIS-PH-FURN-ELC-Furn15,IIS-PH-FURN,Industry,Iron/Steel,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,IIS-PH-FURN-WOD-Furn,IIS-PH-FURN,Industry,Iron/Steel,Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,MNRL-PH-FURN-ELC-Furn,MNRL-PH-FURN,Industry,Non-Metallic Mineral Product Manufacturing,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,MNRL-PH-FURN-ELC-Furn15,MNRL-PH-FURN,Industry,Non-Metallic Mineral Product Manufacturing,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,MNRL-PH-FURN-WOD-Furn,MNRL-PH-FURN,Industry,Non-Metallic Mineral Product Manufacturing,Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,MNRL-PH-FURN-WOD-Furn15,MNRL-PH-FURN,Industry,Non-Metallic Mineral Product Manufacturing,Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CHMCL-PH-FURN-ELC-Furn,CHMCL-PH-FURN,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,CHMCL-PH-FURN-WOD-Furn,CHMCL-PH-FURN,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,PLPPPR-PH-FURN-ELC-Furn,PLPPPR-PH-FURN,Industry,Pulp and Paper Manufacturing,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-PH-FURN-WOD-Furn,PLPPPR-PH-FURN,Industry,Pulp and Paper Manufacturing,Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,REFI-PH-FURN-ELC-Furn,REFI-PH-FURN,Industry,Refining,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,REFI-PH-FURN-WOD-Furn,REFI-PH-FURN,Industry,Refining,Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,WOOD-PH-FURN-ELC-Furn,WOOD-PH-FURN,Industry,Wood Product Manufacturing,Furnace,Electricity,Process Heat Furnace,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-PH-FURN-WOD-Furn,WOOD-PH-FURN,Industry,Wood Product Manufacturing,Furnace,Wood,Process Heat Furnace,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,DARY-PH-MVR_DRY-ELC-HPmp,DARY-PH-MVR_DRY,Industry,Dairy Product Manufacturing,Heat Pump,Electricity,Process Heat Evaporation/Drying,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-STM_HW-ELC-HPmp,DARY-PH-STM_HW,Industry,Dairy Product Manufacturing,Heat Pump,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-SC_HP-ELC00,R_DDW-SC,Residential,Detached Dwellings,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-SH_HP-ELC00,R_DDW-SH,Residential,Detached Dwellings,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-SC_AirHP-ELC00,C_EDU-SC,Commercial,Education,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-SC_AirHP-ELC,C_EDU-SC,Commercial,Education,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-SH_AIRHP-ELC,C_EDU-SH,Commercial,Education,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-SH_AIRHP-ELC00,C_EDU-SH,Commercial,Education,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-SC_AIRHP-ELC00,C_HLTH-SC,Commercial,Healthcare,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-SC_AIRHP-ELC,C_HLTH-SC,Commercial,Healthcare,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-SH_AIRHP-ELC,C_HLTH-SH,Commercial,Healthcare,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-SH_AIRHP-ELC00,C_HLTH-SH,Commercial,Healthcare,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,AINDC-SH-HP-ELC,AINDC-SH,Agriculture,Indoor Cropping,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-SC_HP-ELC,R_JDW-SC,Residential,Joined Dwellings,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-SC_HP-ELC00,R_JDW-SC,Residential,Joined Dwellings,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-SH_HP-ELC00,R_JDW-SH,Residential,Joined Dwellings,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-PH-STM_HW-ELC-HPmp,MEAT-PH-STM_HW,Industry,Meat Processing,Heat Pump,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,MNRL-PH-STM_HW-ELC-HPmp,MNRL-PH-STM_HW,Industry,Non-Metallic Mineral Product Manufacturing,Heat Pump,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-SC_AIRHP-ELC00,C_OFFC-SC,Commercial,Office Blocks,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-SC_AIRHP-ELC,C_OFFC-SC,Commercial,Office Blocks,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-SH_AirHP-ELC,C_OFFC-SH,Commercial,Office Blocks,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-SH_AirHP-ELC00,C_OFFC-SH,Commercial,Office Blocks,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-SC_AIRHP-ELC00,C_OTH-SC,Commercial,Other (Commercial),Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-SH_AirHP-ELC,C_OTH-SH,Commercial,Other (Commercial),Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-SH_AirHP-ELC00,C_OTH-SH,Commercial,Other (Commercial),Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-PH-STM_HW-ELC-HPmp,FOOD-PH-STM_HW,Industry,Other Food Processing (Non Dairy/Meat Processing),Heat Pump,Electricity,Process Heat Steam/Hot Water,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-SC_AIRHP-ELC00,C_WSR-SC,Commercial,Warehouses/Supermarkets/Retail,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-SC_AIRHP-ELC,C_WSR-SC,Commercial,Warehouses/Supermarkets/Retail,Heat Pump,Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-SH_AirHP-ELC00,C_WSR-SH,Commercial,Warehouses/Supermarkets/Retail,Heat Pump,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-SH_MSHP-ELC,R_DDW-SC,Residential,Detached Dwellings,Heat Pump (Multi-Split),Electricity,Space Cooling,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-SH_MSHP-ELC,R_DDW-SH,Residential,Detached Dwellings,Heat Pump (Multi-Split),Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-PH-TVR_DRY-ELC-HRCVR,DARY-PH-TVR_DRY,Industry,Dairy Product Manufacturing,Heat Recovery System (Heating),Electricity,Process Heat Evaporation/Drying,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-RFGR-HRECSys_ELC00,ADCF-RFGR,Agriculture,Dairy Cattle Farming,Heat Recovery System (Cooling),Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-WH-Hreco_ELC00,ADCF-WH,Agriculture,Dairy Cattle Farming,Heat Recovery System (Heating),Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-WH-Hreco-ELC,ADCF-WH,Agriculture,Dairy Cattle Farming,Heat Recovery System (Heating),Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-PH-DirH-ELC-Heater,MEAT-PH-DirH,Industry,Meat Processing,Heater,Electricity,Process Heat Direct,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-PH-DirH-ELC-Heater15,MEAT-PH-DirH,Industry,Meat Processing,Heater,Electricity,Process Heat Direct,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-PH-STM_HW-WOD-BLR15,MEAT-PH-STM_HW,Industry,Meat Processing,Heater,Wood,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,FOOD-PH-DirH-ELC-Heater,FOOD-PH-DirH,Industry,Other Food Processing (Non Dairy/Meat Processing),Heater,Electricity,Process Heat Direct,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-PH-DirH-ELC-Heater15,FOOD-PH-DirH,Industry,Other Food Processing (Non Dairy/Meat Processing),Heater,Electricity,Process Heat Direct,kt CO2,Emissions,Electricity
-VAR_FOut,CHMCL-PH-DirH-ELC-Heater15,CHMCL-PH-DirH,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Heater,Electricity,Process Heat Direct,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-WH-Cylinder_ELC00,ADCF-WH,Agriculture,Dairy Cattle Farming,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-WH_HWC-ELC00,R_DDW-WH,Residential,Detached Dwellings,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-WH_HWC-ELC,R_DDW-WH,Residential,Detached Dwellings,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-WH_Boiler-ELC,C_OTH-WH,Commercial,Other (Commercial),Boiler,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-WH_HWC-ELC,R_JDW-WH,Residential,Joined Dwellings,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-WH_HWC-ELC00,R_JDW-WH,Residential,Joined Dwellings,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-WH_Boiler-H2R,C_OTH-WH,Commercial,Other (Commercial),Boiler,Green Hydrogen,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-WH_Cylinder-ELC00,C_OTH-WH,Commercial,Other (Commercial),Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-LT_Incan-ELC00,R_DDW-LT,Residential,Detached Dwellings,Lights (Incandescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-LT_Incan-ELC00,R_JDW-LT,Residential,Joined Dwellings,Lights (Incandescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-LT_INC-ELC00,C_WSR-LT,Commercial,Warehouses/Supermarkets/Retail,Lights (Incandescent) ,Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-WH_Boiler-ELC,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Boiler,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-WH_Boiler-H2R,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Boiler,Green Hydrogen,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-WH_Boiler-PLT,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Boiler,Wood,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_WSR-WH_Boiler-WOD,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Boiler,Wood,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_WSR-WH_Cylinder-ELC,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-WH_Cylinder-ELC00,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-WH_INSTANT-ELC,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater ,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-IRG-Irg_ELC00,ADCF-IRG,Agriculture,Dairy Cattle Farming,Irrigator,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-IRG-Irg_ELC00,AHORT-IRG,Agriculture,Outdoor Horticulture/Arable Farming,Irrigator,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-IRG-Irg_ELC00,ALIVE-IRG,Agriculture,Livestock Farming,Irrigator,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-IRG-IrgVSD_ELC00,ADCF-IRG,Agriculture,Dairy Cattle Farming,Irrigator with VSD,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-IRG-IrgVSD-ELC,ADCF-IRG,Agriculture,Dairy Cattle Farming,Irrigator with VSD,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-IRG-IrgVSD_ELC00,AHORT-IRG,Agriculture,Outdoor Horticulture/Arable Farming,Irrigator with VSD,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-IRG-IrgVSD-ELC,AHORT-IRG,Agriculture,Outdoor Horticulture/Arable Farming,Irrigator with VSD,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-IRG-IrgVSD_ELC00,ALIVE-IRG,Agriculture,Livestock Farming,Irrigator with VSD,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-IRG-IrgVSD-ELC,ALIVE-IRG,Agriculture,Livestock Farming,Irrigator with VSD,Electricity,Irrigation,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-LT_LED-ELC00,R_DDW-LT,Residential,Detached Dwellings,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-LT_LED-ELC,C_EDU-LT,Commercial,Education,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-LT_LED-ELC00,C_EDU-LT,Commercial,Education,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-LT_LED-ELC,C_HLTH-LT,Commercial,Healthcare,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-LT_LED-ELC00,C_HLTH-LT,Commercial,Healthcare,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-LT_LED-ELC00,R_JDW-LT,Residential,Joined Dwellings,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-LT_LED-ELC,C_OFFC-LT,Commercial,Office Blocks,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-LT_LED-ELC00,C_OFFC-LT,Commercial,Office Blocks,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-LT_LED-ELC,C_OTH-LT,Commercial,Other (Commercial),Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-LT_LED-ELC00,C_OTH-LT,Commercial,Other (Commercial),Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-LT_LED-ELC,C_WSR-LT,Commercial,Warehouses/Supermarkets/Retail,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-LT_LED-ELC00,C_WSR-LT,Commercial,Warehouses/Supermarkets/Retail,Lights (LED),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-LIG--ELC,ADCF-LIG,Agriculture,Dairy Cattle Farming,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-LIG-LT_ELC00,ADCF-LIG,Agriculture,Dairy Cattle Farming,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AFISH-LIG--ELC,AFISH-LIG,Agriculture,Fishing,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AFISH-LIG-LT_ELC00,AFISH-LIG,Agriculture,Fishing,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AFORE-LIG--ELC,AFORE-LIG,Agriculture,Forestry,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AFORE-LIG-LT_ELC00,AFORE-LIG,Agriculture,Forestry,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-LIG--ELC,AHORT-LIG,Agriculture,Outdoor Horticulture/Arable Farming,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-LIG-LT_ELC00,AHORT-LIG,Agriculture,Outdoor Horticulture/Arable Farming,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AINDC-LIG--ELC,AINDC-LIG,Agriculture,Indoor Cropping,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,AINDC-LIG-LT_ELC00,AINDC-LIG,Agriculture,Indoor Cropping,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-LIG--ELC,ALIVE-LIG,Agriculture,Livestock Farming,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-LIG-LT_ELC00,ALIVE-LIG,Agriculture,Livestock Farming,Lights (General),Electricity,Lighting,kt CO2,Emissions,Electricity
-VAR_FOut,EBAT-Li-Ion,ELCDD,Electricity,Electricity Storage,Lithium Ion Battery ,Electricity,Electricity Production,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-MPM_-ELC,C_EDU-MPM,Commercial,Education,Mobile Motor,Electricity,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-MPM_-H2R,C_EDU-MPM,Commercial,Education,Mobile Motor,Green Hydrogen,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-MPM_-ELC,C_HLTH-MPM,Commercial,Healthcare,Mobile Motor,Electricity,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-MPM_-H2R,C_HLTH-MPM,Commercial,Healthcare,Mobile Motor,Green Hydrogen,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-MPM_-ELC,C_OFFC-MPM,Commercial,Office Blocks,Mobile Motor,Electricity,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-MPM_-ELC,C_OTH-MPM,Commercial,Other (Commercial),Mobile Motor,Electricity,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-MPM_-ELC,C_WSR-MPM,Commercial,Warehouses/Supermarkets/Retail,Mobile Motor,Electricity,"Motive Power, Mobile",kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-SH_OF-WOD00,R_DDW-SH,Residential,Detached Dwellings,Open Fire,Wood,Space Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,AOTH-ELC-_ELC00,AOTH-ELC,Agriculture,Other (Agriculture),Other,Electricity,Other,kt CO2,Emissions,Electricity
-VAR_FOut,OTH-ELC-ELC-Tech,OTH-ELC,Industry,Other (Industry),Other,Electricity,Other,kt CO2,Emissions,Electricity
-VAR_FOut,OTH-ELC-ELC-Tech15,OTH-ELC,Industry,Other (Industry),Other,Electricity,Other,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-PH-OVN-ELC-Oven,FOOD-PH-OVN,Industry,Other Food Processing (Non Dairy/Meat Processing),Oven,Electricity,Process Heat Oven,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-PH-OVN-ELC-Oven15,FOOD-PH-OVN,Industry,Other Food Processing (Non Dairy/Meat Processing),Oven,Electricity,Process Heat Oven,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-CK_Ovens-ELC,C_WSR-CK,Commercial,Warehouses/Supermarkets/Retail,Oven,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-CK_Ovens-ELC00,C_WSR-CK,Commercial,Warehouses/Supermarkets/Retail,Oven,Electricity,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-CK_Ovens-H2R,C_WSR-CK,Commercial,Warehouses/Supermarkets/Retail,Oven,Green Hydrogen,Cooking,kt CO2,Emissions,Electricity
-VAR_FOut,SUP_ELC-PEMC-H2,H2C,Green Hydrogen,Green Hydrogen Production,PEM Electrolyser,Green Hydrogen,Green Hydrogen Fuel,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_CPHEVPET,T_P_Car,Transport,Road Transport,Plug-In Hybrid Vehicle,Electricity,Car/SUV,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_CPHEVPET15,T_P_Car,Transport,Road Transport,Plug-In Hybrid Vehicle,Electricity,Car/SUV,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-Pump-ELC-Pump,DARY-Pump,Industry,Dairy Product Manufacturing,Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-Pump-ELC-Pump15,DARY-Pump,Industry,Dairy Product Manufacturing,Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-Pump-ELC-Pump,FOOD-Pump,Industry,Other Food Processing (Non Dairy/Meat Processing),Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-Pump-ELC-Pump15,FOOD-Pump,Industry,Other Food Processing (Non Dairy/Meat Processing),Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-Pump-ELC-Pump,PLPPPR-Pump,Industry,Pulp and Paper Manufacturing,Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-Pump-ELC-Pump15,PLPPPR-Pump,Industry,Pulp and Paper Manufacturing,Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-Pump-ELC-Pump,WOOD-Pump,Industry,Wood Product Manufacturing,Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-Pump-ELC-Pump15,WOOD-Pump,Industry,Wood Product Manufacturing,Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-Refin-ELC-REF,PLPPPR-Refin,Industry,Pulp and Paper Manufacturing,Wood/Pulp and Paper Refiner,Electricity,Wood/Pulp and Paper Refining,kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-Refin-ELC-REF15,PLPPPR-Refin,Industry,Pulp and Paper Manufacturing,Wood/Pulp and Paper Refiner,Electricity,Wood/Pulp and Paper Refining,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-Refin-ELC-Refinery,WOOD-Refin,Industry,Wood Product Manufacturing,Wood/Pulp and Paper Refiner,Electricity,Wood/Pulp and Paper Refining,kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-Refin-ELC-Refinery15,WOOD-Refin,Industry,Wood Product Manufacturing,Wood/Pulp and Paper Refiner,Electricity,Wood/Pulp and Paper Refining,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-RFGR--ELC,ADCF-RFGR,Agriculture,Dairy Cattle Farming,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-RFGR-RF_ELC00,ADCF-RFGR,Agriculture,Dairy Cattle Farming,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-RFGR-ELC-Refriger,DARY-RFGR,Industry,Dairy Product Manufacturing,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,DARY-RFGR-ELC-Refriger15,DARY-RFGR,Industry,Dairy Product Manufacturing,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-RF_Refriger-ELC,R_DDW-RF,Residential,Detached Dwellings,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-RF_Refriger-ELC00,R_DDW-RF,Residential,Detached Dwellings,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-RF_Refriger-ELC,C_EDU-RF,Commercial,Education,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-RF_Refriger-ELC00,C_EDU-RF,Commercial,Education,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,METAL-RFGR-ELC-Refriger,METAL-RFGR,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,METAL-RFGR-ELC-Refriger15,METAL-RFGR,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,AFISH-RFGR-RF_ELC00,AFISH-RFGR,Agriculture,Fishing,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,AFISH-RFGR-RF-ELC,AFISH-RFGR,Agriculture,Fishing,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-RF_Refriger-ELC,C_HLTH-RF,Commercial,Healthcare,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-RF_Refriger-ELC00,C_HLTH-RF,Commercial,Healthcare,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-RF_Refriger-ELC,R_JDW-RF,Residential,Joined Dwellings,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-RF_Refriger-ELC00,R_JDW-RF,Residential,Joined Dwellings,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-RFGR-ELC-Refriger,MEAT-RFGR,Industry,Meat Processing,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-RFGR-ELC-Refriger15,MEAT-RFGR,Industry,Meat Processing,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-RFGR-ELC-Refriger,FOOD-RFGR,Industry,Other Food Processing (Non Dairy/Meat Processing),Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-RFGR-ELC-Refriger15,FOOD-RFGR,Industry,Other Food Processing (Non Dairy/Meat Processing),Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-RF_Refriger-ELC,C_WSR-RF,Commercial,Warehouses/Supermarkets/Retail,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-RF_Refriger-ELC00,C_WSR-RF,Commercial,Warehouses/Supermarkets/Retail,Refrigerator,Electricity,Refrigeration,kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-SH_RH-ELC00,R_DDW-SH,Residential,Detached Dwellings,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-SH_RH-ELC,C_EDU-SH,Commercial,Education,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-SH_RH-ELC00,C_EDU-SH,Commercial,Education,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-PH_RH-ELC,C_HLTH-PH,Commercial,Healthcare,Resistance Heater,Electricity,Process Heat ,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-PH_RH-ELC00,C_HLTH-PH,Commercial,Healthcare,Resistance Heater,Electricity,Process Heat ,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-SH_RH-ELC,C_HLTH-SH,Commercial,Healthcare,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-SH_RH-ELC00,C_HLTH-SH,Commercial,Healthcare,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-SH_RH-ELC00,R_JDW-SH,Residential,Joined Dwellings,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-SH_RH-ELC,C_OFFC-SH,Commercial,Office Blocks,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-SH_RH-ELC00,C_OFFC-SH,Commercial,Office Blocks,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-SH_RH-ELC,C_OTH-SH,Commercial,Other (Commercial),Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-SH_RH-ELC00,C_OTH-SH,Commercial,Other (Commercial),Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-SH_RH-ELC,C_WSR-SH,Commercial,Warehouses/Supermarkets/Retail,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-SH_RH-ELC00,C_WSR-SH,Commercial,Warehouses/Supermarkets/Retail,Resistance Heater,Electricity,Space Heating,kt CO2,Emissions,Electricity
-VAR_FOut,AFORE-MoTP-Mob-GB--H2R,AFORE-MoTP-Mob-GB,Agriculture,Forestry,Skidder (Forestry),Green Hydrogen,Ground Based Forestry,kt CO2,Emissions,Electricity
-VAR_FOut,CNST-MoTP-Stat-ELC-Motor,CNST-MoTP-Stat,Industry,Construction,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,CNST-MoTP-Stat-ELC-Mtr15,CNST-MoTP-Stat,Industry,Construction,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,DARY-MoTP-Stat-ELC-Motor,DARY-MoTP-Stat,Industry,Dairy Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,DARY-MoTP-Stat-ELC-Mtr15,DARY-MoTP-Stat,Industry,Dairy Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,R_DDW-MPS_Motor-ELC00,R_DDW-MPS,Residential,Detached Dwellings,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-MPS_-ELC,C_EDU-MPS,Commercial,Education,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-MPS_-ELC00,C_EDU-MPS,Commercial,Education,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,METAL-MoTP-Stat-ELC-Motor,METAL-MoTP-Stat,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,METAL-MoTP-Stat-ELC-Mtr15,METAL-MoTP-Stat,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,AFORE-MoTP-Stat--ELC,AFORE-MoTP-Stat,Agriculture,Forestry,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,AFORE-MoTP-Stat-Motor_ELC00,AFORE-MoTP-Stat,Agriculture,Forestry,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-MPS_-ELC,C_HLTH-MPS,Commercial,Healthcare,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-MPS_-ELC00,C_HLTH-MPS,Commercial,Healthcare,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-MoTP-Stat-Motor-ELC,AHORT-MoTP-Stat,Agriculture,Outdoor Horticulture/Arable Farming,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,IIS-MoTP-Stat-ELC-Motor,IIS-MoTP-Stat,Industry,Iron/Steel,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,IIS-MoTP-Stat-ELC-Mtr15,IIS-MoTP-Stat,Industry,Iron/Steel,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,R_JDW-MPS_Motor-ELC00,R_JDW-MPS,Residential,Joined Dwellings,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-MoTP-Stat-ELC-Motor,MEAT-MoTP-Stat,Industry,Meat Processing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-MoTP-Stat-ELC-Mtr15,MEAT-MoTP-Stat,Industry,Meat Processing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MNNG-MoTP-Stat-ELC-Motor,MNNG-MoTP-Stat,Industry,Mining,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MNNG-MoTP-Stat-ELC-Mtr15,MNNG-MoTP-Stat,Industry,Mining,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MNRL-MoTP-Stat-ELC-Motor,MNRL-MoTP-Stat,Industry,Non-Metallic Mineral Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MNRL-MoTP-Stat-ELC-Mtr15,MNRL-MoTP-Stat,Industry,Non-Metallic Mineral Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-MPS_-ELC,C_OFFC-MPS,Commercial,Office Blocks,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-MPS_-ELC00,C_OFFC-MPS,Commercial,Office Blocks,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-MPS_-ELC,C_OTH-MPS,Commercial,Other (Commercial),Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-MPS_-ELC00,C_OTH-MPS,Commercial,Other (Commercial),Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-MoTP-Stat-ELC-Motor,FOOD-MoTP-Stat,Industry,Other Food Processing (Non Dairy/Meat Processing),Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-MoTP-Stat-ELC-Mtr15,FOOD-MoTP-Stat,Industry,Other Food Processing (Non Dairy/Meat Processing),Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,CHMCL-MoTP-Stat-ELC-Motor,CHMCL-MoTP-Stat,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,CHMCL-MoTP-Stat-ELC-Mtr15,CHMCL-MoTP-Stat,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-MoTP-Stat-ELC-Motor,PLPPPR-MoTP-Stat,Industry,Pulp and Paper Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-MoTP-Stat-ELC-Mtr15,PLPPPR-MoTP-Stat,Industry,Pulp and Paper Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,REFI-MoTP-Stat-ELC-Motor,REFI-MoTP-Stat,Industry,Refining,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,REFI-MoTP-Stat-ELC-Mtr15,REFI-MoTP-Stat,Industry,Refining,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-MPS_-ELC,C_WSR-MPS,Commercial,Warehouses/Supermarkets/Retail,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,C_WSR-MPS_-ELC00,C_WSR-MPS,Commercial,Warehouses/Supermarkets/Retail,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-MoTP-Stat-ELC-Motor,WOOD-MoTP-Stat,Industry,Wood Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-MoTP-Stat-ELC-Mtr15,WOOD-MoTP-Stat,Industry,Wood Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,WOOD-MoTP-Stat-ELC-VSD-Mtr,WOOD-MoTP-Stat,Industry,Wood Product Manufacturing,Stationary Motor,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,CNST-MoTP-Stat-ELC-VSD-Mtr,CNST-MoTP-Stat,Industry,Construction,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,DARY-MoTP-Stat-ELC-VSD-Mtr,DARY-MoTP-Stat,Industry,Dairy Product Manufacturing,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,METAL-MoTP-Stat-ELC-VSD-Mtr,METAL-MoTP-Stat,Industry,"Fabricated Metal Product, Transport Equipment, Machinery and Equipment Manufacturing",Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,IIS-MoTP-Stat-ELC-VSD-Mtr,IIS-MoTP-Stat,Industry,Iron/Steel,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MEAT-MoTP-Stat-ELC-VSD-Mtr,MEAT-MoTP-Stat,Industry,Meat Processing,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MNNG-MoTP-Stat-ELC-VSD-Mtr,MNNG-MoTP-Stat,Industry,Mining,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,MNRL-MoTP-Stat-ELC-VSD-Mtr,MNRL-MoTP-Stat,Industry,Non-Metallic Mineral Product Manufacturing,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,FOOD-MoTP-Stat-ELC-VSD-Mtr,FOOD-MoTP-Stat,Industry,Other Food Processing (Non Dairy/Meat Processing),Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,CHMCL-MoTP-Stat-ELC-VSD-Mtr,CHMCL-MoTP-Stat,Industry,"Petroleum, Basic Chemical and Rubber Product Manufacturing",Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,PLPPPR-MoTP-Stat-ELCVSD-Mtr,PLPPPR-MoTP-Stat,Industry,Pulp and Paper Manufacturing,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,REFI-MoTP-Stat-ELC-VSD-Mtr,REFI-MoTP-Stat,Industry,Refining,Stationary Motor with VSD,Electricity,"Motive Power, Stationary",kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Mob-Trac--ELC,ADCF-MoTP-Mob-Trac,Agriculture,Dairy Cattle Farming,Tractor (Agricultural),Electricity,Tractor Services,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Mob-Trac--H2R,ADCF-MoTP-Mob-Trac,Agriculture,Dairy Cattle Farming,Tractor (Agricultural),Green Hydrogen,Tractor Services,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-MoTP-Mob-Trac--ELC,ALIVE-MoTP-Mob-Trac,Agriculture,Livestock Farming,Tractor (Agricultural),Electricity,Tractor Services,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-MoTP-Mob-Trac--H2R,ALIVE-MoTP-Mob-Trac,Agriculture,Livestock Farming,Tractor (Agricultural),Green Hydrogen,Tractor Services,kt CO2,Emissions,Electricity
-VAR_FOut,T_P_Rail15,T_P_Rail,Transport,Rail,Train,Electricity,Passenger Rail,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-PUMP--ELC,ADCF-PUMP,Agriculture,Dairy Cattle Farming,Transfer Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-PUMP-Pump_ELC00,ADCF-PUMP,Agriculture,Dairy Cattle Farming,Transfer Pump,Electricity,Pumping,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Mob-MTr--ELC,ADCF-MoTP-Mob-MTr,Agriculture,Dairy Cattle Farming,Truck (Agricultural),Electricity,Truck Services,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-MoTP-Mob-MTr--ELC,AHORT-MoTP-Mob-MTr,Agriculture,Outdoor Horticulture/Arable Farming,Truck (Agricultural),Electricity,Truck Services,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-MoTP-Mob-MTr--ELC,ALIVE-MoTP-Mob-MTr,Agriculture,Livestock Farming,Truck (Agricultural),Electricity,Truck Services,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Mob-Uti--ELC,ADCF-MoTP-Mob-Uti,Agriculture,Dairy Cattle Farming,Utility Vehicle (Agricultural),Electricity,Farm Vehicle,kt CO2,Emissions,Electricity
-VAR_FOut,AHORT-MoTP-Mob-Uti--ELC,AHORT-MoTP-Mob-Uti,Agriculture,Outdoor Horticulture/Arable Farming,Utility Vehicle (Agricultural),Electricity,Farm Vehicle,kt CO2,Emissions,Electricity
-VAR_FOut,ALIVE-MoTP-Mob-Uti--ELC,ALIVE-MoTP-Mob-Uti,Agriculture,Livestock Farming,Utility Vehicle (Agricultural),Electricity,Farm Vehicle,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Stat-VacP_ELC00,ADCF-MoTP-Stat,Agriculture,Dairy Cattle Farming,Vacuum Pump,Electricity,Milking Machine,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Stat-VacP-ELC,ADCF-MoTP-Stat,Agriculture,Dairy Cattle Farming,Vacuum Pump,Electricity,Milking Machine,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Stat-VPVSD_ELC00,ADCF-MoTP-Stat,Agriculture,Dairy Cattle Farming,Vacuum Pump with VSD,Electricity,Milking Machine,kt CO2,Emissions,Electricity
-VAR_FOut,ADCF-MoTP-Stat-VPVSD-ELC,ADCF-MoTP-Stat,Agriculture,Dairy Cattle Farming,Vacuum Pump with VSD,Electricity,Milking Machine,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-WH_AIRHP-ELC,C_EDU-WH,Commercial,Education,Heat Pump,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-WH_Boiler-ELC,C_EDU-WH,Commercial,Education,Boiler,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-WH_Cylinder-ELC,C_EDU-WH,Commercial,Education,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_EDU-WH_Instant-ELC,C_EDU-WH,Commercial,Education,Instantaneous Water Heater ,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-WH_Boiler-H2R,C_HLTH-WH,Commercial,Healthcare,Boiler,Green Hydrogen,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_HLTH-WH_Cylinder-ELC,C_HLTH-WH,Commercial,Healthcare,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-WH_Boiler-H2R,C_OFFC-WH,Commercial,Office Blocks,Boiler,Green Hydrogen,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-WH_Boiler-PLT,C_OFFC-WH,Commercial,Office Blocks,Boiler,Wood,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_OFFC-WH_Boiler-WOD,C_OFFC-WH,Commercial,Office Blocks,Boiler,Wood,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_OFFC-WH_Cylinder-ELC,C_OFFC-WH,Commercial,Office Blocks,Hot Water Cylinder,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OFFC-WH_Instant-ELC,C_OFFC-WH,Commercial,Office Blocks,Instantaneous Water Heater ,Electricity,Water Heating,kt CO2,Emissions,Electricity
-VAR_FOut,C_OTH-WH_Boiler-PLT,C_OTH-WH,Commercial,Other (Commercial),Boiler,Wood,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_HLTH-PH_Boiler-BIG,C_HLTH-PH,Commercial,Healthcare,Boiler,Biogas,Process Heat ,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,C_HLTH-WH_Boiler-BIG,C_HLTH-WH,Commercial,Healthcare,Boiler,Biogas,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EHYD-DAM-New20,ELC,Electricity,Hydro,Hydro Dam (New),Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ELCREHYDDAM00,ELC,Electricity,Hydro,Hydro Dam (Existing),Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,FOOD-PH-STM_HW-BGS-Heat,FOOD-PH-STM_HW,Industry,Other Food Processing (Non Dairy/Meat Processing),Boiler,Biogas,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,R_DDW-WH_HWC-SOL00,R_DDW-WH,Residential,Detached Dwellings,Hot Water Cylinder,Solar,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,R_JDW-WH_HWC-SOL00,R_JDW-WH,Residential,Joined Dwellings,Hot Water Cylinder,Solar,Water Heating,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EHYDPUMPSTG_L,ELC,Electricity,Electricity Storage,Large Pumped Storage,Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,OTH-BGS-BGS-Tech,OTH-BGS,Industry,Other (Industry),Other,Biogas,Other,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,OTH-BGS-BGS-Tech15,OTH-BGS,Industry,Other (Industry),Other,Biogas,Other,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ELCREHYDRRFlex00,ELC,Electricity,Hydro,Hydro Run of River (Existing),Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ELCREHYDRRInflex00,ELC,Electricity,Hydro,Hydro Run of River (Existing),Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EHYD-RR-New20,ELC,Electricity,Hydro,Hydro Run of River (New >30MW),Hydro,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ESOLPVBCOM20,ELCDD,Electricity,Solar,Solar (Commercial Rooftop),Solar,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ELCRESOL00,ELCDD,Electricity,Solar,Solar (Existing),Solar,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ESOLPVUTIFIX20,ELC,Electricity,Solar,Solar (Grid-scale Fixed Mount),Solar,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ESOLPVUTITRAC20,ELC,Electricity,Solar,Solar (Grid-scale Tracking Mount),Solar,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EWINDCONS20,ELC,Electricity,Wind,Wind (Consented),Wind,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EWINDDIST20,ELC-MV,Electricity,Wind,Wind (Distributed),Wind,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ELCREWind00,ELC,Electricity,Wind,Wind (Existing),Wind,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,ELCREWindMV00,ELC-MV,Electricity,Wind,Wind (Existing),Wind,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EWINDHIGHCF20,ELC,Electricity,Wind,Wind (High Capacity Factor),Wind,Electricity Production,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,EWINDLOWCF20,ELC,Electricity,Wind,Wind (Low Capacity Factor),Wind,Electricity Production,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Heavy Truck,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Medium Truck,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Van/Ute,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Car/SUV,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Rail,Train,Biodiesel,Freight Rail,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Rail,Train,Biodiesel,Passenger Rail,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Bus,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_CWODDID,TOTCO2,Industry,Construction,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_CWODDID,TOTCO2,Industry,Mining,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,CT_CWODDID,TOTCO2,Transport,Aviation,Plane,Drop-In Jet,Domestic Aviation,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,DARY-PH-STM_HW-GEO-Heat,INDCO2,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,DARY-PH-STM_HW-GEO-Heat15,INDCO2,Industry,Dairy Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,EGEOCONSFLSH20,ELCCO2,Electricity,Geothermal,Geothermal (Consented),Geothermal,Electricity Production,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,EGEOFLSH20,ELCCO2,Electricity,Geothermal,Geothermal (Other),Geothermal,Electricity Production,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,ELCREGEO00,ELCCO2,Electricity,Geothermal,Geothermal (Existing),Geothermal,Electricity Production,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,PLPPPR-PH-STM_HW-GEO-Heat,INDCO2,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,PLPPPR-PH-STM_HW-GEO-Heat15,INDCO2,Industry,Pulp and Paper Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
 VAR_FIn,FTE_TRADSL,BDSL,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Heavy Truck,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_TRADSL,BDSL,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Medium Truck,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_TRADSL,BDSL,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Van/Ute,PJ,Fuel Consumption,Renewables (direct use)
@@ -2654,13 +2275,5 @@ VAR_FIn,FTE-INDDSL_00,DID,Industry,Construction,Internal Combustion Engine,Drop-
 VAR_FIn,FTE-INDDSL_00,DID,Industry,Mining,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_TRAJET,DIJ,Transport,Aviation,Plane,Drop-In Jet,Domestic Aviation,PJ,Fuel Consumption,Renewables (direct use)
 VAR_FIn,FTE_TRAJET,DIJ,Transport,Aviation,Plane,Drop-In Jet,International Aviation,PJ,Fuel Consumption,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Heavy Truck,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Medium Truck,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Van/Ute,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Car/SUV,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Rail,Train,Biodiesel,Freight Rail,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Rail,Train,Biodiesel,Passenger Rail,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_CWODDID,TOTCO2,Industry,Construction,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_CWODDID,TOTCO2,Industry,Mining,Internal Combustion Engine,Drop-In Diesel,"Motive Power, Mobile",kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_CWODDID,TOTCO2,Transport,Aviation,Plane,Drop-In Jet,Domestic Aviation,kt CO2,Emissions,Renewables (direct use)
-VAR_FOut,CT_COILBDS,TOTCO2,Transport,Road Transport,Internal Combustion Engine,Biodiesel,Bus,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,WOOD-PH-STM_HW-GEO-Heat,INDCO2,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)
+VAR_FOut,WOOD-PH-STM_HW-GEO-Heat15,INDCO2,Industry,Wood Product Manufacturing,Heat Exchanger,Geothermal,Process Heat Steam/Hot Water,kt CO2,Emissions,Renewables (direct use)

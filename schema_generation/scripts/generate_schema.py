@@ -15,25 +15,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 from constants import *
 from helpers import *
-from rulesets import RULESETS, MISSING_ROWS
+from rulesets import RULESETS, UPDATE_EMISSION_ATTRIBUTION_RULES, MISSING_ROWS
 
 if __name__ == "__main__":
-    project_base_path = get_project_base_path()
-
-    main_df = read_and_concatenate(INPUT_VD_FILES)
-
-    # Add and subtract columns
-    main_df = add_missing_columns(main_df, OUT_COLS + SUP_COLS)
-    logging.info(
-        "Dropping columns: %s", 
-        [x for x in main_df.columns if x not in OUT_COLS + SUP_COLS]
-    )
-    main_df = main_df[OUT_COLS + SUP_COLS]
-
-    main_df = process_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV, main_df)
-
-    # Subset the rows and drop duplicates
-    main_df = main_df[main_df["Attribute"].isin(ATTRIBUTE_ROWS_TO_KEEP)].drop_duplicates()
+    main_df = process_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV)
 
     # Populate the columns according to the rulesets
     for name, ruleset in RULESETS:
@@ -43,8 +28,12 @@ if __name__ == "__main__":
     logging.info("Adding emission rows for VAR_FOut rows")
     main_df = add_emissions_rows(main_df)
 
-    logging.info("Apply emissions rule again")
-    main_df = apply_rules(main_df, RULESETS[-1][1])
+    logging.info("Applying ruleset: UPDATE_EMISSION_ATTRIBUTION_RULES")
+    main_df = apply_rules(main_df, UPDATE_EMISSION_ATTRIBUTION_RULES)
+
+    logging.info("Adding missing rows")
+    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
+    main_df.Commodity = main_df.Commodity.fillna('-')
 
     schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
     schema = schema.merge(
@@ -52,12 +41,8 @@ if __name__ == "__main__":
         on=["Attribute", "Process", "Commodity"],
         how="left",
     )
-
-    logging.info("Adding missing rows")
-    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
-
-    main_df = main_df[OUT_COLS].fillna('-').drop_duplicates().sort_values(by=OUT_COLS)
-    schema = schema[OUT_COLS].fillna('-').drop_duplicates().sort_values(by=OUT_COLS)
+    main_df = main_df[OUT_COLS].drop_duplicates().dropna().sort_values(by=OUT_COLS)
+    schema = schema[OUT_COLS].drop_duplicates().sort_values(by=OUT_COLS).fillna('-')
 
     try:
         main_df.to_csv(OUTPUT_SCHEMA_FILEPATH, index=False)
@@ -66,6 +51,7 @@ if __name__ == "__main__":
             "The file %s may be currently open in Excel. Did not write to file.",
             OUTPUT_SCHEMA_FILEPATH,
         )
+        exit()
     message, main_df, schema, correct_rows, missing_rows, extra_rows = compare_tables(
         OUTPUT_SCHEMA_FILEPATH, REFERENCE_SCHEMA_FILEPATH
     )
@@ -81,5 +67,6 @@ if __name__ == "__main__":
         print(comparison_df.to_string(index=False))
     else:
         logging.info("Either extra_rows or missing_rows DataFrame is empty.")
+    print(message)
 
     logging.info("The files have been concatenated and saved to %s", OUTPUT_SCHEMA_FILEPATH)
