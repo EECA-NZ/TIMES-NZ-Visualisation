@@ -13,7 +13,7 @@ setwd("C:/Users/cattonw/git/TIMES-NZ-Visualisation/schema_generation/scripts")
 
 # ignore the first 12 rows, raw data doesn't have headers/column names as the first row
 # code was implicitly filtering non-numeric Period values, which are associated with rows representing salvage costs - this is now done explicitly
-coh_raw <- read.csv(file = "../../data_cleaning/kea-v2_0_0.vd",
+coh_raw <- read.csv(file = "../data/input/kea-v2_0_0.vd",
                     skip = 12,
                     header = FALSE, # first row read in is data not column names
                     stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -25,7 +25,7 @@ coh_raw <- read.csv(file = "../../data_cleaning/kea-v2_0_0.vd",
          Commodity != "COseq", 
          Period != "2020")
 
-ind_raw <- read.csv(file = "../../data_cleaning/tui-v2_0_0.vd",
+ind_raw <- read.csv(file = "../data/input/tui-v2_0_0.vd",
                     skip = 12,
                     header = FALSE, # first row read in is data not column names
                     stringsAsFactors = FALSE, # use character variable type instead of factors - easier to join to other table but less computationally efficient
@@ -40,9 +40,6 @@ ind_raw <- read.csv(file = "../../data_cleaning/tui-v2_0_0.vd",
 # Merge the two scenarios
 raw_df <- union_all(coh_raw, ind_raw)
 
-#period_list <- raw_df %>% distinct(Period) %>% filter(between(Period, 2000, 2100))
-
-
 
 # Reading in intro Data --------------------------
 
@@ -54,10 +51,7 @@ intro <- read_delim("../../data_cleaning/intro.csv", delim = ";",  col_types = c
 #The schema is used for two main purposes:
 #   restricting TIMES model output to relevant rows via codes such as "Attribute", "Process"
 #   include 'natural language' translations from TIMES codes
-# schema_all   <- read_xlsx("../../data_cleaning/Schema.xlsx")
 schema_all   <- read_csv("../data/output/output_schema_df_v2_0_0.csv")
-#schema_colors <- read_xlsx("../../data_cleaning/Schema_colors.xlsx")
-#caption_list <- read_xlsx("../../data_cleaning/Caption_Table.xlsx")
 schema_technology   <- read_xlsx("../../data_cleaning/Schema_Technology.xlsx") 
 
 needed_attributes <- c("VAR_Act", "VAR_Cap", "VAR_FIn", "VAR_FOut")
@@ -94,17 +88,10 @@ clean_df <- raw_df %>%
           # Remove the hard coded "N/A" in the data
           filter(!(Technology == "N/A")) %>% 
           # Group by the main variables and sum up
-          group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period, FuelGroup,Technology_Group) %>%
+          group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group) %>%
           # Sum up
           summarise(Value = sum(Value), .groups = "drop") %>% 
           # Removed all Annualised Capital Costs and Technology Capacity
           filter(Parameters != "Annualised Capital Costs", Parameters != "Technology Capacity") %>% 
           # Replace any NAs in the dataset with missing
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
-
-
-
-
-
-# Write the data to a csv file
-write_csv(clean_df, "../data/output/output_combined_df_v2_0_0.csv")

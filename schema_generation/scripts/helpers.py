@@ -8,65 +8,11 @@ import pandas as pd
 
 from constants import *
 
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-def read_vd(filepath):
-    """
-    Reads a VD file, using column names extracted from the file's header with regex, skipping non-CSV formatted header lines.
 
-    :param filepath: Path to the VD file.
-    :param scen_label: Label for the 'scen' column for rows from this file.
-    """
-    dimensions_pattern = re.compile(r"\*\s*Dimensions-")
-
-    # Determine the number of rows to skip and the column names
-    with open(filepath, "r", encoding="utf-8") as file:
-        columns = None
-        skiprows = 0
-        for line in file:
-            if dimensions_pattern.search(line):
-                columns_line = line.split("- ")[1].strip()
-                columns = columns_line.split(";")
-                continue
-            if line.startswith('"'):
-                break
-            skiprows += 1
-
-    # Read the CSV file with the determined column names and skiprows
-    df = pd.read_csv(
-        filepath, skiprows=skiprows, names=columns, header=None, low_memory=False
-    )
-    return df
-
-
-def read_and_concatenate(input_filepaths):
-    """
-    Reads CSV files from the given filepaths, using custom headers extracted from each,
-    labels them accordingly, and concatenates them into a single DataFrame.
-
-    :param input_filepaths_labels: List of tuples (filepath, label) for the CSV files.
-    :return: Concatenated DataFrame.
-    """
-    dfs = [read_vd(filepath) for filepath in input_filepaths]
-    return pd.concat(dfs, ignore_index=True)
-
-
-def add_missing_columns(df, missing_columns):
-    """
-    Adds missing columns to the DataFrame with default values set to NaN.
-
-    :param df: The DataFrame to modify.
-    :param missing_columns: A list of column names that are missing and need to be added.
-    """
-    for column in missing_columns:
-        if column not in df.columns:
-            df[column] = (
-                None  # Adding the column with a default value of None (will become NaN in the DataFrame)
-            )
-    return df
-
-
-def csv_columns_to_ruleset(filepath=None, target_column_map=None, parse_column=None, separator=None, schema=None, rule_type=None):
+def df_to_ruleset(df=None, target_column_map=None, parse_column=None, separator=None, schema=None, rule_type=None):
     """
     Reads a CSV file to create rules for updating or appending to a DataFrame based on
     the contents of a specified column and a mapping of source to target columns. This
@@ -88,9 +34,8 @@ def csv_columns_to_ruleset(filepath=None, target_column_map=None, parse_column=N
              (for matching against DataFrame rows), a rule type (e.g., 'inplace', 'newrow'),
              and a dictionary of attribute updates or values to append.
     """
-    assert(filepath and target_column_map and parse_column and schema and rule_type)
+    assert(df is not None and target_column_map and parse_column and schema and rule_type)
     mapping = {}
-    df = pd.read_csv(filepath)
     for _, row in df.iterrows():
         # Create the key tuple based on the target_column_map
         key_tuple = tuple(row[col] for col in target_column_map.keys())
@@ -189,16 +134,16 @@ def apply_rules(schema, rules):
     """
     sorted_rules = sort_rules_by_specificity(rules)
     new_rows = []
+    rows_to_drop = []
     for condition, rule_type, actions in sorted_rules:
+        query_conditions_parts, local_vars = [], {}
+        for i, (key, value) in enumerate(condition.items()):
+            if pd.notna(value) and value != "":
+                query_placeholder = f"@value_{i}"
+                query_conditions_parts.append(f"`{key}` == {query_placeholder}")
+                local_vars[f"value_{i}"] = value
+        query_conditions = " & ".join(query_conditions_parts)
         if rule_type == "inplace":
-            query_conditions_parts = []
-            local_vars = {}
-            for i, (key, value) in enumerate(condition.items()):
-                if pd.notna(value) and value != "":
-                    query_placeholder = f"@value_{i}"
-                    query_conditions_parts.append(f"`{key}` == {query_placeholder}")
-                    local_vars[f"value_{i}"] = value
-            query_conditions = " & ".join(query_conditions_parts)
             if not query_conditions:
                 continue
             # Filter schema DataFrame based on the query derived from the rule's conditions
@@ -215,6 +160,13 @@ def apply_rules(schema, rules):
                     new_row = row.to_dict()
                     new_row.update(actions)
                     new_rows.append(new_row)
+        elif rule_type == "drop":
+            # Collect indices of rows to drop based on the condition
+            if not query_conditions:
+                continue
+            rows_to_drop.extend(schema.fillna('-').query(query_conditions, local_dict=local_vars).index.tolist())    
+    # Drop rows collected for dropping
+    schema = schema.drop(rows_to_drop).reset_index(drop=True)
     if new_rows:
         new_rows_df = pd.DataFrame(new_rows)
         schema = pd.concat([schema, new_rows_df], ignore_index=True)
@@ -223,53 +175,85 @@ def apply_rules(schema, rules):
 
 def add_emissions_rows(main_df):
     """
-    For every VAR_FOut row in the DataFrame, duplicate it with Unit='kt CO2' and
-    Parameters='Emissions', keeping other values identical.
+    For every VAR_FOut row in the DataFrame where the FuelGroup is 'Fossil Fuels',
+    or the Fuel is 'Geothermal' (TODO - determine condition dynamically from the model),
+    if there is not already a VAR_FOut row for the same Process that has 
+    Unit='kt CO2' and Parameters='Emissions', then duplicate the row with Unit='kt CO2'
+    and Parameters='Emissions', keeping other values identical.
 
     :param main_df: The original DataFrame containing model data.
-    :return: DataFrame with added emissions rows for each VAR_FOut entry.
+    :return: DataFrame with added VAR_FOut emissions rows.
     """
     # Filter to only VAR_FOut rows
     f_out_rows = main_df[main_df['Attribute'] == 'VAR_FOut'].copy()
-
+    # Check if there are any rows with Unit='kt CO2' and Parameters='Emissions'
+    existing_emissions_rows = f_out_rows[
+        (f_out_rows['Unit'] == 'kt CO2') & (f_out_rows['Parameters'] == 'Emissions')
+    ]
+    # Remove any existing rows whose Process already has an emissions row
+    f_out_rows = f_out_rows[
+        ~f_out_rows['Process'].isin(existing_emissions_rows['Process'])
+    ]
+    # Only include rows where the FuelGroup is 'Fossil Fuels' or the Fuel is 'Geothermal'
+    f_out_rows = f_out_rows[
+        (f_out_rows['FuelGroup'].fillna('-').str.contains('Fossil Fuels', flags=re.IGNORECASE)) |
+        (f_out_rows['Fuel'].fillna('-').str.contains('Geothermal', flags=re.IGNORECASE))
+    ]
+    # We only want one row per process, so drop duplicates
+    f_out_rows = f_out_rows.drop_duplicates()
+    print(existing_emissions_rows[existing_emissions_rows.Process=='DARY-PH-STM_HW-GEO-Heat15'])
+    print(f_out_rows[f_out_rows.Process=='DARY-PH-STM_HW-GEO-Heat15'])
     # Update the Unit and Parameters columns for the duplicated rows
     f_out_rows['Unit'] = 'kt CO2'
     f_out_rows['Parameters'] = 'Emissions'
-
     # Append these updated rows to the original DataFrame using concat
     augmented_df = pd.concat([main_df, f_out_rows], ignore_index=True)
-
     return augmented_df
 
 
-def process_commodity_groups(filepath, main_df):
+def process_commodity_groups(filepath):
     """
-    Use the commodity groups file to add rows to the main DataFrame for each process
+    Use the commodity groups file to add rows to the main DataFrame for each process, differentiating between
+    energy inputs, energy outputs, CO2 emissions, and end-service energy demands based on the suffix in the Name column.
 
     :param filepath: Path to the commodity groups file.
     :param main_df: The main DataFrame containing model data.
 
     :return: DataFrame with added rows for each process in the commodity groups file.
     """
+    main_df = pd.DataFrame(columns=OUT_COLS + SUP_COLS)
     commodity_groups_df = pd.read_csv(filepath)
-
-    suffix_in = 'NRGI'
-    suffix_demand_out = 'DEMO'
+    # Define suffixes and their implications
+    suffix_mappings = {
+        'NRGI': {'Attribute': 'VAR_FIn', 'Parameters': None, 'Unit': None},
+        'NRGO': {'Attribute': 'VAR_FOut', 'Parameters': None, 'Unit': None},
+        'ENVO': {'Attribute': 'VAR_FOut', 'Parameters': 'Emissions', 'Unit': 'kt CO2'},
+        'DEMO': {'Attribute': 'VAR_FOut', 'Parameters': 'End Use Demand', 'Unit': None},
+    }
     new_rows = []
-
     for process in commodity_groups_df['Process'].unique():
+        # Always add a VAR_Cap row for each unique process
         new_rows.append({'Attribute': 'VAR_Cap', 'Process': process})
+        # Filter rows related to the current process
         process_rows = commodity_groups_df[commodity_groups_df['Process'] == process]
         for _, row in process_rows.iterrows():
-            if row['Name'].endswith(suffix_in):
-                new_rows.append({'Attribute': 'VAR_FIn', 'Process': process, 'Commodity': row['Member']})
-            elif row['Name'].endswith(suffix_demand_out):
-                new_rows.append({'Attribute': 'VAR_FOut', 'Process': process, 'Commodity': row['Member']})
-                new_rows.append({'Attribute': 'VAR_FOut', 'Process': process, 'Commodity': row['Member'], 'Unit': 'kt CO2', 'Parameters': 'Emissions'})
-
+            for suffix, attrs in suffix_mappings.items():
+                if row['Name'].endswith(suffix):
+                    row_data = {
+                        'Attribute': attrs['Attribute'],
+                        'Process': process,
+                        'Commodity': row['Member']
+                    }
+                    if attrs['Parameters']:
+                        row_data['Parameters'] = attrs['Parameters']
+                    if attrs['Unit']:
+                        row_data['Unit'] = attrs['Unit']
+                    new_rows.append(row_data)
+    # Convert the list of dictionaries into a DataFrame
     new_rows_df = pd.DataFrame(new_rows)
-    augmented_main_df = pd.concat([main_df, new_rows_df], ignore_index=True)
-    return augmented_main_df
+    # Append the new rows to the main DataFrame and reset the index
+    main_df = pd.concat([main_df, new_rows_df], ignore_index=True)
+    return main_df
 
 
 def stringify_and_strip(df):
@@ -397,3 +381,17 @@ def compare_rows_to_df(row_extra, row_missing, columns):
     transposed_df = comparison_df.set_index("Column").T.reset_index()
 
     return transposed_df
+
+def show_subset(df, column_value_dict):
+    """
+    Show a subset of the DataFrame where the specified columns match the specified values.
+
+    :param df: The DataFrame to filter.
+    :param column_value_dict: A dictionary of column names and values to match.
+    :return: The subset of the DataFrame where the specified columns match the specified values.
+    """
+    query_parts = []
+    for column, value in column_value_dict.items():
+        query_parts.append(f"{column} == '{value}'")
+    query = " & ".join(query_parts)
+    return df.query(query)

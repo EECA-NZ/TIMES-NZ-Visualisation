@@ -52,7 +52,10 @@ OUT_COLS = [
     "Parameters",
     "FuelGroup",
 ]
-SUP_COLS = ["Set"]
+SUP_COLS = [
+    "Set",
+    "DisplayCapacity"
+]
 
 # Mapping for sanitizing unit names.
 SANITIZE_UNITS = {
