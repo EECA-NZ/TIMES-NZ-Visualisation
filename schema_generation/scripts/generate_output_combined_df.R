@@ -95,3 +95,6 @@ clean_df <- raw_df %>%
           filter(Parameters != "Annualised Capital Costs", Parameters != "Technology Capacity") %>% 
           # Replace any NAs in the dataset with missing
           mutate(across(where(is.character), ~ifelse(is.na(.), "", .)))
+
+# Write the clean data to a csv file
+write.csv(clean_df, file = "../data/output/output_clean_df_v2_0_0.csv", row.names = FALSE)

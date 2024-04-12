@@ -54,7 +54,8 @@ OUT_COLS = [
 ]
 SUP_COLS = [
     "Set",
-    "DisplayCapacity"
+    "DisplayCapacity",
+    "PV",
 ]
 
 # Mapping for sanitizing unit names.
