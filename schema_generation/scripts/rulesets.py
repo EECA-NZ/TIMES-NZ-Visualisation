@@ -41,15 +41,6 @@ process_set_rules = df_to_ruleset(
     rule_type="inplace",
 )
 
-#commodity_rules = df_to_ruleset(
-#    df=pd.read_csv(ITEMS_LIST_COMMODITY_CSV),
-#    target_column_map={"Name": "Commodity"},
-#    parse_column="Description",
-#    separator="-:-",
-#    schema=["Fuel", "Enduse"], # ["Fuel", "NA3"], # ["Fuel", "Enduse"],
-#    rule_type="inplace",
-#)
-
 commodity_fuel_rules = df_to_ruleset(
     df=pd.read_csv(ITEMS_LIST_COMMODITY_CSV),
     target_column_map={"Name": "Commodity"},
@@ -58,7 +49,6 @@ commodity_fuel_rules = df_to_ruleset(
     schema=["Fuel", ""],
     rule_type="inplace",
 )
-
 
 commodity_enduse_rules = df_to_ruleset(
     df=pd.read_csv(ITEMS_LIST_COMMODITY_CSV),
