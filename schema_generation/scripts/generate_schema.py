@@ -21,8 +21,7 @@ from rulesets import *
 if __name__ == "__main__":
 
     # First approach: VD OUTPUT. This approach will only include technologies selected by TIMES.
-    vd_df = read_and_concatenate(INPUT_VD_FILES).groupby(['Attribute', 'Commodity', 'Process']).sum(['PV']).reset_index()
-    #vd_df = read_and_concatenate(INPUT_VD_FILES)
+    vd_df = read_and_concatenate(INPUT_VD_FILES)
 
     # Add and subtract columns
     vd_df = add_missing_columns(vd_df, OUT_COLS + SUP_COLS)
@@ -38,8 +37,6 @@ if __name__ == "__main__":
     # Second approach: Read the 'Commodity Groups' CSV file. This approach would be preferred if the
     # Commodity Groups export from VEDA were complete. Unfortunately, it doesn't present the emissions
     cg_df = process_map_from_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV)
-    # drop all rows of cg_df to test the impact
-    #cg_df = cg_df.drop(cg_df.index)
 
     # Combine the two DataFrames and drop duplicates
     main_df = pd.concat([vd_df, cg_df]).drop_duplicates()
@@ -49,9 +46,6 @@ if __name__ == "__main__":
         logging.info("Applying ruleset: %s", name)
         main_df = apply_rules(main_df, ruleset)
 
-    # Add missing rows
-    logging.info("Adding missing rows")
-    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
     main_df.Commodity = main_df.Commodity.fillna('-')
 
     schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
@@ -60,7 +54,8 @@ if __name__ == "__main__":
         on=["Attribute", "Process", "Commodity"],
         how="left",
     )
-    main_df.PV.fillna(0, inplace=True)
+    logging.info("Adding missing rows")
+    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
     main_df = main_df[OUT_COLS].drop_duplicates().dropna().sort_values(by=OUT_COLS)
     schema = schema[OUT_COLS].drop_duplicates().sort_values(by=OUT_COLS).fillna('-')
 

@@ -1545,6 +1545,7 @@ VAR_FIn,C_WSR-WH_INSTANT-LPG,COMLPG,Commercial,Warehouses/Supermarkets/Retail,In
 VAR_FIn,C_WSR-WH_INSTANT-NGA,COMNGA,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater,Natural Gas,Water Heating,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,D-H2_ELCNGA,H2C,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,Green Hydrogen,Electricity Production,PJ,Fuel Consumption,Electricity
 VAR_FIn,D-H2_ELCNGA,NGA,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,Natural Gas,Electricity Production,PJ,Fuel Consumption,Fossil Fuels
+VAR_FIn,D-H2_Trailer,H2C,Primary Fuel Supply,Hydrogen,Tube Trailer (NI and SI),Green Hydrogen,Green Hydrogen Fuel,PJ,Fuel Consumption,Electricity
 VAR_FIn,D-H2toNGA_blnd,H2C,Primary Fuel Supply,Hydrogen,Blending Hydrogen with Natural gas (only NI),Green Hydrogen,Electricity Production,PJ,Fuel Consumption,Electricity
 VAR_FIn,D-H2toNGA_blnd,NGA,Primary Fuel Supply,Hydrogen,Blending Hydrogen with Natural gas (only NI),Natural Gas,Electricity Production,PJ,Fuel Consumption,Fossil Fuels
 VAR_FIn,DARY-AIR-ELC-CMPR,INDELC,Industry,Dairy Product Manufacturing,Compressor,Electricity,Compressed Air,PJ,Fuel Consumption,Electricity
@@ -2829,6 +2830,7 @@ VAR_FOut,C_WSR-WH_INSTANT-LPG,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail
 VAR_FOut,C_WSR-WH_INSTANT-NGA,COMCO2,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater,Natural Gas,Water Heating,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,C_WSR-WH_INSTANT-NGA,C_WSR-WH,Commercial,Warehouses/Supermarkets/Retail,Instantaneous Water Heater,Natural Gas,Water Heating,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,D-H2_ELCNGA,ELCNGA,Primary Fuel Supply,Hydrogen,Natural gas T&D to power & heat sectors,Natural Gas,Electricity Production,PJ,End Use Demand,Fossil Fuels
+VAR_FOut,D-H2_Trailer,H2R,Primary Fuel Supply,Hydrogen,Tube Trailer (NI and SI),Green Hydrogen,Green Hydrogen Fuel,PJ,End Use Demand,Electricity
 VAR_FOut,D-H2toNGA_blnd,ELCNGA,Primary Fuel Supply,Hydrogen,Blending Hydrogen with Natural gas (only NI),Natural Gas,Electricity Production,PJ,End Use Demand,Fossil Fuels
 VAR_FOut,DARY-AIR-ELC-CMPR,DARY-AIR,Industry,Dairy Product Manufacturing,Compressor,Electricity,Compressed Air,PJ,End Use Demand,Electricity
 VAR_FOut,DARY-AIR-ELC-CMPR15,DARY-AIR,Industry,Dairy Product Manufacturing,Compressor,Electricity,Compressed Air,PJ,End Use Demand,Electricity
@@ -3410,6 +3412,7 @@ VAR_FOut,R_JDW-WH_HWC-ELC00,R_JDW-WH,Residential,Joined Dwellings,Hot Water Cyli
 VAR_FOut,R_JDW-WH_HWC-SOL,R_JDW-WH,Residential,Joined Dwellings,Hot Water Cylinder,Solar,Water Heating,PJ,End Use Demand,Renewables (direct use)
 VAR_FOut,R_JDW-WH_HWC-SOL00,R_JDW-WH,Residential,Joined Dwellings,Hot Water Cylinder,Solar,Water Heating,PJ,End Use Demand,Renewables (direct use)
 VAR_FOut,SUP_ELC-PEMC-H2,H2C,Green Hydrogen,Green Hydrogen Production,PEM Electrolyser,Green Hydrogen,Green Hydrogen Fuel,PJ,End Use Demand,Electricity
+VAR_FOut,SUP_ELC-PEMD-H2,H2D,Primary Fuel Supply,Hydrogen,H2 production from PEM electrolysis - decentralised,Green Hydrogen,Green Hydrogen Fuel,PJ,End Use Demand,Electricity
 VAR_FOut,T_C_CBEVELC,T_C_Car,Transport,Road Transport,Battery Electric Vehicle,Electricity,Van/Ute,Billion Vehicle Kilometres,Distance Travelled,Electricity
 VAR_FOut,T_C_CBEVNEW15,T_C_Car,Transport,Road Transport,Battery Electric Vehicle,Electricity,Van/Ute,Billion Vehicle Kilometres,Distance Travelled,Electricity
 VAR_FOut,T_C_CHYBDSL,TRACO2,Transport,Road Transport,Hybrid Vehicle,Diesel,Van/Ute,kt CO2,Emissions,Fossil Fuels
@@ -3486,10 +3489,8 @@ VAR_FOut,T_P_CICEPET15,TRACO2,Transport,Road Transport,Internal Combustion Engin
 VAR_FOut,T_P_CICEPET15,T_P_Car,Transport,Road Transport,Internal Combustion Engine,Petrol,Car/SUV,Billion Vehicle Kilometres,Distance Travelled,Fossil Fuels
 VAR_FOut,T_P_CPHEVDSL,TRACO2,Transport,Road Transport,Plug-In Hybrid Vehicle,Diesel,Car/SUV,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,T_P_CPHEVDSL,T_P_Car,Transport,Road Transport,Plug-In Hybrid Vehicle,Diesel,Car/SUV,Billion Vehicle Kilometres,Distance Travelled,Fossil Fuels
-VAR_FOut,T_P_CPHEVPET,TRACO2,Transport,Road Transport,Plug-In Hybrid Vehicle,Electricity,Car/SUV,kt CO2,Emissions,Electricity
 VAR_FOut,T_P_CPHEVPET,TRACO2,Transport,Road Transport,Plug-In Hybrid Vehicle,Petrol,Car/SUV,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,T_P_CPHEVPET,T_P_Car,Transport,Road Transport,Plug-In Hybrid Vehicle,Electricity,Car/SUV,Billion Vehicle Kilometres,Distance Travelled,Electricity
-VAR_FOut,T_P_CPHEVPET15,TRACO2,Transport,Road Transport,Plug-In Hybrid Vehicle,Electricity,Car/SUV,kt CO2,Emissions,Electricity
 VAR_FOut,T_P_CPHEVPET15,TRACO2,Transport,Road Transport,Plug-In Hybrid Vehicle,Petrol,Car/SUV,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,T_P_CPHEVPET15,T_P_Car,Transport,Road Transport,Plug-In Hybrid Vehicle,Electricity,Car/SUV,Billion Vehicle Kilometres,Distance Travelled,Electricity
 VAR_FOut,T_P_MICEPET15,TRACO2,Transport,Road Transport,Internal Combustion Engine,Petrol,Motorcycles,kt CO2,Emissions,Fossil Fuels
@@ -3498,7 +3499,6 @@ VAR_FOut,T_P_McyBEVELC,T_P_Mcy,Transport,Road Transport,Battery Electric Vehicle
 VAR_FOut,T_P_McyICEPET,TRACO2,Transport,Road Transport,Internal Combustion Engine,Petrol,Motorcycles,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,T_P_McyICEPET,T_P_Mcy,Transport,Road Transport,Internal Combustion Engine,Petrol,Motorcycles,Billion Vehicle Kilometres,Distance Travelled,Fossil Fuels
 VAR_FOut,T_P_Rail15,TRACO2,Transport,Rail,Train,Diesel,Passenger Rail,kt CO2,Emissions,Fossil Fuels
-VAR_FOut,T_P_Rail15,TRACO2,Transport,Rail,Train,Electricity,Passenger Rail,kt CO2,Emissions,Electricity
 VAR_FOut,T_P_Rail15,T_P_Rail,Transport,Rail,Train,Electricity,Passenger Rail,PJ,End Use Demand,Electricity
 VAR_FOut,T_R_Rail15,TRACO2,Transport,Rail,Train,Diesel,Freight Rail,kt CO2,Emissions,Fossil Fuels
 VAR_FOut,T_R_Rail15,T_F_Rail,Transport,Rail,Train,Diesel,Freight Rail,PJ,End Use Demand,Fossil Fuels

@@ -64,7 +64,8 @@ process_rules = df_to_ruleset(
     target_column_map={"Name": "Process"},
     parse_column="Description",
     separator="-:-",
-    schema=["Sector", "Subsector", "Enduse", "Technology", "Fuel", "ParametersOverride", "DisplayCapacity"],
+    schema=["Sector", "Subsector", "", "Technology", "Fuel", "", ""],
+    #schema=["Sector", "Subsector", "Enduse", "Technology", "Fuel", "ParametersOverride", "DisplayCapacity"],
     rule_type="inplace",
 )
 
@@ -196,7 +197,7 @@ RULESETS = [
 MISSING_ROWS = pd.DataFrame([
     {'Attribute':  'VAR_FIn', 'Process': 'R_DDW-SH_MSHP-ELC',           'Commodity':   'RESELC', 'Sector': 'Residential', 'Subsector': 'Detached Dwellings',       'Technology':    'Heat Pump (Multi-Split)', 'Fuel':    'Electricity', 'Enduse':          'Space Cooling', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Electricity'},
     {'Attribute':  'VAR_FIn', 'Process':     'FTE-INDDSL_00',           'Commodity':      'DID', 'Sector':    'Industry', 'Subsector':             'Mining',       'Technology': 'Internal Combustion Engine', 'Fuel': 'Drop-In Diesel', 'Enduse':   'Motive Power, Mobile', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Renewables (direct use)'},
-    {'Attribute':  'VAR_FIn', 'Process':     'FTE-INDDSL_00',           'Commodity':      'DID', 'Sector':    'Industry', 'Subsector':             'Construction', 'Technology': 'Internal Combustion Engine', 'Fuel': 'Drop-In Diesel', 'Enduse':   'Motive Power, Mobile', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Renewables (direct use)'},
+    {'Attribute':  'VAR_FIn', 'Process':     'FTE-INDDSL_00',           'Commodity':      'DID', 'Sector':    'Industry', 'Subsector':       'Construction',       'Technology': 'Internal Combustion Engine', 'Fuel': 'Drop-In Diesel', 'Enduse':   'Motive Power, Mobile', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Renewables (direct use)'},
     {'Attribute':  'VAR_FIn', 'Process':        'FTE_TRADSL',           'Commodity':     'BDSL', 'Sector':   'Transport', 'Subsector':               'Rail',       'Technology':                      'Train', 'Fuel':      'Biodiesel', 'Enduse':           'Freight Rail', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Renewables (direct use)'},
     {'Attribute':  'VAR_FIn', 'Process':        'FTE_TRADSL',           'Commodity':     'BDSL', 'Sector':   'Transport', 'Subsector':               'Rail',       'Technology':                      'Train', 'Fuel':      'Biodiesel', 'Enduse':         'Passenger Rail', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Renewables (direct use)'},
     {'Attribute':  'VAR_FIn', 'Process':        'FTE_TRADSL',           'Commodity':     'BDSL', 'Sector':   'Transport', 'Subsector':     'Road Transport',       'Technology': 'Internal Combustion Engine', 'Fuel':      'Biodiesel', 'Enduse':                    'Bus', 'Unit':     'PJ', 'Parameters': 'Fuel Consumption', 'FuelGroup': 'Renewables (direct use)'},
@@ -216,5 +217,5 @@ MISSING_ROWS = pd.DataFrame([
     {'Attribute': 'VAR_FOut', 'Process':        'CT_CWODDID',           'Commodity':   'TOTCO2', 'Sector':    'Industry', 'Subsector':       'Construction',       'Technology': 'Internal Combustion Engine', 'Fuel': 'Drop-In Diesel', 'Enduse':   'Motive Power, Mobile', 'Unit': 'kt CO2', 'Parameters':        'Emissions', 'FuelGroup': 'Renewables (direct use)'},
     {'Attribute': 'VAR_FOut', 'Process':        'CT_CWODDID',           'Commodity':   'TOTCO2', 'Sector':    'Industry', 'Subsector':             'Mining',       'Technology': 'Internal Combustion Engine', 'Fuel': 'Drop-In Diesel', 'Enduse':   'Motive Power, Mobile', 'Unit': 'kt CO2', 'Parameters':        'Emissions', 'FuelGroup': 'Renewables (direct use)'},
     {'Attribute': 'VAR_FOut', 'Process':        'CT_CWODDID',           'Commodity':   'TOTCO2', 'Sector':   'Transport', 'Subsector':           'Aviation',       'Technology':                      'Plane', 'Fuel':    'Drop-In Jet', 'Enduse':      'Domestic Aviation', 'Unit': 'kt CO2', 'Parameters':        'Emissions', 'FuelGroup': 'Renewables (direct use)'},
-    {'Attribute': 'VAR_FOut', 'Process':        'T_F_ISHIPP15',         'Commodity':   'TRACO2', 'Sector':   'Transport', 'Subsector':           'Shipping',       'Technology': 'Ship',                       'Fuel':       'Fuel Oil', 'Enduse': 'International Shipping', 'Unit': 'kt CO2', 'Parameters':        'Emissions', 'FuelGroup': 'Fossil Fuels'},
+    {'Attribute': 'VAR_FOut', 'Process':        'T_F_ISHIPP15',         'Commodity':   'TRACO2', 'Sector':   'Transport', 'Subsector':           'Shipping',       'Technology':                       'Ship', 'Fuel':       'Fuel Oil', 'Enduse': 'International Shipping', 'Unit': 'kt CO2', 'Parameters':        'Emissions', 'FuelGroup': 'Fossil Fuels'},
 ])
