@@ -900,7 +900,10 @@ options(digits=10)
 sorted_output_df <- combined_df %>%
   arrange(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group)
 
-# Write the clean data to a csv file
+# Format the 'Value' column to 10 decimal places
+sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
+
+# Write the clean data to a csv file with specified formatting
 write.table(sorted_output_df,
             file = "../data/output/output_combined_df_v2_0_0.csv",
             sep = ",",
