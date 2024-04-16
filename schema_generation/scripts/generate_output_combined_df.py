@@ -15,12 +15,10 @@ from helpers import read_vd, apply_rules
 #### CONSTANTS
 
 fix_multiple_fin = True
-
 fix_multiple_fout = True
-
 needed_attributes = ['VAR_Cap', 'VAR_FIn', 'VAR_FOut']
-
 non_emission_fuel = ['Electricity', 'Wood', 'Hydrogen', 'Hydro', 'Wind', 'Solar', 'Biogas']
+
 
 # List of file paths for input files
 scenario_input_files = {
@@ -29,9 +27,9 @@ scenario_input_files = {
 }
 
 FUEL_RULES = [
-    ({"Commodity": "BDSL", "Sector": "Transport"}, "inplace", {"Fuel": "Biodiesel"}),
-    ({"Commodity": "BDSL", "Sector": "Industry"}, "inplace", {"Fuel": "Drop-In Diesel"}),
-    ({"Commodity": "DIJ"},  "inplace", {"Fuel": "Drop-In Jet"})
+    ({"Commodity": "BDSL", "Sector": "Transport"}, "inplace", {"Fuel": "Biodiesel", "FuelGroup": "Renewables (direct use)"}),
+    ({"Commodity": "BDSL", "Sector": "Industry"}, "inplace", {"Fuel": "Drop-In Diesel", "FuelGroup": "Renewables (direct use)"}),
+    ({"Commodity": "DIJ"},  "inplace", {"Fuel": "Drop-In Jet", "FuelGroup": "Renewables (direct use)"})
 ]
 
 #### FUNCTIONS
@@ -42,6 +40,21 @@ def save(df, path):
     _df['Value'] = _df['Value'].astype(float).round(10)
     _df['Value'] = _df['Value'].apply(lambda x: f"{x:.10f}")
     _df.to_csv(path, index=False, quoting=csv.QUOTE_ALL)
+
+# Function to find missing periods and create the necessary rows
+def add_missing_periods(group):
+    existing_periods = group['Period'].unique()
+    missing_periods = np.setdiff1d(all_periods, existing_periods)
+    if missing_periods.size > 0:
+        # Create new rows for missing periods
+        new_rows = pd.DataFrame({
+            'Period': missing_periods,
+            **{col: group.iloc[0][col] for col in group.columns if col != 'Period'}
+        })
+        # Set 'Value' to 0 for new rows, assuming 'Value' needs to be filled
+        new_rows['Value'] = 0
+        return pd.concat([group, new_rows], ignore_index=True)
+    return group
 
 
 #### MAIN
@@ -100,10 +113,9 @@ clean_df.loc[clean_df['Parameters'] == 'Annualised Capital Costs', 'Unit'] = 'Bi
 clean_df = clean_df[(clean_df['Parameters'] != 'Annualised Capital Costs') & (clean_df['Parameters'] != 'Technology Capacity')]
 
 group_columns = ['Scenario', 'Attribute', 'Process', 'Commodity', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
-#group_columns = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
 clean_df = clean_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
-
 save(clean_df, "../data/output/output_clean_df_v2_0_0.csv")
+
 
 # Find processes with multiple VAR_FOut rows (excluding emissions commodities) and split the VAR_FIn row across
 # each of the end-uses obtained from the VAR_FOut rows, based on the ratio of VAR_FOut values
@@ -134,8 +146,8 @@ if fix_multiple_fout:
             new_fin_rows['Enduse'] = fout_rows['Enduse'].values
             
             # Replace the original VAR_FIn row with the new rows in the DataFrame
-            clean_df = clean_df.drop(fin_row.index)  # Remove original VAR_FIn row
-            clean_df = pd.concat([clean_df, new_fin_rows], ignore_index=True)
+            combined_df = clean_df.drop(fin_row.index)  # Remove original VAR_FIn row
+            combined_df = pd.concat([combined_df, new_fin_rows], ignore_index=True)
 
 
 if fix_multiple_fin:
@@ -163,10 +175,10 @@ if fix_multiple_fin:
     new_rows_df = pd.DataFrame()
     drop_indices = []  # Collect indices to drop after all operations
     for (scenario, commodity, period), group in distribution_processes.groupby(['Scenario', 'CommodityOut', 'Period']):
-        matching_rows = clean_df[(clean_df['Scenario'] == scenario) &
-                                (clean_df['Commodity'] == commodity) &
-                                (clean_df['Period'] == period) &
-                                (clean_df['Attribute'] == 'VAR_FIn')]
+        matching_rows = combined_df[(combined_df['Scenario'] == scenario) &
+                                (combined_df['Commodity'] == commodity) &
+                                (combined_df['Period'] == period) &
+                                (combined_df['Attribute'] == 'VAR_FIn')]
         if matching_rows.empty:
             continue  # Skip if no matching rows are found
         for _, dist_row in group.iterrows():
@@ -181,13 +193,13 @@ if fix_multiple_fin:
                 drop_indices.append(index)  # Collect index to drop later
     new_rows_df = apply_rules(new_rows_df, FUEL_RULES)
     # Append new rows to the main DataFrame
-    clean_df = pd.concat([clean_df, new_rows_df], ignore_index=True)
+    combined_df = pd.concat([combined_df, new_rows_df], ignore_index=True)
     # Drop rows in a single operation to avoid KeyError
-    clean_df = clean_df.drop(drop_indices, errors='ignore').reset_index(drop=True)
-    print(f"Number of rows after processing: {len(clean_df)}")
+    combined_df = combined_df.drop(drop_indices, errors='ignore').reset_index(drop=True)
+    print(f"Number of rows after processing: {len(combined_df)}")
 
 # Assuming your clean_df should now contain the updated information
-print(clean_df)
+print(combined_df)
 
 # FF 19652
 # TF 19670
@@ -196,28 +208,12 @@ print(clean_df)
 # Write the clean data to a CSV file
 group_columns = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
 
-output_df = clean_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
+output_df = combined_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
 
-all_periods = np.sort(clean_df['Period'].unique())
+all_periods = np.sort(combined_df['Period'].unique())
 
-# Function to find missing periods and create the necessary rows
-def add_missing_periods(group):
-    existing_periods = group['Period'].unique()
-    missing_periods = np.setdiff1d(all_periods, existing_periods)
-    if missing_periods.size > 0:
-        # Create new rows for missing periods
-        new_rows = pd.DataFrame({
-            'Period': missing_periods,
-            **{col: group.iloc[0][col] for col in group.columns if col != 'Period'}
-        })
-        # Set 'Value' to 0 for new rows, assuming 'Value' needs to be filled
-        new_rows['Value'] = 0
-        return pd.concat([group, new_rows], ignore_index=True)
-    return group
-
-# Apply the function to each group
 categories = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'FuelGroup', 'Technology_Group']
-complete_df = clean_df.groupby(categories).apply(add_missing_periods).reset_index(drop=True)
+complete_df = combined_df.groupby(categories).apply(add_missing_periods).reset_index(drop=True)
 complete_df = complete_df.sort_values(by=['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group'])
 
 group_columns = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
@@ -228,6 +224,6 @@ print(complete_df)
 
 
 # Hack in to match R output
-complete_df.replace('Number of Vehicles (Thousands)', '000 Vehicles', inplace=True)
+#complete_df.replace('Number of Vehicles (Thousands)', '000 Vehicles', inplace=True)
 
 save(complete_df, '../data/output/output_combined_df_v2_0_0.csv')
