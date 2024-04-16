@@ -238,7 +238,9 @@ print(complete_df)
 complete_df['Period'] = complete_df['Period'].astype(int)
 complete_df['Value'] = complete_df['Value'].astype('float').round(10)
 pd.options.display.float_format = '{:.10f}'.format
+pd.set_option('display.float_format', lambda x: '%.10f' % x)
 
 complete_df.to_csv("../data/output/output_combined_df_v2_0_0.csv", 
                    index=False, 
-                   quoting=csv.QUOTE_ALL)
+                   quoting=csv.QUOTE_ALL,
+                   float_format='%.10f')

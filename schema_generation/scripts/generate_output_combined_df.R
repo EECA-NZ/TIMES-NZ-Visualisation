@@ -894,16 +894,13 @@ for (subsector in subsectors) {
 combined_df[is.na(combined_df)] <- 0
 
 # Set the precision for printed output of floating numbers
-options(digits=10)
+options(scipen=999, digits=10)  # Increase scipen to avoid scientific notation
 
 # Sort the DataFrame
 sorted_output_df <- combined_df %>%
   arrange(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group)
 
 # Format the 'Value' column to 10 decimal places
-sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
-sorted_output_df$Value <- gsub("0+$", "", sorted_output_df$Value) # Removes trailing zeros
-sorted_output_df$Value <- gsub("\\.$", ".0", sorted_output_df$Value)
 sorted_output_df <- sorted_output_df %>%
        mutate(Period = as.character(Period))
 
