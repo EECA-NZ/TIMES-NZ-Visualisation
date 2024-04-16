@@ -901,6 +901,7 @@ sorted_output_df <- combined_df %>%
   arrange(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group)
 
 # Format the 'Value' column to 10 decimal places
+sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
 sorted_output_df <- sorted_output_df %>%
        mutate(Period = as.character(Period))
 
