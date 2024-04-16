@@ -902,6 +902,8 @@ sorted_output_df <- combined_df %>%
 
 # Format the 'Value' column to 10 decimal places
 sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
+sorted_output_df$Value <- gsub("0+$", "", sorted_output_df$Value) # Removes trailing zeros
+sorted_output_df$Value <- gsub("\\.$", ".0", sorted_output_df$Value)
 
 # Write the clean data to a csv file with specified formatting
 write.table(sorted_output_df,
