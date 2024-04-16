@@ -905,7 +905,7 @@ sorted_output_df$Period <- as.character(sorted_output_df$Period)
 
 # Write the clean data to a csv file
 write.table(sorted_output_df,
-            file = "../data/output/output_combined_df_v2_0_0_R.csv",
+            file = "../data/output/output_combined_df_v2_0_0.csv",
             sep = ",",
             row.names = FALSE,
             col.names = TRUE,
