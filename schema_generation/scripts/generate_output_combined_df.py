@@ -37,10 +37,11 @@ FUEL_RULES = [
 #### FUNCTIONS
 
 def save(df, path):
-    df['Period'] = df['Period'].astype(int)
-    df['Value'] = df['Value'].astype(float).round(10)
-    df['Value'] = df['Value'].apply(lambda x: f"{x:.10f}")
-    df.to_csv(path, index=False, quoting=csv.QUOTE_ALL)
+    _df = df.copy()
+    _df['Period'] = _df['Period'].astype(int)
+    _df['Value'] = _df['Value'].astype(float).round(10)
+    _df['Value'] = _df['Value'].apply(lambda x: f"{x:.10f}")
+    _df.to_csv(path, index=False, quoting=csv.QUOTE_ALL)
 
 
 #### MAIN
@@ -102,10 +103,10 @@ group_columns = ['Scenario', 'Attribute', 'Process', 'Commodity', 'Sector', 'Sub
 #group_columns = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
 clean_df = clean_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
 
+save(clean_df, "../data/output/output_clean_df_v2_0_0.csv")
+
 # Find processes with multiple VAR_FOut rows (excluding emissions commodities) and split the VAR_FIn row across
 # each of the end-uses obtained from the VAR_FOut rows, based on the ratio of VAR_FOut values
-
-
 if fix_multiple_fout:
 
     filtered_df = clean_df[(clean_df['Attribute'] == 'VAR_FOut') & (~clean_df['Commodity'].str.contains('CO2'))]
