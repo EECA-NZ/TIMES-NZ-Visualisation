@@ -241,4 +241,4 @@ pd.options.display.float_format = '{:.10f}'.format
 
 complete_df.to_csv("../data/output/output_combined_df_v2_0_0.csv", 
                    index=False, 
-                   quoting=csv.QUOTE_NONNUMERIC)
+                   quoting=csv.QUOTE_ALL)

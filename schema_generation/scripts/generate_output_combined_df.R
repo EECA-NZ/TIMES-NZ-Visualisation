@@ -904,6 +904,8 @@ sorted_output_df <- combined_df %>%
 sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
 sorted_output_df$Value <- gsub("0+$", "", sorted_output_df$Value) # Removes trailing zeros
 sorted_output_df$Value <- gsub("\\.$", ".0", sorted_output_df$Value)
+sorted_output_df <- sorted_output_df %>%
+       mutate(Period = as.character(Period))
 
 # Write the clean data to a csv file with specified formatting
 write.table(sorted_output_df,
