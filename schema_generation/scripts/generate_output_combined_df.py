@@ -36,6 +36,12 @@ FUEL_RULES = [
 
 #### FUNCTIONS
 
+def save(df, path):
+    df['Period'] = df['Period'].astype(int)
+    df['Value'] = df['Value'].astype(float).round(10)
+    df['Value'] = df['Value'].apply(lambda x: f"{x:.10f}")
+    df.to_csv(path, index=False, quoting=csv.QUOTE_ALL)
+
 
 #### MAIN
 
@@ -219,10 +225,8 @@ complete_df = complete_df.groupby(group_columns).agg(Value=('Value', 'sum')).res
 # Check the expanded DataFrame
 print(complete_df)
 
-complete_df['Period'] = complete_df['Period'].astype(int)
-complete_df['Value'] = complete_df['Value'].astype(float).round(10)
-complete_df['Value'] = complete_df['Value'].apply(lambda x: f"{x:.10f}")
 
-complete_df.to_csv("../data/output/output_combined_df_v2_0_0.csv",
-                   index=False,
-                   quoting=csv.QUOTE_ALL)
+# Hack in to match R output
+complete_df.replace('Number of Vehicles (Thousands)', '000 Vehicles', inplace=True)
+
+save(complete_df, '../data/output/output_combined_df_v2_0_0.csv')
