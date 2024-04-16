@@ -236,10 +236,10 @@ complete_df = complete_df.groupby(group_columns).agg(Value=('Value', 'sum')).res
 print(complete_df)
 
 complete_df['Period'] = complete_df['Period'].astype(int)
-complete_df['Value'] = clean_df['Value'].astype('float').round(10)
+complete_df['Value'] = complete_df['Value'].astype('float').round(10)
 pd.options.display.float_format = '{:.10f}'.format
 
-complete_df.to_csv("../data/output/output_complete_df_v2_0_0_py.csv", 
+complete_df.to_csv("../data/output/output_combined_df_v2_0_0.csv", 
                    index=False, 
                    quoting=csv.QUOTE_NONE, 
                    escapechar='\\')
