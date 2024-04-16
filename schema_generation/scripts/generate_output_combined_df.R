@@ -5,7 +5,7 @@ library(readxl) # read excel files
 library(magrittr) #allows piping (more available options than just those in dplyr/tidyr)
 library(tidyverse) # data manipulation, gather and spread commands
 # library(writexl) # for writing excel 
-options(scipen=999, digits=10) # eliminates scientific notation
+options(scipen=999, digits=6) # eliminates scientific notation
 
 conflicts_prefer(dplyr::filter)
 
@@ -102,7 +102,7 @@ clean_df[is.na(clean_df)] <- 0
 # Sort the DataFrame
 clean_df <- clean_df %>%
   arrange(scen, Attribute, Process, Commodity, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group)
-clean_df$Value <- sprintf("%.10f", as.numeric(clean_df$Value))
+clean_df$Value <- sprintf("%.6f", as.numeric(clean_df$Value))
 clean_df$Period <- as.character(clean_df$Period)
 # Write the clean data to a csv file
 write.table(clean_df,
@@ -947,7 +947,7 @@ combined_df[is.na(combined_df)] <- 0
 sorted_output_df <- combined_df %>%
   arrange(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group)
 
-sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
+sorted_output_df$Value <- sprintf("%.6f", as.numeric(sorted_output_df$Value))
 sorted_output_df$Period <- as.character(sorted_output_df$Period)
 
 # Write the clean data to a csv file

@@ -37,8 +37,8 @@ FUEL_RULES = [
 def save(df, path):
     _df = df.copy()
     _df['Period'] = _df['Period'].astype(int)
-    _df['Value'] = _df['Value'].astype(float).round(10)
-    _df['Value'] = _df['Value'].apply(lambda x: f"{x:.10f}")
+    #_df['Value'] = _df['Value'].astype(float).round(10)
+    _df['Value'] = _df['Value'].apply(lambda x: f"{x:.6f}")
     _df.to_csv(path, index=False, quoting=csv.QUOTE_ALL)
 
 # Function to find missing periods and create the necessary rows
@@ -117,11 +117,13 @@ clean_df = clean_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_ind
 save(clean_df, "../data/output/output_clean_df_v2_0_0.csv")
 
 
+combined_df = clean_df.copy()
+
 # Find processes with multiple VAR_FOut rows (excluding emissions commodities) and split the VAR_FIn row across
 # each of the end-uses obtained from the VAR_FOut rows, based on the ratio of VAR_FOut values
 if fix_multiple_fout:
 
-    filtered_df = clean_df[(clean_df['Attribute'] == 'VAR_FOut') & (~clean_df['Commodity'].str.contains('CO2'))]
+    filtered_df = combined_df[(combined_df['Attribute'] == 'VAR_FOut') & (~combined_df['Commodity'].str.contains('CO2'))]
     multi_fout = filtered_df.groupby(['Scenario', 'Process', 'Period']).filter(lambda x: len(x) > 1)
     unique_scenario_process_periods = multi_fout[['Scenario', 'Process', 'Period']].drop_duplicates()
 
@@ -131,7 +133,7 @@ if fix_multiple_fout:
         period = row['Period']
         
         # Filter relevant rows for the current process and period
-        relevant_rows = clean_df[(clean_df['Scenario'] == scen) & (clean_df['Process'] == process) & (clean_df['Period'] == period)]
+        relevant_rows = combined_df[(combined_df['Scenario'] == scen) & (combined_df['Process'] == process) & (combined_df['Period'] == period)]
         fin_row = relevant_rows[relevant_rows['Attribute'] == 'VAR_FIn']
         assert(len(fin_row) == 1)  # There should only be one VAR_FIn row - currently not handling multiple VAR_FIn rows
         fout_rows = relevant_rows[relevant_rows['Attribute'] == 'VAR_FOut']
@@ -146,14 +148,13 @@ if fix_multiple_fout:
             new_fin_rows['Enduse'] = fout_rows['Enduse'].values
             
             # Replace the original VAR_FIn row with the new rows in the DataFrame
-            combined_df = clean_df.drop(fin_row.index)  # Remove original VAR_FIn row
+            combined_df = combined_df.drop(fin_row.index)  # Remove original VAR_FIn row
             combined_df = pd.concat([combined_df, new_fin_rows], ignore_index=True)
 
 
 if fix_multiple_fin:
 
     distribution_process_inputs = raw_df[(raw_df['Process'].str.startswith('FTE_')) & (raw_df['Attribute'] == 'VAR_FIn')]
-    print(distribution_process_inputs)
     input_commodity_counts = distribution_process_inputs.groupby(['Process', 'Scenario', 'Period']).size()
     multiple_input_commodity_processes = input_commodity_counts[input_commodity_counts > 1]
     multiple_input_commodity_processes_list = multiple_input_commodity_processes.index.tolist()
@@ -198,7 +199,6 @@ if fix_multiple_fin:
     combined_df = combined_df.drop(drop_indices, errors='ignore').reset_index(drop=True)
     print(f"Number of rows after processing: {len(combined_df)}")
 
-# Assuming your clean_df should now contain the updated information
 print(combined_df)
 
 # FF 19652
@@ -214,16 +214,19 @@ all_periods = np.sort(combined_df['Period'].unique())
 
 categories = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'FuelGroup', 'Technology_Group']
 complete_df = combined_df.groupby(categories).apply(add_missing_periods).reset_index(drop=True)
-complete_df = complete_df.sort_values(by=['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group'])
 
 group_columns = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
 complete_df = complete_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
 
-# Check the expanded DataFrame
-print(complete_df)
-
-
 # Hack in to match R output
 #complete_df.replace('Number of Vehicles (Thousands)', '000 Vehicles', inplace=True)
+
+THOUSAND_VEHICLE_RULES = [
+    ({"Sector": "Transport", "Subsector": "Road Transport",# "Technology": "Plug-In Hybrid Vehicle",
+      "Unit": "000 Vehicles"}, "inplace", {"Unit": "Number of Vehicles (Thousands)"}),
+]
+complete_df = apply_rules(complete_df, THOUSAND_VEHICLE_RULES)
+
+complete_df = complete_df.sort_values(by=['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group'])
 
 save(complete_df, '../data/output/output_combined_df_v2_0_0.csv')
