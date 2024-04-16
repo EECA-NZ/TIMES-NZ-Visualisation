@@ -911,4 +911,4 @@ write.table(sorted_output_df,
             sep = ",",
             row.names = FALSE,
             col.names = TRUE,
-            quote = FALSE)
+            quote = TRUE)
