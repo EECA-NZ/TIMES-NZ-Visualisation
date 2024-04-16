@@ -48,6 +48,12 @@ if __name__ == "__main__":
 
     main_df.Commodity = main_df.Commodity.fillna('-')
 
+    # Drop emissions rows with non-emissions commodities
+    indexes_to_drop = main_df[(main_df['Parameters'] == 'Emissions') & (~main_df['Commodity'].isin(
+        ['INDCO2', 'COMCO2', 'AGRCO2', 'RESCO2', 'ELCCO2', 'TRACO2', 'TOTCO2']))
+        ].index
+    main_df.drop(indexes_to_drop, inplace=True)
+
     schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
     schema = schema.merge(
         main_df[["Attribute", "Process", "Commodity", "Set"]],
