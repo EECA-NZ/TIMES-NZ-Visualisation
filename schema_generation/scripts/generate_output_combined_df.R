@@ -900,14 +900,12 @@ options(scipen=999, digits=10)  # Increase scipen to avoid scientific notation
 sorted_output_df <- combined_df %>%
   arrange(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, Period, FuelGroup, Technology_Group)
 
-# Format the 'Value' column to 10 decimal places
 sorted_output_df$Value <- sprintf("%.10f", as.numeric(sorted_output_df$Value))
-sorted_output_df <- sorted_output_df %>%
-       mutate(Period = as.character(Period))
+sorted_output_df$Period <- as.character(sorted_output_df$Period)
 
-# Write the clean data to a csv file with specified formatting
+# Write the clean data to a csv file
 write.table(sorted_output_df,
-            file = "../data/output/output_combined_df_v2_0_0.csv",
+            file = "../data/output/output_combined_df_v2_0_0_R.csv",
             sep = ",",
             row.names = FALSE,
             col.names = TRUE,

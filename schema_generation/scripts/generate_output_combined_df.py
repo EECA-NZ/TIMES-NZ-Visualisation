@@ -29,10 +29,6 @@ scenario_input_files = {
 }
 
 FUEL_RULES = [
-    # Each tuple consists of a condition (e.g., {"Attribute": "VAR_Cap", "Sector": "Transport"}),
-    # a ruletype (e.g. "inplace"),
-    # and an action (e.g., {"Unit": "000 Vehicles"}).
-    # (['COA', 'COL', 'BDSL', 'DSL', 'DIJ', 'JET']
     ({"Commodity": "BDSL", "Sector": "Transport"}, "inplace", {"Fuel": "Biodiesel"}),
     ({"Commodity": "BDSL", "Sector": "Industry"}, "inplace", {"Fuel": "Drop-In Diesel"}),
     ({"Commodity": "DIJ"},  "inplace", {"Fuel": "Drop-In Jet"})
@@ -194,18 +190,6 @@ print(clean_df)
 group_columns = ['Scenario', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
 
 output_df = clean_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
-# round the "Value" column to 8 decimal places
-#output_df.to_csv("../data/output/output_clean_df_v2_0_0.csv", index=False, quoting=csv.QUOTE_NONNUMERIC)
-
-
-
-
-## Try without quoting
-#output_df.to_csv("../data/output/output_combined_df_v2_0_0.csv", 
-#                 index=False, 
-#                 quoting=csv.QUOTE_NONE, 
-#                 escapechar='\\')
-
 
 all_periods = np.sort(clean_df['Period'].unique())
 
@@ -236,11 +220,9 @@ complete_df = complete_df.groupby(group_columns).agg(Value=('Value', 'sum')).res
 print(complete_df)
 
 complete_df['Period'] = complete_df['Period'].astype(int)
-complete_df['Value'] = complete_df['Value'].astype('float').round(10)
-pd.options.display.float_format = '{:.10f}'.format
-pd.set_option('display.float_format', lambda x: '%.10f' % x)
+complete_df['Value'] = complete_df['Value'].astype(float).round(10)
+complete_df['Value'] = complete_df['Value'].apply(lambda x: f"{x:.10f}")
 
-complete_df.to_csv("../data/output/output_combined_df_v2_0_0.csv", 
-                   index=False, 
-                   quoting=csv.QUOTE_ALL,
-                   float_format='%.10f')
+complete_df.to_csv("../data/output/output_combined_df_v2_0_0.csv",
+                   index=False,
+                   quoting=csv.QUOTE_ALL)
