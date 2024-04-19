@@ -3,7 +3,9 @@ Functions used for data processing and transformation, and comparison of DataFra
 """
 
 import re
+import csv
 import logging
+import numpy as np
 import pandas as pd
 
 from constants import *
@@ -68,48 +70,6 @@ def add_missing_columns(df, missing_columns):
     return df
 
 
-def process_map_from_commodity_groups(filepath):
-    """
-    Use the commodity groups file to add rows to the main DataFrame for each process, differentiating between
-    energy inputs, energy outputs, CO2 emissions, and end-service energy demands based on the suffix in the Name column.
-
-    :param filepath: Path to the commodity groups file.
-
-    :return: DataFrame with added rows for each process in the commodity groups file.
-    """
-    cg_df = pd.DataFrame(columns=OUT_COLS + SUP_COLS)
-    commodity_groups_df = pd.read_csv(filepath)
-    # Define suffixes and their implications
-    suffix_mappings = {
-        'NRGI': {'Attribute': 'VAR_FIn', 'Parameters': None, 'Unit': None},
-        'NRGO': {'Attribute': 'VAR_FOut', 'Parameters': None, 'Unit': None},
-        'ENVO': {'Attribute': 'VAR_FOut', 'Parameters': 'Emissions', 'Unit': 'kt CO2'},
-        'DEMO': {'Attribute': 'VAR_FOut', 'Parameters': 'End Use Demand', 'Unit': None},
-    }
-    new_rows = []
-    for process in commodity_groups_df['Process'].unique():
-        # Always add a VAR_Cap row for each unique process
-        new_rows.append({'Attribute': 'VAR_Cap', 'Process': process})
-        # Filter rows related to the current process
-        process_rows = commodity_groups_df[commodity_groups_df['Process'] == process]
-        for _, row in process_rows.iterrows():
-            for suffix, attrs in suffix_mappings.items():
-                if row['Name'].endswith(suffix):
-                    row_data = {
-                        'Attribute': attrs['Attribute'],
-                        'Process': process,
-                        'Commodity': row['Member']
-                    }
-                    if attrs['Parameters']:
-                        row_data['Parameters'] = attrs['Parameters']
-                    if attrs['Unit']:
-                        row_data['Unit'] = attrs['Unit']
-                    new_rows.append(row_data)
-    # Convert the list of dictionaries into a DataFrame
-    new_rows_df = pd.DataFrame(new_rows)
-    # Append the new rows to the main DataFrame and reset the index
-    cg_df = pd.concat([cg_df, new_rows_df], ignore_index=True).drop_duplicates()
-    return cg_df
 
 
 #def update_cg_with_enduses(cg_df, commodity_enduse, process_to_enduses):
@@ -498,3 +458,148 @@ def show_subset(df, column_value_dict):
         query_parts.append(f"{column} == '{value}'")
     query = " & ".join(query_parts)
     return df.query(query)
+
+
+def save(df, path):
+    _df = df.copy()
+    _df['Period'] = _df['Period'].astype(int)
+    _df['Value'] = _df['Value'].apply(lambda x: f"{x:.6f}")
+    _df.to_csv(path, index=False, quoting=csv.QUOTE_ALL)
+
+
+# Function to find missing periods and create the necessary rows (curried for convenience)
+def add_missing_periods(all_periods):
+    def _add_missing_periods(group):
+        existing_periods = group['Period'].unique()
+        missing_periods = np.setdiff1d(all_periods, existing_periods)
+        if missing_periods.size > 0:
+            # Create new rows for missing periods
+            new_rows = pd.DataFrame({
+                'Period': missing_periods,
+                **{col: group.iloc[0][col] for col in group.columns if col != 'Period'}
+            })
+            # Set 'Value' to 0 for new rows, assuming 'Value' needs to be filled
+            new_rows['Value'] = 0
+            return pd.concat([group, new_rows], ignore_index=True)
+        return group
+    return _add_missing_periods
+
+
+def process_output_flows(process, scenario, period, df, exclude_co2=True):
+     # Return a dictionary mapping commodity to value
+     if exclude_co2:
+          return df[(df['Process'] == process) &
+                    (df['Scenario'] == scenario) &
+                    (df['Period'] == period) &
+                    (df['Attribute'] == 'VAR_FOut') &
+                    ~(df['Commodity'].str.contains('CO2'))].set_index('Commodity')['Value'].to_dict()
+     else:
+          return df[(df['Process'] == process) &
+                    (df['Scenario'] == scenario) &
+                    (df['Period'] == period) &
+                    (df['Attribute'] == 'VAR_FOut')].set_index('Commodity')['Value'].to_dict()
+
+
+def process_input_flows(process, scenario, period, df):
+     # Return a dictionary mapping commodity to value
+     return df[(df['Process'] == process) &
+               (df['Scenario'] == scenario) &
+               (df['Period'] == period) &
+               (df['Attribute'] == 'VAR_FIn')].set_index('Commodity')['Value'].to_dict()
+
+
+def commodity_output_flows(commodity, scenario, period, df):
+     # Return a dictionary of processes and their output values for the given commodity
+     return df[(df['Commodity'] == commodity) &
+               (df['Scenario'] == scenario) &
+               (df['Period'] == period) &
+               (df['Attribute'] == 'VAR_FOut')].set_index('Process')['Value'].to_dict()
+
+
+def commodity_input_flows(commodity, scenario, period, df):
+     # Return a dictionary of processes the commodity flows into, mapped to flow values
+     return df[(df['Commodity'] == commodity) &
+               (df['Scenario'] == scenario) &
+               (df['Period'] == period) &
+               (df['Attribute'] == 'VAR_FIn')].set_index('Process')['Value'].to_dict()
+
+
+
+def flow_fractions(flow_dict):
+     # Return a dictionary of fractions for each flow
+     total = sum(flow_dict.values())
+     return {k: v / total for k, v in flow_dict.items()}
+
+def sum_by_key(dicts):
+    # Sum values for each key across multiple dictionaries
+    result = {}
+    for d in dicts:
+        for k, v in d.items():
+            result[k] = result.get(k, 0) + v
+    return result
+
+
+def process_map_from_commodity_groups(filepath):
+    """
+    Use the commodity groups file to add rows to the main DataFrame for each process, differentiating between
+    energy inputs, energy outputs, CO2 emissions, and end-service energy demands based on the suffix in the Name column.
+
+    :param filepath: Path to the commodity groups file.
+
+    :return: DataFrame with added rows for each process in the commodity groups file.
+    """
+    cg_df = pd.DataFrame(columns=OUT_COLS + SUP_COLS)
+    commodity_groups_df = pd.read_csv(filepath)
+    # Define suffixes and their implications
+    suffix_mappings = {
+        'NRGI': {'Attribute': 'VAR_FIn', 'Parameters': None, 'Unit': None},
+        'NRGO': {'Attribute': 'VAR_FOut', 'Parameters': None, 'Unit': None},
+        'ENVO': {'Attribute': 'VAR_FOut', 'Parameters': 'Emissions', 'Unit': 'kt CO2'},
+        'DEMO': {'Attribute': 'VAR_FOut', 'Parameters': 'End Use Demand', 'Unit': None},
+    }
+    new_rows = []
+    for process in commodity_groups_df['Process'].unique():
+        # Always add a VAR_Cap row for each unique process
+        new_rows.append({'Attribute': 'VAR_Cap', 'Process': process})
+        # Filter rows related to the current process
+        process_rows = commodity_groups_df[commodity_groups_df['Process'] == process]
+        for _, row in process_rows.iterrows():
+            for suffix, attrs in suffix_mappings.items():
+                if row['Name'].endswith(suffix):
+                    row_data = {
+                        'Attribute': attrs['Attribute'],
+                        'Process': process,
+                        'Commodity': row['Member']
+                    }
+                    if attrs['Parameters']:
+                        row_data['Parameters'] = attrs['Parameters']
+                    if attrs['Unit']:
+                        row_data['Unit'] = attrs['Unit']
+                    new_rows.append(row_data)
+    # Convert the list of dictionaries into a DataFrame
+    new_rows_df = pd.DataFrame(new_rows)
+    # Append the new rows to the main DataFrame and reset the index
+    cg_df = pd.concat([cg_df, new_rows_df], ignore_index=True).drop_duplicates()
+    return cg_df
+
+
+def commodities_by_type_from_commodity_groups(filepath):
+    """
+    Parses the commodity groups file to create mappings from suffix types to sets of associated commodities.
+
+    :param filepath: Path to the commodity groups CSV file.
+    :return: Dictionary with suffix types ('NRGI', 'NRGO', 'ENVO', 'DEMO') mapped to sets of commodities.
+    """
+    commodity_groups_df = pd.read_csv(filepath)
+    suffix_mappings = {
+        'NRGI': set(),
+        'NRGO': set(),
+        'ENVO': set(),
+        'DEMO': set()
+    }
+    # Iterate through each row and classify commodities by their suffix in 'Name'
+    for _, row in commodity_groups_df.iterrows():
+        for suffix in suffix_mappings:
+            if row['Name'].endswith(suffix):
+                suffix_mappings[suffix].add(row['Member'])
+    return suffix_mappings

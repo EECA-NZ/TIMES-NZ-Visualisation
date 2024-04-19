@@ -64,10 +64,19 @@ process_rules = df_to_ruleset(
     target_column_map={"Name": "Process"},
     parse_column="Description",
     separator="-:-",
-    schema=["Sector", "Subsector", "", "Technology", "Fuel", "", ""],
-    #schema=["Sector", "Subsector", "Enduse", "Technology", "Fuel", "ParametersOverride", "DisplayCapacity"],
+    schema=["Sector", "Subsector", "", "Technology", "", "", ""],
     rule_type="inplace",
 )
+
+process_fuel_rules = df_to_ruleset(
+    df=pd.read_csv(ITEMS_LIST_PROCESS_CSV),
+    target_column_map={"Name": "Process"},
+    parse_column="Description",
+    separator="-:-",
+    schema=["", "", "", "", "Fuel", "", ""],
+    rule_type="inplace",
+)
+
 
 # Generate Enduse attributions for Processes based on their first output commodity
 _cg_df = process_map_from_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV)
@@ -181,6 +190,7 @@ RULESETS = [
         ("commodity_set_rules", commodity_set_rules),
         ("process_set_rules", process_set_rules),
         ("process_rules", process_rules),
+        ("process_fuel_rules", process_fuel_rules),
         ("process_input_enduse_rules", process_input_enduse_rules),
         ("process_capacity_enduse_rules", process_capacity_enduse_rules),
         ("commodity_enduse_rules", commodity_enduse_rules),

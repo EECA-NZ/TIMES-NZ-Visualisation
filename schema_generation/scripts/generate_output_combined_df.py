@@ -1,3 +1,51 @@
+"""
+My understanding of the postprocessing that the New_Data_Processing.R script does:
+
+# Heat Pump (Multi-Split)
+Electricity consumption is split out for Space Cooling and Space Heating according to the fractional end-use demand
+
+# Biofuel computation for Heavy Truck, Medium Truck, Car/SUV, Van/Ute, Bus, Passenger Rail and Freight Rail
+Total biodiesel input to FTE_TRADSL is divided between these end_uses according to their fractional diesel consumption
+    Really, TRA_BDSL_percentage is the fraction of BDSL to the total flow into FTE_TRADSL.
+
+# Biofuel computation for Domestic Aviation, International Aviation
+Total drop-in jet input to FTE_TRAJET is divided between these end_uses according to their fractional Jet Fuel consumption
+Note however that International Aviation uses JET as input whereas Domestic Aviation uses TRAJET.                            So in this case we are not presenting what is actually in the model.
+    E.g. for Kea 2060, 
+    92.077567 # Jet imports
+    6.332581 + 16.676717 # DIJ + JET into TRAJET
+    75.400850 # JET into International Aviation
+    23.009298 + 75.400850 # Domestic + International Aviation
+    So the Drop-in Jet gets allocated 1/4 to Domestic Aviation and 3/4 to International Aviation:
+    Domestic Drop-in JET = 6.332581 / 98.410148 * 23.009298 = 1.48062
+    International Drop-in JET = 6.332581 / 98.410148 * 75.400850 = 4.85195
+
+    Really, DIJ_percentage is the fraction of DIJ coming out of CT_CWODDID to that plus JET coming out of IMPJET1 applied to the fuel consumption (TRAJET or JET) of the aviation processes.
+
+# Fuel Consumption Biofuel computation for Industry:  "Construction" and "Mining"
+Total drop-in diesel input to FTE-INDDSL_00 is divided between these subsectors according to their fraction of the total fuel consumption in these two subsectors.
+
+# Emissions biofuel computation for Heavy Truck, Medium Truck, Car/SUV, Van/Ute, Bus
+Total biodiesel "neg-emissions" from CT_COILBDS (the process that turns OILWST into BDSL) are divided between these end_uses evenly (20% each)
+(presumed intention: to divide according to their fraction of the overall Road transport biodiesel consumption. This would also be wrong since the same neg-emissions also get allocated to the Rail transport end_uses.)
+
+# Emissions biofuel computation for Passenger Rail and Freight Rail
+Total biodiesel "neg-emissions" from CT_COILBDS (the process that turns OILWST into BDSL) are divided between these end_uses evenly (50% each).
+(Presumed intention: to divide according to their fraction of the overall Rail biodiesel consumption. This would also be wrong since the same neg-emissions also get allocated to the Road transport end_uses.)
+
+# Emissions Biofuel computation for Domestic Aviation
+Total aviation "neg-emissions" from CT_CWODDID (the process that turns WODWST into DID and DIJ) are halved (presumed intent: multiplied by the fraction of DIJ use in Domestic aviation) and then multiplied by 0.4* and attributed to Domestic aviation.
+Not obvious why neg-emissions are not applied to International Aviation but presume this was deliberate.
+
+# Emissions Biofuel computation for Industry: Construction and Mining subsectors
+Total "neg-emissions" from CT_CWODDID (the process that turns WODWST into DID and DIJ) are divided evently between these subsectors (50% each) and also multiplied by 0.6.*
+(Presumed intent: multiplied by the fraction of DIJ use in Domestic aviation)
+
+
+*Presumably DID takes 60% of the output energy and DIJ takes 40%
+"""
+
+
 import os
 import csv
 import numpy as np
@@ -118,6 +166,9 @@ save(clean_df, "../data/output/output_clean_df_v2_0_0.csv")
 
 
 combined_df = clean_df.copy()
+#combined_df = apply_rules(combined_df,
+#    [({"Enduse": "International Aviation", "Commodity": "JET"}, "inplace", {"Commodity": "TRAJET"})]
+#    )
 
 # Find processes with multiple VAR_FOut rows (excluding emissions commodities) and split the VAR_FIn row across
 # each of the end-uses obtained from the VAR_FOut rows, based on the ratio of VAR_FOut values
@@ -175,7 +226,8 @@ if fix_multiple_fin:
     # Initialize a DataFrame to store new rows
     new_rows_df = pd.DataFrame()
     drop_indices = []  # Collect indices to drop after all operations
-    for (scenario, commodity, period), group in distribution_processes.groupby(['Scenario', 'CommodityOut', 'Period']):
+    for (scenario, commodity, period), group in distribution_processes.groupby(['Scenario', 'CommodityOut', 'Period']): 
+    #for (scenario, commodity, period), group in distribution_processes[distribution_processes.CommodityOut=='TRAJET'].groupby(['Scenario', 'CommodityOut', 'Period']):
         matching_rows = combined_df[(combined_df['Scenario'] == scenario) &
                                 (combined_df['Commodity'] == commodity) &
                                 (combined_df['Period'] == period) &
