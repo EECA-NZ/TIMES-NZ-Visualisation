@@ -70,14 +70,6 @@ renewable_fuel_allocation_rules = [
     ({"FuelSourceProcess": "CT_CWODDID", "Commodity": "DIJ"}, "inplace", {"Fuel": "Drop-In Jet"}),
 ]
 
-#renewable_process_fuels = {
-#    ("SUP_BIGNGA", "NGA"): "NGA",
-#    ("SUP_H2NGA", ): "NGA",
-#    ("CT_COILBDS", ): "BDSL",
-#    ("CT_CWODDID", ): "DID",
-#    ("CT_CWODDID", ): "DIJ"
-#}
-
 THOUSAND_VEHICLE_RULES = [
     ({"Sector": "Transport", "Subsector": "Road Transport",# "Technology": "Plug-In Hybrid Vehicle",
       "Unit": "000 Vehicles"}, "inplace", {"Unit": "Number of Vehicles (Thousands)"}),
@@ -240,7 +232,6 @@ negative_emissions = raw_df[
     (raw_df['Commodity'].str.contains("CO2")) &
     (raw_df['Value'] < 0)]
 for index, row in negative_emissions.iterrows():
-    #renewable_fuel = renewable_process_fuels[row['Process']]
     # For each negative emission process, follow its output through to end uses
     trace_result = trace_commodities(row['Process'], row['Scenario'], row['Period'], raw_df)
     #trace_result = [x for x in trace_result if x[1]==renewable_fuel]
@@ -418,9 +409,8 @@ clean_df.loc[clean_df['Parameters'] == 'Annualised Capital Costs', 'Unit'] = 'Bi
 
 # Remove unwanted rows and group data
 clean_df = clean_df[(clean_df['Parameters'] != 'Annualised Capital Costs') & (clean_df['Parameters'] != 'Technology Capacity')]
+clean_df = clean_df.groupby(['Attribute', 'Process', 'Commodity'] + group_columns).agg(Value=('Value', 'sum')).reset_index()
 
-group_columns = ['Scenario', 'Attribute', 'Process', 'Commodity', 'Sector', 'Subsector', 'Technology', 'Enduse', 'Unit', 'Parameters', 'Fuel', 'Period', 'FuelGroup', 'Technology_Group']
-clean_df = clean_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
 save(clean_df, "../data/output/output_clean_df_v2_0_0.csv")
 
 
