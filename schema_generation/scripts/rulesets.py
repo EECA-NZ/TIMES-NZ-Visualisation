@@ -64,16 +64,19 @@ process_rules = df_to_ruleset(
     target_column_map={"Name": "Process"},
     parse_column="Description",
     separator="-:-",
-    schema=["Sector", "Subsector", "", "Technology", "", "", ""],
+    schema=["Sector", "Subsector", "Technology", ""],
     rule_type="inplace",
 )
+
+# Keep Sector, Subsector,.. Technology, Fuel
+# Drop Enduse, ParametersOverride, DisplayCapacity
 
 process_fuel_rules = df_to_ruleset(
     df=pd.read_csv(ITEMS_LIST_PROCESS_CSV),
     target_column_map={"Name": "Process"},
     parse_column="Description",
     separator="-:-",
-    schema=["", "", "", "", "Fuel", "", ""],
+    schema=["", "", "", "Fuel"],
     rule_type="inplace",
 )
 
