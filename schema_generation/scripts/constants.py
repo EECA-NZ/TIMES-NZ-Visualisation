@@ -2,6 +2,7 @@
 This module contains constants used by the scripts (under development) that aim to re-generate the schema dataframe.
 """
 import os
+import pandas as pd
 
 def get_project_base_path():
     """
@@ -76,3 +77,19 @@ OUTPUT_COMBINED_DF_FILEPATH = os.path.join(project_base_path, "data/output/outpu
 
 # Define the path to the reference (manually created) cleaned DataFrame CSV file.
 REFERENCE_COMBINED_DF_FILEPATH = os.path.join(project_base_path, "data/reference/reference_combined_df_v2_0_0.csv")
+
+IGNORE_EXPORT_COMMODITIES =[
+    'TB_ELC_NI_SI_01',
+    'TU_DID_NI_SI_01',
+    'TU_PET_NI_SI_01',
+    'TU_OTH_NI_SI_01',
+    'TU_FOL_NI_SI_01',
+    'TU_DIJ_NI_SI_01',
+    'TU_COA_NI_SI_01',
+    'TU_COL_NI_SI_01',
+    'TU_COA_SI_NI_01',
+    'TU_LPG_NI_SI_01',
+    'TU_DSL_NI_SI_01',
+    'TU_JET_NI_SI_01',
+    'TU_COL_SI_NI_01'
+]

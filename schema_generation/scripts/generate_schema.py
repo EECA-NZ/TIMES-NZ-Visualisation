@@ -15,25 +15,44 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 from constants import *
 from helpers import *
-from rulesets import RULESETS, UPDATE_EMISSION_ATTRIBUTION_RULES, MISSING_ROWS
+from rulesets import *
+
 
 if __name__ == "__main__":
-    main_df = process_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV)
 
-    # Populate the columns according to the rulesets
+    # First approach: VD OUTPUT. This approach will only include technologies selected by TIMES.
+    vd_df = read_and_concatenate(INPUT_VD_FILES)
+
+    # Add and subtract columns
+    vd_df = add_missing_columns(vd_df, OUT_COLS + SUP_COLS)
+    logging.info(
+        "Dropping columns: %s", 
+        [x for x in vd_df.columns if x not in OUT_COLS + SUP_COLS]
+    )
+    vd_df = vd_df[OUT_COLS + SUP_COLS]
+
+    # Subset the rows and drop duplicates
+    vd_df = vd_df[vd_df["Attribute"].isin(ATTRIBUTE_ROWS_TO_KEEP)]
+    
+    # Second approach: Read the 'Commodity Groups' CSV file. This approach would be preferred if the
+    # Commodity Groups export from VEDA were complete. Unfortunately, it doesn't present the emissions
+    cg_df = process_map_from_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV)
+
+    # Combine the two DataFrames and drop duplicates
+    main_df = pd.concat([vd_df, cg_df]).drop_duplicates()
+
+    # Populate the columns and augment with emissions rows according to the rulesets in the specified order
     for name, ruleset in RULESETS:
         logging.info("Applying ruleset: %s", name)
         main_df = apply_rules(main_df, ruleset)
 
-    logging.info("Adding emission rows for VAR_FOut rows")
-    main_df = add_emissions_rows(main_df)
-
-    logging.info("Applying ruleset: UPDATE_EMISSION_ATTRIBUTION_RULES")
-    main_df = apply_rules(main_df, UPDATE_EMISSION_ATTRIBUTION_RULES)
-
-    logging.info("Adding missing rows")
-    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
     main_df.Commodity = main_df.Commodity.fillna('-')
+
+    # Drop emissions rows with non-emissions commodities
+    indexes_to_drop = main_df[(main_df['Parameters'] == 'Emissions') & (~main_df['Commodity'].isin(
+        ['INDCO2', 'COMCO2', 'AGRCO2', 'RESCO2', 'ELCCO2', 'TRACO2', 'TOTCO2']))
+        ].index
+    main_df.drop(indexes_to_drop, inplace=True)
 
     schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
     schema = schema.merge(
@@ -41,6 +60,8 @@ if __name__ == "__main__":
         on=["Attribute", "Process", "Commodity"],
         how="left",
     )
+    logging.info("Adding missing rows")
+    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
     main_df = main_df[OUT_COLS].drop_duplicates().dropna().sort_values(by=OUT_COLS)
     schema = schema[OUT_COLS].drop_duplicates().sort_values(by=OUT_COLS).fillna('-')
 
@@ -53,18 +74,28 @@ if __name__ == "__main__":
         )
         exit()
     message, main_df, schema, correct_rows, missing_rows, extra_rows = compare_tables(
-        OUTPUT_SCHEMA_FILEPATH, REFERENCE_SCHEMA_FILEPATH
+        OUTPUT_SCHEMA_FILEPATH, REFERENCE_SCHEMA_FILEPATH, columns=OUT_COLS
     )
     print(message)
     if not extra_rows.empty and not missing_rows.empty:
-        first_extra_row = extra_rows.head(1)
         first_missing_row = missing_rows.head(1)
-        columns_to_compare = set(main_df.columns).intersection(schema.columns)
-        comparison_df = compare_rows_to_df(
-            first_extra_row, first_missing_row, ['Attribute', 'Process', 'Commodity'] + list(columns_to_compare)
-        )
-        logging.info("\nDetailed row comparison:\n")
-        print(comparison_df.to_string(index=False))
+        first_extra_row = extra_rows[
+            (extra_rows['Attribute'] == first_missing_row['Attribute'].values[0]) &
+            (extra_rows['Process'] == first_missing_row['Process'].values[0]) &
+            (extra_rows['Commodity'] == first_missing_row['Commodity'].values[0])
+        ].head(1)
+
+        if not first_extra_row.empty:
+            columns_to_compare = set(main_df.columns).intersection(schema.columns)
+            comparison_df = compare_rows_to_df(
+                first_extra_row,
+                first_missing_row,
+                ['Attribute', 'Process', 'Commodity'] + list(columns_to_compare)
+            )
+            logging.info("\nDetailed row comparison:\n")
+            print(comparison_df.to_string(index=False))
+        else:
+            logging.info("No matching extra row found for the first missing row.")
     else:
         logging.info("Either extra_rows or missing_rows DataFrame is empty.")
     print(message)

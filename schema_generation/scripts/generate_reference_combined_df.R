@@ -98,4 +98,4 @@ clean_df <- raw_df %>%
 
 
 # Write the data to a csv file
-write_csv(clean_df, "../data/reference/reference_combined_df_v2_0_0.csv")
+write_csv(clean_df, "../data/reference/reference_clean_df_v2_0_0.csv")
