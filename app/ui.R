@@ -87,24 +87,24 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("New Zealand Energy Scenarios TIMES-NZ 2.0"),
+        h3("New Zealand Energy Scenarios TIMES-NZ 2.1"),
         
         # The background text
         HTML("Climate change is one of the most urgent environmental issues of our time. 
         Almost 41% of New Zealand’s total greenhouse gas emissions come from our 
         energy use and the challenge is to get this number down. The New Zealand 
-        Energy Scenarios TIMES-NZ 2.0 website presents model insights for the 
+        Energy Scenarios TIMES-NZ 2.1 website presents model insights for the
         latest TIMES-NZ scenarios to contribute to decision making in businesses 
         and Government. 
-        TIMES-NZ 2.0 was developed by  <a href='https://www.eeca.govt.nz/' 
+        TIMES-NZ 2.1 was developed by  <a href='https://www.eeca.govt.nz/'
         style='color:#333333; '>EECA</a> in partnership with the  
         <a href='https://www.bec.org.nz/' style='color:#333333;'>BusinessNZ 
         Energy Council (BEC)</a>   and <a href='https://www.psi.ch/en' 
         style='color:#333333;'> The Paul Scherrer Institut</a>. <br><br>
-        Welcome to the New Zealand Energy Scenarios TIMES-NZ 2.0 visualisation tool. 
+        Welcome to the New Zealand Energy Scenarios TIMES-NZ 2.1 visualisation tool.
         This tool will allow you to explore how New Zealand energy futures may 
         look like based on outputs from the New Zealand Energy Scenarios TIMES-NZ 
-        2.0 model." ),
+        2.1 model." ),
               
 
         
@@ -120,7 +120,7 @@ ui <- navbarPage(
         
         h3("Scenarios"),
         
-        HTML("TIMES-NZ 2.0 includes two
+        HTML("TIMES-NZ 2.1 includes two
         scenarios Kea (Cohesive) and T\u16b\u12b (Individualistic): <br><br>"),
         
         # Adding Kea and Tui comment 
@@ -572,9 +572,9 @@ ui <- navbarPage(
         
         width = 12,
         
-        h3("New Zealand Energy Scenarios TIMES-NZ 2.0"),
+        h3("New Zealand Energy Scenarios TIMES-NZ 2.1"),
         
-        HTML("The New Zealand Energy Scenarios TIMES-NZ 2.0, developed by  
+        HTML("The New Zealand Energy Scenarios TIMES-NZ 2.1, developed by
               <a href='https://www.eeca.govt.nz/' style='color:#333333;
              '>EECA</a> in partnership with the <a href='https://www.bec.org.nz/' 
              style='color:#333333;'>BusinessNZ Energy Council (BEC)</a> and <a 
@@ -582,7 +582,7 @@ ui <- navbarPage(
              Scherrer Institut</a>, is based on the International Energy Agency 
              Energy Technology Systems Analysis Program TIMES model, an energy 
              system model that has been used by over 60 countries worldwide. 
-             <br><br> TIMES-NZ 2.0 is a technology-based optimisation model 
+             <br><br> TIMES-NZ 2.1 is a technology-based optimisation model
              that represents the entire New Zealand energy system, encompassing 
              energy carriers and processes from primary resources to final 
              energy consumption. The model is based on the IEA ETSAP TIMES 
@@ -591,7 +591,7 @@ ui <- navbarPage(
              TIMES is an integrated energy system model, meaning that it 
              simultaneously models all components of the energy system, 
              ensuring that any interdependencies and trade-offs are reflected.
-        <br><br>TIMES uses a linear-programming solver to minimise the total 
+        <br><br>TIMES uses a linear-programming solver to minimise the total
              discounted energy system cost over the entire modelled time horizon. 
              The cost minimisation is achieved by choosing between technologies 
              and fuels to meet expected energy demand. The model effectively 
@@ -604,9 +604,9 @@ ui <- navbarPage(
              TIMES-NZ model adds more detail and sophistication to sectors, 
              subsectors, technologies and end uses."),
        
-        h3("The TIMES-NZ 2.0 Scenarios " ),
+        h3("The TIMES-NZ 2.1 Scenarios " ),
         
-        HTML("The New Zealand Energy Scenarios TIMES-NZ 2.0 project grew out of 
+        HTML("The New Zealand Energy Scenarios TIMES-NZ 2.1 project grew out of
              BEC2060, which provided two plausible and coherent scenarios about 
              New Zealand's energy future: Kea and T\u16b\u12b. These scenarios have been 
              extended in this latest iteration to include more granular data."),
@@ -633,11 +633,11 @@ ui <- navbarPage(
         
  
         
-        h3("Find out more about TIMES-NZ 2.0"),
+        h3("Find out more about TIMES-NZ 2.1"),
         HTML("For more detail about the data input assumptions and methodology of 
-        TIMES-NZ 2.0, read the TIMES-NZ 2.0 Methodology and Insights paper 
-        “New Zealand Energy Scenarios TIMES-NZ 2.0. - 
-        <i>A guide to understanding the TIMES-NZ 2.0 model</i>”. 
+        TIMES-NZ 2.1, read the TIMES-NZ 2.1 Methodology and Insights paper
+        “New Zealand Energy Scenarios TIMES-NZ 2.1. -
+        <i>A guide to understanding the TIMES-NZ 2.1 model</i>”.
         <a href='https://www.eeca.govt.nz/New-Zealand-Energy-Scenarios-TIMES-NZ-2.pdf' target='_blank' rel='noopener noreferrer' style='color:#333333;
              '><i class='fa fa-file-pdf-o' style='font-size:28px;color:grey'></a></i>"
 
