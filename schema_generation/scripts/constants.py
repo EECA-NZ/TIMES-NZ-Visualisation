@@ -6,7 +6,6 @@ import os
 import pandas as pd
 
 TIMES_NZ_VERSION = "2.1.2"
-TIMES_NZ_VERSION = "2.0.0"
 
 VERSION_STR = TIMES_NZ_VERSION.replace('.','_')
 
@@ -100,4 +99,4 @@ IGNORE_EXPORT_COMMODITIES =[
     'TU_COL_SI_NI_01'
 ]
 
-trade_processes = re.compile(r'^TU_(PET|LPG|DSL|FOL|DID|DIJ|JET|OTH|COA|COL).*')
+trade_processes = re.compile(r'^TU_(PET|LPG|DSL|FOL|DID|DIJ|JET|OTH|COA|COL).*') # these are excluded from consideration when allocating emissions reductions to end-use processes.
