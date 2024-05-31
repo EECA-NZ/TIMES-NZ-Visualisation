@@ -23,6 +23,7 @@ RENEWABLE_FUEL_ALLOCATION_RULES = [
     ({"FuelSourceProcess": "CT_COILBDS", "Commodity": "BDSL"}, "inplace", {"Fuel": "Biodiesel"}),
     ({"FuelSourceProcess": "CT_CWODDID", "Commodity": "DID"}, "inplace", {"Fuel": "Drop-In Diesel"}),
     ({"FuelSourceProcess": "CT_CWODDID", "Commodity": "DIJ"}, "inplace", {"Fuel": "Drop-In Jet"}),
+    ({"FuelSourceProcess": "IMPDIJ", "Commodity": "DIJ"}, "inplace", {"Fuel": "Drop-In Jet"}),
 ]
 
 THOUSAND_VEHICLE_RULES = [
@@ -31,8 +32,8 @@ THOUSAND_VEHICLE_RULES = [
 ]
 
 SCENARIO_INPUT_FILES = {
-    'Kea': '../data/input/kea-v2_0_0.vd',
-    'Tui': '../data/input/tui-v2_0_0.vd'
+    'Kea': f'../data/input/kea-v{VERSION_STR}.vd',
+    'Tui': f'../data/input/tui-v{VERSION_STR}.vd'
 }
 
 
@@ -64,7 +65,6 @@ def units_consistent(commodity_flow_dict):
      # Check if all units are the same
      return len(set([commodity_units[commodity] for commodity in commodity_flow_dict])) == 1
 
-
 def trace_commodities(process, scenario, period, df, path=None, fraction=1):
     """
     Trace the output commodities of a process (e.g. Biodiesel blending) all the way through
@@ -73,6 +73,10 @@ def trace_commodities(process, scenario, period, df, path=None, fraction=1):
     """
     if path is None:
         path = []
+    if len(path) > 100:
+        logging.error("Path too long, likely a circular reference")
+        logging.error(path)
+        raise ValueError("Path too long, likely a circular reference")
     # Extend path with the current process
     current_path = path + [process]
     # Get output flows from the current process
@@ -94,12 +98,12 @@ def trace_commodities(process, scenario, period, df, path=None, fraction=1):
             input_fracs = flow_fractions(input_flows)
             # Recursively trace downstream processes
             for downstream_process, input_fraction in input_fracs.items():
+                ####    continue
                 # Calculate new fraction as current fraction * fraction of this commodity's output used by the downstream process
                 new_fraction = fraction * output_fracs[commodity] * input_fraction
                 # Merge results from recursion
                 result.update(trace_commodities(downstream_process, scenario, period, df, current_path + [commodity], new_fraction))
     return result
-
 
 def end_use_fractions(process, scenario, period, df, filter_to_commodities=None):
     # Return a dictionary of emissions from end-use processes
@@ -127,7 +131,6 @@ def end_use_fractions(process, scenario, period, df, filter_to_commodities=None)
         end_use_fractions = end_use_fractions[(end_use_fractions['Commodity'].isin(filter_to_commodities)) | (end_use_fractions['Commodity'].isna())]
     end_use_fractions.Value = end_use_fractions.Value / end_use_fractions.Value.sum()
     return end_use_fractions
-
 
 
 
@@ -219,11 +222,12 @@ biodiesel_rows_to_add = pd.DataFrame()
 # Allocate biodiesel to end-use processes
 biodiesel = raw_df[(
     raw_df['Attribute'] == "VAR_FOut") &
-    (raw_df['Commodity'] == "BDSL")]
+    (raw_df['Commodity'] == "BDSL") &
+    (~raw_df['Process'].apply(is_trade_process))
+]
 for index, row in biodiesel.iterrows():
     trace_result = trace_commodities(row['Process'], row['Scenario'], row['Period'], raw_df)
     trace_result = [x for x in trace_result if x[1]==row['Commodity']]
-    #end_use_allocations = end_use_fractions(row['Process'], row['Scenario'], row['Period'], raw_df)
     end_use_allocations = end_use_fractions(row['Process'], row['Scenario'], row['Period'], raw_df, filter_to_commodities=['BDSL']).dropna()
     end_use_allocations['Value'] *= row['Value']
     end_use_allocations['Attribute'] = 'VAR_FIn'
@@ -248,7 +252,9 @@ drop_in_diesel_rows_to_add = pd.DataFrame()
 # Allocate drop-in diesel to end-use processes
 drop_in_diesel = raw_df[
     (raw_df['Attribute'] == "VAR_FOut") &
-    (raw_df['Commodity'] == "DID")]
+    (raw_df['Commodity'] == "DID") &
+    (~raw_df['Process'].apply(is_trade_process))
+]
 for index, row in drop_in_diesel.iterrows():
     trace_result = trace_commodities(row['Process'], row['Scenario'], row['Period'], raw_df)
     trace_result = [x for x in trace_result if x[1]==row['Commodity']]
@@ -276,7 +282,9 @@ drop_in_jet_rows_to_add = pd.DataFrame()
 # Allocate drop-in jet fuel to end-use processes
 drop_in_jet = raw_df[
     (raw_df['Attribute'] == "VAR_FOut") &
-    (raw_df['Commodity'] == "DIJ")]
+    (raw_df['Commodity'] == "DIJ") &
+    (~raw_df['Process'].apply(is_trade_process))
+]
 for index, row in drop_in_jet.iterrows():
     trace_result = trace_commodities(row['Process'], row['Scenario'], row['Period'], raw_df)
     trace_result = [x for x in trace_result if x[1]==row['Commodity']]
@@ -476,4 +484,4 @@ for (scenario, period), value in total_emissions.items():
 logging.info(raw_df[raw_df.Commodity.str.contains('TOTCO2')].groupby(['Scenario', 'Period']).Value.sum()*2)
 logging.info(raw_df[raw_df.Commodity.str.contains('CO2')].groupby(['Scenario', 'Period']).Value.sum())
 
-save(complete_df, '../data/output/output_combined_df_v2_0_0.csv')
+save(complete_df, f'../data/output/output_combined_df_v{VERSION_STR}.csv')

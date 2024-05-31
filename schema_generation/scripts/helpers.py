@@ -513,6 +513,7 @@ def commodity_output_flows(commodity, scenario, period, df):
      return df[(df['Commodity'] == commodity) &
                (df['Scenario'] == scenario) &
                (df['Period'] == period) &
+               (df['Attribute'] == 'VAR_FOut') &
                (df['Attribute'] == 'VAR_FOut')].set_index('Process')['Value'].to_dict()
 
 
@@ -521,7 +522,8 @@ def commodity_input_flows(commodity, scenario, period, df):
      return df[(df['Commodity'] == commodity) &
                (df['Scenario'] == scenario) &
                (df['Period'] == period) &
-               (df['Attribute'] == 'VAR_FIn')].set_index('Process')['Value'].to_dict()
+               (df['Attribute'] == 'VAR_FIn') &
+               (~df['Process'].apply(is_trade_process))].set_index('Process')['Value'].to_dict()
 
 
 
@@ -603,3 +605,8 @@ def commodities_by_type_from_commodity_groups(filepath):
             if row['Name'].endswith(suffix):
                 suffix_mappings[suffix].add(row['Member'])
     return suffix_mappings
+
+def matches(pattern):
+    return lambda x: bool(pattern.match(x))
+
+is_trade_process = matches(trade_processes)

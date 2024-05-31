@@ -1,8 +1,14 @@
 """
 This module contains constants used by the scripts (under development) that aim to re-generate the schema dataframe.
 """
+import re
 import os
 import pandas as pd
+
+TIMES_NZ_VERSION = "2.1.2"
+TIMES_NZ_VERSION = "2.0.0"
+
+VERSION_STR = TIMES_NZ_VERSION.replace('.','_')
 
 def get_project_base_path():
     """
@@ -23,8 +29,8 @@ project_base_path = get_project_base_path()
 
 # List of VEDA Data (VD) files to be read and processed.
 INPUT_VD_FILES = [
-    os.path.join(project_base_path, "data/input", "kea-v2_0_0.vd"),
-    os.path.join(project_base_path, "data/input", "tui-v2_0_0.vd"),
+    os.path.join(project_base_path, "data/input", f"kea-v{VERSION_STR}.vd"),
+    os.path.join(project_base_path, "data/input", f"tui-v{VERSION_STR}.vd"),
 ]
 
 # Path to the TIMES base.dd file containing commodity to unit mappings.
@@ -67,16 +73,16 @@ SANITIZE_UNITS = {
 }
 
 # Define the path to the output schema CSV file.
-OUTPUT_SCHEMA_FILEPATH = os.path.join(project_base_path, "data/output/output_schema_df_v2_0_0.csv")
+OUTPUT_SCHEMA_FILEPATH = os.path.join(project_base_path, f"data/output/output_schema_df_v{VERSION_STR}.csv")
 
 # Define the path to the reference (manually created) schema CSV file.
-REFERENCE_SCHEMA_FILEPATH = os.path.join(project_base_path, "data/reference/reference_schema_df_v2_0_0.csv")
+REFERENCE_SCHEMA_FILEPATH = os.path.join(project_base_path, f"data/reference/reference_schema_df_v2_0_0.csv")
 
 # Define the path to the output cleaned DataFrame CSV file.
-OUTPUT_COMBINED_DF_FILEPATH = os.path.join(project_base_path, "data/output/output_combined_df_v2_0_0.csv")
+OUTPUT_COMBINED_DF_FILEPATH = os.path.join(project_base_path, f"data/output/output_combined_df_v{VERSION_STR}.csv")
 
 # Define the path to the reference (manually created) cleaned DataFrame CSV file.
-REFERENCE_COMBINED_DF_FILEPATH = os.path.join(project_base_path, "data/reference/reference_combined_df_v2_0_0.csv")
+REFERENCE_COMBINED_DF_FILEPATH = os.path.join(project_base_path, f"data/reference/reference_combined_df_v2_0_0.csv")
 
 IGNORE_EXPORT_COMMODITIES =[
     'TB_ELC_NI_SI_01',
@@ -93,3 +99,5 @@ IGNORE_EXPORT_COMMODITIES =[
     'TU_JET_NI_SI_01',
     'TU_COL_SI_NI_01'
 ]
+
+trade_processes = re.compile(r'^TU_(PET|LPG|DSL|FOL|DID|DIJ|JET|OTH|COA|COL).*')
