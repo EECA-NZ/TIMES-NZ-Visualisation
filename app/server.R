@@ -685,7 +685,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea")
     
     generic_charts(
       data = plot_data_kea,
@@ -712,7 +712,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui")
     
     generic_charts(
       data = plot_data_tui,
@@ -740,7 +740,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Transport")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea", Sector == "Transport")
     
     generic_charts(
       data = plot_data_kea,
@@ -767,7 +767,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Transport")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui", Sector == "Transport")
     
     generic_charts(
       data = plot_data_tui,
@@ -799,7 +799,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Industry")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea", Sector == "Industry")
     
     generic_charts(
       data = plot_data_kea,
@@ -826,7 +826,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Industry")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui", Sector == "Industry")
     
     generic_charts(
       data = plot_data_tui,
@@ -858,7 +858,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Commercial")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea", Sector == "Commercial")
     
     generic_charts(
       data = plot_data_kea,
@@ -885,7 +885,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Commercial")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui", Sector == "Commercial")
     
     generic_charts(
       data = plot_data_tui,
@@ -915,7 +915,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Residential")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea", Sector == "Residential")
     
     generic_charts(
       data = plot_data_kea,
@@ -942,7 +942,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Residential")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui", Sector == "Residential")
     
     generic_charts(
       data = plot_data_tui,
@@ -973,7 +973,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Agriculture")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea", Sector == "Agriculture")
     
     generic_charts(
       data = plot_data_kea,
@@ -1000,7 +1000,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Agriculture")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui", Sector == "Agriculture")
     
     generic_charts(
       data = plot_data_tui,
@@ -1032,7 +1032,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_kea <- filtered_data() %>% filter(scen == "Kea", Sector == "Other")
+    plot_data_kea <- filtered_data() %>% filter(Scenario == "Kea", Sector == "Other")
     
     generic_charts(
       data = plot_data_kea,
@@ -1059,7 +1059,7 @@ server <- function(input, output, session){
     
     req(input$subsector, group_by_val())
     
-    plot_data_tui <- filtered_data() %>% filter(scen == "Tui", Sector == "Other")
+    plot_data_tui <- filtered_data() %>% filter(Scenario == "Tui", Sector == "Other")
     
     generic_charts(
       data = plot_data_tui,

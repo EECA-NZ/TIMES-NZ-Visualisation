@@ -58,7 +58,7 @@ coh_raw <- read.csv(file = "Kea-v79.VD",
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
-         scen = "Kea") %>% 
+         Scenario = "Kea") %>%
   filter(!(Period %in% c(2016)),
          Commodity != "COseq", 
          Period != "2020")
@@ -72,7 +72,7 @@ ind_raw <- read.csv(file = "Tui-v79.VD",
                     col.names = c("Attribute","Commodity", "Process", "Period", "Region", "Vintage", "TimeSlice", "UserConstraint", "Value")) %>% 
   filter(grepl("^[0-9]+$", Period)) %>% # exclude rows with non-numeric Period values
   mutate(Period = as.integer(Period),
-         scen = "Tui") %>% 
+         Scenario = "Tui") %>%
   filter(!(Period %in% c(2016)),
          Commodity != "COseq", 
          Period != "2020")
@@ -121,7 +121,7 @@ clean_df <- raw_df %>%
           # Setting Emission values to zero for  non emission fuel ("Electricity", "Wood",  "Hydrogen")
           mutate(Value = ifelse(Fuel %in% non_emission_fuel &  Parameters == 'Emissions', 0,Value) ) %>% 
           # complete data for all period by padding zeros
-          complete(Period,nesting(scen,Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, FuelGroup, Technology_Group),fill = list(Value = 0)) %>% 
+          complete(Period,nesting(Scenario, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel, FuelGroup, Technology_Group),fill = list(Value = 0)) %>%
           # Change Electricity to Other
           # Use this to convert the other sectors to Other 
           mutate(Sector = ifelse(Sector == "Electricity", "Other" , Sector)) %>% 
@@ -136,7 +136,7 @@ clean_df <- raw_df %>%
           # Remove the hard coded "N/A" in the data
           filter(!(Technology == "N/A")) %>% 
           # Group by the main variables and sum up
-          group_by(scen, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period, FuelGroup,Technology_Group) %>%
+          group_by(Scenario, Sector, Subsector, Technology, Enduse, Unit, Parameters, Fuel,Period, FuelGroup,Technology_Group) %>%
           # Sum up
           summarise(Value = sum(Value), .groups = "drop") %>% 
           # Removed all Annualised Capital Costs and Technology Capacity
@@ -195,8 +195,8 @@ divide_df <- clean_df %>%
                     Subsector  == "Detached Dwellings" &
                     Parameters  == "End Use Demand" & 
                     Technology == "Heat Pump (Multi-Split)"
-                  ) %>% group_by(scen, Sector, Subsector,  Technology, 
-                                 Unit, Parameters,Fuel, Period, FuelGroup) %>% 
+                  ) %>% group_by(Scenario, Sector, Subsector, Technology,
+                                 Unit, Parameters,Fuel, Period, FuelGroup) %>%
                     summarise(Value = sum(Value), .groups = "drop") 
 
 
@@ -244,7 +244,7 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Biodiesel"  &
         Enduse     == end_use
-      ) %>% arrange(scen)
+      ) %>% arrange(Scenario)
     
     # Filter multiply values
     Multiple_df <- clean_df %>%
@@ -253,7 +253,7 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Diesel"  &
         Enduse     == end_use
-      ) %>% arrange(scen)
+      ) %>% arrange(Scenario)
     
     # Filter out divide values
     divide_df <- clean_df %>%
@@ -261,7 +261,7 @@ for (end_use in end_uses) {
         Sector     == "Transport" &
         Parameters == "Fuel Consumption"  &
         Fuel       == "Diesel"
-      ) %>% group_by(scen,
+      ) %>% group_by(Scenario,
                      Sector,
                      Parameters,
                      Fuel,
@@ -269,7 +269,7 @@ for (end_use in end_uses) {
                      FuelGroup) %>%
     
       summarise(Value = sum(Value), .groups = "drop") %>%
-                arrange(scen)
+                arrange(Scenario)
     
     
     
@@ -329,8 +329,8 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Drop-In Jet"  &
         Enduse     == end_use &
-        scen       == "Kea"
-    ) %>% arrange(scen)
+        Scenario   == "Kea"
+    ) %>% arrange(Scenario)
 
   # Filter multiply values
   Multiple_df <- clean_df %>%
@@ -339,8 +339,8 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Jet Fuel"  &
         Enduse     == end_use &
-        scen       == "Kea"
-    ) %>% arrange(scen)
+        Scenario   == "Kea"
+    ) %>% arrange(Scenario)
 
   # Filter out divide values
   divide_df <- clean_df %>%
@@ -348,8 +348,8 @@ for (end_use in end_uses) {
       Sector     == "Transport" &
         Parameters == "Fuel Consumption"  &
         Fuel       == "Jet Fuel" &
-        scen       == "Kea"
-    ) %>% group_by(scen,
+        Scenario   == "Kea"
+    ) %>% group_by(Scenario,
                    Sector,
                    Parameters,
                    Fuel,
@@ -357,7 +357,7 @@ for (end_use in end_uses) {
                    FuelGroup) %>%
 
     summarise(Value = sum(Value), .groups = "drop") %>%
-    arrange(scen)
+    arrange(Scenario)
 
 
 
@@ -376,7 +376,7 @@ for (end_use in end_uses) {
                            Parameters == "Fuel Consumption"  &
                              Fuel       == "Drop-In Jet"  &
                              Enduse     == end_use &
-                             scen       == "Kea" )
+                             Scenario   == "Kea" )
                          ),
                        # Adding the new data
                        new_needed_df 
@@ -391,7 +391,7 @@ for (end_use in end_uses) {
                            Parameters == "Fuel Consumption"  &
                              Fuel       == "Jet Fuel"  &
                              Enduse     == end_use &
-                             scen       == "Kea" )
+                             Scenario   == "Kea" )
                          ),
                        # Adding the new data
                        new_Multiple_df   # new multiple df
@@ -420,7 +420,7 @@ for (end_use in end_uses) {
         Parameters == "Emissions"  &
         Fuel       == "Biodiesel"  &
         Enduse     == end_use
-    ) %>% arrange(scen)
+    ) %>% arrange(Scenario)
   
   # Filter multiply values
   Multiple_df <- clean_df %>%
@@ -429,7 +429,7 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Biodiesel"  &
         Enduse     == end_use
-    ) %>% arrange(scen)
+    ) %>% arrange(Scenario)
   
   # Filter out divide values
   divide_df <- clean_df %>%
@@ -437,7 +437,7 @@ for (end_use in end_uses) {
       Subsector  == "Road Transport" &
         Parameters == "Fuel Consumption"  &
         Fuel       == "Biodiesel"
-    ) %>% group_by(scen,
+    ) %>% group_by(Scenario,
                    Sector,
                    Parameters,
                    Fuel,
@@ -445,7 +445,7 @@ for (end_use in end_uses) {
                    FuelGroup) %>%
     
     summarise(Value = sum(Value), .groups = "drop") %>%
-    arrange(scen)
+    arrange(Scenario)
   
   
   # Adding
@@ -485,7 +485,7 @@ for (end_use in end_uses) {
         Parameters == "Emissions"  &
         Fuel       == "Biodiesel"  &
         Enduse     == end_use
-    ) %>% arrange(scen)
+    ) %>% arrange(Scenario)
   
   # Filter multiply values
   Multiple_df <- clean_df %>%
@@ -494,7 +494,7 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Biodiesel"  &
         Enduse     == end_use
-    ) %>% arrange(scen)
+    ) %>% arrange(Scenario)
   
   # Filter out divide values
   divide_df <- clean_df %>%
@@ -502,7 +502,7 @@ for (end_use in end_uses) {
       Subsector  == "Rail" &
         Parameters == "Fuel Consumption"  &
         Fuel       == "Biodiesel"
-    ) %>% group_by(scen,
+    ) %>% group_by(Scenario,
                    Sector,
                    Parameters,
                    Fuel,
@@ -510,7 +510,7 @@ for (end_use in end_uses) {
                    FuelGroup) %>%
     
     summarise(Value = sum(Value), .groups = "drop") %>%
-    arrange(scen)
+    arrange(Scenario)
   
   
   # Adding
@@ -550,8 +550,8 @@ for (end_use in end_uses) {
         Parameters == "Emissions"  &
         Fuel       == "Drop-In Jet"  &
         Enduse     == end_use &
-        scen       == "Kea"
-    ) %>% arrange(scen)
+        Scenario   == "Kea"
+    ) %>% arrange(Scenario)
   
   # Filter multiply values
   Multiple_df <- clean_df %>%
@@ -560,8 +560,8 @@ for (end_use in end_uses) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Drop-In Jet"  &
         Enduse     == end_use &
-        scen       == "Kea"
-    ) %>% arrange(scen)
+        Scenario   == "Kea"
+    ) %>% arrange(Scenario)
   
   # Filter out divide values
   divide_df <- clean_df %>%
@@ -569,8 +569,8 @@ for (end_use in end_uses) {
       Subsector  == "Aviation" &
         Parameters == "Fuel Consumption"  &
         Fuel       == "Drop-In Jet" &
-        scen       == "Kea"
-    ) %>% group_by(scen,
+        Scenario   == "Kea"
+    ) %>% group_by(Scenario,
                    Sector,
                    Parameters,
                    Fuel,
@@ -578,7 +578,7 @@ for (end_use in end_uses) {
                    FuelGroup) %>%
     
     summarise(Value = sum(Value), .groups = "drop") %>%
-    arrange(scen)
+    arrange(Scenario)
   
   
   # Adding
@@ -593,7 +593,7 @@ for (end_use in end_uses) {
                            Parameters == "Emissions"  &
                              Fuel       == "Drop-In Jet"  &
                              Enduse     == end_use &
-                             scen       == "Kea" 
+                             Scenario   == "Kea" 
                          )
                          ),
                        # Adding the new data
@@ -622,7 +622,7 @@ for (subsector in subsectors){
         Parameters == "Emissions"  &
         Fuel       == "Drop-In Diesel"  &
         Enduse     == "Motive Power, Mobile" &
-        scen       == "Kea"
+        Scenario   == "Kea"
     )
   
   # Filter multiply values
@@ -633,7 +633,7 @@ for (subsector in subsectors){
         Parameters == "Fuel Consumption"  &
         Fuel       == "Drop-In Diesel"  &
         Enduse     == "Motive Power, Mobile" &
-        scen       == "Kea"
+        Scenario   == "Kea"
     ) 
   
   # Filter out divide values
@@ -644,8 +644,8 @@ for (subsector in subsectors){
         Parameters == "Fuel Consumption" &
         Fuel       == "Drop-In Diesel" &
         Enduse     == "Motive Power, Mobile" &
-        scen       == "Kea"
-    ) %>% group_by(scen,
+        Scenario   == "Kea"
+    ) %>% group_by(Scenario,
                    Sector,
                    Fuel,
                    Period,
@@ -668,7 +668,7 @@ for (subsector in subsectors){
                              Parameters == "Emissions"  &
                              Fuel       == "Drop-In Diesel"  &
                              Enduse     == "Motive Power, Mobile" &
-                             scen       == "Kea"
+                             Scenario   == "Kea"
                          )
                          ),
                        # Adding the new data
@@ -695,7 +695,7 @@ for (subsector in subsectors){
 #         Parameters == "Emissions"  &
 #         Fuel       == "Drop-In Diesel"  &
 #         Enduse     == "Other" &
-#         scen       == "Kea"
+#         Scenario   == "Kea"
 #     )
 #   
 #   # Filter multiply values
@@ -706,7 +706,7 @@ for (subsector in subsectors){
 #         Parameters == "Fuel Consumption"  &
 #         Fuel       == "Drop-In Diesel"  &
 #         Enduse     == "Other" &
-#         scen       == "Kea"
+#         Scenario   == "Kea"
 #     ) 
 #   
 #   # Filter out divide values
@@ -716,8 +716,8 @@ for (subsector in subsectors){
 #         Parameters == "Fuel Consumption" &
 #         Fuel       == "Drop-In Diesel" &
 #         Enduse     == "Other" &
-#         scen       == "Kea"
-#     ) %>% group_by(scen,
+#         Scenario   == "Kea"
+#     ) %>% group_by(Scenario,
 #                    Sector,
 #                    Fuel,
 #                    Period,
@@ -740,7 +740,7 @@ for (subsector in subsectors){
 #                              Parameters == "Emissions"  &
 #                              Fuel       == "Drop-In Diesel"  &
 #                              Enduse     == "Other" &
-#                              scen       == "Kea"
+#                              Scenario   == "Kea"
 #                          )
 #                          ),
 #                        # Adding the new data
@@ -768,8 +768,8 @@ for (subsector in subsectors) {
         Fuel       == "Drop-In Diesel"  &
         Subsector  == subsector &
         Enduse     == "Motive Power, Mobile" &
-        scen       == "Kea"
-    ) %>% arrange(scen)
+        Scenario   == "Kea"
+    ) %>% arrange(Scenario)
   
   # Filter multiply values
   Multiple_df <- clean_df %>%
@@ -779,8 +779,8 @@ for (subsector in subsectors) {
         Fuel       == "Diesel"  &
         Subsector  == subsector &
         Enduse     == "Motive Power, Mobile" &
-        scen       == "Kea"
-    ) %>% arrange(scen)
+        Scenario   == "Kea"
+    ) %>% arrange(Scenario)
   
   # Filter out divide values
   divide_df <- clean_df %>%
@@ -790,8 +790,8 @@ for (subsector in subsectors) {
         Parameters == "Fuel Consumption"  &
         Fuel       == "Diesel" &
         Enduse     == "Motive Power, Mobile" &
-        scen       == "Kea"
-    ) %>% group_by(scen,
+        Scenario   == "Kea"
+    ) %>% group_by(Scenario,
                    Sector,
                    Parameters,
                    Fuel,
@@ -799,7 +799,7 @@ for (subsector in subsectors) {
                    FuelGroup) %>%
     
     summarise(Value = sum(Value), .groups = "drop") %>%
-    arrange(scen)
+    arrange(Scenario)
   
   
   
@@ -820,7 +820,7 @@ for (subsector in subsectors) {
                              Fuel       == "Drop-In Diesel"  &
                              Subsector  == subsector &
                              Enduse     == "Motive Power, Mobile" &
-                             scen       == "Kea" )
+                             Scenario   == "Kea" )
                          ),
                        # Adding the new data
                        new_needed_df 
@@ -837,7 +837,7 @@ for (subsector in subsectors) {
                              Fuel       == "Diesel"  &
                              Subsector  == subsector &
                              Enduse     == "Motive Power, Mobile" &
-                             scen       == "Kea" )
+                             Scenario   == "Kea" )
                          ),
                        # Adding the new data
                        new_Multiple_df   # new multiple df
@@ -862,8 +862,8 @@ for (subsector in subsectors) {
 #         Fuel       == "Drop-In Diesel"  &
 #         Subsector  == subsector &
 #         Enduse     == "Other" &
-#         scen       == "Kea"
-#     ) %>% arrange(scen)
+#         Scenario   == "Kea"
+#     ) %>% arrange(Scenario)
 #   
 #   # Filter multiply values
 #   Multiple_df <- clean_df %>%
@@ -873,8 +873,8 @@ for (subsector in subsectors) {
 #         Fuel       == "Diesel"  &
 #         Subsector  == subsector &
 #         Enduse     == "Other" &
-#         scen       == "Kea"
-#     ) %>% arrange(scen)
+#         Scenario   == "Kea"
+#     ) %>% arrange(Scenario)
 #   
 #   # Filter out divide values
 #   divide_df <- clean_df %>%
@@ -883,8 +883,8 @@ for (subsector in subsectors) {
 #         Parameters == "Fuel Consumption"  &
 #         Fuel       == "Diesel" &
 #         Enduse     == "Other" &
-#         scen       == "Kea"
-#     ) %>% group_by(scen,
+#         Scenario   == "Kea"
+#     ) %>% group_by(Scenario,
 #                    Sector,
 #                    Parameters,
 #                    Fuel,
@@ -892,7 +892,7 @@ for (subsector in subsectors) {
 #                    FuelGroup) %>%
 #     
 #     summarise(Value = sum(Value), .groups = "drop") %>%
-#     arrange(scen)
+#     arrange(Scenario)
 #   
 #   
 #   
@@ -913,7 +913,7 @@ for (subsector in subsectors) {
 #                              Fuel       == "Drop-In Diesel"  &
 #                              Subsector  == subsector &
 #                              Enduse     == "Other" &
-#                              scen       == "Kea" )
+#                              Scenario   == "Kea" )
 #                          ),
 #                        # Adding the new data
 #                        new_needed_df 
@@ -930,7 +930,7 @@ for (subsector in subsectors) {
 #                              Fuel       == "Diesel"  &
 #                              Subsector  == subsector &
 #                              Enduse     == "Other" &
-#                              scen       == "Kea" )
+#                              Scenario   == "Kea" )
 #                          ),
 #                        # Adding the new data
 #                        new_Multiple_df   # new multiple df
@@ -945,11 +945,11 @@ combined_df[is.na(combined_df)] <- 0
 
 # List generation
 hierarchy_lits <- combined_df %>%
-  distinct(Sector, Subsector,Enduse, Technology,Unit,Fuel) %>%
+  distinct(Sector, Subsector,Enduse, Technology, Unit, Fuel) %>%
   arrange(across(everything()))
 
 
-fuel_list <- distinct(hierarchy_lits,Fuel) # Fuel list
+fuel_list <- distinct(hierarchy_lits, Fuel) # Fuel list
 sector_list <-distinct(hierarchy_lits, Sector) # sector list
 # Subsector_list <- distinct(hierarchy_lits, Subsector) 
 # Technology_list <- distinct(hierarchy_lits, Technology)
@@ -1011,3 +1011,5 @@ save(combined_df, # data for charting
 # cbind(fuel_list,colors)
 # df <- cbind(fuel_list,colors)
 # writexl::write_xlsx(df,"../Data_Cleaning/Schema_colors.xlsx")
+
+write_csv(combined_df, "output_combined_df_v2_1_2_from_r.csv")

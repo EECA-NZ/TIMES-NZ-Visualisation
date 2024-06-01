@@ -26,7 +26,7 @@ get_max_y <- function(data, group_var, input_chart_type){
   total_by_grp <- data %>% 
       
       # !!sym is used to call the group_var as a string
-      group_by(!!sym(group_var), Period, scen) %>%  
+      group_by(!!sym(group_var), Period, Scenario) %>%
       
       summarise(Value = sum(Value), .groups = "drop") %>% 
       
@@ -34,7 +34,7 @@ get_max_y <- function(data, group_var, input_chart_type){
   # Extracting the periods
   total_by_period <- data %>% 
     
-    group_by(Period, scen) %>%  
+    group_by(Period, Scenario) %>%
     
     summarise(Value = sum(Value), .groups = "drop") %>% 
     
