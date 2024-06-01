@@ -2,13 +2,19 @@
 Aim is to replicate the intended functionality of the inherited script 'New_Data_Processing.R'
 """
 
+import os
+import sys
 import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 import numpy as np
 import pandas as pd
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'library'))
 
 from constants import *
 from rulesets import *
 from helpers import *
+
 
 #### CONSTANTS
 
@@ -61,6 +67,55 @@ end_use_process_emission_types = {x: sector_emission_types[process_sectors[x]] f
 
 
 #### FUNCTIONS ####
+
+def generate_schema():
+
+    # First approach: VD OUTPUT. This approach will only include technologies selected by TIMES.
+    vd_df = read_and_concatenate(INPUT_VD_FILES)
+
+    # Add and subtract columns
+    vd_df = add_missing_columns(vd_df, OUT_COLS + SUP_COLS)
+    logging.info(
+        "Dropping columns: %s",
+        [x for x in vd_df.columns if x not in OUT_COLS + SUP_COLS]
+    )
+    vd_df = vd_df[OUT_COLS + SUP_COLS]
+
+    # Subset the rows and drop duplicates
+    vd_df = vd_df[vd_df["Attribute"].isin(ATTRIBUTE_ROWS_TO_KEEP)]
+    
+    # Second approach: Read the 'Commodity Groups' CSV file. This approach would be preferred if the
+    # Commodity Groups export from VEDA were complete. Unfortunately, it doesn't present the emissions
+    cg_df = process_map_from_commodity_groups(ITEMS_LIST_COMMODITY_GROUPS_CSV)
+
+    # Combine the two DataFrames and drop duplicates
+    main_df = pd.concat([vd_df, cg_df]).drop_duplicates()
+
+    # Populate the columns and augment with emissions rows according to the rulesets in the specified order
+    for name, ruleset in RULESETS:
+        logging.info("Applying ruleset: %s", name)
+        main_df = apply_rules(main_df, ruleset)
+
+    main_df.Commodity = main_df.Commodity.fillna('-')
+
+    # Drop emissions rows with non-emissions commodities
+    indexes_to_drop = main_df[(main_df['Parameters'] == 'Emissions') & (~main_df['Commodity'].isin(
+        ['INDCO2', 'COMCO2', 'AGRCO2', 'RESCO2', 'ELCCO2', 'TRACO2', 'TOTCO2']))
+        ].index
+    main_df.drop(indexes_to_drop, inplace=True)
+    logging.info("Adding missing rows")
+    main_df = pd.concat([main_df, MISSING_ROWS], ignore_index=True)
+    main_df = main_df[OUT_COLS].drop_duplicates().dropna().sort_values(by=OUT_COLS)
+    try:
+        main_df.to_csv(OUTPUT_SCHEMA_FILEPATH, index=False)
+    except PermissionError:
+        logging.warning(
+            "The file %s may be currently open in Excel. Did not write to file.",
+            OUTPUT_SCHEMA_FILEPATH,
+        )
+        exit()
+    logging.info("The files have been concatenated and saved to %s", OUTPUT_SCHEMA_FILEPATH)
+
 
 def units_consistent(commodity_flow_dict):
      # Check if all units are the same
@@ -159,6 +214,8 @@ def complete_expand_dim(df, expand_dim, fill_value_dict):
 
 
 #### MAIN ####
+
+generate_schema()
 
 raw_df = pd.DataFrame()
 

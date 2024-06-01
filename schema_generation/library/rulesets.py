@@ -19,9 +19,6 @@ import pandas as pd
 from constants import *
 from helpers import *
 
-schema = pd.read_csv(REFERENCE_SCHEMA_FILEPATH).drop_duplicates()
-schema = schema[OUT_COLS].dropna().drop_duplicates().sort_values(by=OUT_COLS)
-
 # Generate rulesets for 'Set' attributes and descriptions
 commodity_set_rules = df_to_ruleset(
     df=pd.read_csv(ITEMS_LIST_COMMODITY_CSV),

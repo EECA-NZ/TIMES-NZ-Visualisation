@@ -1,26 +1,4 @@
 Scenario,Region,Sector,Set,Name,Description,Activity unit,Capacity unit,Type,Sub type,Primary commodity group,Time slice level,Vintage
-BASE,SI,ELC,.PRE.,G_ELC_LV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELCDD,DAYNITE,0.0
-BASE,SI,ELC,.PRE.,G_ELC_MV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELC-MV,DAYNITE,0.0
-BASE,SI,ELC,.PRE.,G_ELC_R_00,-:-  -:-  -:-,PJ,GW,PRE,-,RESELC,DAYNITE,0.0
-BASE,SI,ELC,.PRE.,G_ELC_S_00,-:-  -:-  -:-,PJ,GW,PRE,-,COMELC,DAYNITE,0.0
-BASE,SI,PRI,.EXP.IRE.,EXPOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
-BASE,SI,TRADES,IRE,TU_DIJ_NI_SI_01,IRE(U) - DIJ from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,TRADES,IRE,TU_DSL_NI_SI_01,IRE(U) - DSL from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,TRADES,IRE,TU_FOL_NI_SI_01,IRE(U) - FOL from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,TRADES,IRE,TU_JET_NI_SI_01,IRE(U) - JET from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,TRADES,IRE,TU_LPG_NI_SI_01,IRE(U) - LPG from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,TRADES,IRE,TU_OTH_NI_SI_01,IRE(U) - OTH from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,TRADES,IRE,TU_PET_NI_SI_01,IRE(U) - PET from ni to si,PJ,-,IRE,-,NRG,,
-BASE,SI,ELC,.PRE.,G_ELC2ELCD,-:-  -:-  -:-,PJ,GW,PRE,-,ELCD,DAYNITE,0.0
-BASE,NI,PRI,.MIN.IRE.,MINFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
-BASE,NI,ELC,.DMD.,P_OWNUSE_ELC,-:-  -:-  -:-,PJ,PJ,DMD,-,,ANNUAL,0.0
-BASE,NI,TRADES,IRE,TB_ELC_NI_SI_01,IRE(B) - ELC from ni to si,PJ,-,IRE,-,NRG,DAYNITE,
-BASE,NI,TRADES,IRE,TU_COA_NI_SI_01,IRE(U) - COA from ni to si,PJ,-,IRE,-,NRG,ANNUAL,
-BASE,NI,TRADES,IRE,TU_COL_NI_SI_01,IRE(U) - COL from ni to si,PJ,-,IRE,-,NRG,ANNUAL,
-BASE,NI,TRADES,IRE,TU_DID_NI_SI_01,IRE(U) - DID from ni to si,PJ,-,IRE,-,NRG,,
-BASE,NI,TRADES,IRE,TU_DIJ_NI_SI_01,IRE(U) - DIJ from ni to si,PJ,-,IRE,-,NRG,,
-BASE,NI,TRADES,IRE,TU_DSL_NI_SI_01,IRE(U) - DSL from ni to si,PJ,-,IRE,-,NRG,,
-BASE,NI,TRADES,IRE,TU_FOL_NI_SI_01,IRE(U) - FOL from ni to si,PJ,-,IRE,-,NRG,,
 BASE,NI,TRADES,IRE,TU_JET_NI_SI_01,IRE(U) - JET from ni to si,PJ,-,IRE,-,NRG,,
 BASE,NI,TRADES,IRE,TU_LPG_NI_SI_01,IRE(U) - LPG from ni to si,PJ,-,IRE,-,NRG,,
 BASE,NI,TRADES,IRE,TU_OTH_NI_SI_01,IRE(U) - OTH from ni to si,PJ,-,IRE,-,NRG,,
@@ -33,63 +11,55 @@ BASE,SI,TRADES,IRE,TB_ELC_NI_SI_01,IRE(B) - ELC from ni to si,PJ,-,IRE,-,NRG,DAY
 BASE,SI,TRADES,IRE,TU_COA_NI_SI_01,IRE(U) - COA from ni to si,PJ,-,IRE,-,NRG,ANNUAL,
 BASE,SI,TRADES,IRE,TU_COL_NI_SI_01,IRE(U) - COL from ni to si,PJ,-,IRE,-,NRG,ANNUAL,
 BASE,SI,TRADES,IRE,TU_DID_NI_SI_01,IRE(U) - DID from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_DIJ_NI_SI_01,IRE(U) - DIJ from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_DSL_NI_SI_01,IRE(U) - DSL from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_FOL_NI_SI_01,IRE(U) - FOL from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_JET_NI_SI_01,IRE(U) - JET from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_LPG_NI_SI_01,IRE(U) - LPG from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_OTH_NI_SI_01,IRE(U) - OTH from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,TRADES,IRE,TU_PET_NI_SI_01,IRE(U) - PET from ni to si,PJ,-,IRE,-,NRG,,
+BASE,NI,PRI,.IMP.IRE.,IMPLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
+BASE,NI,ELC,.PRE.,G_ELC2ELCD,-:-  -:-  -:-,PJ,GW,PRE,-,ELCD,DAYNITE,0.0
+BASE,NI,OTH,.PRE.,FTE_AGRPET,Agriculture -:-  -:-  -:- Petrol,PJ,PJA,PRE,-,AGRPET,ANNUAL,0.0
+BASE,NI,TRADES,IRE,TU_FOL_NI_SI_01,IRE(U) - FOL from ni to si,PJ,-,IRE,-,NRG,,
+BASE,SI,ELC,.PRE.,G_ELC2ELCD,-:-  -:-  -:-,PJ,GW,PRE,-,ELCD,DAYNITE,0.0
+BASE,NI,ELC,.DMD.,P_OWNUSE_ELC,-:-  -:-  -:-,PJ,PJ,DMD,-,,ANNUAL,0.0
+BASE,SI,ELC,.PRE.,G_ELC_A_00,-:-  -:-  -:-,PJ,GW,PRE,-,AGRELC,DAYNITE,0.0
+BASE,SI,ELC,.PRE.,G_ELC_HV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELC-HV,DAYNITE,0.0
+BASE,SI,ELC,.PRE.,G_ELC_I_00,-:-  -:-  -:-,PJ,GW,PRE,-,INDELC,DAYNITE,0.0
+BASE,SI,ELC,.PRE.,G_ELC_LV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELCDD,DAYNITE,0.0
+BASE,SI,ELC,.PRE.,G_ELC_MV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELC-MV,DAYNITE,0.0
+BASE,SI,ELC,.PRE.,G_ELC_R_00,-:-  -:-  -:-,PJ,GW,PRE,-,RESELC,DAYNITE,0.0
+BASE,SI,ELC,.PRE.,G_ELC_S_00,-:-  -:-  -:-,PJ,GW,PRE,-,COMELC,DAYNITE,0.0
+BASE,NI,TRADES,IRE,TB_ELC_NI_SI_01,IRE(B) - ELC from ni to si,PJ,-,IRE,-,NRG,DAYNITE,
+BASE,NI,TRADES,IRE,TU_COA_NI_SI_01,IRE(U) - COA from ni to si,PJ,-,IRE,-,NRG,ANNUAL,
+BASE,NI,TRADES,IRE,TU_COL_NI_SI_01,IRE(U) - COL from ni to si,PJ,-,IRE,-,NRG,ANNUAL,
+BASE,NI,TRADES,IRE,TU_DID_NI_SI_01,IRE(U) - DID from ni to si,PJ,-,IRE,-,NRG,,
+BASE,NI,TRADES,IRE,TU_DIJ_NI_SI_01,IRE(U) - DIJ from ni to si,PJ,-,IRE,-,NRG,,
+BASE,NI,TRADES,IRE,TU_DSL_NI_SI_01,IRE(U) - DSL from ni to si,PJ,-,IRE,-,NRG,,
+BASE,NI,PRI,.IMP.IRE.,IMPPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,PET,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPDIJ,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DIJ,ANNUAL,0.0
 BASE,NI,ELC,.ELE.,ELCTENGACHP00,Electricity -:- Thermal -:- Combined Heat/Power -:- Natural Gas,PJ,GW,ELE,-,ELCTENGACHP00_NRGO,DAYNITE,0.0
 BASE,NI,PRI,.MIN.IRE.,MINDSL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MINFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINJET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINOTH1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
-BASE,NI,PRI,.MIN.IRE.,MIN_DAC_CO2,Primary Fuel Supply -:- Hydrogen -:- Direct air capture costs -:-,KT,KTA,IRE,-,DAC_CO2,ANNUAL,0.0
-BASE,NI,OTH,.DMD.,AINDC-SH-Boiler_COA00,Agriculture -:- Indoor Cropping -:- Boiler -:- Coal,PJ,GW,DMD,-,AINDC-SH,ANNUAL,0.0
-BASE,NI,OTH,.DMD.,C_EDU-SH_Boiler-DSL00,Commercial -:- Education -:- Boiler -:- Diesel,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
 BASE,NI,PRI,.PRE.,CT_CWODDID,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Production of drop-in fuels from woodwaste,PJ,GWTH,PRE,-,CT_CWODDID_NRGO,ANNUAL,0.0
 BASE,NI,PRI,.PRE.,D-H2toNGA_blnd,Primary Fuel Supply -:- Hydrogen -:- Blending Hydrogen with Natural gas (only NI) -:-,PJ,GW,PRE,-,D-H2toNGA_blnd_NRGO,DAYNITE,0.0
 BASE,NI,PRI,.PRE.,REFEOIL00,Primary Fuel Supply -:- Refinery -:- Oil production -:-,PJ,PJA,PRE,-,REFEOIL00_NRGI,ANNUAL,0.0
-BASE,NI,TRA,.DST.PRE.,G_ELC_T_00,Transport -:-  -:-  -:- Electricity,PJ,GW,PRE,-,TRAELC,DAYNITE,0.0
-BASE,NI,TRA,.DMD.,T_C_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPDSL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DSL,ANNUAL,0.0
 BASE,SI,PRI,.EXP.IRE.,Non_NRG_OTH,Primary Fuel Supply -:- Natural Gas -:- Non Energy Use of Natural Gas -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPDID,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPDIJ,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPLNG1,Primary Fuel Supply -:- Natural Gas -:- Import - LNG -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
-BASE,SI,PRI,.IMP.IRE.,IMPOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
-BASE,NI,ELC,.ELE.,ELCREBIG00,Electricity -:- Thermal -:- Steam Boiler -:- Biogas,PJ,GW,ELE,-,ELC,DAYNITE,0.0
 BASE,SI,PRI,.MIN.IRE.,MINNGA2,Primary Fuel Supply -:- Natural Gas -:- Mining - Natural Gas Tranche 2 -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINNGA3,Primary Fuel Supply -:- Natural Gas -:- Mining - Natural Gas Tranche 3 -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINNGA4,Primary Fuel Supply -:- Natural Gas -:- Mining - Natural Gas Tranche 4 -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
-BASE,SI,PRI,.MIN.IRE.,MINOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.PRE.,CT_CWODDID,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Production of drop-in fuels from woodwaste,PJ,GWTH,PRE,-,CT_CWODDID_NRGO,ANNUAL,0.0
 BASE,SI,PRI,.PRE.,LNGport2021,Primary Fuel Supply -:- Natural Gas -:- LNG Port -:-,PJ,PJA,PRE,-,,ANNUAL,0.0
 BASE,SI,PRI,.PRE.,REFEOIL00,Primary Fuel Supply -:- Refinery -:- Oil production -:-,PJ,PJA,PRE,-,REFEOIL00_NRGI,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_C_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_C_CICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_C_CICELPG15,Transport -:- Road Transport -:- Internal Combustion Engine -:- LPG,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_C_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_F_HTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_HTrk,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_F_MBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_F_MTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_F_MTICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
-BASE,NI,PRI,.MIN.IRE.,MINHYD1,Primary Fuel Supply -:- Renewables -:- Mining - Hydro -:-,PJ,PJA,IRE,-,HYD,DAYNITE,0.0
-BASE,NI,TRA,.DMD.,T_F_VHTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_VHTrk,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_BBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_BICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_BICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CBEVUSD15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CICELPG15,Transport -:- Road Transport -:- Internal Combustion Engine -:- LPG,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_CPHEVPET15,Transport -:- Road Transport -:- Plug-In Hybrid Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
-BASE,NI,TRA,.DMD.,T_P_MICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000MCY,DMD,-,T_P_Mcy,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_C_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_C_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_C_CICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_C_CICELPG15,Transport -:- Road Transport -:- Internal Combustion Engine -:- LPG,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_C_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_F_HTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_HTrk,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_F_MBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_F_MTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_F_MTICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_F_VHTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_VHTrk,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,FOL,ANNUAL,0.0
 NewTech_ELC_KEA,NI,ELC,.MIN.IRE.,CCS_Store1,-:-  -:-  -:-,KT,KTA,IRE,-,CCS_Store1_NRGO,ANNUAL,0.0
 NewTech_ELC_TUI,NI,ELC,.MIN.IRE.,CCS_Store1,-:-  -:-  -:-,KT,KTA,IRE,-,CCS_Store1_NRGO,ANNUAL,0.0
 NewTech_ELC_KEA,NI,ELC,.MIN.IRE.,CCS_Store2,-:-  -:-  -:-,KT,KTA,IRE,-,CCS_Store2_NRGO,ANNUAL,0.0
@@ -102,6 +72,7 @@ NewTech_AGR_KEA,NI,OTH,.DMD.,ADCF-IRG-Irg-ELC,Agriculture -:- Dairy Cattle Farmi
 NewTech_AGR_TUI,NI,OTH,.DMD.,ADCF-IRG-Irg-ELC,Agriculture -:- Dairy Cattle Farming -:- Irrigator -:- Electricity,PJ,GW,DMD,-,ADCF-IRG-Irg-ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,ADCF-IRG-IrgVSD-ELC,Agriculture -:- Dairy Cattle Farming -:- Irrigator with VSD -:- Electricity,PJ,GW,DMD,-,ADCF-IRG-IrgVSD-ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,ADCF-IRG-IrgVSD-ELC,Agriculture -:- Dairy Cattle Farming -:- Irrigator with VSD -:- Electricity,PJ,GW,DMD,-,ADCF-IRG-IrgVSD-ELC_DEMO,ANNUAL,0.0
+BASE,NI,IND,.PRE.,FTE-INDLPG_00,Industry -:-  -:-  -:- LPG,PJ,PJA,PRE,-,INDLPG,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,ADCF-LIG--ELC,Agriculture -:- Dairy Cattle Farming -:- Lights (General) -:- Electricity,PJ,GW,DMD,-,ADCF-LIG--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,ADCF-LIG--ELC,Agriculture -:- Dairy Cattle Farming -:- Lights (General) -:- Electricity,PJ,GW,DMD,-,ADCF-LIG--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,ADCF-MoTP-Mob-Bike--ELC,Agriculture -:- Dairy Cattle Farming -:- Farm Bike -:- Electricity,PJ,GW,DMD,-,ADCF-MoTP-Mob-Bike--ELC_DEMO,ANNUAL,0.0
@@ -157,11 +128,11 @@ NewTech_AGR_TUI,NI,OTH,.DMD.,AFORE-MoTP-Mob-CY--ELC,Agriculture -:- Forestry -:-
 NewTech_AGR_KEA,NI,OTH,.DMD.,AFORE-MoTP-Mob-CY--H2R,Agriculture -:- Forestry -:- Cable Yarder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-CY--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,AFORE-MoTP-Mob-CY--H2R,Agriculture -:- Forestry -:- Cable Yarder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-CY--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,AFORE-MoTP-Mob-GB--DSL,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Diesel,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--DSL_DEMO,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MINHYD1,Primary Fuel Supply -:- Renewables -:- Mining - Hydro -:-,PJ,PJA,IRE,-,HYD,DAYNITE,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,AFORE-MoTP-Mob-GB--DSL,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Diesel,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--DSL_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,AFORE-MoTP-Mob-GB--ELC,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,AFORE-MoTP-Mob-GB--ELC,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,AFORE-MoTP-Mob-GB--H2R,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--H2R_DEMO,ANNUAL,0.0
-NewTech_ELC_KEA,SI,ELC,.ELE.,EHCOL_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,EHCOL_CCS30_NRGO,DAYNITE,1.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,AFORE-MoTP-Mob-GB--H2R,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,AFORE-MoTP-Stat--ELC,Agriculture -:- Forestry -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Stat--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,AFORE-MoTP-Stat--ELC,Agriculture -:- Forestry -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Stat--ELC_DEMO,ANNUAL,0.0
@@ -231,7 +202,7 @@ NewTech_AGR_KEA,NI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--ELC,Agriculture -:- Livestock F
 NewTech_AGR_TUI,NI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--ELC,Agriculture -:- Livestock Farming -:- Utility Vehicle (Agricultural) -:- Electricity,PJ,GW,DMD,-,ALIVE-MoTP-Mob-Uti--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,NI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--H2R,Agriculture -:- Livestock Farming -:- Utility Vehicle (Agricultural) -:- Green Hydrogen,PJ,GW,DMD,-,ALIVE-MoTP-Mob-Uti--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,NI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--H2R,Agriculture -:- Livestock Farming -:- Utility Vehicle (Agricultural) -:- Green Hydrogen,PJ,GW,DMD,-,ALIVE-MoTP-Mob-Uti--H2R_DEMO,ANNUAL,0.0
-BASE,NI,PRI,.MIN.IRE.,MINCOA1,Primary Fuel Supply -:- Coal -:- Mining - Coal Bituminous -:-,PJ,PJA,IRE,-,COA,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPJET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,JET,ANNUAL,0.0
 NewTech_RC,NI,OTH,.DMD.,R_DDW-SH_DUCHP-ELC,Residential -:- Detached Dwellings -:- Heat Pump (Ducted) -:- Electricity,PJ,GW,DMD,-,R_DDW-SH_DUCHP-ELC_DEMO,ANNUAL,0.0
 NewTech_RC,NI,OTH,.DMD.,R_DDW-SH_HP-ELC,Residential -:- Detached Dwellings -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,R_DDW-SH_HP-ELC_DEMO,ANNUAL,0.0
 NewTech_RC,NI,OTH,.DMD.,R_DDW-SH_MSHP-ELC,Residential -:- Detached Dwellings -:- Heat Pump (Multi-Split) -:- Electricity,PJ,GW,DMD,-,R_DDW-SH_MSHP-ELC_DEMO,ANNUAL,0.0
@@ -293,12 +264,12 @@ NewTech_AGR_KEA,SI,OTH,.DMD.,AFORE-MoTP-Mob-CY--ELC,Agriculture -:- Forestry -:-
 NewTech_AGR_TUI,SI,OTH,.DMD.,AFORE-MoTP-Mob-CY--ELC,Agriculture -:- Forestry -:- Cable Yarder (Forestry) -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Mob-CY--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AFORE-MoTP-Mob-CY--H2R,Agriculture -:- Forestry -:- Cable Yarder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-CY--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AFORE-MoTP-Mob-CY--H2R,Agriculture -:- Forestry -:- Cable Yarder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-CY--H2R_DEMO,ANNUAL,0.0
-BASE,NI,PRI,.MIN.IRE.,MINLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AFORE-MoTP-Mob-GB--DSL,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Diesel,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--DSL_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AFORE-MoTP-Mob-GB--DSL,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Diesel,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--DSL_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AFORE-MoTP-Mob-GB--ELC,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--ELC_DEMO,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MINLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AFORE-MoTP-Mob-GB--ELC,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--ELC_DEMO,ANNUAL,0.0
-BASE,NI,PRI,.MIN.IRE.,MINCOL1,Primary Fuel Supply -:- Coal -:- Mining - Coal Lignite -:-,PJ,PJA,IRE,-,COL,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPLNG1,Primary Fuel Supply -:- Natural Gas -:- Import - LNG -:-,PJ,PJA,IRE,-,LNG,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AFORE-MoTP-Mob-GB--H2R,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AFORE-MoTP-Mob-GB--H2R,Agriculture -:- Forestry -:- Skidder (Forestry) -:- Green Hydrogen,PJ,GW,DMD,-,AFORE-MoTP-Mob-GB--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AFORE-MoTP-Stat--ELC,Agriculture -:- Forestry -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,AFORE-MoTP-Stat--ELC_DEMO,ANNUAL,0.0
@@ -325,9 +296,7 @@ NewTech_AGR_KEA,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti--DSL,Agriculture -:- Outdoor Hor
 NewTech_AGR_TUI,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti--DSL,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti--DSL_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti--ELC,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Electricity,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti--ELC,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Electricity,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti--ELC_DEMO,ANNUAL,0.0
-BASE,NI,PRI,.MIN.IRE.,MINGEO1,Primary Fuel Supply -:- Renewables -:- Mining - Geothermal -:-,PJ,PJA,IRE,-,GEO,DAYNITE,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti--H2R,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Green Hydrogen,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti--H2R_DEMO,ANNUAL,0.0
-NewTech_ELC_TUI,SI,ELC,.ELE.,EHCOL_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,EHCOL_CCS30_NRGO,DAYNITE,1.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti--H2R,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Green Hydrogen,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,AHORT-MoTP-Stat-Motor-ELC,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,AHORT-MoTP-Stat-Motor-ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,AHORT-MoTP-Stat-Motor-ELC,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,AHORT-MoTP-Stat-Motor-ELC_DEMO,ANNUAL,0.0
@@ -369,11 +338,11 @@ NewTech_AGR_KEA,SI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--ELC,Agriculture -:- Livestock F
 NewTech_AGR_TUI,SI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--ELC,Agriculture -:- Livestock Farming -:- Utility Vehicle (Agricultural) -:- Electricity,PJ,GW,DMD,-,ALIVE-MoTP-Mob-Uti--ELC_DEMO,ANNUAL,0.0
 NewTech_AGR_KEA,SI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--H2R,Agriculture -:- Livestock Farming -:- Utility Vehicle (Agricultural) -:- Green Hydrogen,PJ,GW,DMD,-,ALIVE-MoTP-Mob-Uti--H2R_DEMO,ANNUAL,0.0
 NewTech_AGR_TUI,SI,OTH,.DMD.,ALIVE-MoTP-Mob-Uti--H2R,Agriculture -:- Livestock Farming -:- Utility Vehicle (Agricultural) -:- Green Hydrogen,PJ,GW,DMD,-,ALIVE-MoTP-Mob-Uti--H2R_DEMO,ANNUAL,0.0
-BASE,NI,OTH,.DMD.,ADCF-PUMP-Pump_ELC00,Agriculture -:- Dairy Cattle Farming -:- Transfer Pump -:- Electricity,PJ,GW,DMD,-,ADCF-PUMP,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_C_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
 NewTech_RC,SI,OTH,.DMD.,R_DDW-SH_DUCHP-ELC,Residential -:- Detached Dwellings -:- Heat Pump (Ducted) -:- Electricity,PJ,GW,DMD,-,R_DDW-SH_DUCHP-ELC_DEMO,ANNUAL,0.0
 NewTech_RC,SI,OTH,.DMD.,R_DDW-SH_HP-ELC,Residential -:- Detached Dwellings -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,R_DDW-SH_HP-ELC_DEMO,ANNUAL,0.0
 NewTech_RC,SI,OTH,.DMD.,R_DDW-SH_MSHP-ELC,Residential -:- Detached Dwellings -:- Heat Pump (Multi-Split) -:- Electricity,PJ,GW,DMD,-,R_DDW-SH_MSHP-ELC_DEMO,ANNUAL,0.0
-BASE,NI,OTH,.DMD.,C_EDU-SH_Boiler-FOL00,Commercial -:- Education -:- Boiler -:- Fuel Oil,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OILI,ANNUAL,0.0
 NewTransport-KEA,NI,TRA,.DMD.,T_C_CBEVELC,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000VEHICLES,DMD,-,T_C_CBEVELC_DEMO,ANNUAL,1.0
 NewTransport-TUI,NI,TRA,.DMD.,T_C_CBEVELC,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000VEHICLES,DMD,-,T_C_CBEVELC_DEMO,ANNUAL,1.0
 NewTransport-KEA,NI,TRA,.DMD.,T_C_CFCH2R,Transport -:- Road Transport -:- Hydrogen Fuel Cell -:- Hydrogen,BVKM,000VEHICLES,DMD,-,T_C_CFCH2R_DEMO,ANNUAL,1.0
@@ -494,11 +463,9 @@ NewTransport-KEA,SI,TRA,.DMD.,T_P_McyBEVELC,Transport -:- Road Transport -:- Bat
 NewTransport-TUI,SI,TRA,.DMD.,T_P_McyBEVELC,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000VEHICLES,DMD,-,T_P_McyBEVELC_DEMO,ANNUAL,1.0
 NewTransport-KEA,SI,TRA,.DMD.,T_P_McyICEPET,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000VEHICLES,DMD,-,T_P_McyICEPET_DEMO,ANNUAL,1.0
 NewTransport-TUI,SI,TRA,.DMD.,T_P_McyICEPET,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000VEHICLES,DMD,-,T_P_McyICEPET_DEMO,ANNUAL,1.0
-BASE,SI,TRA,.DMD.,T_P_BBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
-BASE,NI,IND,.DMD.,OTH-LPG-LPG-Tech15,Industry -:- Other (Industry) -:- Other -:- LPG,PJ,GW,DMD,-,OTH-LPG,DAYNITE,0.0
-BASE,SI,TRA,.DMD.,T_P_BICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRAFOL,Transport -:-  -:-  -:- Fuel Oil,PJ,PJA,PRE,-,TRAFOL,ANNUAL,0.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRAJET,Transport -:-  -:-  -:- Jet Fuel,PJ,PJA,PRE,-,TRAJET,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_C_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,NI,PRI,.IMP.IRE.,IMPOTH1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OTH,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_C_CICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
 NewTech_ELC_TUI,NI,ELC,.ELE.,EBIG20,Electricity -:- Biogas -:- Biogas 2018 -:- Biogas,PJ,GW,ELE,-,EBIG20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,NI,ELC,.ELE.,EBIG20,Electricity -:- Biogas -:- Biogas 2018 -:- Biogas,PJ,GW,ELE,-,EBIG20_NRGO,DAYNITE,1.0
 NewTech_ELC_TUI,NI,ELC,.ELE.,EBIL20,Electricity -:- Bioliquid -:- Bioliquid Power 2018 -:- Bioliquid,PJ,GW,ELE,-,EBIL20_NRGO,DAYNITE,1.0
@@ -524,7 +491,6 @@ NewTech_ELC_KEA,NI,ELC,.ELE.,EHYD-DAM-New20,Electricity -:- Hydro -:- Hydro Dam 
 NewTech_ELC_TUI,NI,ELC,.ELE.,EHYD-RR-NSmall20,Electricity -:- Hydro -:- Hydro Run of River (New <30MW) -:- Hydro,PJ,GW,ELE,-,EHYD-RR-NSmall20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,NI,ELC,.ELE.,EHYD-RR-NSmall20,Electricity -:- Hydro -:- Hydro Run of River (New <30MW) -:- Hydro,PJ,GW,ELE,-,EHYD-RR-NSmall20_NRGO,DAYNITE,1.0
 NewTech_ELC_TUI,NI,ELC,.ELE.,EHYD-RR-New20,Electricity -:- Hydro -:- Hydro Run of River (New >30MW) -:- Hydro,PJ,GW,ELE,-,EHYD-RR-New20_NRGO,DAYNITE,1.0
-BASE,NI,OTH,.PRE.,FTE_RESGEO_00,Residential -:-  -:-  -:- Geothermal,PJ,PJ_A,PRE,-,RESGEO,ANNUAL,0.0
 NewTech_ELC_KEA,NI,ELC,.ELE.,EHYD-RR-New20,Electricity -:- Hydro -:- Hydro Run of River (New >30MW) -:- Hydro,PJ,GW,ELE,-,EHYD-RR-New20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,NI,ELC,.ELE.,ENGA_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,ENGA_CCS30_NRGO,DAYNITE,1.0
 NewTech_ELC_TUI,NI,ELC,.ELE.,ENGA_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,ENGA_CCS30_NRGO,DAYNITE,1.0
@@ -578,9 +544,9 @@ NewTech_ELC_TUI,NI,ELC,.ELE.STG.,EHYDPUMPSTG_L,Electricity -:- Electricity Stora
 NewTech_ELC_KEA,NI,ELC,.ELE.STG.,EHYDPUMPSTG_L,Electricity -:- Electricity Storage -:- Large Pumped Storage -:- Hydro,PJ,GW,ELE,STG,EHYDPUMPSTG_L_NRGO,SEASON,1.0
 NewTech_ELC_TUI,NI,ELC,.ELE.STG.,EHYDPUMPSTG_S,Electricity -:- Electricity Storage -:- Small Pumped Storage -:- Hydro,PJ,GW,ELE,STG,EHYDPUMPSTG_S_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,NI,ELC,.ELE.STG.,EHYDPUMPSTG_S,Electricity -:- Electricity Storage -:- Small Pumped Storage -:- Hydro,PJ,GW,ELE,STG,EHYDPUMPSTG_S_NRGO,DAYNITE,1.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRALPG,Transport -:-  -:-  -:- LPG,PJ,PJA,PRE,-,TRALPG,ANNUAL,0.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRANGA,Transport -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,-,TRANGA,ANNUAL,0.0
-BASE,SI,TRA,.DMD.,T_P_BICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
+BASE,NI,IND,.PRE.,FTE-INDNGA_00,Industry -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,-,INDNGA,ANNUAL,0.0
+BASE,NI,IND,.PRE.,FTE-INDPET_00,Industry -:-  -:-  -:- Petrol,PJ,PJA,PRE,-,INDPET,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_C_CICELPG15,Transport -:- Road Transport -:- Internal Combustion Engine -:- LPG,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
 NewTech_ELC_TUI,SI,ELC,.ELE.,EBIG20,Electricity -:- Biogas -:- Biogas 2018 -:- Biogas,PJ,GW,ELE,-,EBIG20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,SI,ELC,.ELE.,EBIG20,Electricity -:- Biogas -:- Biogas 2018 -:- Biogas,PJ,GW,ELE,-,EBIG20_NRGO,DAYNITE,1.0
 NewTech_ELC_TUI,SI,ELC,.ELE.,EBIL20,Electricity -:- Bioliquid -:- Bioliquid Power 2018 -:- Bioliquid,PJ,GW,ELE,-,EBIL20_NRGO,DAYNITE,1.0
@@ -593,6 +559,8 @@ NewTech_ELC_TUI,SI,ELC,.ELE.,EGEOCONSFLSH20,Electricity -:- Geothermal -:- Geoth
 NewTech_ELC_KEA,SI,ELC,.ELE.,EGEOCONSFLSH20,Electricity -:- Geothermal -:- Geothermal (Consented) -:- Geothermal,PJ,GW,ELE,-,EGEOCONSFLSH20_NRGO,DAYNITE,1.0
 NewTech_ELC_TUI,SI,ELC,.ELE.,EGEOFLSH20,Electricity -:- Geothermal -:- Geothermal (Other) -:- Geothermal,PJ,GW,ELE,-,EGEOFLSH20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,SI,ELC,.ELE.,EGEOFLSH20,Electricity -:- Geothermal -:- Geothermal (Other) -:- Geothermal,PJ,GW,ELE,-,EGEOFLSH20_NRGO,DAYNITE,1.0
+NewTech_ELC_KEA,SI,ELC,.ELE.,EHCOL_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,EHCOL_CCS30_NRGO,DAYNITE,1.0
+NewTech_ELC_TUI,SI,ELC,.ELE.,EHCOL_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,EHCOL_CCS30_NRGO,DAYNITE,1.0
 NewTech_ELC_TUI,SI,ELC,.ELE.,EHCOL_SCPC20,Electricity -:- Thermal -:- Lignite: SCPC - 2018 -:- Lignite,PJ,GW,ELE,-,EHCOL_SCPC20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,SI,ELC,.ELE.,EHCOL_SCPC20,Electricity -:- Thermal -:- Lignite: SCPC - 2018 -:- Lignite,PJ,GW,ELE,-,EHCOL_SCPC20_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,SI,ELC,.ELE.,EHCO_CCS30,-:-  -:-  -:-,PJ,GW,ELE,-,EHCO_CCS30_NRGO,DAYNITE,1.0
@@ -657,6 +625,36 @@ NewTech_ELC_TUI,SI,ELC,.ELE.STG.,EHYDPUMPSTG_L,Electricity -:- Electricity Stora
 NewTech_ELC_KEA,SI,ELC,.ELE.STG.,EHYDPUMPSTG_L,Electricity -:- Electricity Storage -:- Large Pumped Storage -:- Hydro,PJ,GW,ELE,STG,EHYDPUMPSTG_L_NRGO,SEASON,1.0
 NewTech_ELC_TUI,SI,ELC,.ELE.STG.,EHYDPUMPSTG_S,Electricity -:- Electricity Storage -:- Small Pumped Storage -:- Hydro,PJ,GW,ELE,STG,EHYDPUMPSTG_S_NRGO,DAYNITE,1.0
 NewTech_ELC_KEA,SI,ELC,.ELE.STG.,EHYDPUMPSTG_S,Electricity -:- Electricity Storage -:- Small Pumped Storage -:- Hydro,PJ,GW,ELE,STG,EHYDPUMPSTG_S_NRGO,DAYNITE,1.0
+BASE,NI,TRA,.DMD.,T_C_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_F_HTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_HTrk,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_F_MBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_F_MTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_F_MTICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_F_VHTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_VHTrk,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_BBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_BICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_BICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CBEVUSD15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CICELPG15,Transport -:- Road Transport -:- Internal Combustion Engine -:- LPG,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_CPHEVPET15,Transport -:- Road Transport -:- Plug-In Hybrid Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
+BASE,NI,TRA,.DMD.,T_P_MICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000MCY,DMD,-,T_P_Mcy,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_C_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_C_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_C_CICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_C_CICELPG15,Transport -:- Road Transport -:- Internal Combustion Engine -:- LPG,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_C_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_C_Car,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_F_HTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_HTrk,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_F_MBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_F_MTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_F_MTICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000TRUCKS,DMD,-,T_F_MTrk,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_F_VHTICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000TRUCKS,DMD,-,T_F_VHTrk,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_P_BBEVELC15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_P_BICEDSL15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Diesel,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_P_BICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000BUSSES,DMD,-,T_P_Bus,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_P_CBEVNEW15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_P_CBEVUSD15,Transport -:- Road Transport -:- Battery Electric Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_P_CHYBPET15,Transport -:- Road Transport -:- Hybrid Vehicle -:- Petrol,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
@@ -665,7 +663,16 @@ BASE,SI,TRA,.DMD.,T_P_CICELPG15,Transport -:- Road Transport -:- Internal Combus
 BASE,SI,TRA,.DMD.,T_P_CICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_P_CPHEVPET15,Transport -:- Road Transport -:- Plug-In Hybrid Vehicle -:- Electricity,BVKM,000CARS,DMD,-,T_P_Car,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_P_MICEPET15,Transport -:- Road Transport -:- Internal Combustion Engine -:- Petrol,BVKM,000MCY,DMD,-,T_P_Mcy,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MIN_DAC_CO2,Primary Fuel Supply -:- Hydrogen -:- Direct air capture costs -:-,KT,KTA,IRE,-,DAC_CO2,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MIN_DAC_CO2,Primary Fuel Supply -:- Hydrogen -:- Direct air capture costs -:-,KT,KTA,IRE,-,DAC_CO2,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRABIL,Transport -:-  -:-  -:- Bio Liquids,PJ,PJA,PRE,DISTR,TRABIL,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRADSL,Transport -:-  -:-  -:- Diesel,PJ,PJA,PRE,DISTR,TRADSL,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRAFOL,Transport -:-  -:-  -:- Fuel Oil,PJ,PJA,PRE,DISTR,TRAFOL,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRAJET,Transport -:-  -:-  -:- Jet Fuel,PJ,PJA,PRE,DISTR,TRAJET,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRALPG,Transport -:-  -:-  -:- LPG,PJ,PJA,PRE,DISTR,TRALPG,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRANGA,Transport -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,DISTR,TRANGA,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,FTE_TRAPET,Transport -:-  -:-  -:- Petrol,PJ,PJA,PRE,DISTR,TRAPET,ANNUAL,0.0
+BASE,NI,TRA,.DISTR.PRE.,G_ELC_T_00,Transport -:-  -:-  -:- Electricity,PJ,GW,PRE,DISTR,TRAELC,DAYNITE,0.0
 BASE,NI,OTH,.DMD.,ADCF-IRG-IrgVSD_ELC00,Agriculture -:- Dairy Cattle Farming -:- Irrigator with VSD -:- Electricity,PJ,GW,DMD,-,ADCF-IRG,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-IRG-Irg_ELC00,Agriculture -:- Dairy Cattle Farming -:- Irrigator -:- Electricity,PJ,GW,DMD,-,ADCF-IRG,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-LIG-LT_ELC00,Agriculture -:- Dairy Cattle Farming -:- Lights (General) -:- Electricity,PJ,GW,DMD,-,ADCF-LIG,ANNUAL,0.0
@@ -675,6 +682,7 @@ BASE,NI,OTH,.DMD.,ADCF-MoTP-Mob-Trac-_DSL00,Agriculture -:- Dairy Cattle Farming
 BASE,NI,OTH,.DMD.,ADCF-MoTP-Mob-Uti-_DSL00,Agriculture -:- Dairy Cattle Farming -:- Utility Vehicle (Agricultural) -:- Diesel,PJ,GW,DMD,-,ADCF-MoTP-Mob-Uti,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-MoTP-Stat-VPVSD_ELC00,Agriculture -:- Dairy Cattle Farming -:- Vacuum Pump with VSD -:- Electricity,PJ,GW,DMD,-,ADCF-MoTP-Stat,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-MoTP-Stat-VacP_ELC00,Agriculture -:- Dairy Cattle Farming -:- Vacuum Pump -:- Electricity,PJ,GW,DMD,-,ADCF-MoTP-Stat,ANNUAL,0.0
+BASE,NI,OTH,.DMD.,ADCF-PUMP-Pump_ELC00,Agriculture -:- Dairy Cattle Farming -:- Transfer Pump -:- Electricity,PJ,GW,DMD,-,ADCF-PUMP,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-RFGR-HRECSys_ELC00,Agriculture -:- Dairy Cattle Farming -:- Heat Recovery System (Cooling) -:- Electricity,PJ,GW,DMD,-,ADCF-RFGR,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-RFGR-RF_ELC00,Agriculture -:- Dairy Cattle Farming -:- Refrigerator -:- Electricity,PJ,GW,DMD,-,ADCF-RFGR,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,ADCF-WH-Cylinder_ELC00,Agriculture -:- Dairy Cattle Farming -:- Hot Water Cylinder -:- Electricity,PJ,GW,DMD,-,ADCF-WH,ANNUAL,0.0
@@ -696,6 +704,7 @@ BASE,NI,OTH,.DMD.,AHORT-MoTP-Mob-Trac-_DSL00,Agriculture -:- Outdoor Horticultur
 BASE,NI,OTH,.DMD.,AHORT-MoTP-Mob-Uti-_DSL00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,AHORT-MoTP-Stat-Motor_DSL00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Stationary Motor -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Stat,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,AINDC-LIG-LT_ELC00,Agriculture -:- Indoor Cropping -:- Lights (General) -:- Electricity,PJ,GW,DMD,-,AINDC-LIG,ANNUAL,0.0
+BASE,NI,OTH,.DMD.,AINDC-SH-Boiler_COA00,Agriculture -:- Indoor Cropping -:- Boiler -:- Coal,PJ,GW,DMD,-,AINDC-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,AINDC-SH-Boiler_DSL00,Agriculture -:- Indoor Cropping -:- Boiler -:- Diesel,PJ,GW,DMD,-,AINDC-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,AINDC-SH-Boiler_NGA00,Agriculture -:- Indoor Cropping -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,AINDC-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,AINDC-SH-DH_GEO00,Agriculture -:- Indoor Cropping -:- Direct Heat -:- Geothermal,PJ,GW,DMD,-,AINDC-SH,ANNUAL,0.0
@@ -737,6 +746,8 @@ BASE,NI,OTH,.DMD.,C_EDU-RF_Refriger-ELC00,Commercial -:- Education -:- Refrigera
 BASE,NI,OTH,.DMD.,C_EDU-SC_AirHP-ELC00,Commercial -:- Education -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,C_EDU-SC,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_EDU-SH_AIRHP-ELC00,Commercial -:- Education -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_EDU-SH_Boiler-COA00,Commercial -:- Education -:- Boiler -:- Coal,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
+BASE,NI,OTH,.DMD.,C_EDU-SH_Boiler-DSL00,Commercial -:- Education -:- Boiler -:- Diesel,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
+BASE,NI,OTH,.DMD.,C_EDU-SH_Boiler-FOL00,Commercial -:- Education -:- Boiler -:- Fuel Oil,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_EDU-SH_Boiler-NGA00,Commercial -:- Education -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_EDU-SH_Burner-NGA00,Commercial -:- Education -:- Burner -:- Natural Gas,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_EDU-SH_RH-ELC00,Commercial -:- Education -:- Resistance Heater -:- Electricity,PJ,GW,DMD,-,C_EDU-SH,ANNUAL,0.0
@@ -835,7 +846,6 @@ BASE,NI,OTH,.DMD.,C_WSR-SH_RH-ELC00,Commercial -:- Warehouses/Supermarkets/Retai
 BASE,NI,OTH,.DMD.,C_WSR-WH_Boiler-COA00,Commercial -:- Warehouses/Supermarkets/Retail -:- Boiler -:- Coal,PJ,GW,DMD,-,C_WSR-WH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_WSR-WH_Cylinder-ELC00,Commercial -:- Warehouses/Supermarkets/Retail -:- Hot Water Cylinder -:- Electricity,PJ,GW,DMD,-,C_WSR-WH,ANNUAL,0.0
 BASE,NI,OTH,.DMD.,C_WSR-WH_Cylinder-NGA00,Commercial -:- Warehouses/Supermarkets/Retail -:- Hot Water Cylinder -:- Natural Gas,PJ,GW,DMD,-,C_WSR-WH,ANNUAL,0.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRAPET,Transport -:-  -:-  -:- Petrol,PJ,PJA,PRE,-,TRAPET,ANNUAL,0.0
 BASE,NI,IND,.DMD.,DARY-AIR-ELC-CMPR15,Industry -:- Dairy Product Manufacturing -:- Compressor -:- Electricity,PJ,GW,DMD,-,DARY-AIR,DAYNITE,0.0
 BASE,NI,IND,.DMD.,DARY-MoTP-Stat-ELC-Mtr15,Industry -:- Dairy Product Manufacturing -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,DARY-MoTP-Stat,DAYNITE,0.0
 BASE,NI,IND,.DMD.,DARY-PH-MVR_DRY-COA-BLR15,Industry -:- Dairy Product Manufacturing -:- Boiler -:- Coal,PJ,GW,DMD,-,DARY-PH-MVR_DRY,DAYNITE,0.0
@@ -861,6 +871,7 @@ BASE,NI,IND,.DMD.,FOOD-PH-OVN-ELC-Oven15,Industry -:- Other Food Processing (Non
 BASE,NI,IND,.DMD.,FOOD-PH-OVN-NGA-Oven15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Oven -:- Natural Gas,PJ,GW,DMD,-,FOOD-PH-OVN,DAYNITE,0.0
 BASE,NI,IND,.DMD.,FOOD-PH-STM_HW-COA-BLR15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Boiler -:- Coal,PJ,GW,DMD,-,FOOD-PH-STM_HW,DAYNITE,0.0
 BASE,NI,IND,.DMD.,FOOD-PH-STM_HW-NGA-BLR15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,FOOD-PH-STM_HW,DAYNITE,0.0
+BASE,NI,OTH,.PRE.,FTE_AGRNGA,Agriculture -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,-,AGRNGA,ANNUAL,0.0
 BASE,NI,IND,.DMD.,FOOD-Pump-ELC-Pump15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Pump -:- Electricity,PJ,GW,DMD,-,FOOD-Pump,DAYNITE,0.0
 BASE,NI,IND,.DMD.,FOOD-RFGR-ELC-Refriger15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Refrigerator -:- Electricity,PJ,GW,DMD,-,FOOD-RFGR,DAYNITE,0.0
 BASE,NI,IND,.DMD.,IIS-FDSTCK-COA-_15,Industry -:- Iron/Steel -:- Feedstock -:- Coal,PJ,GW,DMD,-,IIS-FDSTCK,DAYNITE,0.0
@@ -897,6 +908,7 @@ BASE,NI,IND,.DMD.,OTH-COA-COA-Tech15,Industry -:- Other (Industry) -:- Other -:-
 BASE,NI,IND,.DMD.,OTH-DSL-DSL-Tech15,Industry -:- Other (Industry) -:- Other -:- Diesel,PJ,GW,DMD,-,OTH-DSL,DAYNITE,0.0
 BASE,NI,IND,.DMD.,OTH-ELC-ELC-Tech15,Industry -:- Other (Industry) -:- Other -:- Electricity,PJ,GW,DMD,-,OTH-ELC,DAYNITE,0.0
 BASE,NI,IND,.DMD.,OTH-FOL-FOL-Tech15,Industry -:- Other (Industry) -:- Other -:- Fuel Oil,PJ,GW,DMD,-,OTH-FOL,DAYNITE,0.0
+BASE,NI,IND,.DMD.,OTH-LPG-LPG-Tech15,Industry -:- Other (Industry) -:- Other -:- LPG,PJ,GW,DMD,-,OTH-LPG,DAYNITE,0.0
 BASE,NI,IND,.DMD.,OTH-NGA-NGA-Tech15,Industry -:- Other (Industry) -:- Other -:- Natural Gas,PJ,GW,DMD,-,OTH-NGA,DAYNITE,0.0
 BASE,NI,IND,.DMD.,OTH-PET-PET-Tech15,Industry -:- Other (Industry) -:- Other -:- Petrol,PJ,GW,DMD,-,OTH-PET,DAYNITE,0.0
 BASE,NI,IND,.DMD.,PLPPPR-AIR-ELC-CMPR15,Industry -:- Pulp and Paper Manufacturing -:- Compressor -:- Electricity,PJ,GW,DMD,-,PLPPPR-AIR,DAYNITE,0.0
@@ -987,12 +999,12 @@ BASE,NI,IND,.DMD.,WOOD-PH-STM_HW-DSL-BLR15,Industry -:- Wood Product Manufacturi
 BASE,NI,IND,.DMD.,WOOD-PH-STM_HW-ELC-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Electricity,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,NI,IND,.DMD.,WOOD-PH-STM_HW-FOL-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Fuel Oil,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,NI,IND,.DMD.,WOOD-PH-STM_HW-GEO-Heat15,Industry -:- Wood Product Manufacturing -:- Heat Exchanger -:- Geothermal,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
+BASE,NI,OTH,.PRE.,FTE_AGRPLT,Agriculture -:-  -:-  -:- Pellet,PJ,PJA,PRE,-,AGRPLT,ANNUAL,0.0
 BASE,NI,IND,.DMD.,WOOD-PH-STM_HW-NGA-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,NI,IND,.DMD.,WOOD-PH-STM_HW-WOD-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Wood,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,NI,IND,.DMD.,WOOD-Pump-ELC-Pump15,Industry -:- Wood Product Manufacturing -:- Pump -:- Electricity,PJ,GW,DMD,-,WOOD-Pump,DAYNITE,0.0
 BASE,NI,IND,.DMD.,WOOD-Refin-ELC-Refinery15,Industry -:- Wood Product Manufacturing -:- Wood/Pulp and Paper Refiner -:- Electricity,PJ,GW,DMD,-,WOOD-Refin,DAYNITE,0.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRABIL,Transport -:-  -:-  -:- Bio Liquids,PJ,PJA,PRE,-,TRABIL,ANNUAL,0.0
-BASE,NI,TRA,.DST.PRE.,FTE_TRADSL,Transport -:-  -:-  -:- Diesel,PJ,PJA,PRE,-,TRADSL,ANNUAL,0.0
+BASE,NI,ELC,.ELE.,ELCREBIG00,Electricity -:- Thermal -:- Steam Boiler -:- Biogas,PJ,GW,ELE,-,ELC,DAYNITE,0.0
 BASE,NI,ELC,.ELE.,ELCREGEO00,Electricity -:- Geothermal -:- Geothermal (Existing) -:- Geothermal,PJ,GW,ELE,-,ELC,DAYNITE,0.0
 BASE,NI,ELC,.ELE.,ELCREHYDDAM00,Electricity -:- Hydro -:- Hydro Dam (Existing) -:- Hydro,PJ,GW,ELE,-,ELC,DAYNITE,0.0
 BASE,NI,ELC,.ELE.,ELCREHYDRRFlex00,Electricity -:- Hydro -:- Hydro Run of River (Existing) -:- Hydro,PJ,GW,ELE,-,ELC,DAYNITE,0.0
@@ -1017,18 +1029,12 @@ BASE,NI,PRI,.EXP.IRE.,Non_NRG_OTH,Primary Fuel Supply -:- Natural Gas -:- Non En
 BASE,NI,PRI,.IMP.IRE.,IMPCOA1,Primary Fuel Supply -:- Coal -:- Import - Coal Bituminous -:-,PJ,PJA,IRE,-,COA,ANNUAL,0.0
 BASE,NI,PRI,.IMP.IRE.,IMPCOL1,Primary Fuel Supply -:- Coal -:- Import - Coal Lignite -:-,PJ,PJA,IRE,-,COL,ANNUAL,0.0
 BASE,NI,PRI,.IMP.IRE.,IMPDID,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DID,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPDIJ,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DIJ,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPDSL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DSL,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,FOL,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPJET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,JET,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPLNG1,Primary Fuel Supply -:- Natural Gas -:- Import - LNG -:-,PJ,PJA,IRE,-,LNG,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OILI,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPOTH1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OTH,ANNUAL,0.0
-BASE,NI,PRI,.IMP.IRE.,IMPPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,PET,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINAGRWST00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Straw & Stover,PJ,PJA,IRE,-,AGRWST,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINAGRWST01,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Fruit and vegetables culls,PJ,PJA,IRE,-,AGRWST,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINANMMNR00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Animal Manure,PJ,PJA,IRE,-,ANMMNR,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MINCOA1,Primary Fuel Supply -:- Coal -:- Mining - Coal Bituminous -:-,PJ,PJA,IRE,-,COA,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MINCOL1,Primary Fuel Supply -:- Coal -:- Mining - Coal Lignite -:-,PJ,PJA,IRE,-,COL,ANNUAL,0.0
+BASE,NI,PRI,.MIN.IRE.,MINGEO1,Primary Fuel Supply -:- Renewables -:- Mining - Geothermal -:-,PJ,PJA,IRE,-,GEO,DAYNITE,0.0
 BASE,NI,PRI,.MIN.IRE.,MINMNCWST00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Municipal Solid Waste,PJ,PJA,IRE,-,MNCWST,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINNGA1,Primary Fuel Supply -:- Natural Gas -:- Mining - Natural Gas Tranche 1 -:-,PJ,PJA,IRE,-,NGA,ANNUAL,0.0
 BASE,NI,PRI,.MIN.IRE.,MINNGA2,Primary Fuel Supply -:- Natural Gas -:- Mining - Natural Gas Tranche 2 -:-,PJ,PJA,IRE,-,NGA,ANNUAL,0.0
@@ -1056,21 +1062,14 @@ BASE,NI,IND,.PRE.,FTE-INDCOA_00,Industry -:-  -:-  -:- Coal,PJ,PJA,PRE,-,INDCOA,
 BASE,NI,IND,.PRE.,FTE-INDDSL_00,Industry -:-  -:-  -:- Diesel,PJ,PJA,PRE,-,INDDSL,ANNUAL,0.0
 BASE,NI,IND,.PRE.,FTE-INDFOL_00,Industry -:-  -:-  -:- Fuel Oil,PJ,PJA,PRE,-,INDFOL,ANNUAL,0.0
 BASE,NI,IND,.PRE.,FTE-INDGEO_00,Industry -:-  -:-  -:- Geothermal,PJ,PJA,PRE,-,INDGEO,ANNUAL,0.0
-BASE,NI,IND,.PRE.,FTE-INDLPG_00,Industry -:-  -:-  -:- LPG,PJ,PJA,PRE,-,INDLPG,ANNUAL,0.0
-BASE,NI,IND,.PRE.,FTE-INDNGA_00,Industry -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,-,INDNGA,ANNUAL,0.0
-BASE,NI,IND,.PRE.,FTE-INDPET_00,Industry -:-  -:-  -:- Petrol,PJ,PJA,PRE,-,INDPET,ANNUAL,0.0
 BASE,NI,IND,.PRE.,FTE-INDWOD_00,Industry -:-  -:-  -:- Wood,PJ,PJA,PRE,-,INDWOD,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_AGRCOA,Agriculture -:-  -:-  -:- Coal,PJ,PJA,PRE,-,AGRCOA,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_AGRDSL,Agriculture -:-  -:-  -:- Diesel,PJ,PJA,PRE,-,AGRDSL,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_AGRFOL,Agriculture -:-  -:-  -:- Fuel Oil,PJ,PJA,PRE,-,AGRFOL,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_AGRGEO,Agriculture -:-  -:-  -:- Geothermal,PJ,PJA,PRE,-,AGRGEO,ANNUAL,0.0
-BASE,SI,IND,.DMD.,OTH-BGS-BGS-Tech15,Industry -:- Other (Industry) -:- Other -:- Biogas,PJ,GW,DMD,-,OTH-BGS,DAYNITE,0.0
 BASE,NI,PRI,.PRE.,FTE_AGRH2D,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to agriculture sector (decentralized) -:-,PJ,PJA,PRE,-,AGRH2R,DAYNITE,0.0
 BASE,NI,PRI,.PRE.,FTE_AGRH2R,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to Agriculture sector (centralized) -:-,PJ,PJA,PRE,-,AGRH2R,DAYNITE,0.0
 BASE,NI,OTH,.PRE.,FTE_AGRLPG,Agriculture -:-  -:-  -:- LPG,PJ,PJA,PRE,-,AGRLPG,ANNUAL,0.0
-BASE,NI,OTH,.PRE.,FTE_AGRNGA,Agriculture -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,-,AGRNGA,ANNUAL,0.0
-BASE,NI,OTH,.PRE.,FTE_AGRPET,Agriculture -:-  -:-  -:- Petrol,PJ,PJA,PRE,-,AGRPET,ANNUAL,0.0
-BASE,NI,OTH,.PRE.,FTE_AGRPLT,Agriculture -:-  -:-  -:- Pellet,PJ,PJA,PRE,-,AGRPLT,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_AGRWOD,Agriculture -:-  -:-  -:- Wood,PJ,PJA,PRE,-,AGRWOD,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_COMBIG_00,Commercial -:-  -:-  -:- Biogas,PJ,PJ_A,PRE,-,COMBIG,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_COMCOA_00,Commercial -:-  -:-  -:- Coal,PJ,PJ_A,PRE,-,COMCOA,ANNUAL,0.0
@@ -1102,6 +1101,7 @@ BASE,NI,PRI,.PRE.,FTE_INDH2D,Primary Fuel Supply -:- Hydrogen -:- Hydrogen suppl
 BASE,NI,PRI,.PRE.,FTE_INDH2R,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to industry sector (centralized) -:-,PJ,PJA,PRE,-,INDH2R,DAYNITE,0.0
 BASE,NI,OTH,.PRE.,FTE_RESCOA_00,Residential -:-  -:-  -:- Coal,PJ,PJ_A,PRE,-,RESCOA,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_RESDSL_00,Residential -:-  -:-  -:- Diesel,PJ,PJ_A,PRE,-,RESDSL,ANNUAL,0.0
+BASE,NI,OTH,.PRE.,FTE_RESGEO_00,Residential -:-  -:-  -:- Geothermal,PJ,PJ_A,PRE,-,RESGEO,ANNUAL,0.0
 BASE,NI,PRI,.PRE.,FTE_RESH2D,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to residential sector (decentralized) -:-,PJ,PJA,PRE,-,RESH2R,DAYNITE,0.0
 BASE,NI,PRI,.PRE.,FTE_RESH2R,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to residential sector (centralized) -:-,PJ,PJA,PRE,-,RESH2R,DAYNITE,0.0
 BASE,NI,OTH,.PRE.,FTE_RESLPG_00,Residential -:-  -:-  -:- LPG,PJ,PJ_A,PRE,-,RESLPG,ANNUAL,0.0
@@ -1110,9 +1110,7 @@ BASE,NI,OTH,.PRE.,FTE_RESPET_00,Residential -:-  -:-  -:- Petrol,PJ,PJ_A,PRE,-,R
 BASE,NI,OTH,.PRE.,FTE_RESSOL_00,Residential -:-  -:-  -:- Solar,PJ,PJ_A,PRE,-,RESSOL,ANNUAL,0.0
 BASE,NI,OTH,.PRE.,FTE_RESWOD_00,Residential -:-  -:-  -:- Wood,PJ,PJ_A,PRE,-,RESWOD,ANNUAL,0.0
 BASE,NI,PRI,.PRE.,FTE_TRAH2D,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to transport sector (decentralized) -:-,PJ,PJA,PRE,-,TRAH2R,DAYNITE,0.0
-BASE,SI,TRA,.DMD.,T_F_ISHIPP15,Transport -:- Shipping -:- Ship -:- Fuel Oil,PJ,PJA,DMD,-,T_F_ISHIP,ANNUAL,0.0
 BASE,NI,PRI,.PRE.,FTE_TRAH2R,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to transport sector (centralized) -:-,PJ,PJA,PRE,-,TRAH2R,DAYNITE,0.0
-BASE,NI,ELC,.PRE.,G_ELC2ELCD,-:-  -:-  -:-,PJ,GW,PRE,-,ELCD,DAYNITE,0.0
 BASE,NI,ELC,.PRE.,G_ELC_A_00,-:-  -:-  -:-,PJ,GW,PRE,-,AGRELC,DAYNITE,0.0
 BASE,NI,ELC,.PRE.,G_ELC_HV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELC-HV,DAYNITE,0.0
 BASE,NI,ELC,.PRE.,G_ELC_I_00,-:-  -:-  -:-,PJ,GW,PRE,-,INDELC,DAYNITE,0.0
@@ -1130,13 +1128,20 @@ BASE,NI,PRI,.PRE.,SUP_ELC-PEMD-H2,Primary Fuel Supply -:- Hydrogen -:- H2 produc
 BASE,NI,PRI,.PRE.,SUP_H2NGA,Primary Fuel Supply -:- Hydrogen -:- H2 methanisation to natural gas (CO2 from DAC) -:-,PJ,GW,PRE,-,NGA,DAYNITE,0.0
 BASE,NI,PRI,.PRE.,SUP_H2NGA_CCS,Primary Fuel Supply -:- Hydrogen -:- H2 methanisation to natural gas (CO2 from CCS) -:-,PJ,GW,PRE,-,NGA,DAYNITE,0.0
 BASE,NI,PRI,.PRE.,WSTWOD2WOD,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Waste wood to fuel wood,PJ,PJA,PRE,-,WOD,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRABIL,Transport -:-  -:-  -:- Bio Liquids,PJ,PJA,PRE,DISTR,TRABIL,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRADSL,Transport -:-  -:-  -:- Diesel,PJ,PJA,PRE,DISTR,TRADSL,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRAFOL,Transport -:-  -:-  -:- Fuel Oil,PJ,GW,PRE,DISTR,TRAFOL,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRAJET,Transport -:-  -:-  -:- Jet Fuel,PJ,PJA,PRE,DISTR,TRAJET,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRALPG,Transport -:-  -:-  -:- LPG,PJ,PJA,PRE,DISTR,TRALPG,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRANGA,Transport -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,DISTR,TRANGA,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,FTE_TRAPET,Transport -:-  -:-  -:- Petrol,PJ,PJA,PRE,DISTR,TRAPET,ANNUAL,0.0
+BASE,SI,TRA,.DISTR.PRE.,G_ELC_T_00,Transport -:-  -:-  -:- Electricity,PJ,GW,PRE,DISTR,TRAELC,DAYNITE,0.0
 BASE,SI,OTH,.DMD.,ADCF-IRG-IrgVSD_ELC00,Agriculture -:- Dairy Cattle Farming -:- Irrigator with VSD -:- Electricity,PJ,GW,DMD,-,ADCF-IRG,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-IRG-Irg_ELC00,Agriculture -:- Dairy Cattle Farming -:- Irrigator -:- Electricity,PJ,GW,DMD,-,ADCF-IRG,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-LIG-LT_ELC00,Agriculture -:- Dairy Cattle Farming -:- Lights (General) -:- Electricity,PJ,GW,DMD,-,ADCF-LIG,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-MoTP-Mob-Bike-_PET00,Agriculture -:- Dairy Cattle Farming -:- Farm Bike -:- Petrol,PJ,GW,DMD,-,ADCF-MoTP-Mob-Bike,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-MoTP-Mob-MTr-_DSL00,Agriculture -:- Dairy Cattle Farming -:- Truck (Agricultural) -:- Diesel,PJ,GW,DMD,-,ADCF-MoTP-Mob-MTr,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-MoTP-Mob-Trac-_DSL00,Agriculture -:- Dairy Cattle Farming -:- Tractor (Agricultural) -:- Diesel,PJ,GW,DMD,-,ADCF-MoTP-Mob-Trac,ANNUAL,0.0
-BASE,SI,IND,.DMD.,OTH-COA-COA-Tech15,Industry -:- Other (Industry) -:- Other -:- Coal,PJ,GW,DMD,-,OTH-COA,DAYNITE,0.0
 BASE,SI,OTH,.DMD.,ADCF-MoTP-Mob-Uti-_DSL00,Agriculture -:- Dairy Cattle Farming -:- Utility Vehicle (Agricultural) -:- Diesel,PJ,GW,DMD,-,ADCF-MoTP-Mob-Uti,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-MoTP-Stat-VPVSD_ELC00,Agriculture -:- Dairy Cattle Farming -:- Vacuum Pump with VSD -:- Electricity,PJ,GW,DMD,-,ADCF-MoTP-Stat,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,ADCF-MoTP-Stat-VacP_ELC00,Agriculture -:- Dairy Cattle Farming -:- Vacuum Pump -:- Electricity,PJ,GW,DMD,-,ADCF-MoTP-Stat,ANNUAL,0.0
@@ -1158,6 +1163,7 @@ BASE,SI,OTH,.DMD.,AHORT-IRG-IrgVSD_ELC00,Agriculture -:- Outdoor Horticulture/Ar
 BASE,SI,OTH,.DMD.,AHORT-IRG-Irg_ELC00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Irrigator -:- Electricity,PJ,GW,DMD,-,AHORT-IRG,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,AHORT-LIG-LT_ELC00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Lights (General) -:- Electricity,PJ,GW,DMD,-,AHORT-LIG,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,AHORT-MoTP-Mob-MTr-_DSL00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Truck (Agricultural) -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Mob-MTr,ANNUAL,0.0
+BASE,SI,OTH,.DMD.,C_HLTH-SH_Boiler-COA00,Commercial -:- Healthcare -:- Boiler -:- Coal,PJ,GW,DMD,-,C_HLTH-SH,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,AHORT-MoTP-Mob-Trac-_DSL00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Tractor (Agricultural) -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Mob-Trac,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,AHORT-MoTP-Mob-Uti-_DSL00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Utility Vehicle (Agricultural) -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Mob-Uti,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,AHORT-MoTP-Stat-Motor_DSL00,Agriculture -:- Outdoor Horticulture/Arable Farming -:- Stationary Motor -:- Diesel,PJ,GW,DMD,-,AHORT-MoTP-Stat,ANNUAL,0.0
@@ -1222,7 +1228,6 @@ BASE,SI,OTH,.DMD.,C_HLTH-PH_RH-ELC00,Commercial -:- Healthcare -:- Resistance He
 BASE,SI,OTH,.DMD.,C_HLTH-RF_Refriger-ELC00,Commercial -:- Healthcare -:- Refrigerator -:- Electricity,PJ,GW,DMD,-,C_HLTH-RF,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,C_HLTH-SC_AIRHP-ELC00,Commercial -:- Healthcare -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,C_HLTH-SC,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,C_HLTH-SH_AIRHP-ELC00,Commercial -:- Healthcare -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,C_HLTH-SH,ANNUAL,0.0
-BASE,SI,OTH,.DMD.,C_HLTH-SH_Boiler-COA00,Commercial -:- Healthcare -:- Boiler -:- Coal,PJ,GW,DMD,-,C_HLTH-SH,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,C_HLTH-SH_Boiler-DSL00,Commercial -:- Healthcare -:- Boiler -:- Diesel,PJ,GW,DMD,-,C_HLTH-SH,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,C_HLTH-SH_Boiler-NGA00,Commercial -:- Healthcare -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,C_HLTH-SH,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,C_HLTH-SH_RH-ELC00,Commercial -:- Healthcare -:- Resistance Heater -:- Electricity,PJ,GW,DMD,-,C_HLTH-SH,ANNUAL,0.0
@@ -1304,7 +1309,6 @@ BASE,SI,OTH,.DMD.,C_WSR-WH_Cylinder-NGA00,Commercial -:- Warehouses/Supermarkets
 BASE,SI,IND,.DMD.,DARY-AIR-ELC-CMPR15,Industry -:- Dairy Product Manufacturing -:- Compressor -:- Electricity,PJ,GW,DMD,-,DARY-AIR,DAYNITE,0.0
 BASE,SI,IND,.DMD.,DARY-MoTP-Stat-ELC-Mtr15,Industry -:- Dairy Product Manufacturing -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,DARY-MoTP-Stat,DAYNITE,0.0
 BASE,SI,IND,.DMD.,DARY-PH-MVR_DRY-COA-BLR15,Industry -:- Dairy Product Manufacturing -:- Boiler -:- Coal,PJ,GW,DMD,-,DARY-PH-MVR_DRY,DAYNITE,0.0
-BASE,SI,TRA,.DMD.,T_O_FuelJet,Transport -:- Aviation -:- Plane -:- Jet Fuel,PJ,PJA,DMD,-,T_O_JET,ANNUAL,0.0
 BASE,SI,IND,.DMD.,DARY-PH-MVR_DRY-NGA-BLR15,Industry -:- Dairy Product Manufacturing -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,DARY-PH-MVR_DRY,DAYNITE,0.0
 BASE,SI,IND,.DMD.,DARY-PH-MVR_Fan-ELC-Fan15,Industry -:- Dairy Product Manufacturing -:- Fan -:- Electricity,PJ,GW,DMD,-,DARY-PH-MVR_Fan,DAYNITE,0.0
 BASE,SI,IND,.DMD.,DARY-PH-MVR_PRE-COA-BLR15,Industry -:- Dairy Product Manufacturing -:- Boiler -:- Coal,PJ,GW,DMD,-,DARY-PH-MVR_PRE,DAYNITE,0.0
@@ -1327,8 +1331,9 @@ BASE,SI,IND,.DMD.,FOOD-PH-OVN-ELC-Oven15,Industry -:- Other Food Processing (Non
 BASE,SI,IND,.DMD.,FOOD-PH-OVN-NGA-Oven15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Oven -:- Natural Gas,PJ,GW,DMD,-,FOOD-PH-OVN,DAYNITE,0.0
 BASE,SI,IND,.DMD.,FOOD-PH-STM_HW-COA-BLR15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Boiler -:- Coal,PJ,GW,DMD,-,FOOD-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,FOOD-PH-STM_HW-NGA-BLR15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,FOOD-PH-STM_HW,DAYNITE,0.0
+BASE,SI,OTH,.PRE.,FTE_COMDSL_00,Commercial -:-  -:-  -:- Diesel,PJ,PJ_A,PRE,-,COMDSL,ANNUAL,0.0
 BASE,SI,IND,.DMD.,FOOD-Pump-ELC-Pump15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Pump -:- Electricity,PJ,GW,DMD,-,FOOD-Pump,DAYNITE,0.0
-BASE,SI,IND,.DMD.,OTH-DSL-DSL-Tech15,Industry -:- Other (Industry) -:- Other -:- Diesel,PJ,GW,DMD,-,OTH-DSL,DAYNITE,0.0
+BASE,SI,IND,.DMD.,OTH-BGS-BGS-Tech15,Industry -:- Other (Industry) -:- Other -:- Biogas,PJ,GW,DMD,-,OTH-BGS,DAYNITE,0.0
 BASE,SI,IND,.DMD.,FOOD-RFGR-ELC-Refriger15,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Refrigerator -:- Electricity,PJ,GW,DMD,-,FOOD-RFGR,DAYNITE,0.0
 BASE,SI,IND,.DMD.,IIS-FDSTCK-COA-_15,Industry -:- Iron/Steel -:- Feedstock -:- Coal,PJ,GW,DMD,-,IIS-FDSTCK,DAYNITE,0.0
 BASE,SI,IND,.DMD.,IIS-MoTP-Stat-ELC-Mtr15,Industry -:- Iron/Steel -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,IIS-MoTP-Stat,DAYNITE,0.0
@@ -1359,6 +1364,8 @@ BASE,SI,IND,.DMD.,MNRL-PH-FURN-WOD-Furn15,Industry -:- Non-Metallic Mineral Prod
 BASE,SI,IND,.DMD.,MNRL-PH-STM_HW-NGA-BLR15,Industry -:- Non-Metallic Mineral Product Manufacturing -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,MNRL-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,MTHOL-FDSTCK-NGA-FDSTCK15,Industry -:- Methanol -:- Feedstock -:- Natural Gas,PJ,GW,DMD,-,MTHOL-FDSTCK,DAYNITE,0.0
 BASE,SI,IND,.DMD.,MTHOL-PH_REFRM-NGA-REFRM15,Industry -:- Methanol -:- Reformer -:- Natural Gas,PJ,GW,DMD,-,MTHOL-PH_REFRM,DAYNITE,0.0
+BASE,SI,IND,.DMD.,OTH-COA-COA-Tech15,Industry -:- Other (Industry) -:- Other -:- Coal,PJ,GW,DMD,-,OTH-COA,DAYNITE,0.0
+BASE,SI,IND,.DMD.,OTH-DSL-DSL-Tech15,Industry -:- Other (Industry) -:- Other -:- Diesel,PJ,GW,DMD,-,OTH-DSL,DAYNITE,0.0
 BASE,SI,IND,.DMD.,OTH-ELC-ELC-Tech15,Industry -:- Other (Industry) -:- Other -:- Electricity,PJ,GW,DMD,-,OTH-ELC,DAYNITE,0.0
 BASE,SI,IND,.DMD.,OTH-FOL-FOL-Tech15,Industry -:- Other (Industry) -:- Other -:- Fuel Oil,PJ,GW,DMD,-,OTH-FOL,DAYNITE,0.0
 BASE,SI,IND,.DMD.,OTH-LPG-LPG-Tech15,Industry -:- Other (Industry) -:- Other -:- LPG,PJ,GW,DMD,-,OTH-LPG,DAYNITE,0.0
@@ -1379,6 +1386,7 @@ BASE,SI,IND,.DMD.,PLPPPR-Refin-ELC-REF15,Industry -:- Pulp and Paper Manufacturi
 BASE,SI,IND,.DMD.,REFI-MoTP-Stat-ELC-Mtr15,Industry -:- Refining -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,REFI-MoTP-Stat,DAYNITE,0.0
 BASE,SI,IND,.DMD.,REFI-PH-FURN-NGA-Furn15,Industry -:- Refining -:- Furnace -:- Natural Gas,PJ,GW,DMD,-,REFI-PH-FURN,DAYNITE,0.0
 BASE,SI,IND,.DMD.,REFI-PH-STM_HW-NGA-BLR15,Industry -:- Refining -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,REFI-PH-STM_HW,DAYNITE,0.0
+BASE,SI,PRI,.MIN.IRE.,MINDSL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DSL,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,R_DDW-CD_Dryer-ELC00,Residential -:- Detached Dwellings -:- Clothes Dryer -:- Electricity,PJ,GW,DMD,-,R_DDW-CD,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,R_DDW-CK_Appl-ELC00,Residential -:- Detached Dwellings -:- Cooking Element -:- Electricity,PJ,GW,DMD,-,R_DDW-CK,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,R_DDW-CK_Appl-LPG00,Residential -:- Detached Dwellings -:- Cooking Element -:- LPG,PJ,GW,DMD,-,R_DDW-CK,ANNUAL,0.0
@@ -1428,6 +1436,8 @@ BASE,SI,OTH,.DMD.,R_JDW-WH_Gasheat-LPG00,Residential -:- Joined Dwellings -:- Ga
 BASE,SI,OTH,.DMD.,R_JDW-WH_HWC-ELC00,Residential -:- Joined Dwellings -:- Hot Water Cylinder -:- Electricity,PJ,GW,DMD,-,R_JDW-WH,ANNUAL,0.0
 BASE,SI,OTH,.DMD.,R_JDW-WH_HWC-SOL00,Residential -:- Joined Dwellings -:- Hot Water Cylinder -:- Solar,PJ,GW,DMD,-,R_JDW-WH,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_F_DSHIPP15,Transport -:- Shipping -:- Ship -:- Fuel Oil,PJ,PJA,DMD,-,T_F_DSHIP,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_F_ISHIPP15,Transport -:- Shipping -:- Ship -:- Fuel Oil,PJ,PJA,DMD,-,T_F_ISHIP,ANNUAL,0.0
+BASE,SI,TRA,.DMD.,T_O_FuelJet,Transport -:- Aviation -:- Plane -:- Jet Fuel,PJ,PJA,DMD,-,T_O_JET,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_O_FuelJet_Int,Transport -:- Aviation -:- Plane -:- Jet Fuel,PJ,PJA,DMD,-,T_O_JET_Int,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_P_Rail15,Transport -:- Rail -:- Train -:- Electricity,PJ,PJA,DMD,-,T_P_Rail,ANNUAL,0.0
 BASE,SI,TRA,.DMD.,T_R_Rail15,Transport -:- Rail -:- Train -:- Diesel,PJ,PJA,DMD,-,T_F_Rail,ANNUAL,0.0
@@ -1441,22 +1451,14 @@ BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-COA-BLR15,Industry -:- Wood Product Manufacturi
 BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-DSL-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Diesel,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-ELC-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Electricity,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-FOL-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Fuel Oil,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
+BASE,SI,PRI,.MIN.IRE.,MINFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,FOL,ANNUAL,0.0
 BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-GEO-Heat15,Industry -:- Wood Product Manufacturing -:- Heat Exchanger -:- Geothermal,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-NGA-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Natural Gas,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,WOOD-PH-STM_HW-WOD-BLR15,Industry -:- Wood Product Manufacturing -:- Boiler -:- Wood,PJ,GW,DMD,-,WOOD-PH-STM_HW,DAYNITE,0.0
 BASE,SI,IND,.DMD.,WOOD-Pump-ELC-Pump15,Industry -:- Wood Product Manufacturing -:- Pump -:- Electricity,PJ,GW,DMD,-,WOOD-Pump,DAYNITE,0.0
 BASE,SI,IND,.DMD.,WOOD-Refin-ELC-Refinery15,Industry -:- Wood Product Manufacturing -:- Wood/Pulp and Paper Refiner -:- Electricity,PJ,GW,DMD,-,WOOD-Refin,DAYNITE,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRABIL,Transport -:-  -:-  -:- Bio Liquids,PJ,PJA,PRE,-,TRABIL,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRADSL,Transport -:-  -:-  -:- Diesel,PJ,PJA,PRE,-,TRADSL,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRAFOL,Transport -:-  -:-  -:- Fuel Oil,PJ,GW,PRE,-,TRAFOL,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRAJET,Transport -:-  -:-  -:- Jet Fuel,PJ,PJA,PRE,-,TRAJET,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRALPG,Transport -:-  -:-  -:- LPG,PJ,PJA,PRE,-,TRALPG,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRANGA,Transport -:-  -:-  -:- Natural Gas,PJ,PJA,PRE,-,TRANGA,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,FTE_TRAPET,Transport -:-  -:-  -:- Petrol,PJ,PJA,PRE,-,TRAPET,ANNUAL,0.0
-BASE,SI,TRA,.DST.PRE.,G_ELC_T_00,Transport -:-  -:-  -:- Electricity,PJ,GW,PRE,-,TRAELC,DAYNITE,0.0
 BASE,SI,ELC,.ELE.,ELCREHYDDAM00,Electricity -:- Hydro -:- Hydro Dam (Existing) -:- Hydro,PJ,GW,ELE,-,ELC,DAYNITE,0.0
 BASE,SI,ELC,.ELE.,ELCREHYDRRFlex00,Electricity -:- Hydro -:- Hydro Run of River (Existing) -:- Hydro,PJ,GW,ELE,-,ELC,DAYNITE,0.0
-BASE,SI,PRI,.MIN.IRE.,MINPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,PET,ANNUAL,0.0
 BASE,SI,ELC,.ELE.,ELCREHYDRRInflex00,Electricity -:- Hydro -:- Hydro Run of River (Existing) -:- Hydro,PJ,GW,ELE,-,ELC,DAYNITE,0.0
 BASE,SI,ELC,.ELE.,ELCRESOL00,Electricity -:- Solar -:- Solar (Existing) -:- Solar,PJ,GW,ELE,-,ELCDD,DAYNITE,0.0
 BASE,SI,ELC,.ELE.,ELCREWind00,Electricity -:- Wind -:- Wind (Existing) -:- Wind,PJ,GW,ELE,-,ELC,DAYNITE,0.0
@@ -1468,6 +1470,7 @@ BASE,SI,PRI,.EXP.IRE.,EXPFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,
 BASE,SI,PRI,.EXP.IRE.,EXPJET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,JET,ANNUAL,0.0
 BASE,SI,PRI,.EXP.IRE.,EXPLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
 BASE,SI,PRI,.EXP.IRE.,EXPNGA1,Primary Fuel Supply -:- Natural Gas -:- Export - Natural Gas -:-,PJ,PJA,IRE,-,NGA,ANNUAL,0.0
+BASE,SI,PRI,.EXP.IRE.,EXPOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OILD,ANNUAL,0.0
 BASE,SI,PRI,.EXP.IRE.,EXPOTH1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OTH,ANNUAL,0.0
 BASE,SI,PRI,.EXP.IRE.,EXPPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,PET,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPCOA1,Primary Fuel Supply -:- Coal -:- Import - Coal Bituminous -:-,PJ,PJA,IRE,-,COA,ANNUAL,0.0
@@ -1476,6 +1479,8 @@ BASE,SI,PRI,.IMP.IRE.,IMPDSL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,
 BASE,SI,PRI,.IMP.IRE.,IMPFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,FOL,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPJET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,JET,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
+BASE,SI,PRI,.IMP.IRE.,IMPNGA1,Primary Fuel Supply -:- Natural Gas -:- Import - Natural Gas -:-,PJ,PJA,IRE,-,NGA,ANNUAL,0.0
+BASE,SI,PRI,.IMP.IRE.,IMPOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OILI,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPOTH1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OTH,ANNUAL,0.0
 BASE,SI,PRI,.IMP.IRE.,IMPPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,PET,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINAGRWST00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Straw & Stover,PJ,PJA,IRE,-,AGRWST,ANNUAL,0.0
@@ -1483,17 +1488,17 @@ BASE,SI,PRI,.MIN.IRE.,MINAGRWST01,Primary Fuel Supply -:- Biomass/Biofuels -:-  
 BASE,SI,PRI,.MIN.IRE.,MINANMMNR00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Animal Manure,PJ,PJA,IRE,-,ANMMNR,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINCOA1,Primary Fuel Supply -:- Coal -:- Mining - Coal Bituminous -:-,PJ,PJA,IRE,-,COA,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINCOL1,Primary Fuel Supply -:- Coal -:- Mining - Coal Lignite -:-,PJ,PJA,IRE,-,COL,ANNUAL,0.0
-BASE,SI,PRI,.MIN.IRE.,MINDSL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,DSL,ANNUAL,0.0
-BASE,SI,PRI,.MIN.IRE.,MINFOL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,FOL,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINGEO1,Primary Fuel Supply -:- Renewables -:- Mining - Geothermal -:-,PJ,PJA,IRE,-,GEO,DAYNITE,0.0
 BASE,SI,PRI,.MIN.IRE.,MINHYD1,Primary Fuel Supply -:- Renewables -:- Mining - Hydro -:-,PJ,PJA,IRE,-,HYD,DAYNITE,0.0
 BASE,SI,PRI,.MIN.IRE.,MINJET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,JET,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINLPG1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,LPG,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINMNCWST00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Municipal Solid Waste,PJ,PJA,IRE,-,MNCWST,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINNGA1,Primary Fuel Supply -:- Natural Gas -:- Mining - Natural Gas Tranche 1 -:-,PJ,PJA,IRE,-,NGA,ANNUAL,0.0
+BASE,SI,PRI,.MIN.IRE.,MINOIL1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OILD,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINOILWST00,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Waste Oil,PJ,PJA,IRE,-,OILWST,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINOILWST01,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Tallow Waste,PJ,PJA,IRE,-,OILWST,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINOTH1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,OTH,ANNUAL,0.0
+BASE,SI,PRI,.MIN.IRE.,MINPET1,Primary Fuel Supply -:- Petroleum -:-  -:-,PJ,PJA,IRE,-,PET,ANNUAL,0.0
 BASE,SI,PRI,.MIN.IRE.,MINSOL1,Primary Fuel Supply -:- Renewables -:- Mining - Solar -:-,PJ,PJA,IRE,-,SOL,DAYNITE,0.0
 BASE,SI,PRI,.MIN.IRE.,MINTID1,Primary Fuel Supply -:- Renewables -:- Mining - Tidal -:-,PJ,PJA,IRE,-,TID,DAYNITE,0.0
 BASE,SI,PRI,.MIN.IRE.,MINURN1,Primary Fuel Supply -:-  -:- Mining - Uranium -:-,PJ,PJA,IRE,-,URN,DAYNITE,0.0
@@ -1527,10 +1532,8 @@ BASE,SI,OTH,.PRE.,FTE_AGRPLT,Agriculture -:-  -:-  -:- Pellet,PJ,PJA,PRE,-,AGRPL
 BASE,SI,OTH,.PRE.,FTE_AGRWOD,Agriculture -:-  -:-  -:- Wood,PJ,PJA,PRE,-,AGRWOD,ANNUAL,0.0
 BASE,SI,OTH,.PRE.,FTE_COMBIG_00,Commercial -:-  -:-  -:- Biogas,PJ,PJ_A,PRE,-,COMBIG,ANNUAL,0.0
 BASE,SI,OTH,.PRE.,FTE_COMCOA_00,Commercial -:-  -:-  -:- Coal,PJ,PJ_A,PRE,-,COMCOA,ANNUAL,0.0
-BASE,SI,OTH,.PRE.,FTE_COMDSL_00,Commercial -:-  -:-  -:- Diesel,PJ,PJ_A,PRE,-,COMDSL,ANNUAL,0.0
 BASE,SI,OTH,.PRE.,FTE_COMFOL_00,Commercial -:-  -:-  -:- Fuel Oil,PJ,PJ_A,PRE,-,COMFOL,ANNUAL,0.0
 BASE,SI,OTH,.PRE.,FTE_COMGEO_00,Commercial -:-  -:-  -:- Geothermal,PJ,PJ_A,PRE,-,COMGEO,ANNUAL,0.0
-BASE,SI,ELC,.PRE.,G_ELC_I_00,-:-  -:-  -:-,PJ,GW,PRE,-,INDELC,DAYNITE,0.0
 BASE,SI,PRI,.PRE.,FTE_COMH2D,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to commercial sector (decentralized) -:-,PJ,PJA,PRE,-,COMH2R,DAYNITE,0.0
 BASE,SI,PRI,.PRE.,FTE_COMH2R,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to commercial sector (centralized) -:-,PJ,PJA,PRE,-,COMH2R,DAYNITE,0.0
 BASE,SI,OTH,.PRE.,FTE_COMLPG_00,Commercial -:-  -:-  -:- LPG,PJ,PJ_A,PRE,-,COMLPG,ANNUAL,0.0
@@ -1565,8 +1568,6 @@ BASE,SI,OTH,.PRE.,FTE_RESSOL_00,Residential -:-  -:-  -:- Solar,PJ,PJ_A,PRE,-,RE
 BASE,SI,OTH,.PRE.,FTE_RESWOD_00,Residential -:-  -:-  -:- Wood,PJ,PJ_A,PRE,-,RESWOD,ANNUAL,0.0
 BASE,SI,PRI,.PRE.,FTE_TRAH2D,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to transport sector (decentralized) -:-,PJ,PJA,PRE,-,TRAH2R,DAYNITE,0.0
 BASE,SI,PRI,.PRE.,FTE_TRAH2R,Primary Fuel Supply -:- Hydrogen -:- Hydrogen supply to transport sector (centralized) -:-,PJ,PJA,PRE,-,TRAH2R,DAYNITE,0.0
-BASE,SI,ELC,.PRE.,G_ELC_A_00,-:-  -:-  -:-,PJ,GW,PRE,-,AGRELC,DAYNITE,0.0
-BASE,SI,ELC,.PRE.,G_ELC_HV-00,-:-  -:-  -:-,PJ,GW,PRE,-,ELC-HV,DAYNITE,0.0
 BASE,SI,PRI,.PRE.,REF_AGRWST,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Biogas production refinery from AGRWST,PJ,GWTH,PRE,-,BIG,ANNUAL,0.0
 BASE,SI,PRI,.PRE.,REF_ANMMNR,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Biogas production refinery from ANMMNR,PJ,GWTH,PRE,-,BIG,ANNUAL,0.0
 BASE,SI,PRI,.PRE.,REF_WODWST,Primary Fuel Supply -:- Biomass/Biofuels -:-  -:- Biogas production refinery from WODWST,PJ,GWTH,PRE,-,BIG,ANNUAL,0.0
@@ -2165,6 +2166,7 @@ NewTechs_Industry,NI,IND,.DMD.,ALU-PH-FURN-ELC-Furn,Industry -:- Aluminium -:- F
 NewTechs_Industry,NI,IND,.DMD.,CHMCL-MoTP-Stat-DSL-st_ngn,"Industry -:- Petroleum, Basic Chemical and Rubber Product Manufacturing -:- Stationary Motor -:- Diesel",PJ,GW,DMD,-,CHMCL-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CHMCL-MoTP-Stat-ELC-Motor,"Industry -:- Petroleum, Basic Chemical and Rubber Product Manufacturing -:- Stationary Motor -:- Electricity",PJ,GW,DMD,-,CHMCL-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CHMCL-MoTP-Stat-ELC-VSD-Mtr,"Industry -:- Petroleum, Basic Chemical and Rubber Product Manufacturing -:- Stationary Motor with VSD -:- Electricity",PJ,GW,DMD,-,CHMCL-MoTP-Stat,ANNUAL,1.0
+NewTechs_Industry,NI,IND,.DMD.,CNST-MoTP-Stat-PET-st_ngn,Industry -:- Construction -:- Stationary Motor -:- Petrol,PJ,GW,DMD,-,CNST-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CHMCL-MoTP-Stat-NGA-Pump,"Industry -:- Petroleum, Basic Chemical and Rubber Product Manufacturing -:- Stationary Motor -:- Natural Gas",PJ,GW,DMD,-,CHMCL-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CHMCL-MoTP-Stat-PET-st_ngn,"Industry -:- Petroleum, Basic Chemical and Rubber Product Manufacturing -:- Stationary Motor -:- Petrol",PJ,GW,DMD,-,CHMCL-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CHMCL-PH-DirH-ELC-Heater,"Industry -:- Petroleum, Basic Chemical and Rubber Product Manufacturing -:- Heater -:- Electricity",PJ,GW,DMD,-,CHMCL-PH-DirH,ANNUAL,1.0
@@ -2191,7 +2193,6 @@ NewTechs_Industry,NI,IND,.DMD.,CNST-MoTP-Mob-PET-ICE_ofrd,Industry -:- Construct
 NewTechs_Industry,NI,IND,.DMD.,CNST-MoTP-Stat-DSL-st_ngn,Industry -:- Construction -:- Stationary Motor -:- Diesel,PJ,GW,DMD,-,CNST-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CNST-MoTP-Stat-ELC-Motor,Industry -:- Construction -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,CNST-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,CNST-MoTP-Stat-ELC-VSD-Mtr,Industry -:- Construction -:- Stationary Motor with VSD -:- Electricity,PJ,GW,DMD,-,CNST-MoTP-Stat,ANNUAL,1.0
-NewTechs_Industry,NI,IND,.DMD.,CNST-MoTP-Stat-PET-st_ngn,Industry -:- Construction -:- Stationary Motor -:- Petrol,PJ,GW,DMD,-,CNST-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,DARY-AIR-ELC-CMPR,Industry -:- Dairy Product Manufacturing -:- Compressor -:- Electricity,PJ,GW,DMD,-,DARY-AIR,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,DARY-MoTP-Stat-DSL-st_ngn,Industry -:- Dairy Product Manufacturing -:- Stationary Motor -:- Diesel,PJ,GW,DMD,-,DARY-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,NI,IND,.DMD.,DARY-MoTP-Stat-ELC-Motor,Industry -:- Dairy Product Manufacturing -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,DARY-MoTP-Stat,ANNUAL,1.0
@@ -2477,6 +2478,7 @@ NewTechs_Industry,SI,IND,.DMD.,FOOD-MoTP-Stat-ELC-Motor,Industry -:- Other Food 
 NewTechs_Industry,SI,IND,.DMD.,FOOD-MoTP-Stat-ELC-VSD-Mtr,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Stationary Motor with VSD -:- Electricity,PJ,GW,DMD,-,FOOD-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-MoTP-Stat-PET-st_ngn,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Stationary Motor -:- Petrol,PJ,GW,DMD,-,FOOD-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-PH-DirH-ELC-Heater,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Heater -:- Electricity,PJ,GW,DMD,-,FOOD-PH-DirH,ANNUAL,1.0
+NewTechs_Industry,SI,IND,.DMD.,IIS-PH-FURN-WOD-Furn,Industry -:- Iron/Steel -:- Furnace -:- Wood,PJ,GW,DMD,-,IIS-PH-FURN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-PH-DirH-NGA-Burner,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Burner -:- Natural Gas,PJ,GW,DMD,-,FOOD-PH-DirH,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-PH-OVN-COA-Oven,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Oven -:- Coal,PJ,GW,DMD,-,FOOD-PH-OVN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-PH-OVN-ELC-Oven,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Oven -:- Electricity,PJ,GW,DMD,-,FOOD-PH-OVN,ANNUAL,1.0
@@ -2494,6 +2496,7 @@ NewTechs_Industry,SI,IND,.DMD.,FOOD-PH-STM_HW-NGA-Boiler,Industry -:- Other Food
 NewTechs_Industry,SI,IND,.DMD.,FOOD-PH-STM_HW-WOD-Boiler,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Boiler -:- Wood,PJ,GW,DMD,-,FOOD-PH-STM_HW,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-Pump-DSL-Pump,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Pump -:- Diesel,PJ,GW,DMD,-,FOOD-Pump,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-Pump-ELC-Pump,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Pump -:- Electricity,PJ,GW,DMD,-,FOOD-Pump,ANNUAL,1.0
+NewTechs_Industry,SI,IND,.DMD.,REFI-PH-STM_HW-COA-Boiler,Industry -:- Refining -:- Boiler -:- Coal,PJ,GW,DMD,-,REFI-PH-STM_HW,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,FOOD-RFGR-ELC-Refriger,Industry -:- Other Food Processing (Non Dairy/Meat Processing) -:- Refrigerator -:- Electricity,PJ,GW,DMD,-,FOOD-RFGR,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,IIS-FDSTCK-COA-_,Industry -:- Iron/Steel -:- Feedstock -:- Coal,PJ,GW,DMD,-,IIS-FDSTCK,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,IIS-MoTP-Stat-DSL-st_ngn,Industry -:- Iron/Steel -:- Stationary Motor -:- Diesel,PJ,GW,DMD,-,IIS-MoTP-Stat,ANNUAL,1.0
@@ -2504,7 +2507,6 @@ NewTechs_Industry,SI,IND,.DMD.,IIS-PH-FURN-COA-Furn,Industry -:- Iron/Steel -:- 
 NewTechs_Industry,SI,IND,.DMD.,IIS-PH-FURN-ELC-Furn,Industry -:- Iron/Steel -:- Furnace -:- Electricity,PJ,GW,DMD,-,IIS-PH-FURN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,IIS-PH-FURN-LPG-Furn,Industry -:- Iron/Steel -:- Furnace -:- LPG,PJ,GW,DMD,-,IIS-PH-FURN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,IIS-PH-FURN-NGA-Furn,Industry -:- Iron/Steel -:- Furnace -:- Natural Gas,PJ,GW,DMD,-,IIS-PH-FURN,ANNUAL,1.0
-NewTechs_Industry,SI,IND,.DMD.,IIS-PH-FURN-WOD-Furn,Industry -:- Iron/Steel -:- Furnace -:- Wood,PJ,GW,DMD,-,IIS-PH-FURN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,MEAT-MoTP-Stat-DSL-st_ngn,Industry -:- Meat Processing -:- Stationary Motor -:- Diesel,PJ,GW,DMD,-,MEAT-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,MEAT-MoTP-Stat-ELC-Motor,Industry -:- Meat Processing -:- Stationary Motor -:- Electricity,PJ,GW,DMD,-,MEAT-MoTP-Stat,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,MEAT-MoTP-Stat-ELC-VSD-Mtr,Industry -:- Meat Processing -:- Stationary Motor with VSD -:- Electricity,PJ,GW,DMD,-,MEAT-MoTP-Stat,ANNUAL,1.0
@@ -2605,7 +2607,6 @@ NewTechs_Industry,SI,IND,.DMD.,REFI-PH-FURN-ELC-Furn,Industry -:- Refining -:- F
 NewTechs_Industry,SI,IND,.DMD.,REFI-PH-FURN-LPG-Furn,Industry -:- Refining -:- Furnace -:- LPG,PJ,GW,DMD,-,REFI-PH-FURN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,REFI-PH-FURN-NGA-Furn,Industry -:- Refining -:- Furnace -:- Natural Gas,PJ,GW,DMD,-,REFI-PH-FURN,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,REFI-PH-FURN-WOD-Furn,Industry -:- Refining -:- Furnace -:- Wood,PJ,GW,DMD,-,REFI-PH-FURN,ANNUAL,1.0
-NewTechs_Industry,SI,IND,.DMD.,REFI-PH-STM_HW-COA-Boiler,Industry -:- Refining -:- Boiler -:- Coal,PJ,GW,DMD,-,REFI-PH-STM_HW,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,REFI-PH-STM_HW-DSL-Boiler,Industry -:- Refining -:- Boiler -:- Diesel,PJ,GW,DMD,-,REFI-PH-STM_HW,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,REFI-PH-STM_HW-ELC-Boiler,Industry -:- Refining -:- Boiler -:- Electricity,PJ,GW,DMD,-,REFI-PH-STM_HW,ANNUAL,1.0
 NewTechs_Industry,SI,IND,.DMD.,REFI-PH-STM_HW-ELC-HPmp,Industry -:- Refining -:- Heat Pump -:- Electricity,PJ,GW,DMD,-,REFI-PH-STM_HW,ANNUAL,1.0

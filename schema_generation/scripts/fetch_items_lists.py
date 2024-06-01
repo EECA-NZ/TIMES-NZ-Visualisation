@@ -16,7 +16,8 @@ import os
 import pandas as pd
 from datetime import datetime
 
-SOURCE_DIR = r"C:\Users\cattonw\git\TIMES-NZ-Model-Files\TIMES-NZ\Exported_files"
+MYUSER = os.getlogin().lower()
+SOURCE_DIR = os.path.join(r"C:\Users", MYUSER, r"git\TIMES-NZ-Model-Files\TIMES-NZ\Exported_files")
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 TARGET_DIR = os.path.join(SCRIPT_DIR, os.pardir, 'data', 'input')
 
@@ -30,6 +31,20 @@ def fetch_and_convert_latest_item_lists(source_directory, target_directory):
     latest_commodity_file = {"path": None, "datetime": None}
     latest_commodity_groups_file = {"path": None, "datetime": None}
     latest_process_file = {"path": None, "datetime": None}
+
+    # Get the latest files from the source directory
+    try:
+        files = os.listdir(source_directory)
+        assert files
+    except:
+        warn = f"""\nFiles not found in source directory {source_directory}.
+    In the VEDA Items List Module:
+        Select Process and click "Export to Excel"
+        Select Commodity and click "Export to Excel"
+        Select Commodity Groups and click "Export to Excel"
+    """
+        print(warn)
+        return
 
     # Iterate through files in the source directory
     for file in os.listdir(source_directory):
