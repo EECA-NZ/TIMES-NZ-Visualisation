@@ -5,6 +5,7 @@ Aim is to replicate the intended functionality of the inherited script 'New_Data
 import logging
 import numpy as np
 import pandas as pd
+
 from constants import *
 from rulesets import *
 from helpers import *
@@ -132,6 +133,29 @@ def end_use_fractions(process, scenario, period, df, filter_to_commodities=None)
     end_use_fractions.Value = end_use_fractions.Value / end_use_fractions.Value.sum()
     return end_use_fractions
 
+def complete_expand_dim(df, expand_dim, fill_value_dict):
+    original_column_order = df.columns
+    # This implementation assumes no NaN values in the starting DataFrame
+    assert not df.isnull().values.any(), "DataFrame contains NaN values"
+    # Get all columns except the one to expand
+    defcols = [expand_dim] + list(fill_value_dict.keys()) # defined columns
+    columns = [x for x in df.columns if x not in defcols] # derived from data
+    # Form a DataFrame with all combinations of the unique values of the other dimensions
+    _df = df.copy().drop(columns=defcols).drop_duplicates()
+    _df['key'] = 1
+    # Get all unique values for the expansion dimension
+    # Create a DataFrame with all expand_dim values and the same key
+    expand_values = df[expand_dim].unique()
+    expand_df = pd.DataFrame({expand_dim: expand_values, 'key': 1})
+    # Combine the unique values of the expand_dim with the original DataFrame using the key
+    # This creates a DataFrame where each row of the original is repeated for each unique value of the expand_dim
+    df_expanded = pd.merge(_df, expand_df, on='key').drop(columns='key')
+    # Merge the expanded DataFrame with the original DataFrame to fill in the missing values
+    df_full = pd.merge(df_expanded, df, on=columns + [expand_dim], how='left')
+    # for each column in fill_value_dict, fill in the missing values with the specified default
+    for (col, fill_value) in fill_value_dict.items():
+        df_full[col] = df_full[col].fillna(fill_value)
+    return df_full[original_column_order]
 
 
 #### MAIN ####
@@ -426,6 +450,7 @@ complete_df = combined_df.groupby(categories).apply(add_missing_periods(all_peri
 
 complete_df = complete_df.groupby(group_columns).agg(Value=('Value', 'sum')).reset_index()
 complete_df = apply_rules(complete_df, THOUSAND_VEHICLE_RULES)
+complete_df = complete_expand_dim(complete_df, 'Scenario', {'Value': 0})
 complete_df = complete_df.sort_values(by=group_columns)
 
 # Sanity checks

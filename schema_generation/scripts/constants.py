@@ -3,7 +3,6 @@ This module contains constants used by the scripts (under development) that aim 
 """
 import re
 import os
-import pandas as pd
 
 TIMES_NZ_VERSION = "2.1.2"
 
