@@ -55,8 +55,8 @@ The graphs are interactive and show more information when the user hovers over t
     │		├── img			# Contains the EECA and BEC logo
 
 
-## Data cleaning folder
-    ├── data_cleaning			    	# Application files (Files needed for App to run)
+## Data loading folder
+    ├── data_loading			    	# Application files (Files needed for App to run)
     │   ├── TIMES_shiny_data_cleaning.Rproj 	# The R project file for the app
     │   ├── Assumptions.xlsx 			# The assumption data
     │   ├── Assumptions_Insight_comments.xlsx	# Assumption and insight plot commentary
