@@ -238,7 +238,6 @@ raw_df = raw_df.groupby(['Scenario', 'Attribute', 'Commodity', 'Process', 'Perio
 
 
 # Read other necessary files
-intro = pd.read_csv('../../data_cleaning/intro.csv', delimiter=';')
 schema_all = pd.read_csv('../data/output/output_schema_df_v2_0_0.csv')
 schema_technology = pd.read_excel('../../data_cleaning/Schema_Technology.xlsx')
 schema_technology['Technology'] = schema_technology['Technology'].str.strip()
