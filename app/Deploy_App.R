@@ -2,21 +2,21 @@
 library(rsconnect) # Library needed for the App
 
 deployApp(
-  # Name of Account 
-  account = "eeca-nz", 
-  
+  # Name of Account
+  account = "eeca-nz",
+
   # App Name
-  appName = "TIMES_V2",
-  
+  appName = "TIMES_V2_pendo",
+
   # The file to be uploaded
-  appFiles = c("data", 
+  appFiles = c("data",
                "functions.R" ,
                "renv\\activate.R",
                "renv.lock" ,
-               "rsconnect", 
+               "rsconnect",
                "server.R" ,
                "ui.R",
-               "www", 
+               "www",
                "data/data_for_shiny.rda",
                "data\\load_data.R"),
   # Force Update

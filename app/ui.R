@@ -685,7 +685,8 @@ ui <- navbarPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/all.min.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "font-awesome-5.3.1/css/v4-shims.min.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css"),
-    tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})")
+    tags$script(type = "text/javascript", "$(function () {$('[data-toggle=\"popover\"]').popover()})"),
+    tags$script(type = "text/javascript", src = "js/pendo-analytics.js")
   ),
   
   # Adding the Footer to the App
